@@ -1,0 +1,212 @@
+fastlane_require 'semantic'
+
+require 'pathname'
+
+
+default_platform(:ios)
+
+platform :ios do
+  # SWIFT PACKAGE MANAGEMENT LANES
+  ####################################################################################
+  desc "Get project path and replace remote components with local"
+  lane :sync_project_with_local_components do |options|
+    # Updates xcode package url
+    remote_url =  ENV['REMOTE_COMPONENTS_URL']
+    local_url = Pathname(Dir.pwd).dirname.to_s
+    package_resolved_path = ENV['LOCAL_PROJECT_PATH'] + "/project.pbxproj"
+    if options.has_key?(:update_companion)
+      package_resolved_path = "#{local_url}/CompanionApp/CompanionApp.xcodeproj/project.pbxproj"
+    end
+    puts "package_resolved_path: #{package_resolved_path}"
+    local_url = "file://" + local_url
+
+    text = File.read(package_resolved_path)
+    replaced_text = text.gsub(remote_url, local_url)
+
+    File.open(package_resolved_path, "w") {|file| file.puts replaced_text }
+
+    # Adds current remote tag to tag file
+    tag_values_filename = ENV['TAG_FILE']
+    File.open(tag_values_filename, "w") {|f| f.puts last_git_tag }
+
+  end
+
+  desc "Creates a development tag and updates projects using this swift package"
+  lane :update_dependent_projects do |options|
+    local_url = Pathname(Dir.pwd).dirname.to_s
+    package_resolved_path = ENV['LOCAL_PROJECT_PATH'] + "/project.pbxproj"
+    if options.has_key?(:update_companion)
+      package_resolved_path = "#{local_url}/CompanionApp/CompanionApp.xcodeproj/project.pbxproj"
+    end
+    local_url = "file://" + local_url
+
+    last_local_tag = last_git_tag
+    dev_tag = Time.now.to_i.to_s + ".0.0" # .0.0 is required for Xcode to solve the versioning
+    sh('swift package generate-xcodeproj') # Make sure changes to the manifest file are carried through to the dev package
+    sh("[[ -z $(git status -s) ]] || git commit -a -m 'development commit for " + dev_tag + "'")
+    sh("git tag " + dev_tag)
+
+    # Updates Swift Package Manifest
+    text = File.read(package_resolved_path)
+    replaced_text = text.gsub(last_local_tag, dev_tag)
+    File.open(package_resolved_path, "w") {|file| file.puts replaced_text }
+
+    # Stores tags in file for use later
+    tag_values_filename = ENV['TAG_FILE']
+    File.open(tag_values_filename, "a") {|f| f.write("\n" + dev_tag) }
+
+  end
+
+  desc "Reset dependent projects to remote URL"
+  lane :reset_dependent_projects do |options|
+    remote_url =  ENV['REMOTE_COMPONENTS_URL']
+    local_url = Pathname(Dir.pwd).dirname.to_s
+    package_resolved_path = ENV['LOCAL_PROJECT_PATH'] + "/project.pbxproj"
+    if options.has_key?(:update_companion)
+      package_resolved_path = "#{local_url}/CompanionApp/CompanionApp.xcodeproj/project.pbxproj"
+    end
+    local_url = "file://" + local_url
+
+    tag_values_filename = ENV['TAG_FILE']
+    tag_values = File.readlines(tag_values_filename)
+
+    text = File.read(package_resolved_path)
+    replaced_text = text.gsub(local_url, remote_url)
+    replaced_text = replaced_text.gsub(tag_values.last, tag_values.first.gsub("\n", ""))
+
+    File.open(package_resolved_path, "w") {|file| file.puts replaced_text }
+
+    tag_values.drop(1).each { |x| sh("git tag -d " + x) }
+
+    sh("rm " + tag_values_filename)
+  end
+
+  # GENERAL DEVELOPMENT LANES
+  ####################################################################################
+  desc "This will sync adhoc certificates to allow the companion app to build on CI"
+  lane:sync_certificates do
+    syncAdhocCerts()
+  end
+
+  def syncAdhocCerts(force_for_new_devices=false)
+    match(
+      app_identifier: ["uk.gov.hmrc.ngc.SUIComponentsTestApp"],
+      type: "adhoc",
+      readonly: !force_for_new_devices,
+      force_for_new_devices: force_for_new_devices
+    )
+  end
+
+  desc "Build adhoc app for testing"
+  lane :build_adhoc_app do |options|
+    syncAdhocCerts()
+    gym(
+      project: options[:project_path],
+      configuration: "Debug",
+      export_method: "ad-hoc",
+      output_directory: options[:output]
+    )
+  end
+
+  desc "Register new devices"
+    lane :register_new_device do
+    device_name = prompt(text: "Enter the device name: ")
+    device_udid = prompt(text: "Enter the device UDID: ")
+    device_hash = {}
+    device_hash[device_name] = device_udid
+    register_devices(devices: device_hash)
+    syncAdhocCerts(true)
+  end
+
+  desc "Create a new tagged release of the library."
+  desc "This will bump the release tag, precompile the library, commit and tag the changes, then push up to master."
+  lane :take_release do
+    begin
+      sh("gh --version")
+    rescue => exception
+      UI.error exception
+      UI.user_error!("Github CLI must be installed. See https://github.com/cli/cli")
+    end
+
+    UI.user_error!("You need to provide a Github Personal token via a `GITHUB_TOKEN` environment variable - you can create a new token on Github https://github.com/settings/tokens/new") unless !ENV["GITHUB_TOKEN"].nil?
+    UI.user_error!("You need to provide the Bitrise token via a `BITRISE_TOKEN` environment variable") unless !ENV["BITRISE_TOKEN"].nil?
+    UI.user_error!("You need to provide the Bitrise app slug for this repo via a `IOS_COMPONENTS_APP_SLUG` environment variable") unless !ENV["IOS_COMPONENTS_APP_SLUG"].nil?
+    UI.user_error!("You need to provide the Bitrise release workflow ID this repo via a `IOS_COMPONENTS_RELEASE_WORKFLOW_ID` environment variable") unless !ENV["IOS_COMPONENTS_RELEASE_WORKFLOW_ID"].nil?
+    # make sure we're on master
+    ensure_git_branch
+    # pull latest changes and fetch tags
+    git_pull
+    # get current version
+    current_tag = last_git_tag
+    version = Semantic::Version.new(current_tag)
+    # prompt for bump type
+    bump_type = UI.select(
+      "Current version is #{current_tag}. What version would you like to give this release?",
+      ["major", "minor", "patch"]
+    )
+    # increment version
+    case bump_type
+    when "major"
+      version = version.increment!(:major)
+    when "minor"
+      version = version.increment!(:minor)
+    else
+      version = version.increment!(:patch)
+    end
+    project_version = version.to_string
+
+    sh('swift package generate-xcodeproj')
+    branch_name = "release/" + project_version
+    sh('git checkout -b ' + branch_name)
+
+    # update changelog
+    stamp_changelog(
+      section_identifier: project_version
+    )
+    git_commit(
+      path: ["./CHANGELOG.md"],
+      message: "Update changelog for release #{project_version}"
+    )
+
+    sh('git add .')
+    sh("[[ -z $(git status -s) ]] || git commit -a -m 'Generate swift package for " + project_version + "'")
+    sh('git push --set-upstream origin ' + branch_name)
+    # ensure repo is clean
+    ensure_git_status_clean
+    ensure_git_branch(branch: "^release\/" + project_version)
+
+    # take tag and push to remote
+    add_git_tag(tag: project_version)
+    push_git_tags
+
+    # update releases on Github
+    changelog = read_changelog(
+      section_identifier: "[#{project_version}]",
+      excluded_markdown_elements: []
+    )
+    set_github_release(
+      repository_name: "hmrc/ios-swiftui-components",
+      api_token: ENV["GITHUB_TOKEN"],
+      name: project_version,
+      tag_name: project_version,
+      description: changelog
+    )
+
+    # start release process on CI
+    sh("cd .. && sh release.sh '#{project_version}'")
+
+    local_url = Pathname(Dir.pwd).dirname.to_s
+    companion_path = "#{local_url}/CompanionApp/CompanionApp.xcodeproj/project.pbxproj"
+    local_url = "file://" + local_url
+
+    # Updates Swift Package Manifest
+    text = File.read(companion_path)
+    replaced_text = text.gsub(current_tag, project_version)
+    File.open(companion_path, "w") {|file| file.puts replaced_text }
+    sh("[[ -z $(git status -s) ]] || git commit -a -m 'Updated companion app version to #{project_version}'")
+    sh('git push origin ' + branch_name)
+    sh('gh pr create --title "Release PR for ' + project_version + '" --base master')
+
+  end
+
+end
