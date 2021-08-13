@@ -52,9 +52,9 @@ struct TitleBodyView_Previews: PreviewProvider {
         VStack(alignment: .leading, spacing: 20, content: {
             Components.Molecules.TitleBodyView(
                 model: .init(
-                    title: "Really Long Title Really Long Title",
-                    body: "Really long body Really long sdf body Really long body Really long body Really long body Really long body Really long body ",
-                    style: .link
+                    title: "H3 Title",
+                    body: "H3 Body",
+                    style: .H3
                 )
             )
             Components.Molecules.TitleBodyView(
