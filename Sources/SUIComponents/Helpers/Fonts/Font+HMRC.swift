@@ -19,42 +19,36 @@ import SwiftUI
 public extension Font {
     // swiftlint:disable identifier_name
     private struct BaseFonts {
-        static let h3: Font = Font.system(size: 48, weight: .bold)
-        static let h4: Font = Font.system(size: 30, weight: .bold)
-        static let h5: Font = Font.system(size: 20, weight: .bold)
-        static let bold: Font = Font.system(size: 16, weight: .bold)
-        static let body: Font = Font.system(size: 16)
-        static let debug: Font = Font.system(size: 12)
+        static let h3: UIFont = UIFont.systemFont(ofSize: 48, weight: .bold)
+        static let h4: UIFont = UIFont.systemFont(ofSize: 30, weight: .bold)
+        static let h5: UIFont = UIFont.systemFont(ofSize: 20, weight: .bold)
+        static let bold: UIFont = UIFont.systemFont(ofSize: 16, weight: .bold)
+        static let body: UIFont = UIFont.systemFont(ofSize: 16)
+        static let debug: UIFont = UIFont.systemFont(ofSize: 12)
     }
 
     static func H3() -> Font {
-        BaseFonts.h3
-//        return FontMetrics.scaledFont(for: BaseFonts.h3)
+        return FontMetrics.scaledFont(for: BaseFonts.h3)
     }
 
     static func H4() -> Font {
-        BaseFonts.h4
-//        return FontMetrics.scaledFont(for: BaseFonts.h4)
+        return FontMetrics.scaledFont(for: BaseFonts.h4)
     }
 
     static func H5() -> Font {
-        BaseFonts.h5
-//        return FontMetrics.scaledFont(for: BaseFonts.h5)
+        return FontMetrics.scaledFont(for: BaseFonts.h5)
     }
 
     static func bold() -> Font {
-        BaseFonts.bold
-//        return FontMetrics.scaledFont(for: BaseFonts.bold)
+        return FontMetrics.scaledFont(for: BaseFonts.bold)
     }
 
     static func body() -> Font {
-        BaseFonts.body
-//        return FontMetrics.scaledFont(for: BaseFonts.body)
+        return FontMetrics.scaledFont(for: BaseFonts.body)
     }
 
     static func debug() -> Font {
-        BaseFonts.debug
-//        return FontMetrics.scaledFont(for: BaseFonts.debug)
+        return FontMetrics.scaledFont(for: BaseFonts.debug)
     }
     // swiftlint:enable identifier_name
 }
