@@ -16,8 +16,6 @@
 
 import SwiftUI
 
-public typealias VoidHandler = () -> Void
-
 extension Components.Molecules {
     public struct StatusView: View {
         let model: Model
