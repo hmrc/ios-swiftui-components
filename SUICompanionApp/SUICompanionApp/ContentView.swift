@@ -19,17 +19,50 @@ import SUIComponents
 
 struct ContentView: View {
     var body: some View {
-        Components.Molecules.TitleBodyView(
-            model: .init(
-                title: "Your PAYE Summary",
-                body: "6 April 2020 to 5 April 2021",
-                style: .H4
-            )
-        ).frame(
-            maxWidth: .infinity,
-            maxHeight: .infinity,
-            alignment: .topLeading
-        )
+        HStack(
+            alignment: .top,
+            spacing: 20,
+            content: {
+                VStack(
+                    alignment: .leading,
+                    spacing: 20,
+                    content: {
+                        Components.Molecules.TitleBodyView(
+                            model: .init(
+                                title: "Your PAYE Summary",
+                                body: "6 April 2020 to 5 April 2021",
+                                style: .H4
+                            )
+                        ).frame(
+                            maxWidth: .infinity,
+                            alignment: .topLeading
+                        )
+
+                        Components.Molecules.StatusView(
+                            model: .init(
+                                icon: "square.and.pencil",
+                                title: "A title",
+                                body: "A body",
+                                buttonModel: .init(
+                                    title: "A button title",
+                                    style: .primary,
+                                    accessibilityIdentifier: "identifier",
+                                    handler: {
+                                        print("kdsjbf")
+                                    }
+                                )
+                            )
+                        ).background(Color.Semantic.whiteBackground)
+                    })
+                    .frame(
+                        maxWidth: .infinity,
+                        maxHeight: .infinity,
+                        alignment: .leading
+                    )
+                    .background(Color.Semantic.pageBackground)
+                    .padding()
+            }
+        ).background(Color.Semantic.pageBackground)
     }
 }
 

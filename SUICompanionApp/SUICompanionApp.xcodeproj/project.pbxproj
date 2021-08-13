@@ -281,7 +281,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"SUICompanionApp/Preview Content\"";
-				DEVELOPMENT_TEAM = GG3ZJ753XH;
+				DEVELOPMENT_TEAM = 4LL5YKZZU7;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = SUICompanionApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -303,7 +303,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"SUICompanionApp/Preview Content\"";
-				DEVELOPMENT_TEAM = GG3ZJ753XH;
+				DEVELOPMENT_TEAM = 4LL5YKZZU7;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = SUICompanionApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -347,7 +347,7 @@
 			repositoryURL = "https://github.com/hmrc/ios-swiftui-components.git";
 			requirement = {
 				kind = revision;
-				revision = d13d53616bb7d8c29fd4a022ee08745748f7aa42;
+				revision = 9cef6c9b9efa49f173bc208a9d5c4ae73bd72fda;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
