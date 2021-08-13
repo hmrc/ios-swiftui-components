@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "SUIComponents",
+        "repositoryURL": "https://github.com/hmrc/ios-swiftui-components.git",
+        "state": {
+          "branch": null,
+          "revision": "d13d53616bb7d8c29fd4a022ee08745748f7aa42",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
