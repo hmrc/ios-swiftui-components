@@ -27,11 +27,15 @@ extension Components.Molecules {
         public var body: some View {
             VStack(
                 alignment: .center,
-                spacing: 16,
+                spacing: .spacer16,
                 content: {
                     Image(systemName: model.icon)
                         .resizable()
-                        .frame(width: 100, height: 100, alignment: .center)
+                        .frame(
+                            width: Constants.imageSize,
+                            height: Constants.imageSize,
+                            alignment: .center
+                        )
                         .aspectRatio(contentMode: .fill)
                         .foregroundColor(model.iconTintColor ?? Color.Semantic.statusCardIconDefaultTint)
                     Text(model.title)
@@ -49,8 +53,12 @@ extension Components.Molecules {
                     }
                 }
             )
-            .frame(maxWidth: .infinity, alignment: .center)
-            .padding(16)
+                .frame(maxWidth: .infinity, alignment: .center)
+                .padding(.spacer16)
+        }
+
+        private struct Constants {
+            static let imageSize: CGFloat = 100
         }
     }
 }
@@ -67,7 +75,8 @@ extension Components.Molecules.StatusView {
                     title: String,
                     body: NSAttributedString? = nil,
                     buttonModel: ButtonModel? = nil,
-                    iconTintColor: Color? = nil) {
+                    iconTintColor: Color? = nil
+        ) {
             self.icon = icon
             self.title = title
             self.body = body
@@ -79,7 +88,8 @@ extension Components.Molecules.StatusView {
                     title: String,
                     body: String?,
                     buttonModel: ButtonModel? = nil,
-                    iconTintColor: Color? = nil) {
+                    iconTintColor: Color? = nil
+        ) {
             self.icon = icon
             self.title = title
             if let body = body {
@@ -103,7 +113,8 @@ extension Components.Molecules.StatusView {
             public init(title: String,
                         style: HMRCButtonStyle,
                         accessibilityIdentifier: String? = nil,
-                        handler: @escaping VoidHandler) {
+                        handler: @escaping VoidHandler
+            ) {
                 self.title = title
                 self.style = style
                 self.accessibilityIdentifier = accessibilityIdentifier
@@ -117,11 +128,11 @@ struct StatusView_Previews: PreviewProvider {
     static var previews: some View {
         HStack(
             alignment: .top,
-            spacing: 20,
+            spacing: .spacer16,
             content: {
                 VStack(
                     alignment: .leading,
-                    spacing: 20,
+                    spacing: .spacer16,
                     content: {
                         Components.Molecules.StatusView(
                             model: .init(
@@ -162,14 +173,14 @@ struct StatusView_Previews: PreviewProvider {
                                 )
                             )
                         ).background(Color.Semantic.whiteBackground)
-                    })
-                    .frame(
-                        maxWidth: .infinity,
-                        maxHeight: .infinity,
-                        alignment: .leading
-                    )
-                    .background(Color.Semantic.pageBackground)
-                    .padding()
+                    }
+                ).frame(
+                    maxWidth: .infinity,
+                    maxHeight: .infinity,
+                    alignment: .leading
+                ).background(
+                    Color.Semantic.pageBackground
+                ).padding()
             }
         ).background(Color.Semantic.pageBackground)
     }

@@ -23,7 +23,11 @@ extension Components.Molecules {
             let body: String
             let style: TextStyle
 
-            public init(title: String, body: String, style: TextStyle) {
+            public init(
+                title: String,
+                body: String,
+                style: TextStyle
+            ) {
                 self.title = title
                 self.body = body
                 self.style = style
@@ -37,59 +41,68 @@ extension Components.Molecules {
         }
 
         public var body: some View {
-            VStack(alignment: .leading, spacing: 8, content: {
-                Text(model.title)
-                    .style(model.style)
-                Text(model.body)
-            })
-            .frame(maxWidth: .infinity, alignment: .leading)
+            VStack(
+                alignment: .leading,
+                spacing: .spacer8,
+                content: {
+                    Text(model.title)
+                        .style(model.style)
+                    Text(model.body)
+                }
+            ).frame(
+                maxWidth: .infinity,
+                alignment: .leading
+            )
         }
     }
 }
 
 struct TitleBodyView_Previews: PreviewProvider {
     static var previews: some View {
-        VStack(alignment: .leading, spacing: 20, content: {
-            Components.Molecules.TitleBodyView(
-                model: .init(
-                    title: "H3 Title",
-                    body: "H3 Body",
-                    style: .H3
+        VStack(
+            alignment: .leading,
+            spacing: .spacer16,
+            content: {
+                Components.Molecules.TitleBodyView(
+                    model: .init(
+                        title: "H3 Title",
+                        body: "H3 Body",
+                        style: .H3
+                    )
                 )
-            )
-            Components.Molecules.TitleBodyView(
-                model: .init(
-                    title: "H4 Title",
-                    body: "H4 Body",
-                    style: .H4
+                Components.Molecules.TitleBodyView(
+                    model: .init(
+                        title: "H4 Title",
+                        body: "H4 Body",
+                        style: .H4
+                    )
                 )
-            )
-            Components.Molecules.TitleBodyView(
-                model: .init(
-                    title: "H5 Title",
-                    body: "H5 Body",
-                    style: .H5
+                Components.Molecules.TitleBodyView(
+                    model: .init(
+                        title: "H5 Title",
+                        body: "H5 Body",
+                        style: .H5
+                    )
                 )
-            )
-            Components.Molecules.TitleBodyView(
-                model: .init(
-                    title: "Bold Title",
-                    body: "Bold Body",
-                    style: .bold
+                Components.Molecules.TitleBodyView(
+                    model: .init(
+                        title: "Bold Title",
+                        body: "Bold Body",
+                        style: .bold
+                    )
                 )
-            )
-            Components.Molecules.TitleBodyView(
-                model: .init(
-                    title: "Body Title",
-                    body: "Body Body",
-                    style: .body
+                Components.Molecules.TitleBodyView(
+                    model: .init(
+                        title: "Body Title",
+                        body: "Body Body",
+                        style: .body
+                    )
                 )
-            )
-        }).frame(
+            }
+        ).frame(
             maxWidth: .infinity,
             maxHeight: .infinity,
             alignment: .leading
-        )
-        .background(Color.gray)
+        ).background(Color.gray)
     }
 }
