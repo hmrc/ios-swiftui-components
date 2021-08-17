@@ -49,6 +49,20 @@ extension Components.Organisms {
     }
 }
 
+extension Components.Organisms.PrimaryCardView where Content == EmptyView {
+    public init(
+        title: String,
+        insets: EdgeInsets = EdgeInsets(padding: .spacer16),
+        itemSpacing: CGFloat = .spacer16) {
+        self.init(
+            title: title,
+            insets: insets,
+            itemSpacing: itemSpacing,
+            content: { EmptyView() }
+        )
+    }
+}
+
 struct PrimaryCardView_Previews: PreviewProvider {
     static var previews: some View {
         HStack(
@@ -59,6 +73,10 @@ struct PrimaryCardView_Previews: PreviewProvider {
                     alignment: .leading,
                     spacing: .spacer16,
                     content: {
+                        Components.Organisms.PrimaryCardView(
+                            title: "A title"
+                        )
+
                         Components.Organisms.PrimaryCardView(
                             title: "A title",
                             content: {
