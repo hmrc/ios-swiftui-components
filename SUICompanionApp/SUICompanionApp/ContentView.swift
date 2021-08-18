@@ -18,6 +18,8 @@ import SwiftUI
 import SUIComponents
 
 struct ContentView: View {
+    @State(initialValue: false) var isOn: Bool
+    
     var body: some View {
         HStack(
             alignment: .top,
@@ -37,6 +39,14 @@ struct ContentView: View {
                             maxWidth: .infinity,
                             alignment: .topLeading
                         )
+
+                        let isOnBinding = Binding<Bool> {
+                            self.isOn
+                        } set: { isOn in
+                            self.isOn = isOn
+                            print("SwitchRow Value did change: \(self.isOn)")
+                        }
+                        Components.Molecules.SwitchRowView(isOn: isOnBinding)
 
                         Components.Molecules.StatusView(
                             model: .init(
