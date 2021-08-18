@@ -23,3 +23,11 @@ extension VStack {
         self.modifier(CardView(insets: insets))
     }
 }
+
+extension HStack {
+    public func cardView(
+        insets: EdgeInsets = EdgeInsets(padding: .spacer16)
+    ) -> some View {
+        self.modifier(CardView(insets: insets))
+    }
+}
