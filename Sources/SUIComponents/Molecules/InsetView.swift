@@ -18,15 +18,10 @@ import SwiftUI
 
 extension Components.Molecules {
     public struct InsetView<Content: View>: View {
-        private let title: String?
-        private let content: Content
+        @ObservedObject private var model: Model<Content>
 
-        public init(
-            title: String? = nil,
-            @ViewBuilder content: () -> Content
-        ) {
-            self.title = title
-            self.content = content()
+        public init(model: Model<Content>) {
+            self.model = model
         }
 
         public var body: some View {
@@ -41,10 +36,10 @@ extension Components.Molecules {
                         alignment: .leading,
                         spacing: .spacer16,
                         content: {
-                            if let title = self.title {
+                            if let title = model.title {
                                 Text(title)
                                     .style(.body)
-                            } else if let content = self.content {
+                            } else if let content = model.content {
                                 content
                             }
                         }
@@ -53,11 +48,31 @@ extension Components.Molecules {
             ).cardView()
             .fixedSize(horizontal: false, vertical: true)
         }
+
+        mutating func update(model: Model<Content>) {
+            self.model = model
+        }
     }
 }
 
-extension Components.Molecules.InsetView where Content == EmptyView {
-    public init(
+extension Components.Molecules.InsetView {
+    public class Model<Content: View>: ObservableObject {
+
+        let title: String?
+        let content: Content
+
+        public init(
+            title: String? = nil,
+            content: () -> Content
+        ) {
+            self.title = title
+            self.content = content()
+        }
+    }
+}
+
+extension Components.Molecules.InsetView.Model where Content == EmptyView {
+    public convenience init(
         title: String
     ) {
         self.init(
@@ -78,13 +93,21 @@ struct InsetView_Previews: PreviewProvider {
                     spacing: .spacer16,
                     content: {
                         Components.Molecules.InsetView(
-                            title: "A title"
+                            model: .init(
+                                title: "Title"
+                            )
                         )
 
-                        Components.Molecules.InsetView {
-                            Text("A body")
-                            Text("Another very very very very very very very very very very very very very very very very very very very loooooooong body")
-                        }
+                        Components.Molecules.InsetView(
+                            model: .init(
+                                content: {
+                                    Group{
+                                        Text("A body")
+                                        Text("Another very very very very very very very very very very very very very very very very very very very loooooooong body")
+                                    }
+                                }
+                            )
+                        )
                     }
                 )
             }
