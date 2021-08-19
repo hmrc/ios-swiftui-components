@@ -44,6 +44,7 @@ extension Components.Molecules {
     }
 }
 
+
 struct SwitchRowView_Previews: PreviewProvider {
     static var previews: some View {
         ViewWrapper()
@@ -53,13 +54,7 @@ struct SwitchRowView_Previews: PreviewProvider {
         @State(initialValue: true) var isOn: Bool
 
         var body: some View {
-            let isOnBinding = Binding<Bool> {
-                self.isOn
-            } set: { isOn in
-                self.isOn = isOn
-                print("Hloa Muchachachacahcah")
-            }
-            Components.Molecules.SwitchRowView(isOn: isOnBinding)
+            Components.Molecules.SwitchRowView(isOn: $isOn)
         }
     }
 }
