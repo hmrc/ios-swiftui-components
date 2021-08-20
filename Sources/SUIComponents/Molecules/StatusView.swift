@@ -93,7 +93,7 @@ extension Components.Molecules.StatusView {
             self.icon = icon
             self.title = title
             if let body = body {
-                self.body = NSMutableAttributedString.styled(
+                self.body = NSMutableAttributedString.styled_sui(
                     style: .body,
                     string: body
                 )

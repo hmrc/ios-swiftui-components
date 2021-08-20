@@ -17,20 +17,20 @@
 import SwiftUI
 
 extension NSMutableAttributedString {
-    public static func styled(
+    public static func styled_sui(
         style: TextStyle,
         string: String? = nil)
     -> NSMutableAttributedString {
         let string = NSMutableAttributedString(string: string ?? "")
-        string.setAppearance(for: style)
+        string.setAppearance_sui(for: style)
         return string
     }
 
-    public func setAppearance(for style: TextStyle) {
-        return setAppearance(for: style, subString: nil)
+    public func setAppearance_sui(for style: TextStyle) {
+        return setAppearance_sui(for: style, subString: nil)
     }
 
-    public func setAppearance(
+    public func setAppearance_sui(
         for style: TextStyle,
         subString: String?
     ) {
