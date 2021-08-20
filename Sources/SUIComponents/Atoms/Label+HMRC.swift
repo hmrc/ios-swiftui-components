@@ -49,6 +49,10 @@ public enum TextStyle {
             return Color.Semantic.darkText
         }
     }
+
+    public var backgroundColor: Color {
+        .clear
+    }
 }
 
 extension Text {

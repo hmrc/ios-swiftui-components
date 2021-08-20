@@ -16,47 +16,9 @@
 
 import SwiftUI
 
-public enum AttributedStringStyle {
-    case H3
-    case H4
-    case H5
-    case bold
-    case body
-    case info
-    case link
-    case error
-
-    public var font: Font {
-        switch self {
-        case .H3: return Font.H3()
-        case .H4: return Font.H4()
-        case .H5: return Font.H5()
-        case .bold: return Font.bold()
-        case .body, .info, .link, .error: return Font.body()
-        }
-    }
-
-    public var textColor: Color {
-        switch self {
-        case .info:
-            return Color.Semantic.infoText
-        case .link:
-            return Color.Semantic.linkText
-        case .error:
-            return Color.Semantic.errorText
-        default:
-            return Color.Semantic.darkText
-        }
-    }
-
-    public var backgroundColor: Color {
-        return Color.clear
-    }
-}
-
 extension NSMutableAttributedString {
     public static func styled(
-        style: AttributedStringStyle,
+        style: TextStyle,
         string: String? = nil)
     -> NSMutableAttributedString {
         let string = NSMutableAttributedString(string: string ?? "")
@@ -64,12 +26,12 @@ extension NSMutableAttributedString {
         return string
     }
 
-    public func setAppearance(for style: AttributedStringStyle) {
+    public func setAppearance(for style: TextStyle) {
         return setAppearance(for: style, subString: nil)
     }
 
     public func setAppearance(
-        for style: AttributedStringStyle,
+        for style: TextStyle,
         subString: String?
     ) {
         let foundRange: NSRange = {

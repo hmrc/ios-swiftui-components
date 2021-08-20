@@ -29,7 +29,7 @@ extension Components.Molecules {
                 alignment: .center,
                 spacing: .spacer16,
                 content: {
-                    Image(systemName: model.icon)
+                    Image(model.icon)
                         .resizable()
                         .frame(
                             width: Constants.imageSize,
