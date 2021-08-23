@@ -42,9 +42,8 @@ struct PrimaryButtonStyle: ButtonStyle {
             .foregroundColor(Color.Semantic.primaryButtonText)
             .overlay(
                 Rectangle()
-                    .background(Color.Semantic.primaryButtonBaseline)
+                    .fill(Color.Semantic.primaryButtonBaseline)
                     .frame(height: 3)
-//                    .frame(maxWidth: .infinity, idealHeight: 3, alignment: .bottom)
                 , alignment: .bottom
             )
     }
