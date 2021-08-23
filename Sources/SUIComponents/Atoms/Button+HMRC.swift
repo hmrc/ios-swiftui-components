@@ -37,7 +37,7 @@ struct PrimaryButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .frame(maxWidth: .infinity)
-            .padding()
+            .padding(.spacer12)
             .background(Color.Semantic.primaryButtonBackground)
             .foregroundColor(Color.Semantic.primaryButtonText)
     }
@@ -47,7 +47,7 @@ struct SecondaryButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .frame(maxWidth: .infinity)
-            .padding()
+            .padding(.spacer12)
             .background(Color.Semantic.secondaryButtonBackground)
             .foregroundColor(Color.Semantic.secondaryButtonText)
     }
