@@ -44,6 +44,8 @@ extension Components.Molecules {
                         .fixedSize(horizontal: false, vertical: true)
                     if let body = model.body {
                         Text(body.string)
+                            .style(.body)
+                            .multilineTextAlignment(.center)
                             .fixedSize(horizontal: false, vertical: true)
                     }
                     if let buttonModel = model.buttonModel {
