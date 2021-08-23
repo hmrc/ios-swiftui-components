@@ -40,6 +40,13 @@ struct PrimaryButtonStyle: ButtonStyle {
             .padding(.spacer12)
             .background(Color.Semantic.primaryButtonBackground)
             .foregroundColor(Color.Semantic.primaryButtonText)
+            .overlay(
+                Rectangle()
+                    .background(Color.Semantic.primaryButtonBaseline)
+                    .frame(height: 3)
+//                    .frame(maxWidth: .infinity, idealHeight: 3, alignment: .bottom)
+                , alignment: .bottom
+            )
     }
 }
 
