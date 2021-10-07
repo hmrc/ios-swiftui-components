@@ -12,7 +12,7 @@
 		587A134826C4223B0005A55D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 587A134726C4223B0005A55D /* Assets.xcassets */; };
 		587A134B26C4223B0005A55D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 587A134A26C4223B0005A55D /* Preview Assets.xcassets */; };
 		587A135326C423AB0005A55D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587A135226C423AB0005A55D /* MainView.swift */; };
-		587A135626C425600005A55D /* SUIComponents in Frameworks */ = {isa = PBXBuildFile; productRef = 587A135526C425600005A55D /* SUIComponents */; };
+		58B33E42270F49DC00897F24 /* SUIComponents in Frameworks */ = {isa = PBXBuildFile; productRef = 58B33E41270F49DC00897F24 /* SUIComponents */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +23,7 @@
 		587A134A26C4223B0005A55D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		587A134C26C4223B0005A55D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		587A135226C423AB0005A55D /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		58B33E3F270F49BD00897F24 /* ios-swiftui-components */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "ios-swiftui-components"; path = ..; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -30,7 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				587A135626C425600005A55D /* SUIComponents in Frameworks */,
+				58B33E42270F49DC00897F24 /* SUIComponents in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,8 +41,10 @@
 		587A133726C422370005A55D = {
 			isa = PBXGroup;
 			children = (
+				58B33E3F270F49BD00897F24 /* ios-swiftui-components */,
 				587A134226C422370005A55D /* SUICompanionApp */,
 				587A134126C422370005A55D /* Products */,
+				58B33E40270F49DC00897F24 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -74,6 +77,13 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		58B33E40270F49DC00897F24 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -91,7 +101,7 @@
 			);
 			name = SUICompanionApp;
 			packageProductDependencies = (
-				587A135526C425600005A55D /* SUIComponents */,
+				58B33E41270F49DC00897F24 /* SUIComponents */,
 			);
 			productName = SUICompanionApp;
 			productReference = 587A134026C422370005A55D /* SUICompanionApp.app */;
@@ -121,7 +131,6 @@
 			);
 			mainGroup = 587A133726C422370005A55D;
 			packageReferences = (
-				587A135426C425600005A55D /* XCRemoteSwiftPackageReference "ios-swiftui-components" */,
 			);
 			productRefGroup = 587A134126C422370005A55D /* Products */;
 			projectDirPath = "";
@@ -341,21 +350,9 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		587A135426C425600005A55D /* XCRemoteSwiftPackageReference "ios-swiftui-components" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/hmrc/ios-swiftui-components.git";
-			requirement = {
-				kind = revision;
-				revision = 9cef6c9b9efa49f173bc208a9d5c4ae73bd72fda;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
 /* Begin XCSwiftPackageProductDependency section */
-		587A135526C425600005A55D /* SUIComponents */ = {
+		58B33E41270F49DC00897F24 /* SUIComponents */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 587A135426C425600005A55D /* XCRemoteSwiftPackageReference "ios-swiftui-components" */;
 			productName = SUIComponents;
 		};
 /* End XCSwiftPackageProductDependency section */
