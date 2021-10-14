@@ -25,7 +25,7 @@ extension Color {
                 guard let property = property, let value = value as? Color else {
                     continue
                 }
-                result.append((property, value))
+                result.append(("\(property) (\(value.hexString ?? "#------"))", value))
             }
             return result
         }
