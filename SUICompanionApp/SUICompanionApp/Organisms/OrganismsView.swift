@@ -15,11 +15,21 @@
  */
 
 import SwiftUI
+import SUIComponents
 
-extension VStack {
-    public func cardView(
-        insets: EdgeInsets = EdgeInsets(padding: .spacer16)
-    ) -> some View {
-        self.modifier(CardView(insets: insets))
+struct OrganismsView: View {
+    var body: some View {
+        NavigationView {
+            List {
+                Example.navigationLink(type: Components.Organisms.PrimaryCardView<Text>.self)
+            }
+            .navigationTitle("Organisms")
+        }
+    }
+}
+
+struct OrganismsView_Previews: PreviewProvider {
+    static var previews: some View {
+        OrganismsView()
     }
 }

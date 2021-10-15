@@ -61,6 +61,6 @@ public extension Color {
               let hexString = firstLine.split(separator: " ")[1] as Substring? else {
             return nil
         }
-        return hexString.trimmingCharacters(in: .newlines)
+        return String(hexString.trimmingCharacters(in: .newlines).dropLast(2))
     }
 }

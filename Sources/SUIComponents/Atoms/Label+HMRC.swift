@@ -51,13 +51,13 @@ public enum TextStyle {
     }
 }
 
-extension Text {
+public extension Text {
     func style(_ style: TextStyle) -> some View {
         self.modifier(Title(model: style))
     }
     struct Title: ViewModifier {
         let model: TextStyle
-        func body(content: Content) -> some View {
+        public func body(content: Content) -> some View {
             content
                 .font(model.font)
         }

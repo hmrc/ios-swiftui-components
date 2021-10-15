@@ -29,7 +29,7 @@ extension Components.Molecules {
                 alignment: .center,
                 spacing: .spacer16,
                 content: {
-                    Image(systemName: model.icon)
+                    model.icon
                         .resizable()
                         .frame(
                             width: Constants.imageSize,
@@ -52,9 +52,7 @@ extension Components.Molecules {
                         }.styled(buttonModel.style)
                     }
                 }
-            )
-                .frame(maxWidth: .infinity, alignment: .center)
-                .padding(.spacer16)
+            ).frame(maxWidth: .infinity, alignment: .center)
         }
 
         private struct Constants {
@@ -65,13 +63,13 @@ extension Components.Molecules {
 
 extension Components.Molecules.StatusView {
     open class Model {
-        public let icon: String
+        public let icon: Image
         public let title: String
         public let body: NSAttributedString?
         public let buttonModel: ButtonModel?
         public let iconTintColor: Color?
         
-        public init(icon: String,
+        public init(icon: Image,
                     title: String,
                     body: NSAttributedString? = nil,
                     buttonModel: ButtonModel? = nil,
@@ -84,7 +82,7 @@ extension Components.Molecules.StatusView {
             self.iconTintColor = iconTintColor
         }
         
-        public init(icon: String,
+        public init(icon: Image,
                     title: String,
                     body: String?,
                     buttonModel: ButtonModel? = nil,
@@ -136,14 +134,14 @@ struct StatusView_Previews: PreviewProvider {
                     content: {
                         Components.Molecules.StatusView(
                             model: .init(
-                                icon: "moon.stars.fill",
+                                icon: Image(systemName: "moon.stars.fill"),
                                 title: "A title"
                             )
                         )
                         
                         Components.Molecules.StatusView(
                             model: .init(
-                                icon: "square.and.pencil",
+                                icon: Image(systemName: "square.and.pencil"),
                                 title: "A title",
                                 body: "A body"
                             )
@@ -151,7 +149,7 @@ struct StatusView_Previews: PreviewProvider {
                         
                         Components.Molecules.StatusView(
                             model: .init(
-                                icon: "folder.circle",
+                                icon: Image(systemName: "folder.circle"),
                                 title: "A very very very very very very very very very loooooooong title",
                                 body: "A very very very very very very very very very very very very very very very very very very very loooooooong body",
                                 iconTintColor: Color.Named.green1.raw
@@ -160,7 +158,7 @@ struct StatusView_Previews: PreviewProvider {
 
                         Components.Molecules.StatusView(
                             model: .init(
-                                icon: "square.and.pencil",
+                                icon: Image(systemName: "square.and.pencil"),
                                 title: "A title",
                                 body: "A body",
                                 buttonModel: .init(

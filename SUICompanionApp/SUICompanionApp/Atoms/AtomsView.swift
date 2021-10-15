@@ -15,32 +15,22 @@
  */
 
 import SwiftUI
+import SUIComponents
 
-struct MainView: View {
+struct AtomsView: View {
     var body: some View {
-        TabView {
-            OrganismsView()
-                .tabItem {
-                    Label("Organisms", image: Example.Images.organism.rawValue)
-                }
-            MoleculesView()
-                .tabItem {
-                    Label("Molecules", image: Example.Images.molecule.rawValue)
-                }
-            AtomsView()
-                .tabItem {
-                    Label("Atoms", image: Example.Images.atom.rawValue)
-                }
-            ColoursView()
-                .tabItem {
-                    Label("Colours", image: Example.Images.colours.rawValue)
-                }
+        NavigationView {
+            List {
+                Example.navigationLink(type: Text.self)
+                Example.navigationLink(type: ExampleButton.self)
+            }
+            .navigationTitle("Atoms")
         }
     }
 }
 
-struct MainView_Previews: PreviewProvider {
+struct AtomsView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
+        AtomsView()
     }
 }

@@ -39,7 +39,7 @@ public extension Color {
              yellow
 
         public static var allColors: [(String, Color)] {
-            return allCases.map { ($0.rawValue, $0.raw) }
+            return allCases.map { ("\($0.rawValue) (\($0.raw.hexString ?? "#------"))", $0.raw) }
         }
         
         public var raw: Color {
