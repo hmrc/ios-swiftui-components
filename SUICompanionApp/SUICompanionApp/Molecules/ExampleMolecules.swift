@@ -18,82 +18,168 @@ import SwiftUI
 import SUIComponents
 
 extension Components.Molecules.StatusView: Examplable {
-    static var title: String {
-        return "StatusView"
-    }
+    static var title: String { "StatusView" }
 
-    static var exampleBackgroundColor: Color {
-        Color.Semantic.pageBackground
-    }
+    static var exampleBackgroundColor: Color { Color.Semantic.pageBackground }
 
     static func withPlaceholders() -> AnyView {
-        let model = Components.Molecules.StatusView.Model(
-            icon: Example.Images.maintenance.image,
-            title: "Title",
-            body: "Body"
+        AnyView(
+            Components.Molecules.StatusView(
+                model: .init(
+                    icon: Example.Images.maintenance.image,
+                    title: "Title",
+                    body: "Body"
+                )
+            )
         )
-        return AnyView(Components.Molecules.StatusView(model: model))
     }
 
     static func examples() -> AnyView {
-        let model = Components.Molecules.StatusView.Model(
-            icon: Example.Images.maintenance.image,
-            title: "Service unavailable",
-            body: "You'll need to try again later."
-        )
-
-        let modelWithoutBody = Components.Molecules.StatusView.Model(
-            icon: Example.Images.maintenance.image,
-            title: "Your Help to Save account closed on 21 May 2018"
-        )
-
-        return AnyView(VStack(spacing: .spacer16) {
-            Components.Molecules.StatusView(model: model)
-                .cardView()
-            Components.Molecules.StatusView(model: modelWithoutBody)
-                .cardView()
+        AnyView(VStack(spacing: .spacer16) {
+            Components.Molecules.StatusView(
+                model: .init(
+                    icon: Example.Images.maintenance.image,
+                    title: "Service unavailable",
+                    body: "You'll need to try again later."
+                )
+            ).cardView()
+            Components.Molecules.StatusView(
+                model: .init(
+                    icon: Example.Images.maintenance.image,
+                    title: "Your Help to Save account closed on 21 May 2018"
+                )
+            ).cardView()
         })
     }
 }
 
 extension Components.Molecules.TitleBodyView: Examplable {
-    static var title: String {
-        return "TitleBodyView"
-    }
+    static var title: String { "TitleBodyView" }
 
-    static var exampleBackgroundColor: Color {
-        Color.Semantic.pageBackground
-    }
+    static var exampleBackgroundColor: Color { Color.Semantic.pageBackground }
 
     static func withPlaceholders() -> AnyView {
-        let model = Components.Molecules.TitleBodyView.Model(
-            title: "Title",
-            body: "Body",
-            style: .H3
+        AnyView(
+            Components.Molecules.TitleBodyView(
+                model: .init(
+                    title: "Title",
+                    body: "Body",
+                    style: .H3
+                )
+            )
         )
-        return AnyView(Components.Molecules.TitleBodyView(model: model))
     }
 
     static func examples() -> AnyView {
-        let h4Model = Components.Molecules.TitleBodyView.Model(
-            title: "Pay As You Earn",
-            body: "6 April 2018 to 5 April 2019",
-            style: .H4
-        )
-        let h5Model = Components.Molecules.TitleBodyView.Model(
-            title: "You don't have any money in this account.",
-            body: "Your closing balance of £240 was transferred to your UK bank account on 28 February 2020.",
-            style: .H5
-        )
-        let boldModel = Components.Molecules.TitleBodyView.Model(
-            title: "Date and time",
-            body: "7 February 2019 at 17:12:45 GMT",
-            style: .bold
-        )
-        return AnyView(VStack(spacing: .spacer16) {
-            Components.Molecules.TitleBodyView(model: h4Model).cardView()
-            Components.Molecules.TitleBodyView(model: h5Model).cardView()
-            Components.Molecules.TitleBodyView(model: boldModel).cardView()
+        AnyView(VStack(spacing: .spacer16) {
+            Components.Molecules.TitleBodyView(
+                model: .init(
+                    title: "Pay As You Earn",
+                    body: "6 April 2018 to 5 April 2019",
+                    style: .H4
+                )
+            ).cardView()
+            Components.Molecules.TitleBodyView(
+                model: .init(
+                    title: "You don't have any money in this account.",
+                    body: "Your closing balance of £240 was transferred to your UK bank account on 28 February 2020.",
+                    style: .H5
+                )
+            ).cardView()
+            Components.Molecules.TitleBodyView(
+                model: .init(
+                    title: "Date and time",
+                    body: "7 February 2019 at 17:12:45 GMT",
+                    style: .bold
+                )
+            ).cardView()
+            Components.Molecules.TitleBodyView(
+                model: .init(
+                    title: "Body label is only added shown if body parameter present",
+                    body: "",
+                    style: .bold
+                )
+            ).cardView()
         })
+    }
+}
+
+extension Components.Molecules.SwitchRowView: Examplable {
+    static var title: String { "Switch Row View" }
+
+    static var exampleBackgroundColor: Color { Color.Semantic.pageBackground }
+
+    static func withPlaceholders() -> AnyView {
+        AnyView(
+            exampleView(
+                initialState: false,
+                titleBodyModel: .init(
+                    title: "Switch Row Title",
+                    body: "Switch Row Body",
+                    style: .bold
+                )
+            )
+        )
+    }
+
+    static func examples() -> AnyView {
+        AnyView(
+            VStack {
+                exampleView(
+                    initialState: true,
+                    titleBodyModel: .init(
+                        title: "Start of the month",
+                        body: "Get a reminder on the first day of each month",
+                        style: .bold
+                    )
+                ).cardView()
+                exampleView(
+                    initialState: false,
+                    titleBodyModel: .init(
+                        title: "End of the month",
+                        body: "Get a reminder 5 days before the end of each month",
+                        style: .bold
+                    )
+                ).cardView()
+                exampleView(
+                    initialState: false,
+                    titleBodyModel: .init(
+                        title: "Fingerprint ID",
+                        body: "",
+                        style: .bold
+                    )
+                ).cardView()
+                exampleView(
+                    initialState: false,
+                    titleBodyModel: .init(
+                        title: Example.Text.longIpsum,
+                        body: "",
+                        style: .bold
+                    )
+                ).cardView()
+                exampleView(
+                    initialState: true,
+                    titleBodyModel: .init(
+                        title: Example.Text.longIpsum,
+                        body: Example.Text.longestIpsum,
+                        style: .bold
+                    )
+                ).cardView()
+            }
+        )
+    }
+
+    private static func exampleView(initialState: Bool, titleBodyModel: Components.Molecules.TitleBodyView.Model) -> Components.Molecules.SwitchRowView {
+        var isOnVar = initialState
+        let isOnBinding = Binding<Bool> {
+            isOnVar
+        } set: { isOn in
+            isOnVar = isOn
+            print("SwitchRow Value did change: \(isOnVar)")
+        }
+        return Components.Molecules.SwitchRowView(
+            isOn: isOnBinding,
+            titleBodyModel: titleBodyModel
+        )
     }
 }

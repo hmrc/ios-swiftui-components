@@ -47,7 +47,9 @@ extension Components.Molecules {
                 content: {
                     Text(model.title)
                         .style(model.style)
-                    Text(model.body)
+                    if !model.body.isEmpty {
+                        Text(model.body)
+                    }
                 }
             ).frame(
                 maxWidth: .infinity,

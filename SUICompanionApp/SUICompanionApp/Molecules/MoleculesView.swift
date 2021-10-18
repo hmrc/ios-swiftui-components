@@ -23,6 +23,7 @@ struct MoleculesView: View {
             List {
                 Example.navigationLink(type: Components.Molecules.StatusView.self)
                 Example.navigationLink(type: Components.Molecules.TitleBodyView.self)
+                Example.navigationLink(type: Components.Molecules.SwitchRowView.self)
             }
             .navigationTitle("Molecules")
         }

@@ -18,18 +18,20 @@ import SwiftUI
 import SUIComponents
 
 extension Components.Organisms.PrimaryCardView: Examplable {
-    static var title: String {
-        return "PrimaryCardView"
-    }
+    static var title: String { "PrimaryCardView" }
+
+    static var exampleBackgroundColor: Color { Color.Semantic.pageBackground }
 
     static func withPlaceholders() -> AnyView {
-        return AnyView(Components.Organisms.PrimaryCardView(
-            title: "Primary Card View"
-        ))
+        AnyView(
+            Components.Organisms.PrimaryCardView(
+                title: "Primary Card View"
+            )
+        )
     }
 
     static func examples() -> AnyView {
-        return AnyView(
+        AnyView(
             VStack(spacing: .spacer16) {
                 Components.Organisms.PrimaryCardView(
                     title: "Rewew your tax credits") {
@@ -57,9 +59,5 @@ extension Components.Organisms.PrimaryCardView: Examplable {
                 }
             }
         )
-    }
-
-    static var exampleBackgroundColor: Color {
-        Color.Semantic.pageBackground
     }
 }

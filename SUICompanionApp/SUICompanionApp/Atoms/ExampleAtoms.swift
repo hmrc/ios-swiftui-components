@@ -18,16 +18,12 @@ import SwiftUI
 import SUIComponents
 
 extension Text: Examplable {
-    static var title: String {
-        "Text Styles"
-    }
+    static var title: String { "Text Styles" }
 
-    static var exampleBackgroundColor: Color {
-        return Color.Named.white.raw
-    }
+    static var exampleBackgroundColor: Color { Color.Named.white.raw }
 
     static func withPlaceholders() -> AnyView {
-        return AnyView(
+        AnyView(
             Text("Title")
                 .style(.H3)
                 .frame(maxWidth: .infinity)
@@ -35,7 +31,7 @@ extension Text: Examplable {
     }
 
     static func examples() -> AnyView {
-        return AnyView(
+        AnyView(
             VStack(alignment: .leading, spacing: .spacer16) {
                 Text("H3 Text").style(.H3)
                 Text("H4 Text").style(.H4)
@@ -55,13 +51,9 @@ extension Text: Examplable {
 // As I was getting strange generics errors:
 // "`button` requires the types `label` and `text` to be equivalent"
 struct ExampleButton: Examplable {
-    static var title: String {
-        "Button Styles"
-    }
+    static var title: String { "Button Styles" }
 
-    static var exampleBackgroundColor: Color {
-        return Color.Named.white.raw
-    }
+    static var exampleBackgroundColor: Color { Color.Named.white.raw }
 
     static func withPlaceholders() -> AnyView {
         AnyView(
@@ -82,5 +74,90 @@ struct ExampleButton: Examplable {
                 }.styled(.secondary(padding: 0))
             }
         )
+    }
+}
+
+extension Switch: Examplable {
+    static var title: String { "Switch" }
+
+    static var exampleBackgroundColor: Color { Color.Named.white.raw }
+
+    static func withPlaceholders() -> AnyView {
+        AnyView(
+            Switch(
+                isOn: binding(initialState: false),
+                onTintColor: Color.Semantic.switchTint,
+                borderColor: Color.Named.grey2.raw,
+                borderWidth: 1,
+                cornerRadius: 14.0
+            ).frame(maxWidth: .infinity)
+        )
+    }
+
+    static func examples() -> AnyView {
+        AnyView(
+            VStack(alignment: .leading, spacing: .spacer16) {
+                Switch(
+                    isOn: binding(initialState: true),
+                    onTintColor: .red,
+                    borderColor: .black,
+                    borderWidth: 2,
+                    cornerRadius: 14.0
+                )
+                Switch(
+                    isOn: binding(initialState: true),
+                    onTintColor: .orange,
+                    borderColor: .clear,
+                    borderWidth: 0,
+                    cornerRadius: 14.0
+                )
+                Switch(
+                    isOn: binding(initialState: true),
+                    onTintColor: .yellow,
+                    borderColor: Color.Named.grey2.raw,
+                    borderWidth: 1,
+                    cornerRadius: 0
+                )
+                Switch(
+                    isOn: binding(initialState: true),
+                    onTintColor: .green,
+                    borderColor: Color.Named.grey2.raw,
+                    borderWidth: 0,
+                    cornerRadius: 14.0
+                )
+                Switch(
+                    isOn: binding(initialState: true),
+                    onTintColor: .blue,
+                    borderColor: .blue,
+                    borderWidth: 1,
+                    cornerRadius: 0
+                )
+                Switch(
+                    isOn: binding(initialState: true),
+                    onTintColor: Color(hexString: "#4B0082"),
+                    borderColor: Color.Named.grey2.raw,
+                    borderWidth: 1,
+                    cornerRadius: 14.0
+                )
+                Switch(
+                    isOn: binding(initialState: true),
+                    onTintColor: Color(hexString: "#8F00FF"),
+                    borderColor: Color.Named.grey2.raw,
+                    borderWidth: 1,
+                    cornerRadius: 14.0
+                )
+            }
+        )
+    }
+
+    private static func binding(initialState: Bool) -> Binding<Bool> {
+        var isOnVar = initialState
+        let isOnBinding = Binding<Bool> {
+            isOnVar
+        } set: { isOn in
+            isOnVar = isOn
+            print("Switch Value did change: \(isOnVar)")
+        }
+        return isOnBinding
     }
 }
