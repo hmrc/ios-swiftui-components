@@ -35,7 +35,7 @@ struct MainView: View {
                 .tabItem {
                     Label("Colours", image: Example.Images.colours.rawValue)
                 }
-        }
+        }.accentColor(Color.Semantic.expandableButtonText)
     }
 }
 
