@@ -36,6 +36,14 @@ public struct FontMetrics {
         Font(UIFontMetrics.default.scaledFont(for: font))
     }
 
+    /// Returns a version of the specified font that adopts the current font metrics.
+    ///
+    /// - Parameter font: A font at its default point size.
+    /// - Returns: The font at its scaled point size.
+    public static func scaledUIFont(for font: UIFont) -> UIFont {
+        UIFontMetrics.default.scaledFont(for: font)
+    }
+
     /// Returns a version of the specified font that adopts the current font metrics and is
     /// constrained to the specified maximum size.
     ///
@@ -49,6 +57,21 @@ public struct FontMetrics {
             maximumPointSize: maximumPointSize,
             compatibleWith: nil
         ))
+    }
+
+    /// Returns a version of the specified font that adopts the current font metrics and is
+    /// constrained to the specified maximum size.
+    ///
+    /// - Parameters:
+    ///   - font: A font at its default point size.
+    ///   - maximumPointSize: The maximum point size to scale up to.
+    /// - Returns: The font at its constrained scaled point size.
+    public static func scaledUIFont(for font: UIFont, maximumPointSize: CGFloat) -> UIFont {
+        UIFontMetrics.default.scaledFont(
+            for: font,
+            maximumPointSize: maximumPointSize,
+            compatibleWith: nil
+        )
     }
 
     /// Scales an arbitrary layout value based on the current Dynamic Type settings.

@@ -24,6 +24,7 @@ struct MoleculesView: View {
                 Example.navigationLink(type: Components.Molecules.StatusView.self)
                 Example.navigationLink(type: Components.Molecules.TitleBodyView.self)
                 Example.navigationLink(type: Components.Molecules.SwitchRowView.self)
+                Example.navigationLink(type: Components.Molecules.TextInputView.self)
             }
             .navigationTitle("Molecules")
         }

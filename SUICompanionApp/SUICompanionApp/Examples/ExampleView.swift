@@ -19,7 +19,7 @@ import SUIComponents
 
 struct ExampleView<Component: Examplable>: View {
     var body: some View {
-        ScrollView() {
+        ScrollView(.vertical) {
             VStack(alignment: .leading, spacing: .spacer16) {
                 Text("Placeholders:")
                     .style(.bold)

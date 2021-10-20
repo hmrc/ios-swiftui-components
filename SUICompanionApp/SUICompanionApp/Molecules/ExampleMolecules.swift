@@ -105,7 +105,7 @@ extension Components.Molecules.TitleBodyView: Examplable {
 }
 
 extension Components.Molecules.SwitchRowView: Examplable {
-    static var title: String { "Switch Row View" }
+    static var title: String { "SwitchRowView" }
 
     static var exampleBackgroundColor: Color { Color.Semantic.pageBackground }
 
@@ -180,6 +180,103 @@ extension Components.Molecules.SwitchRowView: Examplable {
         return Components.Molecules.SwitchRowView(
             isOn: isOnBinding,
             titleBodyModel: titleBodyModel
+        )
+    }
+}
+
+extension Components.Molecules.TextInputView: Examplable {
+    static var title: String { "TextInputView" }
+
+    static var exampleBackgroundColor: Color { Color.Semantic.pageBackground }
+
+    struct ViewWrapper: View {
+        @State var text: String
+        let model: Components.Molecules.TextInputView.Model
+        let error: String?
+
+        init(initialText: String = "", model: Components.Molecules.TextInputView.Model, error: String? = nil) {
+            self.text = initialText
+            self.model = model
+            self.error = error
+        }
+
+        var body: some View {
+            Components.Molecules.TextInputView(
+                text: $text,
+                model: model,
+                validationError: error
+            )
+        }
+    }
+
+    static func withPlaceholders() -> AnyView {
+        AnyView(
+            ViewWrapper(
+                model: .init(
+                    title: "Title",
+                    placeholder: "Placeholder",
+                    leftViewText: "@leftText",
+                    maxLength: 20
+                ),
+                error: "Validation Error"
+            )
+        )
+    }
+
+    static func examples() -> AnyView {
+        AnyView(
+            VStack(spacing: .spacer16) {
+                ViewWrapper(
+                    initialText: "Enter text",
+                    model: .init(
+                        title: "Enter text",
+                        placeholder: "Enter text here please",
+                        maxLength: 0
+                    )
+                ).cardView()
+                ViewWrapper(
+                    initialText: "Some text",
+                    model: .init(
+                        title: "Enter text",
+                        placeholder: "Enter text here please",
+                        maxLength: 0
+                    )
+                ).cardView()
+                ViewWrapper(
+                    initialText: "Some text",
+                    model: .init(
+                        title: "Enter text",
+                        placeholder: "Enter text here please",
+                        maxLength: 10
+                    )
+                ).cardView()
+                ViewWrapper(
+                    initialText: "Some text with limit not enforced",
+                    model: .init(
+                        title: "Enter text",
+                        placeholder: "Enter text here please",
+                        maxLength: 10,
+                        enforceMaxLength: false
+                    )
+                ).cardView()
+                ViewWrapper(
+                    initialText: "Some text",
+                    model: .init(
+                        title: "Enter text",
+                        placeholder: "Enter text here please",
+                        maxLength: 100
+                    ),
+                    error: "Validation Error"
+                ).cardView()
+                ViewWrapper(
+                    initialText: "Multi line\nMultiPass",
+                    model: .init(
+                        title:  "Multi Line",
+                        maxLength: 100,
+                        multiLine: true
+                    )
+                ).cardView()
+            }
         )
     }
 }

@@ -28,11 +28,11 @@ public enum AttributedStringStyle {
 
     public var font: Font {
         switch self {
-        case .H3: return Font.H3()
-        case .H4: return Font.H4()
-        case .H5: return Font.H5()
-        case .bold: return Font.bold()
-        case .body, .info, .link, .error: return Font.body()
+        case .H3: return Font.H3.font()
+        case .H4: return Font.H4.font()
+        case .H5: return Font.H5.font()
+        case .bold: return Font.Bold.font()
+        case .body, .info, .link, .error: return Font.Body.font()
         }
     }
 

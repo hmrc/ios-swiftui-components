@@ -17,9 +17,8 @@
 import SwiftUI
 import UIKit
 
-extension Color {
+public extension Color {
     func uiColor() -> UIColor {
-
         if #available(iOS 14.0, *) {
             return UIColor(self)
         }
