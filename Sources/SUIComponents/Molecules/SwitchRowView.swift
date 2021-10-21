@@ -28,7 +28,7 @@ extension Components.Molecules {
         public var body: some View {
             HStack {
                 Components.Molecules.TitleBodyView(model: titleBodyModel)
-                Switch(
+                Components.Atoms.Switch(
                     isOn: _isOn,
                     onTintColor: Color.Semantic.switchTint,
                     borderColor: Color.Named.grey2.raw,

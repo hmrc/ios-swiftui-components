@@ -16,6 +16,11 @@
 
 import SwiftUI
 
+protocol HMRCFont {
+    static func font() -> Font
+    static func uiFont() -> UIFont
+}
+
 public extension Font {
     // swiftlint:disable identifier_name
     private struct BaseFonts {
@@ -27,28 +32,53 @@ public extension Font {
         static let debug: UIFont = UIFont.systemFont(ofSize: 12)
     }
 
-    static func H3() -> Font {
-        return FontMetrics.scaledFont(for: BaseFonts.h3)
+    struct H3: HMRCFont {
+        static func font() -> Font {
+            FontMetrics.scaledFont(for: BaseFonts.h3)
+        }
+        static func uiFont() -> UIFont {
+            FontMetrics.scaledUIFont(for: BaseFonts.h3)
+        }
     }
-
-    static func H4() -> Font {
-        return FontMetrics.scaledFont(for: BaseFonts.h4)
+    struct H4: HMRCFont {
+        static func font() -> Font {
+            FontMetrics.scaledFont(for: BaseFonts.h4)
+        }
+        static func uiFont() -> UIFont {
+            FontMetrics.scaledUIFont(for: BaseFonts.h4)
+        }
     }
-
-    static func H5() -> Font {
-        return FontMetrics.scaledFont(for: BaseFonts.h5)
+    struct H5: HMRCFont {
+        static func font() -> Font {
+            FontMetrics.scaledFont(for: BaseFonts.h5)
+        }
+        static func uiFont() -> UIFont {
+            FontMetrics.scaledUIFont(for: BaseFonts.h5)
+        }
     }
-
-    static func bold() -> Font {
-        return FontMetrics.scaledFont(for: BaseFonts.bold)
+    struct Bold: HMRCFont {
+        static func font() -> Font {
+            FontMetrics.scaledFont(for: BaseFonts.bold)
+        }
+        static func uiFont() -> UIFont {
+            FontMetrics.scaledUIFont(for: BaseFonts.bold)
+        }
     }
-
-    static func body() -> Font {
-        return FontMetrics.scaledFont(for: BaseFonts.body)
+    struct Body: HMRCFont {
+        static func font() -> Font {
+            FontMetrics.scaledFont(for: BaseFonts.body)
+        }
+        static func uiFont() -> UIFont {
+            FontMetrics.scaledUIFont(for: BaseFonts.body)
+        }
     }
-
-    static func debug() -> Font {
-        return FontMetrics.scaledFont(for: BaseFonts.debug)
+    struct Debug: HMRCFont {
+        static func font() -> Font {
+            FontMetrics.scaledFont(for: BaseFonts.debug)
+        }
+        static func uiFont() -> UIFont {
+            FontMetrics.scaledUIFont(for: BaseFonts.debug)
+        }
     }
     // swiftlint:enable identifier_name
 }

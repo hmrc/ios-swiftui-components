@@ -22,8 +22,9 @@ struct AtomsView: View {
         NavigationView {
             List {
                 Example.navigationLink(type: Text.self)
-                Example.navigationLink(type: ExampleButton.self)
-                Example.navigationLink(type: Switch.self)
+                Example.navigationLink(type: Components.Atoms.ExampleButton.self)
+                Example.navigationLink(type: Components.Atoms.Switch.self)
+                Example.navigationLink(type: Components.Atoms.TextView.self)
             }
             .navigationTitle("Atoms")
         }
