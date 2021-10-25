@@ -16,21 +16,6 @@ or alternatively using `brew install fastlane`
 
 # Available Actions
 ## iOS
-### ios sync_project_with_local_components
-```
-fastlane ios sync_project_with_local_components
-```
-Get project path and replace remote components with local
-### ios update_dependent_projects
-```
-fastlane ios update_dependent_projects
-```
-Creates a development tag and updates projects using this swift package
-### ios reset_dependent_projects
-```
-fastlane ios reset_dependent_projects
-```
-Reset dependent projects to remote URL
 ### ios sync_certificates
 ```
 fastlane ios sync_certificates
@@ -56,6 +41,6 @@ This will bump the release tag, precompile the library, commit and tag the chang
 
 ----
 
-This README.md is auto-generated and will be re-generated every time [fastlane](https://fastlane.tools) is run.
+This README.md is auto-generated and will be re-generated every time [_fastlane_](https://fastlane.tools) is run.
 More information about fastlane can be found on [fastlane.tools](https://fastlane.tools).
 The documentation of fastlane can be found on [docs.fastlane.tools](https://docs.fastlane.tools).
