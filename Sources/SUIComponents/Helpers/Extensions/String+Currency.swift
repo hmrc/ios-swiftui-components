@@ -14,9 +14,23 @@
  * limitations under the License.
  */
 
-import UIKit
+import Foundation
 
-public typealias VoidHandler = () -> Void
-public typealias TextViewShouldChangeHandler = ( _ text: String,
-                                                 _ shouldChangeTextInRange: NSRange,
-                                                 _ replacementText: String) -> Bool
+extension String {
+
+    static let decimalFormatter: Foundation.NumberFormatter = {
+        let formatter = Foundation.NumberFormatter()
+        formatter.allowsFloats = true
+        formatter.locale = Locale.current
+        return formatter
+    }()
+
+    func isCurrencyValue() -> Bool {
+        guard String.decimalFormatter.number(from: self) != nil else { return false }
+
+        let currencyRegex = "^[0-9]*\\.?[0-9]?[0-9]?$"
+        let currencyTest = NSPredicate(format: "SELF MATCHES %@", currencyRegex)
+
+        return currencyTest.evaluate(with: self)
+    }
+}

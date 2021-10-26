@@ -280,3 +280,54 @@ extension Components.Molecules.TextInputView: Examplable {
         )
     }
 }
+
+extension Components.Molecules.CurrencyInputView: Examplable {
+    static var title: String { "CurrencyInputView" }
+
+    static var exampleBackgroundColor: Color { Color.Semantic.pageBackground }
+
+    struct ViewWrapper: View {
+        @State var text: String
+        let model: Components.Molecules.CurrencyInputView.Model
+        let error: String?
+
+        init(initialText: String = "", model: Components.Molecules.CurrencyInputView.Model, error: String? = nil) {
+            self.text = initialText
+            self.model = model
+            self.error = error
+        }
+
+        var body: some View {
+            Components.Molecules.CurrencyInputView(
+                text: $text,
+                model: model,
+                validationError: error
+            )
+        }
+    }
+
+    static func withPlaceholders() -> AnyView {
+        AnyView(
+            ViewWrapper(
+                initialText: "InitialText",
+                model: .init(title: "Title", maxLength: 0),
+                error: "Validation Error"
+            )
+        )
+    }
+
+    static func examples() -> AnyView {
+        AnyView(
+            VStack(spacing: .spacer16) {
+                ViewWrapper(
+                    initialText: "49.99",
+                    model: .init(
+                        title: "Pay amount",
+                        maxLength: 0
+                    ),
+                    error: nil
+                ).cardView()
+            }
+        )
+    }
+}
