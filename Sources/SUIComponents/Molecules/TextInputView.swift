@@ -26,6 +26,8 @@ extension Components.Molecules {
             public let enforceMaxLength: Bool
             public let multiLine: Bool
             public let keyboardType: UIKeyboardType
+            public let showCharCount: Bool
+            public let shouldChangeText: TextViewShouldChangeHandler?
 
             public init(
                 title: String? = nil,
@@ -34,7 +36,9 @@ extension Components.Molecules {
                 maxLength: Int = 0,
                 enforceMaxLength: Bool = true,
                 multiLine: Bool = false,
-                keyboardType: UIKeyboardType = .default
+                keyboardType: UIKeyboardType = .default,
+                showCharCount: Bool = true,
+                shouldChangeText: TextViewShouldChangeHandler? = nil
             ) {
                 self.title = title ?? ""
                 self.placeholder = placeholder ?? ""
@@ -43,6 +47,8 @@ extension Components.Molecules {
                 self.enforceMaxLength = enforceMaxLength
                 self.multiLine = multiLine
                 self.keyboardType = keyboardType
+                self.showCharCount = showCharCount
+                self.shouldChangeText = shouldChangeText
             }
         }
 
@@ -77,7 +83,9 @@ extension Components.Molecules {
                         maxLength: model.maxLength,
                         enforceMaxLength: model.enforceMaxLength,
                         accentColor: Color.Named.blue.raw,
-                        borderWidth: 0.0
+                        borderWidth: 0.0,
+                        keyboardType: model.keyboardType,
+                        shouldChangeText: model.shouldChangeText
                     ) {
                         print("Text committed: \(text)")
                     }.frame(height: textFieldHeight)
@@ -107,7 +115,7 @@ extension Components.Molecules {
                             .style(.error)
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
-                    if let max = model.maxLength, max > 0 {
+                    if let max = model.maxLength, max > 0 && model.showCharCount {
                         Text("\(text.count)/\(max)")
                             .style(validationError != nil ? .error : .body)
                     }

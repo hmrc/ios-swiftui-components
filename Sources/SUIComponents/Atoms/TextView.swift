@@ -17,9 +17,10 @@
 import SwiftUI
 
 public extension Components.Atoms {
-    public class UITextViewWithHeight: UITextView {
+    class UITextViewWithHeight: UITextView {
         @Binding var height: CGFloat
         var didEndInput: VoidHandler?
+        var shouldChangeText: TextViewShouldChangeHandler?
 
         public init(height: Binding<CGFloat>) {
             self._height = height
@@ -36,11 +37,12 @@ public extension Components.Atoms {
         }
     }
 
-    public struct TextView: UIViewRepresentable {
+    struct TextView: UIViewRepresentable {
         @Binding public var text: String
         @Binding private var height: CGFloat
         @Binding private var editing: Bool
         private let didEndInput: VoidHandler?
+        private let shouldChangeText: TextViewShouldChangeHandler?
 
         private let isScrollEnabled: Bool
         private let multiLine: Bool
@@ -50,6 +52,7 @@ public extension Components.Atoms {
         private var borderColor: UIColor
         private var borderWidth: CGFloat
         private var cornerRadius: CGFloat
+        private var keyboardType: UIKeyboardType
 
         public init(
             text: Binding<String>,
@@ -63,6 +66,8 @@ public extension Components.Atoms {
             borderColor: Color? = nil,
             borderWidth: CGFloat? = nil,
             cornerRadius: CGFloat? = nil,
+            keyboardType: UIKeyboardType = .default,
+            shouldChangeText: TextViewShouldChangeHandler? = nil,
             _ didEndInput: VoidHandler?=nil) {
             self._text = text
             self._height = height
@@ -75,7 +80,9 @@ public extension Components.Atoms {
             self.borderColor = borderColor?.uiColor() ?? .lightGray
             self.borderWidth = borderWidth ?? 0.0
             self.cornerRadius = cornerRadius ?? 0.0
+            self.keyboardType = keyboardType
             self.didEndInput = didEndInput
+            self.shouldChangeText = shouldChangeText
         }
 
         public func makeCoordinator() -> Coordinator {
@@ -94,6 +101,7 @@ public extension Components.Atoms {
             view.isScrollEnabled = isScrollEnabled
             view.backgroundColor = .clear
             view.didEndInput = didEndInput
+            view.shouldChangeText = shouldChangeText
             view.delegate = context.coordinator
             return view
         }
@@ -106,6 +114,7 @@ public extension Components.Atoms {
             uiView.layer.borderWidth = borderWidth
             uiView.layer.cornerRadius = cornerRadius
             uiView.layer.borderColor = borderColor.cgColor
+            uiView.keyboardType = keyboardType
 
             let fixedWidth = uiView.frame.size.width
             let newSize = uiView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
@@ -163,10 +172,12 @@ public extension Components.Atoms {
                     return false
                 }
 
-                if maxLength > 0, enforceMaxLength {
-                    return textView.text.count + (text.count - range.length) <= maxLength
+                if maxLength > 0, enforceMaxLength && textView.text.count + (text.count - range.length) >= maxLength {
+                    return false
                 }
-
+                if let shouldChangeTextHandler = (textView as? UITextViewWithHeight)?.shouldChangeText {
+                    return shouldChangeTextHandler(textView.text, range, text)
+                }
                 return true
             }
 

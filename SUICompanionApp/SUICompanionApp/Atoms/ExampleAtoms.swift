@@ -182,6 +182,7 @@ extension Components.Atoms.TextView: Examplable {
         private let borderColor: Color
         private let borderWidth: CGFloat
         private let cornerRadius: CGFloat
+        private let shouldChangeText: TextViewShouldChangeHandler?
         private let didEndInput: VoidHandler?
 
         init(
@@ -194,7 +195,8 @@ extension Components.Atoms.TextView: Examplable {
             borderColor: Color? = Color.Named.grey2.raw,
             borderWidth: CGFloat? = 1.0,
             cornerRadius: CGFloat? = 4.0,
-            _ didEndInput: VoidHandler?=nil) {
+            shouldChangeText: TextViewShouldChangeHandler? = nil,
+            _ didEndInput: VoidHandler? = nil) {
             self.text = initialText
             self.isScrollEnabled = isScrollEnabled
             self.multiLine = multiLine
@@ -204,6 +206,7 @@ extension Components.Atoms.TextView: Examplable {
             self.borderColor = borderColor ?? .gray
             self.borderWidth = borderWidth ?? 0.0
             self.cornerRadius = cornerRadius ?? 0.0
+            self.shouldChangeText = shouldChangeText
             self.didEndInput = didEndInput
         }
 
@@ -219,8 +222,7 @@ extension Components.Atoms.TextView: Examplable {
                 accentColor: accentColor,
                 borderColor: borderColor,
                 borderWidth: borderWidth,
-                cornerRadius: cornerRadius,
-                didEndInput
+                cornerRadius: cornerRadius
             ).frame(height: height)
         }
     }
