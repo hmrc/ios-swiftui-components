@@ -144,7 +144,7 @@ extension Components.Organisms.HeadlineCardView: Examplable {
                     currencyAmount: 12345,
                     content: {
                         Text("This is the income tax we think you will have paid by the end of the year", style: .body)
-                        Text("TODO: This example is meant to be an inset view, see none swift ui version", style: .body)
+                        Text("TODO: This example is meant to be an inset view, see non-SwiftUI version", style: .body)
                     }
                 )
             }
