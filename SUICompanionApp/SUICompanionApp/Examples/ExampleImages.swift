@@ -33,8 +33,5 @@ extension Example {
         var image: Image {
             return Image(self.rawValue)
         }
-        var uiImage: UIImage {
-            return UIImage(named: self.rawValue)!
-        }
     }
 }
