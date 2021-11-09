@@ -18,7 +18,7 @@ import SwiftUI
 
 public enum HMRCButtonStyle {
     case primary
-    case secondary(padding: CGFloat = .spacer16)
+    case secondary(padding: CGFloat = .spacer16, icon: Image? = nil)
 }
 
 extension Button {
@@ -28,8 +28,8 @@ extension Button {
         switch style {
             case .primary:
                 self.buttonStyle(PrimaryButtonStyle())
-            case .secondary(let padding):
-                self.buttonStyle(SecondaryButtonStyle(padding))
+            case let .secondary(padding, image):
+                self.buttonStyle(SecondaryButtonStyle(padding, image: image))
         }
     }
 }
@@ -53,15 +53,20 @@ struct PrimaryButtonStyle: ButtonStyle {
 
 struct SecondaryButtonStyle: ButtonStyle {
     let padding: CGFloat
-    init(_ padding: CGFloat = .spacer16) {
+    let image: Image?
+    init(_ padding: CGFloat = .spacer16, image: Image? = nil) {
         self.padding = padding
+        self.image = image
     }
 
     func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(padding)
-            .background(Color.Semantic.secondaryButtonBackground)
-            .foregroundColor(Color.Semantic.secondaryButtonText)
+        HStack {
+            image?.foregroundColor(Color.Semantic.secondaryButtonText)
+            configuration.label
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(padding)
+                .background(Color.Semantic.secondaryButtonBackground)
+                .foregroundColor(Color.Semantic.secondaryButtonText)
+        }
     }
 }
