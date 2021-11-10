@@ -129,24 +129,6 @@ extension Components.Organisms.HeadlineCardView: Examplable {
                         }
                     }
                 )
-                Components.Organisms.HeadlineCardView(
-                    title: "Your PAYE income tax estimate",
-                    currencyAmount: 12345,
-                    content: {
-                        Text("This is the income tax we think you will have paid by the end of the year", style: .body)
-                        Button("How is this calcualted") {
-                            print("How is this calcualted tapped")
-                        }.styled(.secondary(padding: 8, icon: Example.Images.info.image))
-                    }
-                )
-                Components.Organisms.HeadlineCardView(
-                    title: "Your PAYE income tax estimate",
-                    currencyAmount: 12345,
-                    content: {
-                        Text("This is the income tax we think you will have paid by the end of the year", style: .body)
-                        Text("TODO: This example is meant to be an inset view, see non-SwiftUI version", style: .body)
-                    }
-                )
             }
         )
     }
