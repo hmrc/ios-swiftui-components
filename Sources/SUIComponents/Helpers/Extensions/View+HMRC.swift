@@ -23,4 +23,14 @@ extension View {
     ) -> some View {
         self.modifier(CardView(insets: insets, backgroundColor: backgroundColor))
     }
+
+    /// Passes-through the view with customizable side effects
+    public func passthrough(applying closure: (_ instance: Self) -> ()) -> Self {
+        closure(self)
+        return self
+    }
+
+    /// Removes all of the Modified Content types from a view, whilst keeping their effects.
+    /// https://ericasadun.com/2019/06/23/swiftui-modified-content-type-erasure-and-type-debugging/
+    public var typeErased: AnyView { AnyView(self) }
 }
