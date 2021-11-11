@@ -17,6 +17,61 @@
 import SwiftUI
 import SUIComponents
 
+extension Components.Molecules.IconButtonView: Examplable {
+    static var title: String { "IconButtonView" }
+
+    static var exampleBackgroundColor: Color { Color.Semantic.pageBackground }
+
+    static func withPlaceholders() -> AnyView {
+        AnyView(
+            Components.Molecules.IconButtonView(
+                model:
+                    .init(
+                        icon: Example.Images.info.image, 
+                        title: "Title",
+                        iconTintColor: TextStyle.link.textColor,
+                        accessibilityHint: "AccessibilityHint",
+                        accessibilityIdentifier: "AccessibilityIdentifier",
+                        handler: {
+                            print("Icon Button View Tapped")
+                        }
+                    )
+            )
+        )
+    }
+
+    static func examples() -> AnyView {
+        AnyView(VStack(spacing: .spacer16) {
+            Components.Molecules.IconButtonView(
+                model:
+                    .init(
+                        icon: Example.Images.help.image,
+                        title: "About the calculator",
+                        iconTintColor: TextStyle.link.textColor,
+                        accessibilityHint: "AccessibilityHint",
+                        accessibilityIdentifier: "AccessibilityIdentifier",
+                        handler: {
+                            print("About the calculator Tapped")
+                        }
+                    )
+            ).cardView()
+            Components.Molecules.IconButtonView(
+                model:
+                    .init(
+                        icon: Example.Images.help.image,
+                        title: Example.Text.longerIpsum,
+                        iconTintColor: TextStyle.link.textColor,
+                        accessibilityHint: "AccessibilityHint",
+                        accessibilityIdentifier: "AccessibilityIdentifier",
+                        handler: {
+                            print("Lorem Ipsum tapped")
+                        }
+                    )
+            ).cardView()
+         
+        })
+    }
+}
 extension Components.Molecules.StatusView: Examplable {
     static var title: String { "StatusView" }
 
