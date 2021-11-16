@@ -23,6 +23,7 @@ struct MoleculesView: View {
             List {
                 Example.navigationLink(type: Components.Molecules.StatusView.self)
                 Example.navigationLink(type: Components.Molecules.TitleBodyView.self)
+                Example.navigationLink(type: Components.Molecules.InsetView<Text>.self)
                 Example.navigationLink(type: Components.Molecules.SwitchRowView.self)
                 Example.navigationLink(type: Components.Molecules.TextInputView.self)
                 Example.navigationLink(type: Components.Molecules.CurrencyInputView.self)

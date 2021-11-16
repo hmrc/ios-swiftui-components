@@ -331,3 +331,40 @@ extension Components.Molecules.CurrencyInputView: Examplable {
         )
     }
 }
+
+extension Components.Molecules.InsetView: Examplable {
+    static var title: String { "InsetView" }
+
+    static var exampleBackgroundColor: Color { Color.Semantic.pageBackground }
+
+    static func withPlaceholders() -> AnyView {
+        AnyView(
+            Components.Molecules.InsetView(
+                model: .init(
+                    body: "Inset text"
+                )
+            )
+        )
+    }
+
+    static func examples() -> AnyView {
+        AnyView(
+            VStack(spacing: .spacer16) {
+                Components.Molecules.InsetView(
+                    model: .init(
+                        body: "Your employer or pension provider takes off Income Tax before they pay you. This is called Pay As You Earn (PAYE). The amount of tax you pay depends on your income, how much of it is tax-free, and your tax code."  // swiftlint:disable:this line_length
+                    )
+                ).cardView()
+                Components.Molecules.InsetView(
+                    model: .init(content: {
+                        VStack(alignment: .leading, spacing: .spacer16) {
+                            Text("Child Tax Credit")
+                            Text("Working Tax Credit")
+                            Text("Another Tax Credit")
+                        }
+                    })
+                ).cardView()
+            }
+        )
+    }
+}
