@@ -261,3 +261,34 @@ extension Components.Atoms.TextView: Examplable {
         )
     }
 }
+extension Components.Atoms.ImageAligningHStack: Examplable {
+    static var title: String { "ImageAligningHStack" }
+
+    static var exampleBackgroundColor: Color { Color.Semantic.pageBackground }
+
+    static func withPlaceholders() -> AnyView {
+        AnyView(
+            Components.Atoms.ImageAligningHStack(spacing: 10, leftContent: {
+                Text("Left view")
+            }) {
+                Text("Right view")
+            }
+                 
+        )
+    }
+
+    static func examples() -> AnyView {
+        AnyView(VStack(spacing: .spacer16) {
+            Components.Atoms.ImageAligningHStack(spacing: 10, leftContent: {
+                Example.Images.info.image
+            }) {
+                Text("A single line of text")
+            }.cardView()
+            Components.Atoms.ImageAligningHStack(spacing: 10, leftContent: {
+                Example.Images.info.image
+            }) {
+                Text("Multiple lines\nof text")
+            }.cardView()
+        })
+    }
+}

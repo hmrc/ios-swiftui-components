@@ -25,6 +25,7 @@ struct AtomsView: View {
                 Example.navigationLink(type: Components.Atoms.ExampleButton.self)
                 Example.navigationLink(type: Components.Atoms.Switch.self)
                 Example.navigationLink(type: Components.Atoms.TextView.self)
+                Example.navigationLink(type: Components.Atoms.ImageAligningHStack<Image, Text>.self)
             }
             .navigationTitle("Atoms")
         }
