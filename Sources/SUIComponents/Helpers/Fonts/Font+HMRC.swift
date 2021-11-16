@@ -33,50 +33,50 @@ public extension Font {
     }
 
     struct H3: HMRCFont {
-        static func font() -> Font {
+        public static func font() -> Font {
             FontMetrics.scaledFont(for: BaseFonts.h3)
         }
-        static func uiFont() -> UIFont {
+        public static func uiFont() -> UIFont {
             FontMetrics.scaledUIFont(for: BaseFonts.h3)
         }
     }
     struct H4: HMRCFont {
-        static func font() -> Font {
+        public static func font() -> Font {
             FontMetrics.scaledFont(for: BaseFonts.h4)
         }
-        static func uiFont() -> UIFont {
+        public static func uiFont() -> UIFont {
             FontMetrics.scaledUIFont(for: BaseFonts.h4)
         }
     }
     struct H5: HMRCFont {
-        static func font() -> Font {
+        public static func font() -> Font {
             FontMetrics.scaledFont(for: BaseFonts.h5)
         }
-        static func uiFont() -> UIFont {
+        public static func uiFont() -> UIFont {
             FontMetrics.scaledUIFont(for: BaseFonts.h5)
         }
     }
     struct Bold: HMRCFont {
-        static func font() -> Font {
+        public static func font() -> Font {
             FontMetrics.scaledFont(for: BaseFonts.bold)
         }
-        static func uiFont() -> UIFont {
+        public static func uiFont() -> UIFont {
             FontMetrics.scaledUIFont(for: BaseFonts.bold)
         }
     }
     struct Body: HMRCFont {
-        static func font() -> Font {
+        public static func font() -> Font {
             FontMetrics.scaledFont(for: BaseFonts.body)
         }
-        static func uiFont() -> UIFont {
+        public static func uiFont() -> UIFont {
             FontMetrics.scaledUIFont(for: BaseFonts.body)
         }
     }
     struct Debug: HMRCFont {
-        static func font() -> Font {
+        public static func font() -> Font {
             FontMetrics.scaledFont(for: BaseFonts.debug)
         }
-        static func uiFont() -> UIFont {
+        public static func uiFont() -> UIFont {
             FontMetrics.scaledUIFont(for: BaseFonts.debug)
         }
     }

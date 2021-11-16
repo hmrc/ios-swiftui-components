@@ -14,23 +14,13 @@
  * limitations under the License.
  */
 
-import SwiftUI
-import SUIComponents
+import Foundation
 
-struct OrganismsView: View {
-    var body: some View {
-        NavigationView {
-            List {
-                Example.navigationLink(type: Components.Organisms.PrimaryCardView<Text>.self)
-                Example.navigationLink(type: Components.Organisms.HeadlineCardView<Text>.self)
-            }
-            .navigationTitle("Organisms")
-        }
+extension Decimal {
+    var fractional: Int {
+        let decimalValue = NSDecimalNumber(decimal: (self - Decimal(whole)) * 100).intValue
+        return decimalValue
     }
-}
 
-struct OrganismsView_Previews: PreviewProvider {
-    static var previews: some View {
-        OrganismsView()
-    }
+    var whole: Int { NSDecimalNumber(decimal: self).intValue }
 }

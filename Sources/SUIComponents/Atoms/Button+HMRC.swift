@@ -28,7 +28,7 @@ extension Button {
         switch style {
             case .primary:
                 self.buttonStyle(PrimaryButtonStyle())
-            case .secondary(let padding):
+            case let .secondary(padding):
                 self.buttonStyle(SecondaryButtonStyle(padding))
         }
     }
@@ -53,6 +53,7 @@ struct PrimaryButtonStyle: ButtonStyle {
 
 struct SecondaryButtonStyle: ButtonStyle {
     let padding: CGFloat
+
     init(_ padding: CGFloat = .spacer16) {
         self.padding = padding
     }

@@ -64,3 +64,21 @@ public extension Text {
         }
     }
 }
+public extension Text {
+    init(pounds: Int, pence: Int? = nil, poundsFont: Font?=nil, penceFont: Font?=nil) {
+        let poundsComponent = Text("£\(pounds)").font(poundsFont ?? Font.H3.font())
+        
+        if let pence = pence, pence > 0 {
+            let penceComponent = Text(".\(pence)").font(penceFont ?? Font.H5.font())
+            self = poundsComponent + penceComponent
+        } else {
+            self = poundsComponent
+        }
+    }
+    
+    init(_ text: String, style: TextStyle) {
+        self = .init(text)
+                    .font(style.font)
+                    .foregroundColor(style.textColor)
+    }
+}

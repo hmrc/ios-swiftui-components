@@ -61,3 +61,75 @@ extension Components.Organisms.PrimaryCardView: Examplable {
         )
     }
 }
+
+extension Components.Organisms.HeadlineCardView: Examplable {
+    static var title: String { "HeadlineCardView" }
+
+    static var exampleBackgroundColor: Color { Color.Semantic.pageBackground }
+
+    static func withPlaceholders() -> AnyView {
+        AnyView(
+            Components.Organisms.HeadlineCardView(
+                title: "Title",
+                headline: "Headline",
+                content: {
+                    Text("Body")
+                }
+            )
+        )
+    }
+
+    static func examples() -> AnyView {
+        AnyView(
+            VStack(spacing: .spacer16) {
+                Components.Organisms.HeadlineCardView(
+                    title: "HMRC owes you a refund",
+                    currencyAmount: 500.34,
+                    content: {
+                        Button("Claim your refund") {
+                            print("Claim your refund tapped")
+                        }.styled(.primary)
+                    }
+                )
+                Components.Organisms.HeadlineCardView(
+                    title: "Your PAYE income tax estimate",
+                    currencyAmount: 12345,
+                    content: {
+                        Text("This is the income tax we think you will have paid by the end of the year", style: .body)
+                    }
+                )
+                Components.Organisms.HeadlineCardView(
+                    title: Example.Text.longerIpsum,
+                    headline: Example.Text.longIpsum,
+                    headlineStyle: .H3,
+                    content: {
+                        Text(Example.Text.longestIpsum, style: .body)
+                    }
+                )
+                Components.Organisms.HeadlineCardView(
+                    title: "Your PAYE income tax estimate",
+                    currencyAmount: 12345,
+                    content: {
+                        Text("This is the income tax we think you will have paid by the end of the year", style: .body)
+                        Button("View tax estimate") {
+                            print("View tax estimate tapped")
+                        }.styled(.primary)
+                    }
+                )
+                Components.Organisms.HeadlineCardView(
+                    title: Example.Text.longerIpsum,
+                    headline: Example.Text.longIpsum,
+                    headlineStyle: .H3,
+                    content: {
+                        VStack(spacing: 0) {
+                            Text(Example.Text.longestIpsum, style: .body)
+                            Button(Example.Text.longIpsum) {
+                                print("Ipsum tapped")
+                            }.styled(.secondary(padding: 8))
+                        }
+                    }
+                )
+            }
+        )
+    }
+}
