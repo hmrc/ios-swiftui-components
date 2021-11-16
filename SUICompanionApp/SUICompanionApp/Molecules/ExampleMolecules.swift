@@ -17,6 +17,63 @@
 import SwiftUI
 import SUIComponents
 
+
+extension Components.Molecules.WarningView: Examplable {
+    static var title: String { "WarningView" }
+
+    static var exampleBackgroundColor: Color { Color.Semantic.pageBackground }
+
+    static func withPlaceholders() -> AnyView {
+        AnyView(
+            Components.Molecules.WarningView(
+                model:
+                    .init(
+                        icon: Example.Images.info.image,
+                        title: "Body Text",
+                        iconTintColor: .black,
+                        accessibilityHint: "AccessibilityHint",
+                        accessibilityIdentifier: "AccessibilityIdentifier"
+                    )
+            )
+        )
+    }
+
+    static func examples() -> AnyView {
+        AnyView(VStack(spacing: .spacer16) {
+            Components.Molecules.WarningView(
+                model:
+                    .init(
+                        icon: Example.Images.info.image,
+                        title: "You must renew your tax credits by 31 July 2019",
+                        iconTintColor: .black,
+                        accessibilityHint: "AccessibilityHint",
+                        accessibilityIdentifier: "AccessibilityIdentifier"
+                    )
+            ).cardView()
+            Components.Molecules.WarningView(
+                model:
+                    .init(
+                        icon: Example.Images.info.image,
+                        title: "We are currently working out your payments as your child is changing their education or training. This should be done by 7 September 2019.",
+                        iconTintColor: .black,
+                        accessibilityHint: "AccessibilityHint",
+                        accessibilityIdentifier: "AccessibilityIdentifier"
+                    )
+            ).cardView()
+            Components.Molecules.WarningView(
+                model:
+                    .init(
+                        icon: Example.Images.info.image,
+                        title: Example.Text.longestIpsum,
+                        iconTintColor: .black,
+                        accessibilityHint: "AccessibilityHint",
+                        accessibilityIdentifier: "AccessibilityIdentifier"
+                    )
+            ).cardView()
+         
+        })
+    }
+}
 extension Components.Molecules.IconButtonView: Examplable {
     static var title: String { "IconButtonView" }
 
