@@ -23,6 +23,7 @@ struct OrganismsView: View {
             List {
                 Example.navigationLink(type: Components.Organisms.PrimaryCardView<Text>.self)
                 Example.navigationLink(type: Components.Organisms.HeadlineCardView<Text>.self)
+                Example.navigationLink(type: Components.Organisms.ExpandingRowView<Text>.self)
             }
             .navigationTitle("Organisms")
         }

@@ -133,3 +133,53 @@ extension Components.Organisms.HeadlineCardView: Examplable {
         )
     }
 }
+
+extension Components.Organisms.ExpandingRowView: Examplable {
+    static var title: String { "ExpandingRowView" }
+
+    static var exampleBackgroundColor: Color { Color.Semantic.pageBackground }
+
+    static func withPlaceholders() -> AnyView {
+        AnyView(
+            Components.Organisms.ExpandingRowView(
+                title: "Title",
+                subtitle: "Subtitle",
+                icon: Example.Images.help.image) {
+                Components.Molecules.InsetView(
+                    model: .init(body:"Description text"))
+            }    
+        )
+    }
+    
+    static func examples() -> AnyView {
+        AnyView(
+            VStack(spacing: .spacer16) {
+                Components.Organisms.ExpandingRowView(
+                    title: "What is Pay As You Earn?",
+                    icon: Example.Images.help.image) {
+                    Components.Molecules.InsetView(
+                        model: .init(body:"Your employer or pension provider takes off Income Tax before they pay you. This is called Pay As You Earn (PAYE). The amount of tax you pay depends on your income, how much of it is tax-free, and your tax code."))
+                }.cardView()
+                Components.Organisms.ExpandingRowView(
+                    title: "How to set up a regular payment",
+                    icon: Example.Images.poundSign.image,
+                    accessibilityHint: "Overrides default accessibility message",
+                    accessibilityExpandHint: "Show more information on how to set up a regular payment.",
+                    accessibilityCollapseHint: "Show less information on how to set up a regular payment.") {
+                    
+                    VStack(alignment: .leading, spacing: .spacer8) {
+                        Text("You’ll never forget to save if you set up a regular payment, called a standing order, with your bank.", style: .body)
+                        Text("Standing order details for your bank", style: .bold)
+                        Components.Molecules.InsetView(model: .init(content: {
+                            VStack(alignment: .leading, spacing: .spacer16) {
+                                Text("Account number: ", style: .body) + Text("10028471", style: .bold)
+                                Text("Sort code: ", style: .body) + Text("60 80 77", style: .bold)
+                                Text("Payment reference: ", style: .body) + Text("4321876345290", style: .bold)
+                            }
+                        }))
+                    }
+                }.cardView()
+            }
+        )
+    }
+}
