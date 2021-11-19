@@ -480,3 +480,53 @@ extension Components.Molecules.InsetView: Examplable {
         )
     }
 }
+
+
+extension Components.Molecules.TabBarView: Examplable {
+    static var title: String { "TabBarView" }
+
+    static var exampleBackgroundColor: Color { Color.Semantic.pageBackground }
+
+    static func withPlaceholders() -> AnyView {
+        AnyView(
+            Components.Molecules.TabBarView(.init([
+                .init(title: "Menu 1     slurp", action: {
+                    print("Menu 1 tapped")
+                }),
+                .init(title: "Menu 2", action: {
+                    print("Menu 2 tapped")
+                }),
+                .init(title: "Menu 3", action: {
+                    print("Menu 3 tapped")
+                }),
+                .init(title: "Menu 4", action: {
+                    print("Menu 4 tapped")
+                }),
+                .init(title: "Menu 5", action: {
+                    print("Menu 5 tapped")
+                }),
+                .init(title: "Menu 6", action: {
+                    print("Menu 6 tapped")
+                })
+            ]))
+        )
+    }
+
+    static func examples() -> AnyView {
+        AnyView(
+            VStack(spacing: .spacer16) {
+//                Components.Molecules.TabBarView(.init([
+//                    .init(title: "Menu 1", action: {
+//                        print("Menu 1 tapped")
+//                    }),
+//                    .init(title: "Menu 2", action: {
+//                        print("Menu 2 tapped")
+//                    }),
+//                    .init(title: "Menu 3", action: {
+//                        print("Menu 3 tapped")
+//                    })
+//                ])).cardView()
+            }
+        )
+    }
+}

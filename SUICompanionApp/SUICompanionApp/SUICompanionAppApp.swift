@@ -15,12 +15,13 @@
  */
 
 import SwiftUI
-
+import SUIComponents
 @main
 struct SUICompanionAppApp: App {
     var body: some Scene {
         WindowGroup {
-            MainView()
+//            MainView()
+            ExampleView<Components.Molecules.TabBarView>()
         }
     }
 }
