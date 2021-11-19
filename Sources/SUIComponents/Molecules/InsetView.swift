@@ -40,7 +40,7 @@ extension Components.Molecules {
                     Rectangle()
                         .foregroundColor(Color.Semantic.insetBar)
                         .frame(width: 4)
-                    model.content
+                    model.content.padding(.spacer16)
                 }
             ).frame(
                 maxWidth: .infinity,
