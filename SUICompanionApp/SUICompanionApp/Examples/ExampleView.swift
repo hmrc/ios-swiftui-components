@@ -27,6 +27,7 @@ struct ExampleView<Component: Examplable>: View {
                     .background(
                         Example.Images.previewBackground.image
                             .resizable(resizingMode: .tile)
+                            .accessibility(hidden: true)
                     )
                 Text("Examples:")
                     .style(.bold)
