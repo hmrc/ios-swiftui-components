@@ -28,12 +28,18 @@ extension Components.Molecules {
             Components.Atoms.ImageAligningHStack(spacing: spacing) {
                 model.icon
                     .foregroundColor(model.iconTintColor)
+                    .accessibility(hidden: true)
             } rightContent: {
                 Text(model.title)
                     .style(.bold)
                     .accessibility(hint: Text(model.accessibilityHint ?? ""))
             }
             .frame(maxWidth: .infinity, alignment: .leading)
+            .background(
+                Color.clear
+                    .accessibility(hidden: false)
+                    .accessibility(label: Text("Warning; \(model.title)"))
+            )
         }
     }
 }

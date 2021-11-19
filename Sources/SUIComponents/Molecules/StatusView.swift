@@ -152,7 +152,7 @@ struct StatusView_Previews: PreviewProvider {
                                 icon: Image(systemName: "folder.circle"),
                                 title: "A very very very very very very very very very loooooooong title",
                                 body: "A very very very very very very very very very very very very very very very very very very very loooooooong body",
-                                iconTintColor: Color.Named.green1.raw
+                                iconTintColor: Color.Named.green1.colour
                             )
                         ).background(Color.Semantic.whiteBackground)
 

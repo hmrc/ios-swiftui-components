@@ -90,7 +90,7 @@ extension Components.Molecules {
                         multiLine: model.multiLine,
                         maxLength: model.maxLength,
                         enforceMaxLength: model.enforceMaxLength,
-                        accentColor: Color.Named.blue.raw,
+                        accentColor: Color.Named.blue.colour,
                         borderWidth: 0.0,
                         keyboardType: model.keyboardType,
                         shouldChangeText: model.shouldChangeText
@@ -106,7 +106,7 @@ extension Components.Molecules {
                             Image(
                                 "clear_icon",
                                 bundle: Bundle.resource
-                            ).foregroundColor(Color.Named.grey2.raw)
+                            ).foregroundColor(Color.Named.grey2.colour)
                         }
                     }
                 }

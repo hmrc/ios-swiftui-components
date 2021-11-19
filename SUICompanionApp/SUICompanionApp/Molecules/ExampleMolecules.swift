@@ -30,7 +30,7 @@ extension Components.Molecules.WarningView: Examplable {
                     .init(
                         icon: Example.Images.info.image,
                         title: "Body Text",
-                        iconTintColor: .black,
+                        iconTintColor: Color.Semantic.darkText,
                         accessibilityHint: "AccessibilityHint",
                         accessibilityIdentifier: "AccessibilityIdentifier"
                     )
@@ -45,7 +45,7 @@ extension Components.Molecules.WarningView: Examplable {
                     .init(
                         icon: Example.Images.info.image,
                         title: "You must renew your tax credits by 31 July 2019",
-                        iconTintColor: .black,
+                        iconTintColor: Color.Semantic.darkText,
                         accessibilityHint: "AccessibilityHint",
                         accessibilityIdentifier: "AccessibilityIdentifier"
                     )
@@ -55,7 +55,7 @@ extension Components.Molecules.WarningView: Examplable {
                     .init(
                         icon: Example.Images.info.image,
                         title: "We are currently working out your payments as your child is changing their education or training. This should be done by 7 September 2019.",
-                        iconTintColor: .black,
+                        iconTintColor: Color.Semantic.darkText,
                         accessibilityHint: "AccessibilityHint",
                         accessibilityIdentifier: "AccessibilityIdentifier"
                     )
@@ -65,7 +65,7 @@ extension Components.Molecules.WarningView: Examplable {
                     .init(
                         icon: Example.Images.info.image,
                         title: Example.Text.longestIpsum,
-                        iconTintColor: .black,
+                        iconTintColor: Color.Semantic.darkText,
                         accessibilityHint: "AccessibilityHint",
                         accessibilityIdentifier: "AccessibilityIdentifier"
                     )
