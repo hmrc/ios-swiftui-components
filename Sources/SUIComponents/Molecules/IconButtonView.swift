@@ -28,14 +28,22 @@ extension Components.Molecules {
             Components.Atoms.ImageAligningHStack(spacing: spacing) {
                 model.icon
                     .foregroundColor(model.iconTintColor)
+                    .accessibility(hidden: true)
             } rightContent: {
                 Text(model.title)
                     .style(.link)
-                    .accessibility(hint: Text(model.accessibilityHint ?? ""))
+                    .accessibility(hidden: true)
             }
             .padding(model.insets)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .accessibility(addTraits: .isButton)
+            .background(
+                Color.clear
+                    .accessibility(addTraits: .isButton)
+                    .accessibility(hidden: false)
+                    .accessibility(hint: Text(model.accessibilityHint ?? ""))
+                    .accessibility(label: Text(model.title))
+            )
+            
             .onTapGesture {
                 model.handler()
             }

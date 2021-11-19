@@ -105,14 +105,13 @@ extension Components.Molecules.IconButtonView: Examplable {
                         icon: Example.Images.help.image,
                         title: "About the calculator",
                         iconTintColor: TextStyle.link.textColor,
-                        accessibilityHint: "AccessibilityHint",
                         accessibilityIdentifier: "AccessibilityIdentifier",
-                        insets: .init(top: .spacer8, leading: 0, bottom: .spacer8, trailing: .spacer8),
+                        insets: .init(padding:.spacer16),
                         handler: {
                             print("About the calculator Tapped")
                         }
                     )
-            ).cardView()
+            ).cardView(insets: .init(padding: 0))
             Components.Molecules.IconButtonView(
                 model:
                     .init(
@@ -121,12 +120,12 @@ extension Components.Molecules.IconButtonView: Examplable {
                         iconTintColor: TextStyle.link.textColor,
                         accessibilityHint: "AccessibilityHint",
                         accessibilityIdentifier: "AccessibilityIdentifier",
-                        insets: .init(top: .spacer8, leading: 0, bottom: .spacer8, trailing: .spacer8),
+                        insets: .init(padding:.spacer16),
                         handler: {
                             print("Lorem Ipsum tapped")
                         }
                     )
-            ).cardView()
+            ).cardView(insets: .init(padding: 0))
          
         })
     }
