@@ -107,6 +107,7 @@ extension Components.Molecules.IconButtonView: Examplable {
                         iconTintColor: TextStyle.link.textColor,
                         accessibilityHint: "AccessibilityHint",
                         accessibilityIdentifier: "AccessibilityIdentifier",
+                        insets: .init(top: .spacer8, leading: 0, bottom: .spacer8, trailing: .spacer8),
                         handler: {
                             print("About the calculator Tapped")
                         }
@@ -120,6 +121,7 @@ extension Components.Molecules.IconButtonView: Examplable {
                         iconTintColor: TextStyle.link.textColor,
                         accessibilityHint: "AccessibilityHint",
                         accessibilityIdentifier: "AccessibilityIdentifier",
+                        insets: .init(top: .spacer8, leading: 0, bottom: .spacer8, trailing: .spacer8),
                         handler: {
                             print("Lorem Ipsum tapped")
                         }

@@ -33,6 +33,7 @@ extension Components.Molecules {
                     .style(.link)
                     .accessibility(hint: Text(model.accessibilityHint ?? ""))
             }
+            .padding(model.insets)
             .frame(maxWidth: .infinity, alignment: .leading)
             .accessibility(addTraits: .isButton)
             .onTapGesture {
@@ -49,6 +50,7 @@ extension Components.Molecules.IconButtonView {
         public let iconTintColor: Color?
         public let accessibilityHint: String?
         public let accessibilityIdentifier: String?
+        public let insets: EdgeInsets
         public var handler: VoidHandler
         
         public init(icon: Image,
@@ -56,6 +58,7 @@ extension Components.Molecules.IconButtonView {
                     iconTintColor: Color? = nil,
                     accessibilityHint: String? = nil,
                     accessibilityIdentifier: String? = nil,
+                    insets: EdgeInsets = .init(padding: .spacer16),
                     handler: @escaping VoidHandler
         ) {
             self.icon = icon
@@ -64,6 +67,7 @@ extension Components.Molecules.IconButtonView {
             self.accessibilityIdentifier = accessibilityIdentifier
             self.iconTintColor = iconTintColor
             self.handler = handler
+            self.insets = insets
         }
     }
 }
