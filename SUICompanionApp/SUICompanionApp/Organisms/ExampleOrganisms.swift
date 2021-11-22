@@ -91,13 +91,15 @@ extension Components.Organisms.HeadlineCardView: Examplable {
                         }.styled(.primary)
                     }
                 )
+
                 Components.Organisms.HeadlineCardView(
                     title: "Your PAYE income tax estimate",
-                    currencyAmount: 12345,
-                    content: {
+                    currencyAmount: 12345, disclosureAction: {
+                        print("Disclosure Tapped")
+                    })
+                    {
                         Text("This is the income tax we think you will have paid by the end of the year", style: .body)
                     }
-                )
                 Components.Organisms.HeadlineCardView(
                     title: Example.Text.longerIpsum,
                     headline: Example.Text.longIpsum,

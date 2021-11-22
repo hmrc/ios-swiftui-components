@@ -19,9 +19,10 @@ import SwiftUI
 extension View {
     public func cardView(
         insets: EdgeInsets = EdgeInsets(padding: .spacer16),
-        backgroundColor: Color = Color.Semantic.cardBackground
+        backgroundColor: Color = Color.Semantic.cardBackground,
+        disclosureAction: VoidHandler? = nil
     ) -> some View {
-        self.modifier(CardView(insets: insets, backgroundColor: backgroundColor))
+        self.modifier(CardView(insets: insets, backgroundColor: backgroundColor, disclosureAction: disclosureAction))
     }
 
     /// Passes-through the view with customizable side effects
