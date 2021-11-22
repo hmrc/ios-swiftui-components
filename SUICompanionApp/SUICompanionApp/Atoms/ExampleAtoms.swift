@@ -70,9 +70,15 @@ extension Components.Atoms {
                     Button("Primary Button") {
                         print("Lorem")
                     }.styled(.primary)
+                    Button("Disabled primary Button") {
+                        print("Disabled tapped, this shouldnt fire!")
+                    }
+                    .styled(.primary)
+                    .disabled(true)
+                    
                     Button("Secondary Button") {
                         print("Lorem")
-                    }.styled(.secondary(padding: 0))
+                    }.styled(.secondary())
                 }
             )
         }

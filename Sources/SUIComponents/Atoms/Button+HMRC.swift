@@ -22,7 +22,6 @@ public enum HMRCButtonStyle {
 }
 
 extension Button {
-
     @ViewBuilder
     public func styled(_ style: HMRCButtonStyle) -> some View {
         switch style {
@@ -36,18 +35,45 @@ extension Button {
 
 struct PrimaryButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .frame(maxWidth: .infinity)
-            .padding(.spacer12)
-            .background(Color.Semantic.primaryButtonBackground)
-            .foregroundColor(Color.Semantic.primaryButtonText)
-            .overlay(
-                VStack{
-                    Rectangle()
-                        .frame(height: 3)
-                        .foregroundColor(Color.Semantic.primaryButtonBaseline)
-                }, alignment: .bottom
-            )
+        WrappedButton(configuration: configuration)
+    }
+    
+    struct WrappedButton: View {
+        let configuration: Configuration
+        @Environment(\.isEnabled) private var isEnabled: Bool
+        
+        private func backgroundColour(for configuration: Configuration, isEnabled: Bool)-> Color {
+            if !isEnabled {
+                return Color.Semantic.primaryButtonDisabledBackground
+            } else {
+                return configuration.isPressed ? Color.Semantic.primaryButtonHighlightedBackground : Color.Semantic.primaryButtonBackground
+            }
+        }
+        private func baselineColour(for configuration: Configuration, isEnabled: Bool)-> Color {
+            if !isEnabled {
+                return .clear
+            } else {
+                return configuration.isPressed ? Color.Semantic.primaryButtonHighlightedBaseline : Color.Semantic.primaryButtonBaseline
+            }
+        }
+        private func textColour(for configuration: Configuration, isEnabled: Bool)-> Color {
+            isEnabled ? Color.Semantic.primaryButtonText : Color.Semantic.primaryButtonDisabledText
+        }
+        
+        var body: some View {
+            configuration.label
+                .frame(maxWidth: .infinity)
+                .padding(.spacer12)
+                .background(backgroundColour(for: configuration, isEnabled: isEnabled))
+                .foregroundColor(textColour(for: configuration, isEnabled: isEnabled))
+                .overlay(
+                    VStack{
+                        Rectangle()
+                            .frame(height: 3)
+                            .foregroundColor(baselineColour(for: configuration, isEnabled: isEnabled))
+                    }, alignment: .bottom
+                )
+        }
     }
 }
 
@@ -59,10 +85,24 @@ struct SecondaryButtonStyle: ButtonStyle {
     }
 
     func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(padding)
-            .background(Color.Semantic.secondaryButtonBackground)
-            .foregroundColor(Color.Semantic.secondaryButtonText)
+        WrappedButton(configuration: configuration, padding: padding)
+    }
+    
+    struct WrappedButton: View {
+        let configuration: Configuration
+        let padding: CGFloat
+        @Environment(\.isEnabled) private var isEnabled: Bool
+        
+        private func backgroundColour(for configuration: Configuration, isEnabled: Bool)-> Color {
+            return configuration.isPressed ? Color.Semantic.secondaryButtonHighlightedBackground : Color.Semantic.secondaryButtonBackground
+        }
+
+        var body: some View {
+            configuration.label
+                .padding(padding)
+                .frame(maxWidth: .infinity, alignment: .center)
+                .background(backgroundColour(for: configuration, isEnabled: isEnabled))
+                .foregroundColor(Color.Semantic.secondaryButtonText)
+        }
     }
 }
