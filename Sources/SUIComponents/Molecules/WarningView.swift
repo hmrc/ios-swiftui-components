@@ -23,22 +23,26 @@ extension Components.Molecules {
         public init(model: Model) {
             self.model = model
         }
+        private let imageSize = CGFloat(36)
         private let spacing = CGFloat(12)
         public var body: some View {
             Components.Atoms.ImageAligningHStack(spacing: spacing) {
                 model.icon
+                    .resizable()
+                    .frame(width: imageSize, height: imageSize)
                     .foregroundColor(model.iconTintColor)
                     .accessibility(hidden: true)
+                    
             } rightContent: {
                 Text(model.title)
                     .style(.bold)
-                    .accessibility(hint: Text(model.accessibilityHint ?? ""))
+                    .accessibility(label: Text("Warning; \(model.title)"))
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(
                 Color.clear
-                    .accessibility(hidden: false)
-                    .accessibility(label: Text("Warning; \(model.title)"))
+                    .accessibility(hidden: true)
+                    
             )
         }
     }
