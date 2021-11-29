@@ -298,3 +298,30 @@ extension Components.Atoms.ImageAligningHStack: Examplable {
         })
     }
 }
+
+extension Components.Atoms.CustomButton: Examplable {
+    static var title: String { "CustomButton" }
+
+    static var exampleBackgroundColor: Color { Color.Semantic.pageBackground }
+
+    static func withPlaceholders() -> AnyView {
+        AnyView(
+            Components.Atoms.CustomButton(normalBackgroundColour: .clear, highlightedBackgroundColour: .blue, tapped: {print("Tapped")}) {
+                Text("Custom button")
+            }
+        )
+    }
+
+    static func examples() -> AnyView {
+        AnyView(VStack(spacing: .spacer16) {
+            Components.Atoms.CustomButton(normalBackgroundColour: .clear, highlightedBackgroundColour: .blue, tapped: {print("Tapped")}) {
+                Components.Atoms.ImageAligningHStack(spacing: 10, leftContent: {
+                    Example.Images.info.image
+                }) {
+                    Text("A single line of text")
+                }
+            }.cardView()
+            
+        })
+    }
+}

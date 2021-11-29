@@ -25,27 +25,27 @@ extension Components.Molecules {
         }
         private let spacing = CGFloat(12)
         public var body: some View {
-            Components.Atoms.ImageAligningHStack(spacing: spacing) {
-                model.icon
-                    .foregroundColor(model.iconTintColor)
-                    .accessibility(hidden: true)
-            } rightContent: {
-                Text(model.title)
-                    .style(.link)
-                    .accessibility(hidden: true)
-            }
-            .padding(model.insets)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(
-                Color.clear
-                    .accessibility(addTraits: .isButton)
-                    .accessibility(hidden: false)
-                    .accessibility(hint: Text(model.accessibilityHint ?? ""))
-                    .accessibility(label: Text(model.title))
-            )
-            
-            .onTapGesture {
+            Components.Atoms.CustomButton(normalBackgroundColour: .clear, highlightedBackgroundColour: Color.Semantic.secondaryButtonHighlightedBackground, tapped: {
                 model.handler()
+            }) {
+                Components.Atoms.ImageAligningHStack(spacing: spacing) {
+                    model.icon
+                        .foregroundColor(model.iconTintColor)
+                        .accessibility(hidden: true)
+                } rightContent: {
+                    Text(model.title)
+                        .style(.link)
+                        .accessibility(hidden: true)
+                }
+                .padding(model.insets)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(
+                    Color.clear
+                        .accessibility(addTraits: .isButton)
+                        .accessibility(hidden: false)
+                        .accessibility(hint: Text(model.accessibilityHint ?? ""))
+                        .accessibility(label: Text(model.title))
+                )
             }
         }
     }

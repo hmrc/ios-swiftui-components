@@ -15,14 +15,12 @@
  */
 
 import SwiftUI
-import SUIComponents
 
 @main
 struct SUICompanionAppApp: App {
     var body: some Scene {
         WindowGroup {
-//            MainView()
-            ExampleView<Components.Atoms.ExampleButton>()
+            MainView()
         }
     }
 }
