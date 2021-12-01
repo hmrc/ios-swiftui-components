@@ -36,7 +36,7 @@ public extension Components.Atoms {
                 }
             }
         }
-        
+
         public init(normalBackgroundColour: Color, highlightedBackgroundColour: Color, tapped: @escaping () -> Void, @ViewBuilder content: () -> Content) {
             self.content = content()
             self.highlightedBackgroundColour = highlightedBackgroundColour
