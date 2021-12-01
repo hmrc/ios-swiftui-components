@@ -17,21 +17,21 @@
 import SwiftUI
 
 extension Components.Organisms {
-    public struct HeadlineCardView<Content: View>: View {
+    public struct HeadlineCardView: View {
         let title: String
-        let headline: Text
+        let headline: AnyView
         let insets: EdgeInsets
         let itemSpacing: CGFloat
-        let content: Content
+        let content: AnyView
         let disclosureAction: VoidHandler?
 
         public init(
             title: String,
-            @ViewBuilder headline: () -> Text,
+            @ViewBuilder headline: () -> AnyView,
             insets: EdgeInsets = EdgeInsets(padding: .spacer16),
             itemSpacing: CGFloat = .spacer16,
             disclosureAction: VoidHandler? = nil,
-            @ViewBuilder content: () -> Content
+            @ViewBuilder content: () -> AnyView
         ) {
             self.title = title
             self.headline = headline()
@@ -51,6 +51,7 @@ extension Components.Organisms {
                             .style(.H5)
                             .accessibility(label: Text("\(title), heading"))
                             .frame(maxWidth: .infinity, alignment: .leading)
+                            .accessibility(label: Text("\(title), heading"))
                         headline
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .fixedSize(horizontal: false, vertical: true)
@@ -73,10 +74,11 @@ extension Components.Organisms.HeadlineCardView {
         insets: EdgeInsets = EdgeInsets(padding: .spacer16),
         itemSpacing: CGFloat = .spacer16,
         disclosureAction: VoidHandler? = nil,
-        @ViewBuilder content: () -> Content
+        @ViewBuilder content: () -> AnyView
     ) {
         self.init(title: title, headline: {
             Text(headline, style: headlineStyle)
+                .typeErased
         }, insets: insets, itemSpacing: itemSpacing, disclosureAction: disclosureAction, content: content)
     }
 
@@ -86,13 +88,15 @@ extension Components.Organisms.HeadlineCardView {
         insets: EdgeInsets = EdgeInsets(padding: .spacer16),
         itemSpacing: CGFloat = .spacer16,
         disclosureAction: VoidHandler? = nil,
-        @ViewBuilder content: () -> Content
+        @ViewBuilder content: () -> AnyView
     ) {
         let pounds = currencyAmount.whole
         let pence = currencyAmount.fractional
 
         self.init(title: title, headline: {
             Text(pounds: pounds, pence: pence, poundsFont: Font.H3.font(), penceFont: Font.H5.font())
+                .accessibility(label: Text("£\(pounds).\(pence)"))
+                .typeErased
 
         }, insets: insets, itemSpacing: itemSpacing, disclosureAction: disclosureAction, content: content)
     }
@@ -112,8 +116,10 @@ struct HeadlineCardView_Previews: PreviewProvider {
                             title: "A title",
                             headline: {
                                 Text("")
+                                    .typeErased
                             },
                             content: {
+                                EmptyView().typeErased
                             }
                         )
                     }

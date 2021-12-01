@@ -74,6 +74,7 @@ extension Components.Organisms.HeadlineCardView: Examplable {
                 headline: "Headline",
                 content: {
                     Text("Body")
+                        .typeErased
                 }
             )
         )
@@ -89,6 +90,7 @@ extension Components.Organisms.HeadlineCardView: Examplable {
                         Button("Claim your refund") {
                             print("Claim your refund tapped")
                         }.styled(.primary)
+                            .typeErased
                     }
                 )
 
@@ -99,6 +101,7 @@ extension Components.Organisms.HeadlineCardView: Examplable {
                     })
                     {
                         Text("This is the income tax we think you will have paid by the end of the year", style: .body)
+                            .typeErased
                     }
                 Components.Organisms.HeadlineCardView(
                     title: Example.Text.longerIpsum,
@@ -106,18 +109,20 @@ extension Components.Organisms.HeadlineCardView: Examplable {
                     headlineStyle: .H3,
                     content: {
                         Text(Example.Text.longestIpsum, style: .body)
+                            .typeErased
                     }
                 )
                 Components.Organisms.HeadlineCardView(
                     title: "Your PAYE income tax estimate",
-                    currencyAmount: 12345,
-                    content: {
+                    currencyAmount: 12345) {
+                        VStack(spacing: 0) {
                         Text("This is the income tax we think you will have paid by the end of the year", style: .body)
                         Button("View tax estimate") {
                             print("View tax estimate tapped")
                         }.styled(.primary)
+                        }.typeErased
                     }
-                )
+
                 Components.Organisms.HeadlineCardView(
                     title: Example.Text.longerIpsum,
                     headline: Example.Text.longIpsum,
@@ -128,7 +133,7 @@ extension Components.Organisms.HeadlineCardView: Examplable {
                             Button(Example.Text.longIpsum) {
                                 print("Ipsum tapped")
                             }.styled(.secondary(padding: 8))
-                        }
+                        }.typeErased
                     }
                 )
                 Components.Organisms.HeadlineCardView(
@@ -150,7 +155,7 @@ extension Components.Organisms.HeadlineCardView: Examplable {
                                             print("How is this calculated?")
                                         })
                             )
-                        }
+                        }.typeErased
                     }
                 )
                 
@@ -164,7 +169,7 @@ extension Components.Organisms.HeadlineCardView: Examplable {
                             Components.Molecules.InsetView(model: .init(content: {
                                 Text("Your employer or pension provider takes off Income Tax before they pay you. This is called Pay As You Earn (PAYE). The amount of tax you pay depends on your income, how much of it is tax-free, and your tax code.", style: .body)
                             }))
-                        }
+                        }.typeErased
                     }
                 )
             }
