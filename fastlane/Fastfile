@@ -77,6 +77,50 @@ platform :ios do
     end
   end
 
+  def simulator(options)
+    device_string = options[:device] || UI.user_error!("Missing required parameter `device`")
+    version = options[:version] || 'latest'
+    if version != 'latest'
+      device_string += " (#{version})"
+    end
+
+    available_sims = FastlaneCore::Simulator.all
+    if version != 'latest'
+      sim = available_sims.detect { |d| device_string == "#{d.name} (#{d.os_version})" }
+    else
+      sim = available_sims.detect { |d| device_string == "#{d.name}" }
+    end
+    UI.message("Selected Simulator:")
+    UI.message("#{sim.name} (#{sim.os_version}) #{sim.udid}")
+    return sim
+  end
+
+  desc "Open and boot named simulator"
+  desc "Example:"
+  desc "`fastlane open_booted_sim device:'iPhone 11 Pro Max' version:'latest'`"
+  desc "Options:"
+  desc " - device: (Required) Simulator to run the tests on"
+  desc " - version: (Optional) iOS version of the Simulator"
+  lane :open_booted_sim do |options|
+    sim = simulator(options)
+
+    if sim.nil?
+      UI.error "Device not found: #{device_string}"
+        next
+    end
+
+    UI.important("Booting #{sim.name}")
+    `xcrun simctl boot #{sim.udid} > /dev/null 2>&1`
+    if options[:force_dark_mode]
+      UI.important("Setting dark mode")
+      `xcrun simctl ui #{sim.udid} appearance dark`
+    else
+      UI.important("Setting light mode")
+      `xcrun simctl ui #{sim.udid} appearance light`
+    end
+    `open $(xcode-select -p)/Applications/Simulator.app`
+  end
+
 
   desc "Find differences between baseline screenshots and locally generated screenshots."
   desc "Make sure you completely run the IntegrationTests target against iPhone 11 Max to generate a complete set of screenshots."

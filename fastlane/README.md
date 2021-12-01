@@ -50,6 +50,21 @@ Options:
  - version: (Optional) iOS version of the Simulator
 
  - force_dark_mode: (Optional)
+### ios open_booted_sim
+```
+fastlane ios open_booted_sim
+```
+Open and boot named simulator
+
+Example:
+
+`fastlane open_booted_sim device:'iPhone 11 Pro Max' version:'latest'`
+
+Options:
+
+ - device: (Required) Simulator to run the tests on
+
+ - version: (Optional) iOS version of the Simulator
 ### ios screenshot_diff
 ```
 fastlane ios screenshot_diff
