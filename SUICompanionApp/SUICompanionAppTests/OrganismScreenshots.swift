@@ -14,11 +14,21 @@
  * limitations under the License.
  */
 
-import Foundation
+import SwiftUI
+import SUIComponents
+import XCTest
+@testable import SUICompanionApp
 
-public func delayedCall(_ delayInSeconds: Double = 0.0, closure: @escaping () -> Void) {
-   
-    let delayInMilliSeconds = Int(delayInSeconds * 1000)
-    let nanoseconds = DispatchTime.now() + DispatchTimeInterval.milliseconds(delayInMilliSeconds)
-    DispatchQueue.main.asyncAfter(deadline: nanoseconds, execute: closure)
+class OrganismScreenshots: XCTestCase {
+    override func setUp() {
+        super.setUp()
+    }
+
+    func test_screenshot_PrimaryCardView() {
+        ExampleView<Components.Organisms.PrimaryCardView<Text>>().snapshotAndSave("primaryCardView")
+    }
+    
+    func test_screenshot_HeadlineCardView() {
+        ExampleView<Components.Organisms.HeadlineCardView<Text>>().snapshotAndSave("headlineCardView")
+    }
 }

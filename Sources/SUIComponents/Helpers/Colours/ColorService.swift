@@ -14,34 +14,49 @@
  * limitations under the License.
  */
 
-import UIKit
 import SwiftUI
 
 public protocol ColorService {
-    var colors: NamedColors { get }
-    var semanticColors: SemanticColors { get }
+    var lightColors: NamedColors { get }
+    var darkColors: NamedColors { get }
+    var semanticLightColors: SemanticColors { get }
+    var semanticDarkColors: SemanticColors { get }
 }
 
 extension Components.Colors {
     public class Service: ColorService {
         
-        private var _colors: NamedColors?
-        private var _semanticColors: SemanticColors?
+        private var _lightColors: NamedColors?
+        private var _darkColors: NamedColors?
+        private var _semanticLightColors: SemanticColors?
+        private var _semanticDarkColors: SemanticColors?
         
         public init(
-            colors: NamedColors? = nil,
-            semanticColors: SemanticColors? = nil
+            lightColors: NamedColors? = nil,
+            darkColors: NamedColors? = nil,
+            semanticLightColors: SemanticColors? = nil,
+            semanticDarkColors: SemanticColors? = nil
         ) {
-            self._colors = colors
-            self._semanticColors = semanticColors
+            self._lightColors = lightColors
+            self._darkColors = darkColors
+            self._semanticLightColors = semanticLightColors
+            self._semanticDarkColors = semanticDarkColors
         }
         
-        public var colors: NamedColors {
-            return _colors ?? UIColor.Colors()
+        public var lightColors: NamedColors {
+            return _lightColors ?? Color.LightColors()
         }
         
-        public var semanticColors: SemanticColors {
-            return _semanticColors ?? Color.SemanticColors()
+        public var darkColors: NamedColors {
+            return _darkColors ?? Color.DarkColors()
+        }
+        
+        public var semanticLightColors: SemanticColors {
+            return _semanticLightColors ?? Color.SemanticLightColors()
+        }
+        
+        public var semanticDarkColors: SemanticColors {
+            return _semanticDarkColors ?? Color.SemanticDarkColors()
         }
     }
 }

@@ -30,10 +30,16 @@ extension Color {
             return result
         }
         
-        private static var semanticColors: SUIComponents.SemanticColors {
+        private static var semanticColors: SemanticColors {
             let colorService: ColorService = SUIComponents.Components.Injection.Service.colorService.injectedObject
             
-            return colorService.semanticColors
+            let colorContainer: SemanticColors
+            if Color.useLightModeColors {
+                colorContainer = colorService.semanticLightColors
+            } else {
+                colorContainer = colorService.semanticDarkColors
+            }
+            return colorContainer
         }
         
         public static var darkText = semanticColors.darkText

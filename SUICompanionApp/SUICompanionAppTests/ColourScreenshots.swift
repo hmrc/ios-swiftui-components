@@ -14,9 +14,17 @@
  * limitations under the License.
  */
 
-import UIKit
+import SwiftUI
+import SUIComponents
+import XCTest
+@testable import SUICompanionApp
 
-public typealias VoidHandler = () -> Void
-public typealias TextViewShouldChangeHandler = ( _ text: String,
-                                                 _ shouldChangeTextInRange: NSRange,
-                                                 _ replacementText: String) -> Bool
+class ColourScreenshots: XCTestCase {
+    override func setUp() {
+        super.setUp()
+    }
+
+    func test_screenshot_colours() {
+        ColoursView().snapshotAndSave("colours")
+    }
+}

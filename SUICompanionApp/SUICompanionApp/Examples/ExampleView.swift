@@ -17,9 +17,13 @@
 import SwiftUI
 import SUIComponents
 
-struct ExampleView<Component: Examplable>: View {
+struct ExampleView<Component: Examplable>: View, ScreenshotableView {
+    @ObservedObject var snapshotViewModel: SnapshotViewModel
+    init(_ snapshotViewModel: SnapshotViewModel? = nil) {
+        self.snapshotViewModel = snapshotViewModel ?? .init()
+    }
     var body: some View {
-        ScrollView(.vertical) {
+        MeasurableScrollView(size: $snapshotViewModel.size) {
             VStack(alignment: .leading, spacing: .spacer16) {
                 Text("Placeholders:")
                     .style(.bold)
@@ -27,7 +31,6 @@ struct ExampleView<Component: Examplable>: View {
                     .background(
                         Example.Images.previewBackground.image
                             .resizable(resizingMode: .tile)
-                            .accessibility(hidden: true)
                     )
                 Text("Examples:")
                     .style(.bold)

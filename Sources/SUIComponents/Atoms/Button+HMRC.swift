@@ -17,63 +17,49 @@
 import SwiftUI
 
 public enum HMRCButtonStyle {
-    case primary
+    case primary(enabled: Bool = true)
     case secondary(padding: CGFloat = .spacer16)
 }
 
 extension Button {
+
     @ViewBuilder
     public func styled(_ style: HMRCButtonStyle) -> some View {
         switch style {
-            case .primary:
-                self.buttonStyle(PrimaryButtonStyle())
-            case let .secondary(padding):
+            case .primary(let enabled):
+                self.buttonStyle(PrimaryButtonStyle(enabled))
+            case .secondary(let padding):
                 self.buttonStyle(SecondaryButtonStyle(padding))
         }
     }
 }
 
 struct PrimaryButtonStyle: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        WrappedButton(configuration: configuration)
+    let enabled: Bool
+    init(_ enabled: Bool = true) {
+        self.enabled = enabled
     }
-    
-    struct WrappedButton: View {
-        let configuration: Configuration
-        @Environment(\.isEnabled) private var isEnabled: Bool
-        
-        private func backgroundColour(for configuration: Configuration, isEnabled: Bool)-> Color {
-            if !isEnabled {
-                return Color.Semantic.primaryButtonDisabledBackground
-            } else {
-                return configuration.isPressed ? Color.Semantic.primaryButtonHighlightedBackground : Color.Semantic.primaryButtonBackground
-            }
-        }
-        private func baselineColour(for configuration: Configuration, isEnabled: Bool)-> Color {
-            if !isEnabled {
-                return .clear
-            } else {
-                return configuration.isPressed ? Color.Semantic.primaryButtonHighlightedBaseline : Color.Semantic.primaryButtonBaseline
-            }
-        }
-        private func textColour(for configuration: Configuration, isEnabled: Bool)-> Color {
-            isEnabled ? Color.Semantic.primaryButtonText : Color.Semantic.primaryButtonDisabledText
-        }
-        
-        var body: some View {
-            configuration.label
-                .frame(maxWidth: .infinity)
-                .padding(.spacer12)
-                .background(backgroundColour(for: configuration, isEnabled: isEnabled))
-                .foregroundColor(textColour(for: configuration, isEnabled: isEnabled))
-                .overlay(
-                    VStack{
-                        Rectangle()
-                            .frame(height: 3)
-                            .foregroundColor(baselineColour(for: configuration, isEnabled: isEnabled))
-                    }, alignment: .bottom
-                )
-        }
+
+    private var backgroundColor: Color {
+        enabled ?  Color.Semantic.primaryButtonBackground : Color.Semantic.primaryButtonDisabledBackground
+    }
+    private var textColor: Color {
+        enabled ?  Color.Semantic.primaryButtonText : Color.Semantic.primaryButtonDisabledText
+    }
+
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .frame(maxWidth: .infinity)
+            .padding(.spacer12)
+            .background(backgroundColor)
+            .foregroundColor(textColor)
+            .overlay(
+                VStack{
+                    Rectangle()
+                        .frame(height: enabled ? 3 : 0)
+                        .foregroundColor(Color.Semantic.primaryButtonBaseline)
+                }, alignment: .bottom
+            )
     }
 }
 
@@ -85,24 +71,10 @@ struct SecondaryButtonStyle: ButtonStyle {
     }
 
     func makeBody(configuration: Configuration) -> some View {
-        WrappedButton(configuration: configuration, padding: padding)
-    }
-    
-    struct WrappedButton: View {
-        let configuration: Configuration
-        let padding: CGFloat
-        @Environment(\.isEnabled) private var isEnabled: Bool
-        
-        private func backgroundColour(for configuration: Configuration, isEnabled: Bool)-> Color {
-            return configuration.isPressed ? Color.Semantic.secondaryButtonHighlightedBackground : Color.Semantic.secondaryButtonBackground
-        }
-
-        var body: some View {
-            configuration.label
-                .padding(padding)
-                .frame(maxWidth: .infinity, alignment: .center)
-                .background(backgroundColour(for: configuration, isEnabled: isEnabled))
-                .foregroundColor(Color.Semantic.secondaryButtonText)
-        }
+        configuration.label
+            .frame(maxWidth: .infinity, alignment: .center)
+            .padding(padding)
+            .background(Color.Semantic.secondaryButtonBackground)
+            .foregroundColor(Color.Semantic.secondaryButtonText)
     }
 }

@@ -14,9 +14,21 @@
  * limitations under the License.
  */
 
-import UIKit
+import SwiftUI
+import SUIComponents
+import XCTest
+@testable import SUICompanionApp
 
-public typealias VoidHandler = () -> Void
-public typealias TextViewShouldChangeHandler = ( _ text: String,
-                                                 _ shouldChangeTextInRange: NSRange,
-                                                 _ replacementText: String) -> Bool
+class AtomScreenshots: XCTestCase {
+    override func setUp() {
+        super.setUp()
+    }
+    
+    func test_screenshot_text() {
+        ExampleView<Text>().snapshotAndSave("text")
+    }
+
+    func test_screenshot_buttons() {
+        ExampleView<Components.Atoms.ExampleButton>().snapshotAndSave("buttons")
+    }    
+}

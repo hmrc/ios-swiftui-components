@@ -17,6 +17,12 @@
 import SwiftUI
 
 public extension Color {
+
+    enum ColorMode {
+        case userSpecified
+        case light
+        case dark
+    }
     
     enum Named: String, CaseIterable, ColorServiceInjected {
         case black,
@@ -33,13 +39,36 @@ public extension Color {
              yellow
 
         public static var allColors: [(String, Color)] {
-            return allCases.map { ("\($0.rawValue) (\($0.colour.hexString ?? "#------"))", $0.colour) }
+            return allCases.map { ("\($0.rawValue) (\($0.raw.hexString ?? "#------"))", $0.raw) }
         }
-        public var colour: Color {
-            Color(uiColour)
+        
+        public var raw: Color {
+            rawColor(colorMode: .userSpecified)
         }
-        public var uiColour: UIColor {
-            let colorContainer: NamedColors = colorService.colors
+
+        public var rawInLightMode: Color {
+            rawColor(colorMode: .light)
+        }
+
+        public var rawInDarkMode: Color {
+            rawColor(colorMode: .dark)
+        }
+
+        private func rawColor(colorMode: ColorMode = .userSpecified) -> Color {
+            let colorContainer: NamedColors = {
+                switch colorMode {
+                case .userSpecified:
+                    if Color.useLightModeColors {
+                        return colorService.lightColors
+                    } else {
+                        return colorService.darkColors
+                    }
+                case .light:
+                    return colorService.lightColors
+                case .dark:
+                    return colorService.darkColors
+                }
+            }()
 
             switch self {
             case .black:

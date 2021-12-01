@@ -33,19 +33,17 @@ extension Components.Molecules {
         }
 
         public var body: some View {
-            HStack(
-                alignment: .center,
-                spacing: .spacer8,
-                content: {
+            model.content
+                .padding(.init(top: .spacer16, leading: .spacer16 + .spacer4, bottom: .spacer16, trailing: .spacer16))
+                .overlay(
                     Rectangle()
                         .foregroundColor(Color.Semantic.insetBar)
-                        .frame(width: 4)
-                    model.content.padding(.spacer16)
-                }
-            ).frame(
-                maxWidth: .infinity,
-                alignment: .leading
-            )
+                        .frame(width: .spacer4), alignment: .leading
+                )
+                .frame(
+                    maxWidth: .infinity,
+                    alignment: .leading
+                )
         }
     }
 }
@@ -75,7 +73,6 @@ extension Components.Molecules.InsetView.Model where Content == AnyView {
         self.init {
             Text(body)
                 .style(.body)
-                .fixedSize(horizontal: false, vertical: true)
                 .typeErased
         }
     }

@@ -17,10 +17,16 @@
 import SwiftUI
 import SUIComponents
 
-struct ColoursView: View {
+struct ColoursView: View, ScreenshotableView {
+    @ObservedObject var snapshotViewModel: SnapshotViewModel
+    
+    init(_ snapshotViewModel: SnapshotViewModel? = nil) {
+        self.snapshotViewModel = snapshotViewModel ?? .init()
+    }
+    
     var body: some View {
         NavigationView {
-            ScrollView {
+            MeasurableScrollView(size: $snapshotViewModel.size) {
                 VStack(alignment: .leading, spacing: .spacer16) {
                     Text("Named Colours:")
                         .style(.H5)
@@ -39,14 +45,8 @@ struct ColoursView: View {
             Rectangle()
                 .foregroundColor(colour)
                 .frame(width: 40, height: 40)
-                .border(Color.Named.black.colour, width: 1)
+                .border(Color.Named.black.raw, width: 1)
             Text(name).style(.body)
         }
-    }
-}
-
-struct ColoursView_Previews: PreviewProvider {
-    static var previews: some View {
-        ColoursView()
     }
 }

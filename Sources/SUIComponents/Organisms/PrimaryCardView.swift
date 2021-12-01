@@ -92,7 +92,7 @@ struct PrimaryCardView_Previews: PreviewProvider {
                                 Text("A body")
                                 Button("Button title") {
                                     print("tapped")
-                                }.styled(.primary)
+                                }.styled(.primary())
                             }
                         )
                     }

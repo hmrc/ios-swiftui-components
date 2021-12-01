@@ -19,16 +19,13 @@ import SwiftUI
 public struct CardView: ViewModifier {
     private let insets: EdgeInsets
     private let backgroundColor: Color
-    private let disclosureAction: VoidHandler?
 
     public init(
         insets: EdgeInsets = EdgeInsets(padding: .spacer16),
-        backgroundColor: Color = Color.Semantic.cardBackground,
-        disclosureAction: VoidHandler?
+        backgroundColor: Color = Color.Semantic.cardBackground
     ) {
         self.insets = insets
         self.backgroundColor = backgroundColor
-        self.disclosureAction = disclosureAction
     }
 
     public func body(content: Content) -> some View {
@@ -38,7 +35,6 @@ public struct CardView: ViewModifier {
                 maxWidth: .infinity,
                 alignment: .leading
             )
-            .disclosureAction(handler: disclosureAction)
             .background(backgroundColor)
     }
 }

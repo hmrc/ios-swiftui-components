@@ -25,27 +25,18 @@ extension Components.Molecules {
         }
         private let spacing = CGFloat(12)
         public var body: some View {
-            Components.Atoms.CustomButton(normalBackgroundColour: .clear, highlightedBackgroundColour: Color.Semantic.secondaryButtonHighlightedBackground, tapped: {
+            Components.Atoms.ImageAligningHStack(spacing: spacing) {
+                model.icon
+                    .foregroundColor(model.iconTintColor)
+            } rightContent: {
+                Text(model.title)
+                    .style(.link)
+                    .accessibility(hint: Text(model.accessibilityHint ?? ""))
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .accessibility(addTraits: .isButton)
+            .onTapGesture {
                 model.handler()
-            }) {
-                Components.Atoms.ImageAligningHStack(spacing: spacing) {
-                    model.icon
-                        .foregroundColor(model.iconTintColor)
-                        .accessibility(hidden: true)
-                } rightContent: {
-                    Text(model.title)
-                        .style(.link)
-                        .accessibility(hidden: true)
-                }
-                .padding(model.insets)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .background(
-                    Color.clear
-                        .accessibility(addTraits: .isButton)
-                        .accessibility(hidden: false)
-                        .accessibility(hint: Text(model.accessibilityHint ?? ""))
-                        .accessibility(label: Text(model.title))
-                )
             }
         }
     }
@@ -58,7 +49,6 @@ extension Components.Molecules.IconButtonView {
         public let iconTintColor: Color?
         public let accessibilityHint: String?
         public let accessibilityIdentifier: String?
-        public let insets: EdgeInsets
         public var handler: VoidHandler
         
         public init(icon: Image,
@@ -66,7 +56,6 @@ extension Components.Molecules.IconButtonView {
                     iconTintColor: Color? = nil,
                     accessibilityHint: String? = nil,
                     accessibilityIdentifier: String? = nil,
-                    insets: EdgeInsets = .init(padding: .spacer16),
                     handler: @escaping VoidHandler
         ) {
             self.icon = icon
@@ -75,7 +64,6 @@ extension Components.Molecules.IconButtonView {
             self.accessibilityIdentifier = accessibilityIdentifier
             self.iconTintColor = iconTintColor
             self.handler = handler
-            self.insets = insets
         }
     }
 }

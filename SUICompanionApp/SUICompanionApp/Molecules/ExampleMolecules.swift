@@ -17,63 +17,6 @@
 import SwiftUI
 import SUIComponents
 
-
-extension Components.Molecules.WarningView: Examplable {
-    static var title: String { "WarningView" }
-
-    static var exampleBackgroundColor: Color { Color.Semantic.pageBackground }
-
-    static func withPlaceholders() -> AnyView {
-        AnyView(
-            Components.Molecules.WarningView(
-                model:
-                    .init(
-                        icon: Example.Images.info.image,
-                        title: "Body Text",
-                        iconTintColor: Color.Semantic.darkText,
-                        accessibilityHint: "AccessibilityHint",
-                        accessibilityIdentifier: "AccessibilityIdentifier"
-                    )
-            )
-        )
-    }
-
-    static func examples() -> AnyView {
-        AnyView(VStack(spacing: .spacer16) {
-            Components.Molecules.WarningView(
-                model:
-                    .init(
-                        icon: Example.Images.info.image,
-                        title: "You must renew your tax credits by 31 July 2019",
-                        iconTintColor: Color.Semantic.darkText,
-                        accessibilityHint: "AccessibilityHint",
-                        accessibilityIdentifier: "AccessibilityIdentifier"
-                    )
-            ).cardView()
-            Components.Molecules.WarningView(
-                model:
-                    .init(
-                        icon: Example.Images.info.image,
-                        title: "We are currently working out your payments as your child is changing their education or training. This should be done by 7 September 2019.",
-                        iconTintColor: Color.Semantic.darkText,
-                        accessibilityHint: "AccessibilityHint",
-                        accessibilityIdentifier: "AccessibilityIdentifier"
-                    )
-            ).cardView()
-            Components.Molecules.WarningView(
-                model:
-                    .init(
-                        icon: Example.Images.info.image,
-                        title: Example.Text.longestIpsum,
-                        iconTintColor: Color.Semantic.darkText,
-                        accessibilityHint: "AccessibilityHint",
-                        accessibilityIdentifier: "AccessibilityIdentifier"
-                    )
-            ).cardView()
-         
-        })
-    }
-}
 extension Components.Molecules.IconButtonView: Examplable {
     static var title: String { "IconButtonView" }
 
@@ -105,13 +48,13 @@ extension Components.Molecules.IconButtonView: Examplable {
                         icon: Example.Images.help.image,
                         title: "About the calculator",
                         iconTintColor: TextStyle.link.textColor,
+                        accessibilityHint: "AccessibilityHint",
                         accessibilityIdentifier: "AccessibilityIdentifier",
-                        insets: .init(padding:.spacer16),
                         handler: {
                             print("About the calculator Tapped")
                         }
                     )
-            ).cardView(insets: .init(padding: 0))
+            ).cardView()
             Components.Molecules.IconButtonView(
                 model:
                     .init(
@@ -120,12 +63,11 @@ extension Components.Molecules.IconButtonView: Examplable {
                         iconTintColor: TextStyle.link.textColor,
                         accessibilityHint: "AccessibilityHint",
                         accessibilityIdentifier: "AccessibilityIdentifier",
-                        insets: .init(padding:.spacer16),
                         handler: {
                             print("Lorem Ipsum tapped")
                         }
                     )
-            ).cardView(insets: .init(padding: 0))
+            ).cardView()
          
         })
     }
@@ -158,8 +100,16 @@ extension Components.Molecules.StatusView: Examplable {
             ).cardView()
             Components.Molecules.StatusView(
                 model: .init(
-                    icon: Example.Images.maintenance.image,
+                    icon: Example.Images.info.image,
                     title: "Your Help to Save account closed on 21 May 2018"
+                )
+            ).cardView()
+            Components.Molecules.StatusView(
+                model: .init(
+                    icon: Example.Images.coins.image,
+                    title: Example.Text.longerIpsum,
+                    body: Example.Text.longestIpsum,
+                    iconTintColor: Color.Semantic.primaryButtonBackground
                 )
             ).cardView()
         })
@@ -467,6 +417,15 @@ extension Components.Molecules.InsetView: Examplable {
                     model: .init(
                         body: "Your employer or pension provider takes off Income Tax before they pay you. This is called Pay As You Earn (PAYE). The amount of tax you pay depends on your income, how much of it is tax-free, and your tax code."  // swiftlint:disable:this line_length
                     )
+                ).cardView()
+                Components.Molecules.InsetView(
+                    model: .init(content: {
+                        VStack(alignment: .leading, spacing: .spacer16) {
+                            Text("Child Tax Credit")
+                            Text("Working Tax Credit")
+                            Text("Another Tax Credit")
+                        }
+                    })
                 ).cardView()
             }
         )

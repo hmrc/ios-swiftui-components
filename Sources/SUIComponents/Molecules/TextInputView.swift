@@ -63,25 +63,17 @@ extension Components.Molecules {
             self._text = text
             self.validationError = validationError
         }
-        private var accessibilityLabel: Text {
-            if let validationError = validationError {
-                return Text("Error: \(validationError) - \(model.title)")
-            } else {
-                return Text(model.title)
-            }
-        }
+
         public var body: some View {
             VStack(alignment: .leading, spacing: 5) {
                 Text(model.title)
                     .style(validationError != nil ? .error : .body)
-                    .accessibility(hidden: true)
                 HStack {
                     if let leftText = model.leftViewText {
                         Text(leftText)
                             .font(Font.Body.font())
                             .foregroundColor(Color.Semantic.textInputLeftViewTint)
                             .padding(.leading, .spacer8)
-                            .accessibility(hidden: true)
                     }
                     Components.Atoms.TextView(
                         text: $text,
@@ -90,15 +82,13 @@ extension Components.Molecules {
                         multiLine: model.multiLine,
                         maxLength: model.maxLength,
                         enforceMaxLength: model.enforceMaxLength,
-                        accentColor: Color.Named.blue.colour,
+                        accentColor: Color.Named.blue.raw,
                         borderWidth: 0.0,
                         keyboardType: model.keyboardType,
                         shouldChangeText: model.shouldChangeText
                     ) {
                         print("Text committed: \(text)")
-                    }
-                    .frame(height: textFieldHeight)
-                    .accessibility(label: accessibilityLabel)
+                    }.frame(height: textFieldHeight)
                     if editing && text.count > 0 {
                         Button {
                             text = ""
@@ -106,7 +96,7 @@ extension Components.Molecules {
                             Image(
                                 "clear_icon",
                                 bundle: Bundle.resource
-                            ).foregroundColor(Color.Named.grey2.colour)
+                            ).foregroundColor(Color.Named.grey2.raw)
                         }
                     }
                 }
@@ -124,12 +114,10 @@ extension Components.Molecules {
                         Text(error)
                             .style(.error)
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            .accessibility(hidden: true)
                     }
                     if let max = model.maxLength, max > 0 && model.showCharCount {
                         Text("\(text.count)/\(max)")
                             .style(validationError != nil ? .error : .body)
-                            .accessibility(hidden: true)
                     }
                 }.frame(maxWidth: .infinity, alignment: .trailing)
             }
