@@ -37,7 +37,7 @@ public extension Components.Atoms {
         }
     }
 
-    struct TextView: UIViewRepresentable {
+    struct TextView: UIViewRepresentable  {
         @Binding public var text: String
         @Binding private var height: CGFloat
         @Binding private var editing: Bool

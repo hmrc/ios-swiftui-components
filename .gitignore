@@ -22,3 +22,8 @@ yarn-debug.log
 yarn-error.log
 xcuserdata/
 *.DS_Store
+SUICompanionApp/Artifacts/*
+/fastlane/screenshot_diff/package-lock.json
+/fastlane/screenshot_diff/mismatches
+/fastlane/screenshot_diff/images
+/fastlane/report.xml

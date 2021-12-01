@@ -16,21 +16,19 @@
 
 import SwiftUI
 import SUIComponents
+import XCTest
+@testable import SUICompanionApp
 
-struct OrganismsView: View {
-    var body: some View {
-        NavigationView {
-            List {
-                Example.navigationLink(type: Components.Organisms.PrimaryCardView<Text>.self)
-                Example.navigationLink(type: Components.Organisms.HeadlineCardView<Text>.self)
-            }
-            .navigationTitle("Organisms")
-        }
+class AtomScreenshots: XCTestCase {
+    override func setUp() {
+        super.setUp()
     }
-}
+    
+    func test_screenshot_text() {
+        ExampleView<Text>().snapshotAndSave("text")
+    }
 
-struct OrganismsView_Previews: PreviewProvider {
-    static var previews: some View {
-        OrganismsView()
-    }
+    func test_screenshot_buttons() {
+        ExampleView<Components.Atoms.ExampleButton>().snapshotAndSave("buttons")
+    }    
 }

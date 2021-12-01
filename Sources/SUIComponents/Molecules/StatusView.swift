@@ -19,7 +19,6 @@ import SwiftUI
 extension Components.Molecules {
     public struct StatusView: View {
         let model: Model
-        
         public init(model: Model) {
             self.model = model
         }
@@ -42,10 +41,7 @@ extension Components.Molecules {
                         .style(.H5)
                         .multilineTextAlignment(.center)
                         .fixedSize(horizontal: false, vertical: true)
-                    if let body = model.body {
-                        Text(body.string)
-                            .fixedSize(horizontal: false, vertical: true)
-                    }
+                    model.body
                     if let buttonModel = model.buttonModel {
                         Button(action: buttonModel.handler) {
                             Text(buttonModel.title)
@@ -65,39 +61,32 @@ extension Components.Molecules.StatusView {
     open class Model {
         public let icon: Image
         public let title: String
-        public let body: NSAttributedString?
+        public let body: Text?
         public let buttonModel: ButtonModel?
         public let iconTintColor: Color?
         
         public init(icon: Image,
                     title: String,
-                    body: NSAttributedString? = nil,
+                    @ViewBuilder body: () -> Text?,
                     buttonModel: ButtonModel? = nil,
                     iconTintColor: Color? = nil
         ) {
             self.icon = icon
             self.title = title
-            self.body = body
+            self.body = body()
             self.buttonModel = buttonModel
             self.iconTintColor = iconTintColor
         }
         
         public init(icon: Image,
                     title: String,
-                    body: String?,
+                    body: String? = nil,
                     buttonModel: ButtonModel? = nil,
                     iconTintColor: Color? = nil
         ) {
             self.icon = icon
             self.title = title
-            if let body = body {
-                self.body = NSMutableAttributedString.styled(
-                    style: .body,
-                    string: body
-                )
-            } else {
-                self.body = nil
-            }
+            self.body = body != nil ? Text(body!, style: .body) : nil
             self.buttonModel = buttonModel
             self.iconTintColor = iconTintColor
         }
@@ -163,10 +152,10 @@ struct StatusView_Previews: PreviewProvider {
                                 body: "A body",
                                 buttonModel: .init(
                                     title: "A button title",
-                                    style: .primary,
+                                    style: .primary(),
                                     accessibilityIdentifier: "identifier",
                                     handler: {
-                                        print("kdsjbf")
+                                        print("Status view tapped")
                                     }
                                 )
                             )

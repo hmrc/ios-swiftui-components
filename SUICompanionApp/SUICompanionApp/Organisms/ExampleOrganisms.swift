@@ -25,8 +25,11 @@ extension Components.Organisms.PrimaryCardView: Examplable {
     static func withPlaceholders() -> AnyView {
         AnyView(
             Components.Organisms.PrimaryCardView(
-                title: "Primary Card View"
-            )
+                title: "Title"
+            ){
+                Text("Body")
+                    .style(.body)
+            }
         )
     }
 
@@ -38,13 +41,22 @@ extension Components.Organisms.PrimaryCardView: Examplable {
                     Text("Renew your tax credits or check the progress of your claims").style(.body)
                 }
                 Components.Organisms.PrimaryCardView(
+                    title: Example.Text.longerIpsum) {
+                    VStack(alignment: .leading, spacing: .spacer8) {
+                        Text(Example.Text.longestIpsum)
+                            .style(.body)
+                        Components.Molecules.InsetView(model: .init(body: Example.Text.longerIpsum))
+                            
+                    }
+                }
+                Components.Organisms.PrimaryCardView(
                     title: "Rewew your tax credits") {
                     VStack(alignment: .leading) {
                         Text("Rewew your tax credits")
                             .style(.body)
                         Button("Renew or check my claims") {
                             print("Renew Tapped")
-                        }.styled(.primary)
+                        }.styled(.primary())
                     }
                 }
                 Components.Organisms.PrimaryCardView(
@@ -56,6 +68,21 @@ extension Components.Organisms.PrimaryCardView: Examplable {
                             print("Lorem")
                         }.styled(.secondary(padding: 0))
                     }
+                }
+                Components.Organisms.PrimaryCardView(
+                    title: Example.Text.longerIpsum) {
+                    Components.Molecules.IconButtonView(
+                        model: .init(
+                            icon: Example.Images.info.image,
+                            title: Example.Text.longIpsum,
+                            iconTintColor: Color.Semantic.linkText,
+                            accessibilityHint: "Hint",
+                            accessibilityIdentifier: "Identifier",
+                            handler: {
+                                print("Lorem")
+                            }
+                        )
+                    )
                 }
             }
         )
@@ -88,7 +115,7 @@ extension Components.Organisms.HeadlineCardView: Examplable {
                     content: {
                         Button("Claim your refund") {
                             print("Claim your refund tapped")
-                        }.styled(.primary)
+                        }.styled(.primary())
                     }
                 )
                 Components.Organisms.HeadlineCardView(
@@ -113,7 +140,7 @@ extension Components.Organisms.HeadlineCardView: Examplable {
                         Text("This is the income tax we think you will have paid by the end of the year", style: .body)
                         Button("View tax estimate") {
                             print("View tax estimate tapped")
-                        }.styled(.primary)
+                        }.styled(.primary())
                     }
                 )
                 Components.Organisms.HeadlineCardView(
@@ -129,56 +156,36 @@ extension Components.Organisms.HeadlineCardView: Examplable {
                         }
                     }
                 )
-            }
-        )
-    }
-}
-
-extension Components.Organisms.ExpandingRowView: Examplable {
-    static var title: String { "ExpandingRowView" }
-
-    static var exampleBackgroundColor: Color { Color.Semantic.pageBackground }
-
-    static func withPlaceholders() -> AnyView {
-        AnyView(
-            Components.Organisms.ExpandingRowView(
-                title: "Title",
-                subtitle: "Subtitle",
-                icon: Example.Images.help.image) {
-                Components.Molecules.InsetView(
-                    model: .init(body:"Description text"))
-            }    
-        )
-    }
-    
-    static func examples() -> AnyView {
-        AnyView(
-            VStack(spacing: .spacer16) {
-                Components.Organisms.ExpandingRowView(
-                    title: "What is Pay As You Earn?",
-                    icon: Example.Images.help.image) {
-                    Components.Molecules.InsetView(
-                        model: .init(body:"Your employer or pension provider takes off Income Tax before they pay you. This is called Pay As You Earn (PAYE). The amount of tax you pay depends on your income, how much of it is tax-free, and your tax code."))
-                }.cardView()
-                Components.Organisms.ExpandingRowView(
-                    title: "How to set up a regular payment",
-                    icon: Example.Images.poundSign.image,
-                    accessibilityHint: "Overrides default accessibility message",
-                    accessibilityExpandHint: "Show more information on how to set up a regular payment.",
-                    accessibilityCollapseHint: "Show less information on how to set up a regular payment.") {
-                    
-                    VStack(alignment: .leading, spacing: .spacer8) {
-                        Text("You’ll never forget to save if you set up a regular payment, called a standing order, with your bank.", style: .body)
-                        Text("Standing order details for your bank", style: .bold)
-                        Components.Molecules.InsetView(model: .init(content: {
-                            VStack(alignment: .leading, spacing: .spacer16) {
-                                Text("Account number: ", style: .body) + Text("10028471", style: .bold)
-                                Text("Sort code: ", style: .body) + Text("60 80 77", style: .bold)
-                                Text("Payment reference: ", style: .body) + Text("4321876345290", style: .bold)
-                            }
-                        }))
+                Components.Organisms.HeadlineCardView(
+                    title: "Your PAYE income tax estimate",
+                    currencyAmount: 12345,
+                    content: {
+                        Text("This is the income tax we think you will have paid by the end of the year", style: .body)
+                        Components.Molecules.IconButtonView(
+                            model: .init(
+                                icon: Example.Images.info.image,
+                                title: "How is this calculated?",
+                                iconTintColor: Color.Semantic.linkText,
+                                accessibilityHint: "ButtonHint",
+                                accessibilityIdentifier: "ButtonId",
+                                handler: {
+                                    print("View tax estimate tapped")
+                                }
+                            )
+                        )
                     }
-                }.cardView()
+                )
+                Components.Organisms.HeadlineCardView(
+                    title: "Your PAYE income tax estimate",
+                    currencyAmount: 12345,
+                    content: {
+                        Text("This is the income tax we think you will have paid by the end of the year", style: .body)
+                        Components.Molecules.InsetView(
+                            model: .init(body: "Your employer or pension provider takes off Income Tax before they pay you. This is called Pay As You Earn (PAYE). The amount of tax you pay depends on your income, how much of it is tax-free, and your tax code.")
+                        )
+                    }
+                )
+                
             }
         )
     }

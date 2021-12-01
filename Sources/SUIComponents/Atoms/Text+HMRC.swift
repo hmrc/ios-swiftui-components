@@ -61,6 +61,7 @@ public extension Text {
             content
                 .font(model.font)
                 .foregroundColor(model.textColor)
+                .fixedSize(horizontal: false, vertical: true)
         }
     }
 }
@@ -78,7 +79,8 @@ public extension Text {
     
     init(_ text: String, style: TextStyle) {
         self = .init(text)
-                    .font(style.font)
-                    .foregroundColor(style.textColor)
+            .font(style.font)
+            .foregroundColor(style.textColor)
+                   
     }
 }

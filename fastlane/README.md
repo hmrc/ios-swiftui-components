@@ -31,6 +31,53 @@ Build adhoc app for testing
 fastlane ios register_new_device
 ```
 Register new devices
+### ios generate_screenshots
+```
+fastlane ios generate_screenshots
+```
+Generate component screenshots using companion app
+
+Using xcodebuild over scan because it does not allow us to specify the exact simulator to use as it overrides the `-destination` flag we need to set
+
+Example:
+
+ `fastlane generate_screenshots device:'iPhone XS Max' version:'latest'`
+
+Options:
+
+ - device: (Required) Simulator to run the tests on
+
+ - version: (Optional) iOS version of the Simulator
+
+ - force_dark_mode: (Optional)
+### ios open_booted_sim
+```
+fastlane ios open_booted_sim
+```
+Open and boot named simulator
+
+Example:
+
+`fastlane open_booted_sim device:'iPhone 11 Pro Max' version:'latest'`
+
+Options:
+
+ - device: (Required) Simulator to run the tests on
+
+ - version: (Optional) iOS version of the Simulator
+### ios screenshot_diff
+```
+fastlane ios screenshot_diff
+```
+Find differences between baseline screenshots and locally generated screenshots.
+
+Make sure you completely run the IntegrationTests target against iPhone 11 Max to generate a complete set of screenshots.
+
+Once you have a full set of screenshots, you can rerun individual tests to update individual screenshots.
+
+Example:
+
+ `fastlane screenshot_diff`
 ### ios take_release
 ```
 fastlane ios take_release

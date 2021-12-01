@@ -60,7 +60,7 @@ extension Components.Atoms {
             AnyView(
                 Button("Title") {
                     print("Lorem")
-                }.styled(.primary)
+                }.styled(.primary())
             )
         }
 
@@ -69,7 +69,11 @@ extension Components.Atoms {
                 VStack(spacing: .spacer16) {
                     Button("Primary Button") {
                         print("Lorem")
-                    }.styled(.primary)
+                    }.styled(.primary())
+                    Button("Disabled primary Button") {
+                        print("Lorem")
+                    }.styled(.primary(enabled: false))
+                    
                     Button("Secondary Button") {
                         print("Lorem")
                     }.styled(.secondary(padding: 0))

@@ -17,7 +17,7 @@
 import SwiftUI
 
 public enum HMRCButtonStyle {
-    case primary
+    case primary(enabled: Bool = true)
     case secondary(padding: CGFloat = .spacer16)
 }
 
@@ -26,25 +26,37 @@ extension Button {
     @ViewBuilder
     public func styled(_ style: HMRCButtonStyle) -> some View {
         switch style {
-            case .primary:
-                self.buttonStyle(PrimaryButtonStyle())
-            case let .secondary(padding):
+            case .primary(let enabled):
+                self.buttonStyle(PrimaryButtonStyle(enabled))
+            case .secondary(let padding):
                 self.buttonStyle(SecondaryButtonStyle(padding))
         }
     }
 }
 
 struct PrimaryButtonStyle: ButtonStyle {
+    let enabled: Bool
+    init(_ enabled: Bool = true) {
+        self.enabled = enabled
+    }
+
+    private var backgroundColor: Color {
+        enabled ?  Color.Semantic.primaryButtonBackground : Color.Semantic.primaryButtonDisabledBackground
+    }
+    private var textColor: Color {
+        enabled ?  Color.Semantic.primaryButtonText : Color.Semantic.primaryButtonDisabledText
+    }
+
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .frame(maxWidth: .infinity)
             .padding(.spacer12)
-            .background(Color.Semantic.primaryButtonBackground)
-            .foregroundColor(Color.Semantic.primaryButtonText)
+            .background(backgroundColor)
+            .foregroundColor(textColor)
             .overlay(
                 VStack{
                     Rectangle()
-                        .frame(height: 3)
+                        .frame(height: enabled ? 3 : 0)
                         .foregroundColor(Color.Semantic.primaryButtonBaseline)
                 }, alignment: .bottom
             )
@@ -60,7 +72,7 @@ struct SecondaryButtonStyle: ButtonStyle {
 
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .frame(maxWidth: .infinity, alignment: .leading)
+            .frame(maxWidth: .infinity, alignment: .center)
             .padding(padding)
             .background(Color.Semantic.secondaryButtonBackground)
             .foregroundColor(Color.Semantic.secondaryButtonText)
