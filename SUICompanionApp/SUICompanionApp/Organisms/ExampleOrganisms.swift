@@ -118,13 +118,15 @@ extension Components.Organisms.HeadlineCardView: Examplable {
                         }.styled(.primary())
                     }
                 )
+
                 Components.Organisms.HeadlineCardView(
                     title: "Your PAYE income tax estimate",
-                    currencyAmount: 12345,
-                    content: {
+                    currencyAmount: 12345, disclosureAction: {
+                        print("Disclosure Tapped")
+                    })
+                    {
                         Text("This is the income tax we think you will have paid by the end of the year", style: .body)
                     }
-                )
                 Components.Organisms.HeadlineCardView(
                     title: Example.Text.longerIpsum,
                     headline: Example.Text.longIpsum,
@@ -160,32 +162,38 @@ extension Components.Organisms.HeadlineCardView: Examplable {
                     title: "Your PAYE income tax estimate",
                     currencyAmount: 12345,
                     content: {
-                        Text("This is the income tax we think you will have paid by the end of the year", style: .body)
-                        Components.Molecules.IconButtonView(
-                            model: .init(
-                                icon: Example.Images.info.image,
-                                title: "How is this calculated?",
-                                iconTintColor: Color.Semantic.linkText,
-                                accessibilityHint: "ButtonHint",
-                                accessibilityIdentifier: "ButtonId",
-                                handler: {
-                                    print("View tax estimate tapped")
-                                }
+                        VStack(spacing: .spacer24 + .spacer4) {
+                            Text("This is the income tax we think you will have paid by the end of the year", style: .body)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            Components.Molecules.IconButtonView(
+                                model:
+                                    .init(
+                                        icon: Example.Images.info.image,
+                                        title: "How is this calculated?",
+                                        iconTintColor: Color.Semantic.linkText,
+                                        accessibilityHint: nil,
+                                        accessibilityIdentifier: nil,
+                                        handler: {
+                                            print("How is this calculated?")
+                                        })
                             )
-                        )
+                        }
                     }
                 )
+                
                 Components.Organisms.HeadlineCardView(
                     title: "Your PAYE income tax estimate",
                     currencyAmount: 12345,
                     content: {
-                        Text("This is the income tax we think you will have paid by the end of the year", style: .body)
-                        Components.Molecules.InsetView(
-                            model: .init(body: "Your employer or pension provider takes off Income Tax before they pay you. This is called Pay As You Earn (PAYE). The amount of tax you pay depends on your income, how much of it is tax-free, and your tax code.")
-                        )
+                        VStack(spacing: .spacer24 + .spacer4) {
+                            Text("This is the income tax we think you will have paid by the end of the year", style: .body)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            Components.Molecules.InsetView(model: .init(content: {
+                                Text("Your employer or pension provider takes off Income Tax before they pay you. This is called Pay As You Earn (PAYE). The amount of tax you pay depends on your income, how much of it is tax-free, and your tax code.", style: .body)
+                            }))
+                        }
                     }
                 )
-                
             }
         )
     }

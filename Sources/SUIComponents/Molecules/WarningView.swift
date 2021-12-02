@@ -17,70 +17,61 @@
 import SwiftUI
 
 extension Components.Molecules {
-    public struct IconButtonView: View {
+    public struct WarningView: View {
         let model: Model
         
         public init(model: Model) {
             self.model = model
         }
+        private let imageSize = CGFloat(36)
         private let spacing = CGFloat(12)
         public var body: some View {
-            Components.Atoms.CustomButton(normalBackgroundColour: .clear, highlightedBackgroundColour: Color.Semantic.secondaryButtonHighlightedBackground, tapped: {
-                model.handler()
-            }) {
-                Components.Atoms.ImageAligningHStack(spacing: spacing) {
-                    model.icon
-                        .foregroundColor(model.iconTintColor)
-                        .accessibility(hidden: true)
-                } rightContent: {
-                    Text(model.title)
-                        .style(.link)
-                        .accessibility(hidden: true)
-                }
-                .padding(model.insets)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .background(
-                    Color.clear
-                        .accessibility(addTraits: .isButton)
-                        .accessibility(hidden: false)
-                        .accessibility(hint: Text(model.accessibilityHint ?? ""))
-                        .accessibility(label: Text(model.title))
-                )
+            Components.Atoms.ImageAligningHStack(spacing: spacing) {
+                model.icon
+                    .resizable()
+                    .frame(width: imageSize, height: imageSize)
+                    .foregroundColor(model.iconTintColor)
+                    .accessibility(hidden: true)
+                    
+            } rightContent: {
+                Text(model.title)
+                    .style(.bold)
+                    .accessibility(label: Text("Warning; \(model.title)"))
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(
+                Color.clear
+                    .accessibility(hidden: true)
+                    
+            )
         }
     }
 }
 
-extension Components.Molecules.IconButtonView {
+extension Components.Molecules.WarningView {
     open class Model {
         public let icon: Image
         public let title: String
         public let iconTintColor: Color?
         public let accessibilityHint: String?
         public let accessibilityIdentifier: String?
-        public let insets: EdgeInsets
-        public var handler: VoidHandler
         
         public init(icon: Image,
                     title: String,
                     iconTintColor: Color? = nil,
                     accessibilityHint: String? = nil,
-                    accessibilityIdentifier: String? = nil,
-                    insets: EdgeInsets = .init(padding: .spacer16),
-                    handler: @escaping VoidHandler
+                    accessibilityIdentifier: String? = nil
         ) {
             self.icon = icon
             self.title = title
             self.accessibilityHint = accessibilityHint
             self.accessibilityIdentifier = accessibilityIdentifier
             self.iconTintColor = iconTintColor
-            self.handler = handler
-            self.insets = insets
         }
     }
 }
 
-struct IconButtonView_Previews: PreviewProvider {
+struct WarningView_Previews: PreviewProvider {
     static var previews: some View {
         HStack(
             alignment: .top,
@@ -90,16 +81,13 @@ struct IconButtonView_Previews: PreviewProvider {
                     alignment: .leading,
                     spacing: .spacer16,
                     content: {
-                        Components.Molecules.IconButtonView(
+                        Components.Molecules.WarningView(
                             model: .init(
                                 icon: Image(systemName: "moon.stars.fill"),
                                 title: "Title",
                                 iconTintColor: .blue,
                                 accessibilityHint: "hint",
-                                accessibilityIdentifier: "identifier",
-                                handler: {
-                                    print("Handler fired")
-                                }
+                                accessibilityIdentifier: "identifier"
                              )
                         ).background(Color.Semantic.whiteBackground)
                     }
