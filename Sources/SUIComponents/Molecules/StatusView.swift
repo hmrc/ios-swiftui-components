@@ -19,6 +19,7 @@ import SwiftUI
 extension Components.Molecules {
     public struct StatusView: View {
         let model: Model
+        
         public init(model: Model) {
             self.model = model
         }
@@ -42,6 +43,7 @@ extension Components.Molecules {
                         .multilineTextAlignment(.center)
                         .fixedSize(horizontal: false, vertical: true)
                     model.body
+                        .fixedSize(horizontal: false, vertical: true)
                     if let buttonModel = model.buttonModel {
                         Button(action: buttonModel.handler) {
                             Text(buttonModel.title)
@@ -141,7 +143,7 @@ struct StatusView_Previews: PreviewProvider {
                                 icon: Image(systemName: "folder.circle"),
                                 title: "A very very very very very very very very very loooooooong title",
                                 body: "A very very very very very very very very very very very very very very very very very very very loooooooong body",
-                                iconTintColor: Color.Named.green1.raw
+                                iconTintColor: Color.Named.green1.colour
                             )
                         ).background(Color.Semantic.whiteBackground)
 

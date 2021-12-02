@@ -20,7 +20,7 @@ import SUIComponents
 extension Text: Examplable {
     static var title: String { "Text Styles" }
 
-    static var exampleBackgroundColor: Color { Color.Named.white.raw }
+    static var exampleBackgroundColor: Color { Color.Named.white.colour }
 
     static func withPlaceholders() -> AnyView {
         AnyView(
@@ -54,7 +54,7 @@ extension Components.Atoms {
     struct ExampleButton: Examplable {
         static var title: String { "Button Styles" }
 
-        static var exampleBackgroundColor: Color { Color.Named.white.raw }
+        static var exampleBackgroundColor: Color { Color.Named.white.colour }
 
         static func withPlaceholders() -> AnyView {
             AnyView(
@@ -71,12 +71,14 @@ extension Components.Atoms {
                         print("Lorem")
                     }.styled(.primary())
                     Button("Disabled primary Button") {
-                        print("Lorem")
-                    }.styled(.primary(enabled: false))
+                        print("Disabled tapped, this shouldnt fire!")
+                    }
+                    .styled(.primary(enabled: false))
+                    .disabled(true)
                     
                     Button("Secondary Button") {
                         print("Lorem")
-                    }.styled(.secondary(padding: 0))
+                    }.styled(.secondary())
                 }
             )
         }
@@ -86,14 +88,14 @@ extension Components.Atoms {
 extension Components.Atoms.Switch: Examplable {
     static var title: String { "Switch" }
 
-    static var exampleBackgroundColor: Color { Color.Named.white.raw }
+    static var exampleBackgroundColor: Color { Color.Named.white.colour }
 
     static func withPlaceholders() -> AnyView {
         AnyView(
             Self(
                 isOn: binding(initialState: false),
                 onTintColor: Color.Semantic.switchTint,
-                borderColor: Color.Named.grey2.raw,
+                borderColor: Color.Named.grey2.colour,
                 borderWidth: 1,
                 cornerRadius: 14.0
             ).frame(maxWidth: .infinity)
@@ -120,14 +122,14 @@ extension Components.Atoms.Switch: Examplable {
                 Self(
                     isOn: binding(initialState: true),
                     onTintColor: .yellow,
-                    borderColor: Color.Named.grey2.raw,
+                    borderColor: Color.Named.grey2.colour,
                     borderWidth: 1,
                     cornerRadius: 0
                 )
                 Self(
                     isOn: binding(initialState: true),
                     onTintColor: .green,
-                    borderColor: Color.Named.grey2.raw,
+                    borderColor: Color.Named.grey2.colour,
                     borderWidth: 0,
                     cornerRadius: 14.0
                 )
@@ -141,14 +143,14 @@ extension Components.Atoms.Switch: Examplable {
                 Self(
                     isOn: binding(initialState: true),
                     onTintColor: Color(hexString: "#4B0082"),
-                    borderColor: Color.Named.grey2.raw,
+                    borderColor: Color.Named.grey2.colour,
                     borderWidth: 1,
                     cornerRadius: 14.0
                 )
                 Self(
                     isOn: binding(initialState: true),
                     onTintColor: Color(hexString: "#8F00FF"),
-                    borderColor: Color.Named.grey2.raw,
+                    borderColor: Color.Named.grey2.colour,
                     borderWidth: 1,
                     cornerRadius: 14.0
                 )
@@ -171,7 +173,7 @@ extension Components.Atoms.Switch: Examplable {
 extension Components.Atoms.TextView: Examplable {
     static var title: String { "TextView" }
 
-    static var exampleBackgroundColor: Color { Color.Named.white.raw }
+    static var exampleBackgroundColor: Color { Color.Named.white.colour }
 
     struct ViewWrapper: View {
         @State var text: String
@@ -196,7 +198,7 @@ extension Components.Atoms.TextView: Examplable {
             maxLength: Int = 0,
             enforceMaxLength: Bool = true,
             accentColor: Color? = nil,
-            borderColor: Color? = Color.Named.grey2.raw,
+            borderColor: Color? = Color.Named.grey2.colour,
             borderWidth: CGFloat? = 1.0,
             cornerRadius: CGFloat? = 4.0,
             shouldChangeText: TextViewShouldChangeHandler? = nil,
@@ -293,6 +295,33 @@ extension Components.Atoms.ImageAligningHStack: Examplable {
             }) {
                 Text("Multiple lines\nof text")
             }.cardView()
+        })
+    }
+}
+
+extension Components.Atoms.CustomButton: Examplable {
+    static var title: String { "CustomButton" }
+
+    static var exampleBackgroundColor: Color { Color.Semantic.pageBackground }
+
+    static func withPlaceholders() -> AnyView {
+        AnyView(
+            Components.Atoms.CustomButton(normalBackgroundColour: .clear, highlightedBackgroundColour: .blue, tapped: {print("Tapped")}) {
+                Text("Custom button")
+            }
+        )
+    }
+
+    static func examples() -> AnyView {
+        AnyView(VStack(spacing: .spacer16) {
+            Components.Atoms.CustomButton(normalBackgroundColour: .clear, highlightedBackgroundColour: .blue, tapped: {print("Tapped")}) {
+                Components.Atoms.ImageAligningHStack(spacing: 10, leftContent: {
+                    Example.Images.info.image
+                }) {
+                    Text("A single line of text")
+                }
+            }.cardView()
+            
         })
     }
 }
