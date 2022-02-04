@@ -45,7 +45,7 @@ struct ColoursView: View, ScreenshotableView {
             Rectangle()
                 .foregroundColor(colour)
                 .frame(width: 40, height: 40)
-                .border(Color.Named.black.raw, width: 1)
+                .border(Color.Named.black.colour, width: 1)
             Text(name).style(.body)
         }
     }

@@ -14,57 +14,68 @@
  * limitations under the License.
  */
 
-import SwiftUI
+import UIKit
 
 public protocol NamedColors {
-    var black: Color { get set }
-    var white: Color { get set }
-    var green1: Color { get set }
-    var green2: Color { get set }
-    var blue: Color { get set }
-    var teal: Color { get set }
-    var red: Color { get set }
-    var grey1: Color { get set }
-    var grey2: Color { get set }
-    var grey3: Color { get set }
-    var pink: Color { get set }
-    var yellow: Color { get set }
+    var black: UIColor { get set }
+    var white: UIColor { get set }
+    var green1: UIColor { get set }
+    var green2: UIColor { get set }
+    var blue: UIColor { get set }
+    var teal: UIColor { get set }
+    var red: UIColor { get set }
+    var grey1: UIColor { get set }
+    var grey2: UIColor { get set }
+    var grey3: UIColor { get set }
+    var pink: UIColor { get set }
+    var yellow: UIColor { get set }
 }
-
-extension Color {
-    open class DarkColors: NamedColors {
-        
-        public init() {}
-        
-        open var black = Color(hexString: "#FFFFFF")
-        open var white = Color(hexString: "#262626")
-        open var green1 = Color(hexString: "#69B134")
-        open var green2 = Color(hexString: "#85994B")
-        open var blue = Color(hexString: "#5BC0C6")
-        open var teal = Color(hexString: "#28A197")
-        open var red = Color(hexString: "#EB66CA")
-        open var grey1 = Color(hexString: "#B1B4B6")
-        open var grey2 = Color(hexString: "#B1B4B6")
-        open var grey3 = Color(hexString: "#0B0C0C")
-        open var pink = Color(hexString: "#BB94FF")
-        open var yellow = Color(hexString: "#FEFF4F")
+extension UIColor {
+    convenience init(darkColour: UIColor, lightColour: UIColor) {
+        if #available(iOS 13.0, *) {
+            self.init { traitCollection in
+                traitCollection.userInterfaceStyle == .dark ? darkColour : lightColour
+            }
+        } else {
+            self.init(cgColor: lightColour.cgColor)
+        }
+    }
+}
+extension UIColor {
+    convenience init(hexString: String) {
+        let hex = hexString.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+        var int = UInt32()
+        Scanner(string: hex).scanHexInt32(&int)
+        // swiftlint:disable:next identifier_name
+        let a, r, g, b: UInt32
+        switch hex.count {
+        case 3: // RGB (12-bit)
+            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
+        case 6: // RGB (24-bit)
+            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
+        case 8: // ARGB (32-bit)
+            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
+        default:
+            (a, r, g, b) = (255, 0, 0, 0)
+        }
+        self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
     }
     
-    open class LightColors: NamedColors {
+    open class Colors: NamedColors {
         
         public init() {}
         
-        open var black = Color(hexString: "#0B0C0C")
-        open var white = Color(hexString: "#FFFFFF")
-        open var green1 = Color(hexString: "#00703C")
-        open var green2 = Color(hexString: "#85994B")
-        open var blue = Color(hexString: "#1D70B8")
-        open var teal = Color(hexString: "#28A197")
-        open var red = Color(hexString: "#D4351C")
-        open var grey1 = Color(hexString: "#505A5F")
-        open var grey2 = Color(hexString: "#B1B4B6")
-        open var grey3 = Color(hexString: "#F3F2F1")
-        open var pink = Color(hexString: "#D53880")
-        open var yellow = Color(hexString: "#FFBF47")
+        open var black = UIColor(darkColour: .init(hexString: "#FFFFFF"), lightColour: .init(hexString: "#0B0C0C"))
+        open var white = UIColor(darkColour: .init(hexString: "#262626"), lightColour: .init(hexString: "#FFFFFF"))
+        open var green1 = UIColor(darkColour: .init(hexString: "#69B134"), lightColour: .init(hexString: "#00703C"))
+        open var green2 = UIColor(darkColour: .init(hexString: "#85994B"), lightColour: .init(hexString: "#85994B"))
+        open var blue = UIColor(darkColour: .init(hexString: "#5BC0C6"), lightColour: .init(hexString: "#1D70B8"))
+        open var teal = UIColor(darkColour: .init(hexString: "#28A197"), lightColour: .init(hexString: "#28A197"))
+        open var red = UIColor(darkColour: .init(hexString: "#EB66CA"), lightColour: .init(hexString: "#D4351C"))
+        open var grey1 = UIColor(darkColour: .init(hexString: "#B1B4B6"), lightColour: .init(hexString: "#505A5F"))
+        open var grey2 = UIColor(darkColour: .init(hexString: "#B1B4B6"), lightColour: .init(hexString: "#B1B4B6"))
+        open var grey3 = UIColor(darkColour: .init(hexString: "#0B0C0C"), lightColour: .init(hexString: "#F3F2F1"))
+        open var pink = UIColor(darkColour: .init(hexString: "#BB94FF"), lightColour: .init(hexString: "#D53880"))
+        open var yellow = UIColor(darkColour: .init(hexString: "#FEFF4F"), lightColour: .init(hexString: "#FFBF47"))
     }
 }

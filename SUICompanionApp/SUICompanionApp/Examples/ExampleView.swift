@@ -31,6 +31,7 @@ struct ExampleView<Component: Examplable>: View, ScreenshotableView {
                     .background(
                         Example.Images.previewBackground.image
                             .resizable(resizingMode: .tile)
+                            .accessibility(hidden: true)
                     )
                 Text("Examples:")
                     .style(.bold)

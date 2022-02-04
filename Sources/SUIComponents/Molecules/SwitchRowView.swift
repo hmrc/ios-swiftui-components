@@ -31,7 +31,7 @@ extension Components.Molecules {
                 Components.Atoms.Switch(
                     isOn: _isOn,
                     onTintColor: Color.Semantic.switchTint,
-                    borderColor: Color.Named.grey2.raw,
+                    borderColor: Color.Named.grey2.colour,
                     borderWidth: 1,
                     cornerRadius: 14.0
                 )
