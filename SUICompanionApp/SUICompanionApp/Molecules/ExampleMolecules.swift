@@ -476,6 +476,107 @@ extension Components.Molecules.InsetView: Examplable {
                         body: "Your employer or pension provider takes off Income Tax before they pay you. This is called Pay As You Earn (PAYE). The amount of tax you pay depends on your income, how much of it is tax-free, and your tax code."  // swiftlint:disable:this line_length
                     )
                 ).cardView()
+                Components.Molecules.InsetView(
+                    model: .init(content: {
+                        VStack(alignment: .leading, spacing: .spacer8) {
+                            Components.Molecules.MultiColumnRowView(
+                                models: [
+                                    .init(label: "Child Tax Credit", style: .bold),
+                                    .init(label: "£124.56", style: .body)
+                                ]
+                            )
+                            Components.Molecules.MultiColumnRowView(
+                                models: [
+                                    .init(label: "Working Tax Credit", style: .bold),
+                                    .init(label: "£171.84", style: .body)
+                                ]
+                            )
+                            Components.Molecules.MultiColumnRowView(
+                                models: [
+                                    .init(label: "Another Tax Credit", style: .bold),
+                                    .init(label: "£15.23", style: .body)
+                                ]
+                            )
+                        }
+                    })
+                ).cardView()
+            }
+        )
+    }
+}
+
+extension Components.Molecules.MultiColumnRowView: Examplable {
+    static var title: String { "MultiColumnRowView" }
+
+    static var exampleBackgroundColor: Color { Color.Semantic.pageBackground }
+
+    static func withPlaceholders() -> AnyView {
+        AnyView(
+            Components.Molecules.MultiColumnRowView(
+                models: [
+                    .init(label: "Label 1", style: .body, weight: 1, textAlignment: .leading),
+                    .init(label: "Label 2", style: .body, weight: 1, textAlignment: .trailing),
+                    .init(label: "Label 3", style: .body, weight: 1, textAlignment: .trailing)
+                ]
+            )
+        )
+    }
+
+    static func examples() -> AnyView {
+        AnyView(
+            VStack(spacing: .spacer16) {
+                Components.Molecules.MultiColumnRowView(
+                    labels: [
+                        "Estimated annual income",
+                    ],
+                    style: .body
+                ).cardView()
+                Components.Molecules.MultiColumnRowView(
+                    labels: [
+                        Example.Text.longestIpsum
+                    ],
+                    style: .error
+                ).cardView()
+                Components.Molecules.MultiColumnRowView(
+                    labels: [
+                        "Estimated annual income",
+                        "£24,000"
+                    ],
+                    style: .body
+                ).cardView()
+                Components.Molecules.MultiColumnRowView(
+                    labels: [
+                        Example.Text.longerIpsum,
+                        Example.Text.longIpsum,
+                    ],
+                    style: .bold
+                ).cardView()
+                Components.Molecules.MultiColumnRowView(
+                    models: [
+                        .init(label: "Account number", style: .body),
+                        .init(label: "10084712", style: .bold)
+                    ]
+                ).cardView()
+                Components.Molecules.MultiColumnRowView(
+                    models: [
+                        .init(label: "Your final bonus", style: .body),
+                        .init(label: "£0", style: .bold)
+                    ]
+                ).cardView()
+                Components.Molecules.MultiColumnRowView(
+                    models: [
+                        .init(label: "£31,865", style: .info, weight: 1, textAlignment: .leading),
+                        .init(label: "20%", style: .info, weight: 1, textAlignment: .trailing),
+                        .init(label: "£6,373", style: .info, weight: 1, textAlignment: .trailing)
+                    ]
+                ).cardView()
+                Components.Molecules.MultiColumnRowView(
+                    models: [
+                        .init(label: Example.Text.longIpsum, style: .body, weight: 1, textAlignment: .leading),
+                        .init(label: Example.Text.longIpsum, style: .body, weight: 1, textAlignment: .trailing),
+                        .init(label: Example.Text.longIpsum, style: .body, weight: 1, textAlignment: .trailing)
+                    ]
+                ).cardView()
             }
         )
     }
