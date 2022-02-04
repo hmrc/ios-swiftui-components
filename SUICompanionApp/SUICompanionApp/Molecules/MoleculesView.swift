@@ -28,6 +28,7 @@ struct MoleculesView: View {
                 Example.navigationLink(type: Components.Molecules.TextInputView.self)
                 Example.navigationLink(type: Components.Molecules.CurrencyInputView.self)
                 Example.navigationLink(type: Components.Molecules.IconButtonView.self)
+                Example.navigationLink(type: Components.Molecules.WarningView.self)
             }
             .navigationTitle("Molecules")
         }

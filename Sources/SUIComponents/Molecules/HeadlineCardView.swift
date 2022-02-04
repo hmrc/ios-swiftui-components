@@ -23,12 +23,14 @@ extension Components.Organisms {
         let insets: EdgeInsets
         let itemSpacing: CGFloat
         let content: Content
+        let disclosureAction: VoidHandler?
 
         public init(
             title: String,
             @ViewBuilder headline: () -> Text,
             insets: EdgeInsets = EdgeInsets(padding: .spacer16),
             itemSpacing: CGFloat = .spacer16,
+            disclosureAction: VoidHandler? = nil,
             @ViewBuilder content: () -> Content
         ) {
             self.title = title
@@ -36,6 +38,7 @@ extension Components.Organisms {
             self.insets = insets
             self.itemSpacing = itemSpacing
             self.content = content()
+            self.disclosureAction = disclosureAction
         }
 
         public var body: some View {
@@ -46,15 +49,18 @@ extension Components.Organisms {
                     VStack(spacing: itemSpacing) {
                         Text(title)
                             .style(.H5)
+                            .accessibility(label: Text("\(title), heading"))
                             .frame(maxWidth: .infinity, alignment: .leading)
                         headline
                             .frame(maxWidth: .infinity, alignment: .leading)
+                            .fixedSize(horizontal: false, vertical: true)
                         content
                             .frame(maxWidth: .infinity, alignment: .leading)
+                            .fixedSize(horizontal: false, vertical: true)
                     }
                 }
             )
-            .cardView(insets: insets)
+            .cardView(insets: insets, disclosureAction: disclosureAction)
         }
     }
 }
@@ -66,11 +72,12 @@ extension Components.Organisms.HeadlineCardView {
         headlineStyle: TextStyle = .H3,
         insets: EdgeInsets = EdgeInsets(padding: .spacer16),
         itemSpacing: CGFloat = .spacer16,
+        disclosureAction: VoidHandler? = nil,
         @ViewBuilder content: () -> Content
     ) {
         self.init(title: title, headline: {
             Text(headline, style: headlineStyle)
-        }, insets: insets, itemSpacing: itemSpacing, content: content)
+        }, insets: insets, itemSpacing: itemSpacing, disclosureAction: disclosureAction, content: content)
     }
 
     public init(
@@ -78,6 +85,7 @@ extension Components.Organisms.HeadlineCardView {
         currencyAmount: Decimal,
         insets: EdgeInsets = EdgeInsets(padding: .spacer16),
         itemSpacing: CGFloat = .spacer16,
+        disclosureAction: VoidHandler? = nil,
         @ViewBuilder content: () -> Content
     ) {
         let pounds = currencyAmount.whole
@@ -86,7 +94,7 @@ extension Components.Organisms.HeadlineCardView {
         self.init(title: title, headline: {
             Text(pounds: pounds, pence: pence, poundsFont: Font.H3.font(), penceFont: Font.H5.font())
 
-        }, insets: insets, itemSpacing: itemSpacing, content: content)
+        }, insets: insets, itemSpacing: itemSpacing, disclosureAction: disclosureAction, content: content)
     }
 }
 

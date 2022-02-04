@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-import UIKit
+import Foundation
 
-public typealias Handler<T> = (() -> T)
-public typealias VoidHandler = Handler<Void>
-
-public typealias TextViewShouldChangeHandler = ( _ text: String,
-                                                 _ shouldChangeTextInRange: NSRange,
-                                                 _ replacementText: String) -> Bool
+public func delayedCall(_ delayInSeconds: Double = 0.0, closure: @escaping () -> Void) {
+   
+    let delayInMilliSeconds = Int(delayInSeconds * 1000)
+    let nanoseconds = DispatchTime.now() + DispatchTimeInterval.milliseconds(delayInMilliSeconds)
+    DispatchQueue.main.asyncAfter(deadline: nanoseconds, execute: closure)
+}
