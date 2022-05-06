@@ -17,78 +17,6 @@
 import SwiftUI
 import SUIComponents
 
-extension Components.Organisms.PrimaryCardView: Examplable {
-    static var title: String { "PrimaryCardView" }
-
-    static var exampleBackgroundColor: Color { Color.Semantic.pageBackground }
-
-    static func withPlaceholders() -> AnyView {
-        AnyView(
-            Components.Organisms.PrimaryCardView(
-                title: "Title"
-            ){
-                Text("Body")
-                    .style(.body)
-            }
-        )
-    }
-
-    static func examples() -> AnyView {
-        AnyView(
-            VStack(spacing: .spacer16) {
-                Components.Organisms.PrimaryCardView(
-                    title: "Rewew your tax credits") {
-                    Text("Renew your tax credits or check the progress of your claims").style(.body)
-                }
-                Components.Organisms.PrimaryCardView(
-                    title: Example.Text.longerIpsum) {
-                    VStack(alignment: .leading, spacing: .spacer8) {
-                        Text(Example.Text.longestIpsum)
-                            .style(.body)
-                        Components.Molecules.InsetView(model: .init(body: Example.Text.longerIpsum))
-                            
-                    }
-                }
-                Components.Organisms.PrimaryCardView(
-                    title: "Rewew your tax credits") {
-                    VStack(alignment: .leading) {
-                        Text("Rewew your tax credits")
-                            .style(.body)
-                        Button("Renew or check my claims") {
-                            print("Renew Tapped")
-                        }.styled(.primary())
-                    }
-                }
-                Components.Organisms.PrimaryCardView(
-                    title: Example.Text.longerIpsum) {
-                    VStack(alignment: .leading, spacing: .spacer8) {
-                        Text(Example.Text.longestIpsum)
-                            .style(.body)
-                        Button(Example.Text.longIpsum) {
-                            print("Lorem")
-                        }.styled(.secondary(padding: 0))
-                    }
-                }
-                Components.Organisms.PrimaryCardView(
-                    title: Example.Text.longerIpsum) {
-                    Components.Molecules.IconButtonView(
-                        model: .init(
-                            icon: Example.Images.info.image,
-                            title: Example.Text.longIpsum,
-                            iconTintColor: Color.Semantic.linkText,
-                            accessibilityHint: "Hint",
-                            accessibilityIdentifier: "Identifier",
-                            handler: {
-                                print("Lorem")
-                            }
-                        )
-                    )
-                }
-            }
-        )
-    }
-}
-
 extension Components.Organisms.HeadlineCardView: Examplable {
     static var title: String { "HeadlineCardView" }
 
@@ -193,6 +121,145 @@ extension Components.Organisms.HeadlineCardView: Examplable {
                             }))
                         }
                     }
+                )
+            }
+        )
+    }
+}
+
+extension Components.Organisms.PrimaryCardView: Examplable {
+    static var title: String { "PrimaryCardView" }
+
+    static var exampleBackgroundColor: Color { Color.Semantic.pageBackground }
+
+    static func withPlaceholders() -> AnyView {
+        AnyView(
+            Components.Organisms.PrimaryCardView(
+                title: "Title"
+            ){
+                Text("Body")
+                    .style(.body)
+            }
+        )
+    }
+
+    static func examples() -> AnyView {
+        AnyView(
+            VStack(spacing: .spacer16) {
+                Components.Organisms.PrimaryCardView(
+                    title: "Rewew your tax credits") {
+                    Text("Renew your tax credits or check the progress of your claims").style(.body)
+                }
+                Components.Organisms.PrimaryCardView(
+                    title: Example.Text.longerIpsum) {
+                    VStack(alignment: .leading, spacing: .spacer8) {
+                        Text(Example.Text.longestIpsum)
+                            .style(.body)
+                        Components.Molecules.InsetView(model: .init(body: Example.Text.longerIpsum))
+
+                    }
+                }
+                Components.Organisms.PrimaryCardView(
+                    title: "Rewew your tax credits") {
+                    VStack(alignment: .leading) {
+                        Text("Rewew your tax credits")
+                            .style(.body)
+                        Button("Renew or check my claims") {
+                            print("Renew Tapped")
+                        }.styled(.primary())
+                    }
+                }
+                Components.Organisms.PrimaryCardView(
+                    title: Example.Text.longerIpsum) {
+                    VStack(alignment: .leading, spacing: .spacer8) {
+                        Text(Example.Text.longestIpsum)
+                            .style(.body)
+                        Button(Example.Text.longIpsum) {
+                            print("Lorem")
+                        }.styled(.secondary(padding: 0))
+                    }
+                }
+                Components.Organisms.PrimaryCardView(
+                    title: Example.Text.longerIpsum) {
+                    Components.Molecules.IconButtonView(
+                        model: .init(
+                            icon: Example.Images.info.image,
+                            title: Example.Text.longIpsum,
+                            iconTintColor: Color.Semantic.linkText,
+                            accessibilityHint: "Hint",
+                            accessibilityIdentifier: "Identifier",
+                            handler: {
+                                print("Lorem")
+                            }
+                        )
+                    )
+                }
+            }
+        )
+    }
+}
+
+extension Components.Organisms.StatusCardView: Examplable {
+    static var title: String { "StatusCardView" }
+
+    static var exampleBackgroundColor: Color { Color.Semantic.pageBackground }
+
+    static func withPlaceholders() -> AnyView {
+        AnyView(
+            Components.Organisms.StatusCardView(
+                icon: Example.Images.maintenance.image,
+                title: "Title",
+                body: "Body",
+                buttonModel: .init(
+                    title: "Button Title",
+                    style: .secondary(padding: 0),
+                    handler: {
+                        print("tapped")
+                    }
+                ),
+                journeyId: "121212-343434-565656-787878"
+            )
+        )
+    }
+    static func examples() -> AnyView {
+        AnyView(
+            VStack(spacing: .spacer16) {
+//                Components.Organisms.StatusCardView(
+//                    icon: Example.Images.maintenance.image,
+//                    title: "Service unavailable",
+//                    body: "You'll need to try again later.",
+//                    journeyId: "121212-343434-565656-787878"
+//                )
+//
+//                Components.Organisms.StatusCardView(
+//                    icon: Example.Images.info.image,
+//                    title: "Your Help to Save account closed on 21 May 2018",
+//                    buttonModel: .init(
+//                        title: "Tell me more",
+//                        style: .secondary(padding: 0),
+//                        handler: {
+//                            print("tapped")
+//                        }
+//                    )
+//                )
+//
+//                Components.Organisms.StatusCardView(
+//                    icon: Example.Images.info.image,
+//                    title: "Your Help to Save account closed on 21 May 2018"
+//                )
+
+                Components.Organisms.StatusCardView(
+                    icon: Example.Images.info.image,
+                    title: "Your Help to Save account closed on 21 May 2018",
+                    body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                    buttonModel: .init(
+                        title: "Tell me more",
+                        style: .secondary(padding: 0),
+                        handler: {
+                            print("tapped")
+                        }
+                    ),
+                    journeyId: "121212-343434-565656-787878"
                 )
             }
         )

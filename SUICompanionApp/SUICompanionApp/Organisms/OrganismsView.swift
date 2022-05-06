@@ -21,8 +21,9 @@ struct OrganismsView: View {
     var body: some View {
         NavigationView {
             List {
-                Example.navigationLink(type: Components.Organisms.PrimaryCardView<Text>.self)
                 Example.navigationLink(type: Components.Organisms.HeadlineCardView<Text>.self)
+                Example.navigationLink(type: Components.Organisms.PrimaryCardView<Text>.self)
+                Example.navigationLink(type: Components.Organisms.StatusCardView<Text>.self)
             }
             .navigationTitle("Organisms")
         }
