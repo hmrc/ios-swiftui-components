@@ -581,3 +581,43 @@ extension Components.Molecules.MultiColumnRowView: Examplable {
         )
     }
 }
+
+extension Components.Molecules.SelectRowView: Examplable {
+    static var title: String { "SelectRowView" }
+
+    static var exampleBackgroundColor: Color { Color.Semantic.pageBackground }
+
+
+    static func withPlaceholders() -> AnyView {
+        AnyView(
+            exampleView(initialState: .init(rows: [
+                .init(body: "Option 1")
+            ]))
+        )
+    }
+    private static func exampleView(initialState: Components.Molecules.SelectRowView.Model) -> Components.Molecules.SelectRowView {
+        var modelVar = initialState
+        let binding = Binding<Components.Molecules.SelectRowView.Model> {
+            initialState
+        } set: { model in
+            modelVar = model
+            print("SelectRow Value did change: \(model)")
+        }
+        return Components.Molecules.SelectRowView(model: binding) { num in
+            print("Selected \(num)")
+        }
+    }
+    static func examples() -> AnyView {
+        AnyView(
+            VStack(spacing: .spacer16) {
+                exampleView(initialState: .init(rows: [
+                    .init(body: "Option 1"),
+                    .init(body: "Option 2"),
+                    .init(body: "Option 3"),
+                    .init(body: "Option 4")
+                ])).cardView()
+                
+            }
+        )
+    }
+}

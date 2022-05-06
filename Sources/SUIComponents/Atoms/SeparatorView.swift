@@ -15,13 +15,16 @@
  */
 
 import SwiftUI
-import SUIComponents
 
-@main
-struct SUICompanionAppApp: App {
-    var body: some Scene {
-        WindowGroup {
-            MainView()
+public extension Components.Atoms {
+    struct SeparatorView: View {
+        let color: Color
+        public init(color: Color = .Semantic.divider) {
+            self.color = color
+        }
+        public var body: some View {
+            color
+                .frame(height: 1, alignment: .leading)
         }
     }
 }
