@@ -21,22 +21,16 @@ struct MoleculesView: View {
     var body: some View {
         NavigationView {
             List {
-                Group {
-                    Example.navigationLink(type: Components.Molecules.StatusView.self)
-                    Example.navigationLink(type: Components.Molecules.TitleBodyView.self)
-                    Example.navigationLink(type: Components.Molecules.InsetView<Text>.self)
-                    Example.navigationLink(type: Components.Molecules.MultiColumnRowView.self)
-                    Example.navigationLink(type: Components.Molecules.SwitchRowView.self)
-                    Example.navigationLink(type: Components.Molecules.SelectRowView.self)
-                    Example.navigationLink(type: Components.Molecules.TextInputView.self)
-                    Example.navigationLink(type: Components.Molecules.CurrencyInputView.self)
-                    Example.navigationLink(type: Components.Molecules.IconButtonView.self)
-                    Example.navigationLink(type: Components.Molecules.WarningView.self)
-
-                }
-                Group {
-                    Example.navigationLink(type: Components.Molecules.SelectRowGroupView.self)
-                }
+                Example.navigationLink(type: Components.Molecules.StatusView.self)
+                Example.navigationLink(type: Components.Molecules.TitleBodyView.self)
+                Example.navigationLink(type: Components.Molecules.InsetView<Text>.self)
+                Example.navigationLink(type: Components.Molecules.MultiColumnRowView.self)
+                Example.navigationLink(type: Components.Molecules.SwitchRowView.self)
+                Example.navigationLink(type: Components.Molecules.SelectRowView.self)
+                Example.navigationLink(type: Components.Molecules.TextInputView.self)
+                Example.navigationLink(type: Components.Molecules.CurrencyInputView.self)
+                Example.navigationLink(type: Components.Molecules.IconButtonView.self)
+                Example.navigationLink(type: Components.Molecules.WarningView.self)
             }
             .navigationTitle("Molecules")
         }
