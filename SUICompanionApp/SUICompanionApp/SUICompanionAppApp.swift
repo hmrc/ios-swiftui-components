@@ -21,9 +21,9 @@ import SUIComponents
 struct SUICompanionAppApp: App {
     var body: some Scene {
         WindowGroup {
-//            MainView()
+            MainView()
 //            ExampleView<Components.Molecules.StatusView>()
-            ExampleView<Components.Organisms.StatusCardView<AnyView>>()
+//            ExampleView<Components.Organisms.StatusCardView<AnyView>>()
         }
     }
 }

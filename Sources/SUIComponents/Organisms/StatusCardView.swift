@@ -68,6 +68,7 @@ extension Components.Organisms {
                             buttonModel: buttonModel
                         )
                     )
+                    content
                     if let journeyId = journeyId {
                         Text(journeyId).style(.debug)
                     }

@@ -52,9 +52,9 @@ extension Components.Organisms.HeadlineCardView: Examplable {
                     currencyAmount: 12345, disclosureAction: {
                         print("Disclosure Tapped")
                     })
-                    {
-                        Text("This is the income tax we think you will have paid by the end of the year", style: .body)
-                    }
+                {
+                    Text("This is the income tax we think you will have paid by the end of the year", style: .body)
+                }
                 Components.Organisms.HeadlineCardView(
                     title: Example.Text.longerIpsum,
                     headline: Example.Text.longIpsum,
@@ -95,15 +95,15 @@ extension Components.Organisms.HeadlineCardView: Examplable {
                                 .frame(maxWidth: .infinity, alignment: .leading)
                             Components.Molecules.IconButtonView(
                                 model:
-                                    .init(
-                                        icon: Example.Images.info.image,
-                                        title: "How is this calculated?",
-                                        iconTintColor: Color.Semantic.linkText,
-                                        accessibilityHint: nil,
-                                        accessibilityIdentifier: nil,
-                                        handler: {
-                                            print("How is this calculated?")
-                                        })
+                                        .init(
+                                            icon: Example.Images.info.image,
+                                            title: "How is this calculated?",
+                                            iconTintColor: Color.Semantic.linkText,
+                                            accessibilityHint: nil,
+                                            accessibilityIdentifier: nil,
+                                            handler: {
+                                                print("How is this calculated?")
+                                            })
                             )
                         }
                     }
@@ -148,52 +148,52 @@ extension Components.Organisms.PrimaryCardView: Examplable {
             VStack(spacing: .spacer16) {
                 Components.Organisms.PrimaryCardView(
                     title: "Rewew your tax credits") {
-                    Text("Renew your tax credits or check the progress of your claims").style(.body)
-                }
+                        Text("Renew your tax credits or check the progress of your claims").style(.body)
+                    }
                 Components.Organisms.PrimaryCardView(
                     title: Example.Text.longerIpsum) {
-                    VStack(alignment: .leading, spacing: .spacer8) {
-                        Text(Example.Text.longestIpsum)
-                            .style(.body)
-                        Components.Molecules.InsetView(model: .init(body: Example.Text.longerIpsum))
+                        VStack(alignment: .leading, spacing: .spacer8) {
+                            Text(Example.Text.longestIpsum)
+                                .style(.body)
+                            Components.Molecules.InsetView(model: .init(body: Example.Text.longerIpsum))
 
+                        }
                     }
-                }
                 Components.Organisms.PrimaryCardView(
                     title: "Rewew your tax credits") {
-                    VStack(alignment: .leading) {
-                        Text("Rewew your tax credits")
-                            .style(.body)
-                        Button("Renew or check my claims") {
-                            print("Renew Tapped")
-                        }.styled(.primary())
+                        VStack(alignment: .leading) {
+                            Text("Rewew your tax credits")
+                                .style(.body)
+                            Button("Renew or check my claims") {
+                                print("Renew Tapped")
+                            }.styled(.primary())
+                        }
                     }
-                }
                 Components.Organisms.PrimaryCardView(
                     title: Example.Text.longerIpsum) {
-                    VStack(alignment: .leading, spacing: .spacer8) {
-                        Text(Example.Text.longestIpsum)
-                            .style(.body)
-                        Button(Example.Text.longIpsum) {
-                            print("Lorem")
-                        }.styled(.secondary(padding: 0))
-                    }
-                }
-                Components.Organisms.PrimaryCardView(
-                    title: Example.Text.longerIpsum) {
-                    Components.Molecules.IconButtonView(
-                        model: .init(
-                            icon: Example.Images.info.image,
-                            title: Example.Text.longIpsum,
-                            iconTintColor: Color.Semantic.linkText,
-                            accessibilityHint: "Hint",
-                            accessibilityIdentifier: "Identifier",
-                            handler: {
+                        VStack(alignment: .leading, spacing: .spacer8) {
+                            Text(Example.Text.longestIpsum)
+                                .style(.body)
+                            Button(Example.Text.longIpsum) {
                                 print("Lorem")
-                            }
+                            }.styled(.secondary(padding: 0))
+                        }
+                    }
+                Components.Organisms.PrimaryCardView(
+                    title: Example.Text.longerIpsum) {
+                        Components.Molecules.IconButtonView(
+                            model: .init(
+                                icon: Example.Images.info.image,
+                                title: Example.Text.longIpsum,
+                                iconTintColor: Color.Semantic.linkText,
+                                accessibilityHint: "Hint",
+                                accessibilityIdentifier: "Identifier",
+                                handler: {
+                                    print("Lorem")
+                                }
+                            )
                         )
-                    )
-                }
+                    }
             }
         )
     }
@@ -224,43 +224,71 @@ extension Components.Organisms.StatusCardView: Examplable {
     static func examples() -> AnyView {
         AnyView(
             VStack(spacing: .spacer16) {
-//                Components.Organisms.StatusCardView(
-//                    icon: Example.Images.maintenance.image,
-//                    title: "Service unavailable",
-//                    body: "You'll need to try again later.",
-//                    journeyId: "121212-343434-565656-787878"
-//                )
-//
-//                Components.Organisms.StatusCardView(
-//                    icon: Example.Images.info.image,
-//                    title: "Your Help to Save account closed on 21 May 2018",
-//                    buttonModel: .init(
-//                        title: "Tell me more",
-//                        style: .secondary(padding: 0),
-//                        handler: {
-//                            print("tapped")
-//                        }
-//                    )
-//                )
-//
-//                Components.Organisms.StatusCardView(
-//                    icon: Example.Images.info.image,
-//                    title: "Your Help to Save account closed on 21 May 2018"
-//                )
+                //                Components.Organisms.StatusCardView(
+                //                    icon: Example.Images.maintenance.image,
+                //                    title: "Service unavailable",
+                //                    body: "You'll need to try again later.",
+                //                    journeyId: "121212-343434-565656-787878"
+                //                )
+                //
+                //                Components.Organisms.StatusCardView(
+                //                    icon: Example.Images.info.image,
+                //                    title: "Your Help to Save account closed on 21 May 2018",
+                //                    buttonModel: .init(
+                //                        title: "Tell me more",
+                //                        style: .secondary(padding: 0),
+                //                        handler: {
+                //                            print("tapped")
+                //                        }
+                //                    )
+                //                )
+                //
+                //                Components.Organisms.StatusCardView(
+                //                    icon: Example.Images.info.image,
+                //                    title: "Your Help to Save account closed on 21 May 2018"
+                //                )
+                //
+                //                Components.Organisms.StatusCardView(
+                //                    icon: Example.Images.info.image,
+                //                    title: "Your Help to Save account closed on 21 May 2018",
+                //                    body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                //                    buttonModel: .init(
+                //                        title: "Tell me more",
+                //                        style: .secondary(padding: 0),
+                //                        handler: {
+                //                            print("tapped")
+                //                        }
+                //                    ),
+                //                    journeyId: "121212-343434-565656-787878"
+                //                )
 
                 Components.Organisms.StatusCardView(
                     icon: Example.Images.info.image,
-                    title: "Your Help to Save account closed on 21 May 2018",
-                    body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                    title: "You can't access John Smith's information right now",
+                    body: "We have been told that John Smith is deceased so we can't show the information you are expecting.\n\n" +
+                    "If you need to discuss this account, please contact the PAYE helpline.",
                     buttonModel: .init(
-                        title: "Tell me more",
-                        style: .secondary(padding: 0),
+                        title: "Call 0300 200 3300",
+                        style: .primary(enabled: true),
                         handler: {
                             print("tapped")
                         }
                     ),
-                    journeyId: "121212-343434-565656-787878"
-                )
+                    insets: .init(top: .spacer16, leading: .spacer16, bottom: 0, trailing: .spacer16),
+                    itemSpacing: 0
+                ) {
+                    Components.Molecules.IconButtonView(
+                        model: .init(
+                            icon: Example.Images.info.image,
+                            title: "Learn about call charges",
+                            iconTintColor: TextStyle.link.textColor,
+                            insets: .init(top: .spacer16, leading: 0, bottom: .spacer16, trailing: .spacer16),
+                            handler: {
+                                print("Learn about call charges tapped")
+                            }
+                        )
+                    )
+                }
             }
         )
     }

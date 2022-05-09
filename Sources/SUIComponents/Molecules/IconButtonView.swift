@@ -19,34 +19,54 @@ import SwiftUI
 extension Components.Molecules {
     public struct IconButtonView: View {
         let model: Model
-        
+
+        @State private var selected: Bool = false
+        @State private var currentGeometry: GeometryProxy?
+
         public init(model: Model) {
             self.model = model
         }
         private let spacing = CGFloat(12)
         public var body: some View {
-            Components.Atoms.CustomButton(normalBackgroundColour: .clear, highlightedBackgroundColour: Color.Semantic.secondaryButtonHighlightedBackground, tapped: {
-                model.handler()
-            }) {
-                Components.Atoms.ImageAligningHStack(spacing: spacing) {
-                    model.icon
-                        .foregroundColor(model.iconTintColor)
-                        .accessibility(hidden: true)
-                } rightContent: {
-                    Text(model.title)
-                        .style(.link)
-                        .accessibility(hidden: true)
-                }
-                .padding(model.insets)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .background(
-                    Color.clear
-                        .accessibility(addTraits: .isButton)
-                        .accessibility(hidden: false)
-                        .accessibility(hint: Text(model.accessibilityHint ?? ""))
-                        .accessibility(label: Text(model.title))
-                )
+            Components.Atoms.ImageAligningHStack(spacing: spacing) {
+                model.icon
+                    .foregroundColor(model.iconTintColor)
+                    .accessibility(hidden: true)
+            } rightContent: {
+                Text(model.title)
+                    .style(.link)
+                    .accessibility(hidden: true)
             }
+            .padding(model.insets)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .frame(
+                maxWidth: .infinity,
+                alignment: .leading
+            )
+            .background(
+                (selected ? model.highlightedBackgroundColour : model.normalBackgroundColour)
+                    .accessibility(addTraits: .isButton)
+                    .accessibility(hidden: false)
+                    .accessibility(hint: Text(model.accessibilityHint ?? ""))
+                    .accessibility(label: Text(model.title))
+            )
+            .background(GeometryReader { geometry in
+                Color.clear.onAppear {
+                    currentGeometry = geometry
+                }
+            })
+            .gesture(
+                DragGesture(minimumDistance: 0.0, coordinateSpace: .global)
+                    .onChanged { _ in
+                        selected = true
+                    }
+                    .onEnded({ value in
+                        selected = false
+                        if let geometry = currentGeometry, geometry.frame(in: .global).contains(value.location) {
+                            model.handler() // Only trigger handler for equivalent of touchUpInside
+                        }
+                    })
+            )
         }
     }
 }
@@ -59,6 +79,8 @@ extension Components.Molecules.IconButtonView {
         public let accessibilityHint: String?
         public let accessibilityIdentifier: String?
         public let insets: EdgeInsets
+        public let normalBackgroundColour: Color
+        public let highlightedBackgroundColour: Color
         public var handler: VoidHandler
         
         public init(icon: Image,
@@ -67,6 +89,8 @@ extension Components.Molecules.IconButtonView {
                     accessibilityHint: String? = nil,
                     accessibilityIdentifier: String? = nil,
                     insets: EdgeInsets = .init(padding: .spacer16),
+                    normalBackgroundColour: Color = .Semantic.cardBackground,
+                    highlightedBackgroundColour: Color = .Semantic.secondaryButtonHighlightedBackground,
                     handler: @escaping VoidHandler
         ) {
             self.icon = icon
@@ -74,8 +98,10 @@ extension Components.Molecules.IconButtonView {
             self.accessibilityHint = accessibilityHint
             self.accessibilityIdentifier = accessibilityIdentifier
             self.iconTintColor = iconTintColor
-            self.handler = handler
             self.insets = insets
+            self.normalBackgroundColour = normalBackgroundColour
+            self.highlightedBackgroundColour = highlightedBackgroundColour
+            self.handler = handler
         }
     }
 }

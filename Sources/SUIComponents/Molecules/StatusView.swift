@@ -51,7 +51,7 @@ extension Components.Molecules {
                             .frame(maxWidth: .infinity, alignment: bodyTextFrameAlignment)
                             .background(GeometryReader { actualGeometry in
                                 Text(body, style: .body)
-                                    .frame(minWidth: 0, maxWidth: .infinity)
+                                    .frame(maxWidth: .infinity)
                                     .lineLimit(2)
                                     .background(GeometryReader { twoLineGeometry in
                                         Color.clear.onAppear {
