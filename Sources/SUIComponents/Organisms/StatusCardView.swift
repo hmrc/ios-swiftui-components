@@ -31,6 +31,7 @@ extension Components.Organisms {
         let title: String
         let bodyString: String?
         let buttonModel: Components.Molecules.StatusView.Model.ButtonModel?
+        let iconTintColor: Color?
         let journeyId: String?
         let insets: EdgeInsets
         let itemSpacing: CGFloat
@@ -41,6 +42,7 @@ extension Components.Organisms {
             title: String,
             body: String? = nil,
             buttonModel: Components.Molecules.StatusView.Model.ButtonModel? = nil,
+            iconTintColor: Color? = nil,
             journeyId: String? = nil,
             insets: EdgeInsets = .init(padding: .spacer16),
             itemSpacing: CGFloat = .spacer16,
@@ -50,6 +52,7 @@ extension Components.Organisms {
             self.title = title
             self.bodyString = body
             self.buttonModel = buttonModel
+            self.iconTintColor = iconTintColor
             self.journeyId = journeyId
             self.insets = insets
             self.itemSpacing = itemSpacing
@@ -65,7 +68,8 @@ extension Components.Organisms {
                             icon: icon,
                             title: title,
                             body: bodyString,
-                            buttonModel: buttonModel
+                            buttonModel: buttonModel,
+                            iconTintColor: iconTintColor
                         )
                     )
                     content
@@ -86,6 +90,7 @@ extension Components.Organisms.StatusCardView where Content == EmptyView {
         title: String,
         body: String? = nil,
         buttonModel: Components.Molecules.StatusView.Model.ButtonModel? = nil,
+        iconTintColor: Color? = nil,
         journeyId: String? = nil,
         insets: EdgeInsets = .init(padding: .spacer16),
         itemSpacing: CGFloat = 0) {
@@ -94,6 +99,7 @@ extension Components.Organisms.StatusCardView where Content == EmptyView {
             title: title,
             body: body,
             buttonModel: buttonModel,
+            iconTintColor: iconTintColor,
             journeyId: journeyId,
             insets: insets,
             itemSpacing: itemSpacing,

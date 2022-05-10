@@ -224,43 +224,43 @@ extension Components.Organisms.StatusCardView: Examplable {
     static func examples() -> AnyView {
         AnyView(
             VStack(spacing: .spacer16) {
-                //                Components.Organisms.StatusCardView(
-                //                    icon: Example.Images.maintenance.image,
-                //                    title: "Service unavailable",
-                //                    body: "You'll need to try again later.",
-                //                    journeyId: "121212-343434-565656-787878"
-                //                )
-                //
-                //                Components.Organisms.StatusCardView(
-                //                    icon: Example.Images.info.image,
-                //                    title: "Your Help to Save account closed on 21 May 2018",
-                //                    buttonModel: .init(
-                //                        title: "Tell me more",
-                //                        style: .secondary(padding: 0),
-                //                        handler: {
-                //                            print("tapped")
-                //                        }
-                //                    )
-                //                )
-                //
-                //                Components.Organisms.StatusCardView(
-                //                    icon: Example.Images.info.image,
-                //                    title: "Your Help to Save account closed on 21 May 2018"
-                //                )
-                //
-                //                Components.Organisms.StatusCardView(
-                //                    icon: Example.Images.info.image,
-                //                    title: "Your Help to Save account closed on 21 May 2018",
-                //                    body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                //                    buttonModel: .init(
-                //                        title: "Tell me more",
-                //                        style: .secondary(padding: 0),
-                //                        handler: {
-                //                            print("tapped")
-                //                        }
-                //                    ),
-                //                    journeyId: "121212-343434-565656-787878"
-                //                )
+                Components.Organisms.StatusCardView(
+                    icon: Example.Images.maintenance.image,
+                    title: "Service unavailable",
+                    body: "You'll need to try again later.",
+                    journeyId: "121212-343434-565656-787878"
+                )
+
+                Components.Organisms.StatusCardView(
+                    icon: Example.Images.info.image,
+                    title: "Your Help to Save account closed on 21 May 2018",
+                    buttonModel: .init(
+                        title: "Tell me more",
+                        style: .secondary(padding: 0),
+                        handler: {
+                            print("tapped")
+                        }
+                    )
+                )
+
+                Components.Organisms.StatusCardView(
+                    icon: Example.Images.info.image,
+                    title: "Your Help to Save account closed on 21 May 2018"
+                )
+
+                Components.Organisms.StatusCardView(
+                    icon: Example.Images.info.image,
+                    title: "Your Help to Save account closed on 21 May 2018",
+                    body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                    buttonModel: .init(
+                        title: "Tell me more",
+                        style: .secondary(padding: 0),
+                        handler: {
+                            print("tapped")
+                        }
+                    ),
+                    journeyId: "121212-343434-565656-787878"
+                )
 
                 Components.Organisms.StatusCardView(
                     icon: Example.Images.info.image,
@@ -289,6 +289,34 @@ extension Components.Organisms.StatusCardView: Examplable {
                         )
                     )
                 }
+
+                Components.Organisms.StatusCardView(
+                    icon: Example.Images.info.image,
+                    title: Example.Text.longerIpsum,
+                    body: nil,
+                    buttonModel: .init(
+                        title: Example.Text.longIpsum,
+                        style: .primary(enabled: true),
+                        handler: {
+                            print("tapped")
+                        }
+                    )
+                )
+
+                Components.Organisms.StatusCardView(
+                    icon: Example.Images.coins.image,
+                    title: Example.Text.longerIpsum,
+                    body: Example.Text.longestIpsum,
+                    buttonModel: .init(
+                        title: Example.Text.longIpsum,
+                        style: .secondary(padding: 0),
+                        handler: {
+                            print("tapped")
+                        }
+                    ),
+                    iconTintColor: .Named.green1.colour,
+                    insets: .init(top: .spacer16, leading: .spacer16, bottom: 0, trailing: .spacer16)
+                )
             }
         )
     }

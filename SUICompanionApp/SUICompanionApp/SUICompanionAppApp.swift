@@ -22,8 +22,6 @@ struct SUICompanionAppApp: App {
     var body: some Scene {
         WindowGroup {
             MainView()
-//            ExampleView<Components.Molecules.StatusView>()
-//            ExampleView<Components.Organisms.StatusCardView<AnyView>>()
         }
     }
 }
