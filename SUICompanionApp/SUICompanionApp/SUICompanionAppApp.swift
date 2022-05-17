@@ -15,6 +15,7 @@
  */
 
 import SwiftUI
+import SUIComponents
 
 @main
 struct SUICompanionAppApp: App {

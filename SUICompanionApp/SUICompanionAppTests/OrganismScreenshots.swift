@@ -31,4 +31,8 @@ class OrganismScreenshots: XCTestCase {
     func test_screenshot_HeadlineCardView() {
         ExampleView<Components.Organisms.HeadlineCardView<Text>>().snapshotAndSave("headlineCardView")
     }
+
+    func test_screenshot_StatusCardView() {
+        ExampleView<Components.Organisms.StatusCardView<Text>>().snapshotAndSave("statusCardView")
+    }
 }

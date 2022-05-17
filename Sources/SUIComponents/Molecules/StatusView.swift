@@ -23,11 +23,14 @@ extension Components.Molecules {
         public init(model: Model) {
             self.model = model
         }
+
+        @State var bodyTextAlignment: TextAlignment = .center
+        @State var bodyTextFrameAlignment: Alignment = .center
         
         public var body: some View {
             VStack(
                 alignment: .center,
-                spacing: .spacer16,
+                spacing: .spacer24,
                 content: {
                     model.icon
                         .resizable()
@@ -38,16 +41,39 @@ extension Components.Molecules {
                         )
                         .aspectRatio(contentMode: .fill)
                         .foregroundColor(model.iconTintColor ?? Color.Semantic.statusCardIconDefaultTint)
+
                     Text(model.title)
                         .style(.H5)
                         .multilineTextAlignment(.center)
-                        .fixedSize(horizontal: false, vertical: true)
-                    model.body
-                        .fixedSize(horizontal: false, vertical: true)
+
+                    if let body = model.body {
+                        Text(body, style: .body)
+                            .frame(maxWidth: .infinity, alignment: bodyTextFrameAlignment)
+                            .background(GeometryReader { actualGeometry in
+                                Text(body, style: .body)
+                                    .frame(maxWidth: .infinity)
+                                    .lineLimit(2)
+                                    .background(GeometryReader { twoLineGeometry in
+                                        Color.clear.onAppear {
+                                            if actualGeometry.size.height > twoLineGeometry.size.height {
+                                                bodyTextAlignment = .leading
+                                                bodyTextFrameAlignment = .leading
+                                            } else {
+                                                bodyTextAlignment = .center
+                                                bodyTextFrameAlignment = .center
+                                            }
+                                        }
+                                    })
+                                    .hidden()
+                            })
+                    }
+
                     if let buttonModel = model.buttonModel {
                         Button(action: buttonModel.handler) {
                             Text(buttonModel.title)
-                        }.styled(buttonModel.style)
+                        }
+                        .styled(buttonModel.style)
+                        .padding(.bottom, .spacer12)
                     }
                 }
             ).frame(maxWidth: .infinity, alignment: .center)
@@ -63,23 +89,11 @@ extension Components.Molecules.StatusView {
     open class Model {
         public let icon: Image
         public let title: String
-        public let body: Text?
+        public let body: String?
         public let buttonModel: ButtonModel?
         public let iconTintColor: Color?
         
-        public init(icon: Image,
-                    title: String,
-                    @ViewBuilder body: () -> Text?,
-                    buttonModel: ButtonModel? = nil,
-                    iconTintColor: Color? = nil
-        ) {
-            self.icon = icon
-            self.title = title
-            self.body = body()
-            self.buttonModel = buttonModel
-            self.iconTintColor = iconTintColor
-        }
-        
+
         public init(icon: Image,
                     title: String,
                     body: String? = nil,
@@ -88,7 +102,7 @@ extension Components.Molecules.StatusView {
         ) {
             self.icon = icon
             self.title = title
-            self.body = body != nil ? Text(body!, style: .body) : nil
+            self.body = body
             self.buttonModel = buttonModel
             self.iconTintColor = iconTintColor
         }

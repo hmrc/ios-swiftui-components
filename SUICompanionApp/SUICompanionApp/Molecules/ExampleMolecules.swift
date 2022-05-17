@@ -111,7 +111,7 @@ extension Components.Molecules.IconButtonView: Examplable {
                             print("About the calculator Tapped")
                         }
                     )
-            ).cardView(insets: .init(padding: 0))
+            )
             Components.Molecules.IconButtonView(
                 model:
                     .init(
@@ -125,8 +125,7 @@ extension Components.Molecules.IconButtonView: Examplable {
                             print("Lorem Ipsum tapped")
                         }
                     )
-            ).cardView(insets: .init(padding: 0))
-         
+            )
         })
     }
 }
