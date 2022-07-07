@@ -74,6 +74,7 @@ extension Components.Molecules.WarningView: Examplable {
         })
     }
 }
+
 extension Components.Molecules.IconButtonView: Examplable {
     static var title: String { "IconButtonView" }
 
@@ -129,6 +130,7 @@ extension Components.Molecules.IconButtonView: Examplable {
         })
     }
 }
+
 extension Components.Molecules.StatusView: Examplable {
     static var title: String { "StatusView" }
 
@@ -575,6 +577,106 @@ extension Components.Molecules.MultiColumnRowView: Examplable {
                         .init(label: Example.Text.longIpsum, style: .body, weight: 1, textAlignment: .trailing),
                         .init(label: Example.Text.longIpsum, style: .body, weight: 1, textAlignment: .trailing)
                     ]
+                ).cardView()
+            }
+        )
+    }
+}
+
+extension Components.Molecules.SelectRowView: Examplable {
+    static var title: String { "SelectRowView" }
+
+    static var exampleBackgroundColor: Color { Color.Semantic.pageBackground }
+
+
+    static func withPlaceholders() -> AnyView {
+        AnyView(
+            exampleView(initialState: .init(rows: [
+                .init(body: "Option 1")
+            ]))
+        )
+    }
+    private static func exampleView(initialState: Components.Molecules.SelectRowView.Model) -> Components.Molecules.SelectRowView {
+        var modelVar = initialState
+        let binding = Binding<Components.Molecules.SelectRowView.Model> {
+            initialState
+        } set: { model in
+            modelVar = model
+            print("SelectRow Value did change: \(model)")
+        }
+        return Components.Molecules.SelectRowView(model: binding) { num in
+            print("Selected \(num)")
+        }
+    }
+    static func examples() -> AnyView {
+        AnyView(
+            VStack(spacing: .spacer16) {
+                exampleView(initialState: .init(rows: [
+                    .init(body: "Option 1"),
+                    .init(body: "Option 2"),
+                    .init(body: "Option 3"),
+                    .init(body: "Option 4")
+                ])).cardView()
+                
+            }
+        )
+    }
+}
+
+extension Components.Molecules.SelectRowGroupView: Examplable {
+    static var title: String { "SelectRowGroupView" }
+
+    static var exampleBackgroundColor: Color { Color.Semantic.pageBackground }
+
+
+    static func withPlaceholders() -> AnyView {
+        AnyView(
+            exampleView(
+                rowModel: .init(rows: [
+                    .init(body: "label 1"),
+                    .init(body: "label 2")
+                ]),
+                titleBodyModel: .init(title: "title", body: "subTitle", style: .H5)
+            )
+        )
+    }
+
+    private static func exampleView(
+        rowModel: Components.Molecules.SelectRowView.Model,
+        titleBodyModel: Components.Molecules.TitleBodyView.Model
+    ) -> Components.Molecules.SelectRowGroupView {
+        var modelVar = rowModel
+        let binding = Binding<Components.Molecules.SelectRowView.Model> {
+            rowModel
+        } set: { model in
+            modelVar = model
+            print("SelectRow Value did change: \(model)")
+        }
+        return Components.Molecules.SelectRowGroupView(
+            rowModel: binding,
+            titleBodyModel: titleBodyModel) { num in
+            print("Selected \(num)")
+        }
+    }
+
+    static func examples() -> AnyView {
+        AnyView(
+            VStack(spacing: .spacer16) {
+
+                exampleView(
+                    rowModel: .init(rows: [
+                        .init(body: "label 1"),
+                        .init(body: "label 2")
+                    ]),
+                    titleBodyModel: .init(title: "Can we collect analytics data when you use this app?", body: "", style: .H5)
+                ).cardView()
+
+                exampleView(
+                    rowModel: .init(rows: [
+                        .init(body: "yes"),
+                        .init(body: "no")
+                    ]),
+                    titleBodyModel: .init(title: "Are you moving goods?", body: "You must select yes or no", style: .H5)
                 ).cardView()
             }
         )
