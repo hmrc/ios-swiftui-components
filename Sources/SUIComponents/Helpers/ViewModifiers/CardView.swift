@@ -38,7 +38,7 @@ public struct CardView: ViewModifier {
                 maxWidth: .infinity,
                 alignment: .leading
             )
-            .disclosureAction(handler: disclosureAction)
+            .disclosureAction(inset: insets.trailing, handler: disclosureAction)
             .background(backgroundColor)
     }
 }

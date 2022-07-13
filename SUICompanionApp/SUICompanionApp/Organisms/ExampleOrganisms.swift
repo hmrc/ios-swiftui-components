@@ -127,6 +127,208 @@ extension Components.Organisms.HeadlineCardView: Examplable {
     }
 }
 
+extension Components.Organisms.SummaryRowView: Examplable {
+    static var title: String { "SummaryRowView" }
+
+    static var exampleBackgroundColor: Color { Color.Semantic.pageBackground }
+
+    static func withPlaceholders() -> AnyView {
+        AnyView(
+            Components.Organisms.SummaryRowView(
+                model: .init(
+                    title: "Title",
+                    rowViews: {
+                        VStack(alignment: .leading, spacing: .spacer8) {
+                            Components.Molecules.MultiColumnRowView(
+                                models: [
+                                    .init(
+                                        label: "Text 1",
+                                        style: .info,
+                                        weight: 4,
+                                        textAlignment: .leading
+                                    ),
+                                    .init(
+                                        label: "Text 2",
+                                        style: .info,
+                                        weight: 3,
+                                        textAlignment: .trailing
+                                    ),
+                                    .init(
+                                        label: "Text 3",
+                                        style: .info,
+                                        weight: 3,
+                                        textAlignment: .trailing
+                                    ),
+                                ]
+                            )
+                        }
+                    },
+                    icon: Example.Images.warning.image,
+                    iconTint: TextStyle.link.textColor,
+                    disclosureAction: {
+                        print("Summary Row Tapped")
+                    }
+                )
+            ).cardView(insets: .none, backgroundColor: .clear)
+        )
+    }
+
+    static func examples() -> AnyView {
+        AnyView(
+            VStack(spacing: .spacer16) {
+                VStack(spacing: 0) {
+                    Components.Organisms.SummaryRowView(
+                        model: .init(
+                            title: "Sainsbury's PLC",
+                            rowViews: {
+                                VStack(alignment: .leading, spacing: .spacer8) {
+                                    Components.Molecules.MultiColumnRowView(
+                                        labels: ["Payroll", "96245SLJK88"],
+                                        style: .info
+                                    )
+                                    Components.Molecules.MultiColumnRowView(
+                                        labels: ["Taxcode", "1185L"],
+                                        style: .info
+                                    )
+                                    Components.Molecules.MultiColumnRowView(
+                                        models: [
+                                            .init(
+                                                label: "Estimated taxable income",
+                                                style: .info,
+                                                textAlignment: .leading
+                                            ),
+                                            .init(
+                                                label: "£5,690",
+                                                style: .info,
+                                                textAlignment: .trailing
+                                            ),
+                                        ]
+                                    )
+                                }
+                            },
+                            disclosureAction: {
+                                print("Sainsbury's Tapped")
+                            }
+                        )
+                    )
+                    Components.Atoms.Divider()
+                        .padding(.horizontal, .spacer16)
+                    Components.Organisms.SummaryRowView(
+                        model: .init(
+                            title: "Eastwood Charter School (7601)",
+                            rowViews: {
+                                VStack(alignment: .leading, spacing: .spacer8) {
+                                    Components.Molecules.MultiColumnRowView(
+                                        labels: ["Taxcode", "BR"],
+                                        style: .info
+                                    )
+                                    Components.Molecules.MultiColumnRowView(
+                                        models: [
+                                            .init(
+                                                label: "Estimated taxable income",
+                                                style: .info,
+                                                textAlignment: .leading
+                                            ),
+                                            .init(
+                                                label: "£4,143",
+                                                style: .info,
+                                                textAlignment: .trailing
+                                            ),
+                                        ]
+                                    )
+                                }
+                            },
+                            disclosureAction: {
+                                print("Eastwood's Tapped")
+                            }
+                        )
+                    )
+                }.cardView(insets: .none)
+                Components.Organisms.SummaryRowView(
+                    model: .init(
+                        title: "Fingerprint ID",
+                        rowViews: {
+                            Components.Molecules.MultiColumnRowView(
+                                labels: ["On"], style: .info
+                            )
+                        },
+                        icon: Example.Images.warning.image,
+                        iconTint: TextStyle.link.textColor,
+                        disclosureAction: {
+                            print("Fingerprint ID tapped")
+                        }
+                    )
+                ).cardView(insets: .none)
+                Components.Organisms.SummaryRowView(
+                    model: .init(
+                        title: "",
+                        rowViews: {
+                            Components.Molecules.MultiColumnRowView(
+                                labels: ["Final bonus", "£200"], style: .bold
+                            )
+                            Text(
+                                "Paid into your UK bank account from 28 February 2020",
+                                style: .body
+                            )
+                        }
+                    )
+                ).cardView(insets: .none)
+                VStack(spacing: 0) {
+                    Components.Organisms.SummaryRowView(
+                        model: .init(
+                            title: Example.Text.longerIpsum,
+                            rowViews: {
+                                Components.Molecules.MultiColumnRowView(
+                                    labels: [Example.Text.longestIpsum],
+                                    style: .info
+                                )
+                            },
+                            disclosureAction: {
+                                print("Row 1 Tapped")
+                            }
+                        )
+                    )
+                    Components.Atoms.Divider()
+                        .padding(.horizontal, .spacer16)
+                    Components.Organisms.SummaryRowView(
+                        model: .init(
+                            title: Example.Text.longerIpsum,
+                            rowViews: {
+                                Components.Molecules.MultiColumnRowView(
+                                    labels: [Example.Text.longIpsum, Example.Text.longIpsum],
+                                    style: .info
+                                )
+                            }
+                        )
+                    )
+                    Components.Atoms.Divider()
+                        .padding(.horizontal, .spacer16)
+                    Components.Organisms.SummaryRowView(
+                        model: .init(
+                            title: Example.Text.longerIpsum,
+                            rowViews: {
+                                VStack(alignment: .leading, spacing: .spacer8) {
+                                    Components.Molecules.MultiColumnRowView(
+                                        labels: [Example.Text.longIpsum, Example.Text.longIpsum, Example.Text.longIpsum],
+                                        style: .info
+                                    )
+                                    Components.Molecules.MultiColumnRowView(
+                                        labels: [Example.Text.longIpsum],
+                                        style: .info
+                                    )
+                                }
+                            },
+                            disclosureAction: {
+                                print("Row 3 Tapped")
+                            }
+                        )
+                    )
+                }.cardView(insets: .none)
+            }
+        )
+    }
+}
+
 extension Components.Organisms.PrimaryCardView: Examplable {
     static var title: String { "PrimaryCardView" }
 

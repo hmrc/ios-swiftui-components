@@ -18,9 +18,12 @@ import SwiftUI
 
 public struct DisclosureView: ViewModifier {
     private let handler: VoidHandler?
+    private let inset: CGFloat
     public init(
+        inset: CGFloat,
         handler: VoidHandler? = nil
     ) {
+        self.inset = inset
         self.handler = handler
     }
     
@@ -28,10 +31,10 @@ public struct DisclosureView: ViewModifier {
 
     public func body(content: Content) -> some View {
         if handler != nil {
-            HStack {
+            HStack(spacing: 0) {
                 content
-                Spacer()
-                Image("chevron_right", bundle: .module).padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: .spacer16))
+                Image("chevron_right", bundle: .module)
+                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: inset))
             }
             .contentShape(Rectangle())
             .onTapGesture {
@@ -50,7 +53,7 @@ public struct DisclosureView: ViewModifier {
 }
 
 public extension View {
-    func disclosureAction(handler: VoidHandler?) -> some View {
-        modifier(DisclosureView(handler: handler))
+    func disclosureAction(inset: CGFloat = .spacer16, handler: VoidHandler?) -> some View {
+        modifier(DisclosureView(inset: inset, handler: handler))
     }
 }

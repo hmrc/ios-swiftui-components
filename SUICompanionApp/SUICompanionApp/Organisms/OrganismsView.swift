@@ -24,6 +24,7 @@ struct OrganismsView: View {
                 Example.navigationLink(type: Components.Organisms.HeadlineCardView<Text>.self)
                 Example.navigationLink(type: Components.Organisms.PrimaryCardView<Text>.self)
                 Example.navigationLink(type: Components.Organisms.StatusCardView<Text>.self)
+                Example.navigationLink(type: Components.Organisms.SummaryRowView<Text>.self)
             }
             .navigationTitle("Organisms")
         }

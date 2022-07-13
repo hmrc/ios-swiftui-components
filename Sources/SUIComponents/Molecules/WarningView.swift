@@ -23,13 +23,11 @@ extension Components.Molecules {
         public init(model: Model) {
             self.model = model
         }
-        private let imageSize = CGFloat(36)
-        private let spacing = CGFloat(12)
         public var body: some View {
-            Components.Atoms.ImageAligningHStack(spacing: spacing) {
+            Components.Atoms.ImageAligningHStack(spacing: .spacer12) {
                 model.icon
                     .resizable()
-                    .frame(width: imageSize, height: imageSize)
+                    .frame(width: .spacer36, height: .spacer36)
                     .foregroundColor(model.iconTintColor)
                     .accessibility(hidden: true)
                     

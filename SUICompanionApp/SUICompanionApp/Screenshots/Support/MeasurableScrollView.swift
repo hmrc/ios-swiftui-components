@@ -49,7 +49,6 @@ public struct MeasurableScrollView<Content: View>: View {
             )
             .onPreferenceChange(HeightPreferenceKey.self) { prefs in
                 size = prefs.first!.size
-                print("Size is \(size)")
             }
         }
     }
