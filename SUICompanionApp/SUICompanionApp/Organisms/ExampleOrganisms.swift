@@ -523,3 +523,50 @@ extension Components.Organisms.StatusCardView: Examplable {
         )
     }
 }
+
+extension Components.Organisms.IconButtonCardView: Examplable {
+    static var title: String { "IconButtonCardView" }
+
+    static var exampleBackgroundColor: Color { Color.Semantic.pageBackground }
+
+    static func withPlaceholders() -> AnyView {
+        AnyView(
+            Components.Organisms.IconButtonCardView(
+                model: .init(
+                    icon: Example.Images.info.image,
+                    title: "Title",
+                    handler: {
+
+                    }
+                )
+            )
+        )
+    }
+
+    static func examples() -> AnyView {
+        AnyView(
+            VStack {
+                Components.Organisms.IconButtonCardView(
+                    model: .init(
+                        icon: Example.Images.help.image,
+                        title: "About the calculator",
+                        handler: {
+
+                        }
+                    )
+                )
+                Components.Organisms.IconButtonCardView(
+                    model: .init(
+                        icon: Example.Images.help.image,
+                        title: Example.Text.longerIpsum,
+                        handler: {
+
+                        }
+                    )
+                )
+            }
+        )
+    }
+
+
+}
