@@ -17,35 +17,64 @@
 import SwiftUI
 
 public struct DisclosureView: ViewModifier {
-    private let handler: VoidHandler?
-    private let inset: CGFloat
-    public init(
-        inset: CGFloat,
-        handler: VoidHandler? = nil
-    ) {
-        self.inset = inset
-        self.handler = handler
+
+    public struct Model {
+        let inset: CGFloat
+        let action: VoidHandler
+        let accessibilityLabel: String
+        let accessibilityHint: String
+
+        public init(inset: CGFloat = .spacer16,
+                    accessibilityLabel: String = "",
+                    accessibilityHint: String = "",
+                    _ action: @escaping VoidHandler) {
+            self.inset = inset
+            self.action = action
+            self.accessibilityLabel = accessibilityLabel
+            self.accessibilityHint = accessibilityHint
+        }
+    }
+
+    private let model: Model?
+
+    public init(model: Model?) {
+        self.model = model
     }
     
     @State private var tapped: Bool = false
 
-    public func body(content: Content) -> some View {
-        if handler != nil {
-            HStack(spacing: 0) {
-                content
-                Image("chevron_right", bundle: .module)
-                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: inset))
+    private func performAction() {
+        withAnimation {
+            tapped = true
+            delayedCall(0.3) {
+                model?.action()
+                tapped = false
             }
-            .contentShape(Rectangle())
-            .onTapGesture {
-                withAnimation {
-                    tapped = true
-                    delayedCall(0.3) {
-                        handler?()
-                        tapped = false
-                    }
+        }
+    }
+
+    public func body(content: Content) -> some View {
+        if let model = model {
+            ZStack {
+                HStack(spacing: 0) {
+                    content.accessibility(sortPriority: 2)
+                    Image("chevron_right", bundle: .module)
+                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: model.inset))
+                        .accessibility(hidden: true)
                 }
-            }.background(tapped ? Color.Semantic.secondaryButtonHighlightedBackground : Color.clear)
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    performAction()
+                }
+                .background(tapped ? Color.Semantic.secondaryButtonHighlightedBackground : Color.clear)
+                Button("") {
+                    performAction()
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .accessibility(sortPriority: 1)
+                .accessibility(label: Text(model.accessibilityLabel))
+                .accessibility(hint: Text(model.accessibilityHint))
+            }
         } else {
             content
         }
@@ -53,7 +82,7 @@ public struct DisclosureView: ViewModifier {
 }
 
 public extension View {
-    func disclosureAction(inset: CGFloat = .spacer16, handler: VoidHandler?) -> some View {
-        modifier(DisclosureView(inset: inset, handler: handler))
+    func disclosureAction(inset: CGFloat = .spacer16, model: DisclosureView.Model?) -> some View {
+        modifier(DisclosureView(model: model))
     }
 }

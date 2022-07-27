@@ -30,6 +30,7 @@ extension Components.Molecules {
         }
 
         public var body: some View {
+            let isVertical = FontMetrics.scaler > 1.36
             if weights.count > 0 {
                 HorizontalGeometryReader { width in
                     let widths: [CGFloat] = {
@@ -45,15 +46,51 @@ extension Components.Molecules {
                         }
                     }()
 
+                    if isVertical {
+                        VStack(
+                            alignment: .leading,
+                            spacing: spacing,
+                            content: {
+                                self.labels()
+                            }
+                        )
+                        .frame(
+                            maxWidth: .infinity,
+                            alignment: .leading
+                        )
+                    } else {
+                        HStack(
+                            alignment: .top,
+                            spacing: spacing,
+                            content: {
+                                self.labels(widths)
+                            }
+                        )
+                        .frame(
+                            maxWidth: .infinity,
+                            alignment: .leading
+                        )
+                    }
+                }
+            } else {
+                if isVertical {
+                    VStack(
+                        alignment: .leading,
+                        spacing: 0,
+                        content: {
+                            self.labels()
+                        }
+                    )
+                    .frame(
+                        maxWidth: .infinity,
+                        alignment: .leading
+                    )
+                } else {
                     HStack(
                         alignment: .top,
-                        spacing: spacing,
+                        spacing: 0,
                         content: {
-                            ForEach(0..<views.count) { index in
-                                views[index]
-                                    .fixedSize(horizontal: false, vertical: false)
-                                    .frame(width: widths[index], alignment: index == 0 ? .leading : .trailing)
-                            }
+                            self.labels()
                         }
                     )
                     .frame(
@@ -61,25 +98,25 @@ extension Components.Molecules {
                         alignment: .leading
                     )
                 }
-            } else {
-                HStack(
-                    alignment: .top,
-                    spacing: 0,
-                    content: {
-                        ForEach(0..<views.count) { index in
-                            views[index]
-                                .fixedSize(horizontal: false, vertical: false)
-                            if (index != views.count - 1) {
-                                Spacer()
-                            }
+            }
+        }
+
+        func labels(_ widths: [CGFloat]? = nil) -> AnyView {
+            AnyView(
+                ForEach(0..<views.count, id: \.self) { index in
+                    if let widths = widths {
+                        views[index]
+                            .fixedSize(horizontal: false, vertical: false)
+                            .frame(width: widths[index], alignment: index == 0 ? .leading : .trailing)
+                    } else {
+                        views[index]
+                            .fixedSize(horizontal: false, vertical: false)
+                        if (index != views.count - 1) {
+                            Spacer()
                         }
                     }
-                )
-                .frame(
-                    maxWidth: .infinity,
-                    alignment: .leading
-                )
-            }
+                }
+            )
         }
     }
 }

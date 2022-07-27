@@ -46,15 +46,14 @@ extension Components.Organisms.HeadlineCardView: Examplable {
                         }.styled(.primary())
                     }
                 )
-
                 Components.Organisms.HeadlineCardView(
                     title: "Your PAYE income tax estimate",
-                    currencyAmount: 12345, disclosureAction: {
+                    currencyAmount: 12345,
+                    disclosureModel: .init({
                         print("Disclosure Tapped")
-                    })
-                {
-                    Text("This is the income tax we think you will have paid by the end of the year", style: .body)
-                }
+                    })) {
+                        Text("This is the income tax we think you will have paid by the end of the year", style: .body)
+                    }
                 Components.Organisms.HeadlineCardView(
                     title: Example.Text.longerIpsum,
                     headline: Example.Text.longIpsum,
@@ -165,9 +164,9 @@ extension Components.Organisms.SummaryRowView: Examplable {
                     },
                     icon: Example.Images.warning.image,
                     iconTint: TextStyle.link.textColor,
-                    disclosureAction: {
+                    disclosureModel: .init({
                         print("Summary Row Tapped")
-                    }
+                    })
                 )
             ).cardView(insets: .none, backgroundColor: .clear)
         )
@@ -206,9 +205,13 @@ extension Components.Organisms.SummaryRowView: Examplable {
                                     )
                                 }
                             },
-                            disclosureAction: {
-                                print("Sainsbury's Tapped")
-                            }
+                            disclosureModel: .init(
+                                accessibilityLabel: "Read about your income from Sainsbury's PLC",
+                                accessibilityHint: "opens in a browser",
+                                {
+                                    print("Sainsbury's Tapped")
+                                }
+                            )
                         )
                     )
                     Components.Atoms.Divider()
@@ -238,9 +241,9 @@ extension Components.Organisms.SummaryRowView: Examplable {
                                     )
                                 }
                             },
-                            disclosureAction: {
+                            disclosureModel: .init({
                                 print("Eastwood's Tapped")
-                            }
+                            })
                         )
                     )
                 }.cardView(insets: .none)
@@ -254,9 +257,9 @@ extension Components.Organisms.SummaryRowView: Examplable {
                         },
                         icon: Example.Images.warning.image,
                         iconTint: TextStyle.link.textColor,
-                        disclosureAction: {
+                        disclosureModel: .init({
                             print("Fingerprint ID tapped")
-                        }
+                        })
                     )
                 ).cardView(insets: .none)
                 Components.Organisms.SummaryRowView(
@@ -269,7 +272,7 @@ extension Components.Organisms.SummaryRowView: Examplable {
                             Text(
                                 "Paid into your UK bank account from 28 February 2020",
                                 style: .body
-                            )
+                            ).fixedSize(horizontal: false, vertical: true)
                         }
                     )
                 ).cardView(insets: .none)
@@ -283,9 +286,9 @@ extension Components.Organisms.SummaryRowView: Examplable {
                                     style: .info
                                 )
                             },
-                            disclosureAction: {
+                            disclosureModel: .init({
                                 print("Row 1 Tapped")
-                            }
+                            })
                         )
                     )
                     Components.Atoms.Divider()
@@ -318,9 +321,9 @@ extension Components.Organisms.SummaryRowView: Examplable {
                                     )
                                 }
                             },
-                            disclosureAction: {
+                            disclosureModel: .init({
                                 print("Row 3 Tapped")
-                            }
+                            })
                         )
                     )
                 }.cardView(insets: .none)

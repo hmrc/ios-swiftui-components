@@ -39,13 +39,14 @@ extension Components.Organisms {
                     content: {
                         if !model.title.isEmpty {
                             Text(model.title, style: .bold)
+                                .fixedSize(horizontal: false, vertical: true)
                         }
                         model.rowViews
                     }
                 )
             }.cardView(
                 backgroundColor: .clear,
-                disclosureAction: model.disclosureAction
+                disclosureModel: model.disclosureModel
             )
         }
     }
@@ -58,17 +59,15 @@ extension Components.Organisms.SummaryRowView {
         public let icon: Image?
         public let iconTint: Color?
         public let insets: EdgeInsets
-        public let disclosureAction: VoidHandler?
+        public let disclosureModel: DisclosureView.Model?
         public let accessibilityIdentifier: String?
-        public let accessibilityLabel: String?
-        public let accessibilityHint: String?
 
         public init(title: String,
                     @ViewBuilder rowViews: () -> Content,
                     icon: Image? = nil,
                     iconTint: Color? = nil,
                     insets: EdgeInsets = .init(padding: .spacer16),
-                    disclosureAction: VoidHandler? = nil,
+                    disclosureModel: DisclosureView.Model? = nil,
                     accessibilityIdentifier: String? = nil,
                     accessibilityLabel: String? = nil,
                     accessibilityHint: String? = nil) {
@@ -77,10 +76,8 @@ extension Components.Organisms.SummaryRowView {
             self.icon = icon
             self.iconTint = iconTint
             self.insets = insets
-            self.disclosureAction = disclosureAction
+            self.disclosureModel = disclosureModel
             self.accessibilityIdentifier = accessibilityIdentifier
-            self.accessibilityLabel = accessibilityLabel
-            self.accessibilityHint = accessibilityHint
         }
     }
 }
