@@ -30,7 +30,6 @@ extension Components.Molecules {
         }
 
         public var body: some View {
-            let isVertical = FontMetrics.scaler > 1.36
             if weights.count > 0 {
                 HorizontalGeometryReader { width in
                     let widths: [CGFloat] = {
@@ -46,7 +45,7 @@ extension Components.Molecules {
                         }
                     }()
 
-                    if isVertical {
+                    if MultiColumnRowView.isVertical {
                         VStack(
                             alignment: .leading,
                             spacing: spacing,
@@ -73,7 +72,7 @@ extension Components.Molecules {
                     }
                 }
             } else {
-                if isVertical {
+                if MultiColumnRowView.isVertical {
                     VStack(
                         alignment: .leading,
                         spacing: 0,
@@ -107,7 +106,7 @@ extension Components.Molecules {
                     if let widths = widths {
                         views[index]
                             .fixedSize(horizontal: false, vertical: false)
-                            .frame(width: widths[index], alignment: index == 0 ? .leading : .trailing)
+                            .frame(width: widths[index], alignment: index == 0 || MultiColumnRowView.isVertical ? .leading : .trailing)
                     } else {
                         views[index]
                             .fixedSize(horizontal: false, vertical: false)
@@ -122,6 +121,7 @@ extension Components.Molecules {
 }
 
 extension Components.Molecules.MultiColumnRowView {
+    fileprivate static var isVertical: Bool { FontMetrics.scaler > 1.36 }
     public struct Model {
         let label: String
         let style: TextStyle
@@ -149,7 +149,7 @@ extension Components.Molecules.MultiColumnRowView {
         let views: [AnyView] = models.enumerated().map { index, model in
             return Text(model.label)
                 .style(model.style)
-                .multilineTextAlignment(model.textAlignment)
+                .multilineTextAlignment(Components.Molecules.MultiColumnRowView.isVertical ? .leading : model.textAlignment)
                 .typeErased
         }
         let weights = models.compactMap { $0.weight }
