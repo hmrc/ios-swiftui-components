@@ -85,7 +85,7 @@ extension Components.Molecules.IconButtonView {
         
         public init(icon: Image,
                     title: String,
-                    iconTintColor: Color? = nil,
+                    iconTintColor: Color = TextStyle.link.textColor,
                     accessibilityHint: String? = nil,
                     accessibilityIdentifier: String? = nil,
                     insets: EdgeInsets = .init(padding: .spacer16),

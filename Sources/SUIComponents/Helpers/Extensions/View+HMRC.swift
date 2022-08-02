@@ -20,9 +20,9 @@ extension View {
     public func cardView(
         insets: EdgeInsets = EdgeInsets(padding: .spacer16),
         backgroundColor: Color = Color.Semantic.cardBackground,
-        disclosureAction: VoidHandler? = nil
+        disclosureModel: DisclosureView.Model? = nil
     ) -> some View {
-        self.modifier(CardView(insets: insets, backgroundColor: backgroundColor, disclosureAction: disclosureAction))
+        self.modifier(CardView(insets: insets, backgroundColor: backgroundColor, disclosureModel: disclosureModel))
     }
 
     /// Passes-through the view with customizable side effects

@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 HM Revenue & Customs
+ * Copyright 2022 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,12 +16,17 @@
 
 import SwiftUI
 
-public extension CGFloat {
-    static let spacer4: CGFloat = 4.0
-    static let spacer8: CGFloat = 8.0
-    static let spacer12: CGFloat = 12.0
-    static let spacer16: CGFloat = 16.0
-    static let spacer24: CGFloat = 24.0
-    static let spacer36: CGFloat = 36.0
-    static let spacer48: CGFloat = 48.0
+extension Components.Organisms {
+    public struct IconButtonCardView: View {
+        let model: Components.Molecules.IconButtonView.Model
+
+        public init(model: Components.Molecules.IconButtonView.Model) {
+            self.model = model
+        }
+
+        public var body: some View {
+            Components.Molecules.IconButtonView(model: model)
+                .cardView(insets: .none)
+        }
+    }
 }

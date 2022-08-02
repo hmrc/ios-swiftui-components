@@ -89,6 +89,7 @@ extension Components.Molecules.IconButtonView: Examplable {
                         iconTintColor: TextStyle.link.textColor,
                         accessibilityHint: "AccessibilityHint",
                         accessibilityIdentifier: "AccessibilityIdentifier",
+                        normalBackgroundColour: .clear,
                         handler: {
                             print("Icon Button View Tapped")
                         }

@@ -45,15 +45,51 @@ extension Components.Molecules {
                         }
                     }()
 
+                    if MultiColumnRowView.isVertical {
+                        VStack(
+                            alignment: .leading,
+                            spacing: spacing,
+                            content: {
+                                self.labels()
+                            }
+                        )
+                        .frame(
+                            maxWidth: .infinity,
+                            alignment: .leading
+                        )
+                    } else {
+                        HStack(
+                            alignment: .top,
+                            spacing: spacing,
+                            content: {
+                                self.labels(widths)
+                            }
+                        )
+                        .frame(
+                            maxWidth: .infinity,
+                            alignment: .leading
+                        )
+                    }
+                }
+            } else {
+                if MultiColumnRowView.isVertical {
+                    VStack(
+                        alignment: .leading,
+                        spacing: 0,
+                        content: {
+                            self.labels()
+                        }
+                    )
+                    .frame(
+                        maxWidth: .infinity,
+                        alignment: .leading
+                    )
+                } else {
                     HStack(
                         alignment: .top,
-                        spacing: spacing,
+                        spacing: 0,
                         content: {
-                            ForEach(0..<views.count) { index in
-                                views[index]
-                                    .fixedSize(horizontal: false, vertical: false)
-                                    .frame(width: widths[index], alignment: index == 0 ? .leading : .trailing)
-                            }
+                            self.labels()
                         }
                     )
                     .frame(
@@ -61,30 +97,31 @@ extension Components.Molecules {
                         alignment: .leading
                     )
                 }
-            } else {
-                HStack(
-                    alignment: .top,
-                    spacing: 0,
-                    content: {
-                        ForEach(0..<views.count) { index in
-                            views[index]
-                                .fixedSize(horizontal: false, vertical: false)
-                            if (index != views.count - 1) {
-                                Spacer()
-                            }
+            }
+        }
+
+        func labels(_ widths: [CGFloat]? = nil) -> AnyView {
+            AnyView(
+                ForEach(0..<views.count, id: \.self) { index in
+                    if let widths = widths {
+                        views[index]
+                            .fixedSize(horizontal: false, vertical: false)
+                            .frame(width: widths[index], alignment: index == 0 || MultiColumnRowView.isVertical ? .leading : .trailing)
+                    } else {
+                        views[index]
+                            .fixedSize(horizontal: false, vertical: false)
+                        if (index != views.count - 1) {
+                            Spacer()
                         }
                     }
-                )
-                .frame(
-                    maxWidth: .infinity,
-                    alignment: .leading
-                )
-            }
+                }
+            )
         }
     }
 }
 
 extension Components.Molecules.MultiColumnRowView {
+    fileprivate static var isVertical: Bool { FontMetrics.scaler > 1.36 }
     public struct Model {
         let label: String
         let style: TextStyle
@@ -112,7 +149,7 @@ extension Components.Molecules.MultiColumnRowView {
         let views: [AnyView] = models.enumerated().map { index, model in
             return Text(model.label)
                 .style(model.style)
-                .multilineTextAlignment(model.textAlignment)
+                .multilineTextAlignment(Components.Molecules.MultiColumnRowView.isVertical ? .leading : model.textAlignment)
                 .typeErased
         }
         let weights = models.compactMap { $0.weight }

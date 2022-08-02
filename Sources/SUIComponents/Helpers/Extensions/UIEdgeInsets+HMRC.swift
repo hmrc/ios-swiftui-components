@@ -20,8 +20,8 @@ extension EdgeInsets {
     public init(padding: CGFloat) {
         self.init(top: padding, leading: padding, bottom: padding, trailing: padding)
     }
-
-    static let standardCard = EdgeInsets(top: .spacer16, leading: .spacer16, bottom: .spacer16, trailing: .spacer16)
-    static let standardCardHorizontal = EdgeInsets(top: 0, leading: .spacer16, bottom: 0, trailing: .spacer16)
-    static let standardCardVertical = EdgeInsets(top: .spacer16, leading: 0, bottom: .spacer16, trailing: 0)
+    public static let none = EdgeInsets(padding: 0)
+    public static let standardCard = EdgeInsets(top: .spacer16, leading: .spacer16, bottom: .spacer16, trailing: .spacer16)
+    public static let standardCardHorizontal = EdgeInsets(top: 0, leading: .spacer16, bottom: 0, trailing: .spacer16)
+    public static let standardCardVertical = EdgeInsets(top: .spacer16, leading: 0, bottom: .spacer16, trailing: 0)
 }

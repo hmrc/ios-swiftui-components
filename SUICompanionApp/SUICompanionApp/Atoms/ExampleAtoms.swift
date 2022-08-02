@@ -298,3 +298,25 @@ extension Components.Atoms.ImageAligningHStack: Examplable {
         })
     }
 }
+
+extension Components.Atoms.Divider: Examplable {
+    static var title: String { "Divider" }
+
+    static var exampleBackgroundColor: Color { Color.Semantic.pageBackground }
+
+    static func withPlaceholders() -> AnyView {
+        AnyView(
+            Components.Atoms.Divider()
+        )
+    }
+
+    static func examples() -> AnyView {
+        AnyView(VStack(spacing: .spacer16) {
+            Text(Example.Text.longIpsum)
+            Components.Atoms.Divider()
+            Text(Example.Text.longIpsum)
+            Components.Atoms.Divider()
+            Text(Example.Text.longIpsum)
+        }.cardView())
+    }
+}

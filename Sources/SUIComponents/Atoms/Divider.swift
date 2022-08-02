@@ -16,12 +16,13 @@
 
 import SwiftUI
 
-public extension CGFloat {
-    static let spacer4: CGFloat = 4.0
-    static let spacer8: CGFloat = 8.0
-    static let spacer12: CGFloat = 12.0
-    static let spacer16: CGFloat = 16.0
-    static let spacer24: CGFloat = 24.0
-    static let spacer36: CGFloat = 36.0
-    static let spacer48: CGFloat = 48.0
+public extension Components.Atoms {
+    struct Divider: View {
+        public init() { }
+        public var body: some View {
+            Rectangle()
+                .fill(Color.Semantic.divider)
+                .frame(height: 1)
+        }
+    }
 }
