@@ -22,7 +22,6 @@ public enum HMRCButtonStyle {
 }
 
 extension Button {
-    
     @ViewBuilder
     public func styled(_ style: HMRCButtonStyle) -> some View {
         switch style {
