@@ -570,6 +570,92 @@ extension Components.Organisms.IconButtonCardView: Examplable {
             }
         )
     }
+}
 
+extension Components.Organisms.InformationMessageCard: Examplable {
+    static var title: String { "InformationMessageCard" }
 
+    static var exampleBackgroundColor: Color { Color.Semantic.pageBackground }
+
+    static func withPlaceholders() -> AnyView {
+        AnyView(
+            Components.Organisms.InformationMessageCard(
+                id: "",
+                theme: .info,
+                icon: Image("warning"),
+                headline: .init(
+                    title: "Placeholder",
+                    ctas: [
+                        .init(
+                            message: "CTA Action Message",
+                            link: "",
+                            linkType: .normal,
+                            displayType: .action
+                        ),
+                        .init(
+                            message: "CTA Outline Message",
+                            link: "",
+                            linkType: .normal,
+                            displayType: .outline
+                        )
+                    ]
+                ))
+        )
+    }
+
+    static func examples() -> AnyView {
+        AnyView (
+            VStack{
+                Components.Organisms.InformationMessageCard(
+                    id: "",
+                    theme: .info,
+                    icon: Image("warning"),
+                    headline: .init(
+                        title: "Info message",
+                        body: "This is where can have a short bit of copy about this thing.",
+                        ctas: [
+                            .init(
+                                message: "Do something",
+                                link: "",
+                                linkType: .normal,
+                                displayType: .action
+                            ),
+                            .init(
+                                message: "Do something else",
+                                link: "",
+                                linkType: .normal,
+                                displayType: .outline
+                            )
+                        ]
+                    )
+                )
+
+                Components.Organisms.InformationMessageCard(
+                    id: "",
+                    theme: .warning,
+                    icon: Image("warning"),
+                    headline: .init(
+                        title: "Warning message",
+                        ctas: [
+                            .init(
+                                message: "Do something with a long long message",
+                                link: "",
+                                linkType: .normal,
+                                displayType: .action
+                            )
+                        ]
+                    )
+                )
+
+                Components.Organisms.InformationMessageCard(
+                    id: "",
+                    theme: .notice,
+                    icon: Image("warning"),
+                    headline: .init(
+                        title: "Notice Message"
+                    )
+                )
+            }
+        )
+    }
 }
