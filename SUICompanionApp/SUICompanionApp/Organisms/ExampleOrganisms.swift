@@ -659,3 +659,312 @@ extension Components.Organisms.InformationMessageCard: Examplable {
         )
     }
 }
+
+extension Components.Organisms.DonutChartView: Examplable {
+    static var title: String = "DonutChartView"
+    
+    static var exampleBackgroundColor: Color { Color.Semantic.pageBackground }
+    
+    static func withPlaceholders() -> AnyView {
+        AnyView(
+            Components.Organisms.DonutChartView(
+                donutData: .init(
+                    total: 4636,
+                    sliceData: [
+                        .init(
+                            key: "Total after tax",
+                            amount: 3781,
+                            styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                                colour: Color.Named.teal.colour,
+                                dashStyle: nil,
+                                viewHeight: 200,
+                                sliceWidth: 30.0
+                            )
+                        ),
+                        .init(
+                            key: "Income Tax paid",
+                            amount: 855,
+                            styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                                colour: Color.Named.blue.colour,
+                                dashStyle: nil,
+                                viewHeight: 200,
+                                sliceWidth: 30.0
+                            )
+                        ),
+                    ]
+                )
+            )
+        )
+    }
+    
+    static func examples() -> AnyView {
+        AnyView(
+            VStack {
+                VStack {
+                    Components.Organisms.DonutChartView(
+                        donutData: .init(
+                            total: 1000,
+                            sliceData: [
+                                .init(
+                                    key: "National Insurance",
+                                    amount: 150,
+                                    styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                                        colour: Color.Named.pink.colour,
+                                        dashStyle: [3, 3],
+                                        viewHeight: 200,
+                                        sliceWidth: 30.0
+                                    )
+                                ),
+                                .init(
+                                    key: "Total after tax",
+                                    amount: 700,
+                                    styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                                        colour: Color.Named.teal.colour,
+                                        dashStyle: nil,
+                                        viewHeight: 200,
+                                        sliceWidth: 30.0
+                                    )
+                                ),
+                                .init(
+                                    key: "Income Tax paid",
+                                    amount: 150,
+                                    styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                                        colour: Color.Named.blue.colour,
+                                        dashStyle: nil,
+                                        viewHeight: 200,
+                                        sliceWidth: 30.0
+                                    )
+                                ),
+                            ]
+                        )
+                    )
+                    Text("3 Slice example with striped slice")
+                }
+
+                VStack {
+                    Components.Organisms.DonutChartView(
+                        donutData: .init(
+                            total: 10000,
+                            sliceData: [
+                                .init(
+                                    key: "Housing",
+                                    amount: 3000,
+                                    styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                                        colour: Color.Named.green1.colour,
+                                        dashStyle: nil,
+                                        viewHeight: 200,
+                                        sliceWidth: 30.0
+                                    )
+                                ),
+                                .init(
+                                    key: "Company car",
+                                    amount: 1000,
+                                    styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                                        colour: Color.Named.yellow.colour,
+                                        dashStyle: nil,
+                                        viewHeight: 200,
+                                        sliceWidth: 30.0
+                                    )
+                                ),
+                                .init(
+                                    key: "Health",
+                                    amount: 1000,
+                                    styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                                        colour: Color.Named.red.colour,
+                                        dashStyle: nil,
+                                        viewHeight: 200,
+                                        sliceWidth: 30.0
+                                    )
+                                ),
+                                .init(
+                                    key: "Life Insurace",
+                                    amount: 1000,
+                                    styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                                        colour: Color.Named.green2.colour,
+                                        dashStyle: nil,
+                                        viewHeight: 200,
+                                        sliceWidth: 30.0
+                                    )
+                                ),
+                                .init(
+                                    key: "Pension",
+                                    amount: 3000,
+                                    styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                                        colour: Color.Named.pink.colour,
+                                        dashStyle: nil,
+                                        viewHeight: 200,
+                                        sliceWidth: 30.0
+                                    )
+                                ),
+                                .init(
+                                    key: "PTO",
+                                    amount: 1000,
+                                    styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                                        colour: Color.Named.blue.colour,
+                                        dashStyle: nil,
+                                        viewHeight: 200,
+                                        sliceWidth: 30.0
+                                    )
+                                ),
+                            ]
+                        )
+                    )
+                    Text("6 Slice example")
+                }
+                
+                VStack {
+                    Components.Organisms.DonutChartView(
+                        donutData: .init(
+                            total: 10000,
+                            sliceData: [
+                                .init(
+                                    key: "Housing",
+                                    amount: 3000,
+                                    styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                                        colour: Color.Named.green1.colour,
+                                        dashStyle: nil,
+                                        viewHeight: 200,
+                                        sliceWidth: 30.0
+                                    )
+                                ),
+                                .init(
+                                    key: "Company car",
+                                    amount: 1000,
+                                    styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                                        colour: Color.Named.yellow.colour,
+                                        dashStyle: [3, 3],
+                                        viewHeight: 200,
+                                        sliceWidth: 30.0
+                                    )
+                                ),
+                                .init(
+                                    key: "Health",
+                                    amount: 1000,
+                                    styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                                        colour: Color.Named.red.colour,
+                                        dashStyle: [3, 3],
+                                        viewHeight: 200,
+                                        sliceWidth: 30.0
+                                    )
+                                ),
+                                .init(
+                                    key: "Life Insurace",
+                                    amount: 1000,
+                                    styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                                        colour: Color.Named.green2.colour,
+                                        dashStyle: nil,
+                                        viewHeight: 200,
+                                        sliceWidth: 30.0
+                                    )
+                                ),
+                                .init(
+                                    key: "Pension",
+                                    amount: 3000,
+                                    styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                                        colour: Color.Named.pink.colour,
+                                        dashStyle: [3, 3],
+                                        viewHeight: 200,
+                                        sliceWidth: 30.0
+                                    )
+                                ),
+                                .init(
+                                    key: "PTO",
+                                    amount: 1000,
+                                    styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                                        colour: Color.Named.blue.colour,
+                                        dashStyle: nil,
+                                        viewHeight: 200,
+                                        sliceWidth: 30.0
+                                    )
+                                ),
+                            ]
+                        )
+                    )
+                    Text("6 Slice example with multiple striped slices")
+                }
+                
+                VStack {
+                    Components.Organisms.DonutChartView(
+                        donutData: .init(
+                            total: 1000,
+                            sliceData: [
+                                .init(
+                                    key: "National Insurance",
+                                    amount: 150,
+                                    styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                                        colour: Color.Named.pink.colour,
+                                        dashStyle: [3, 3],
+                                        viewHeight: 200,
+                                        sliceWidth: 10.0
+                                    )
+                                ),
+                                .init(
+                                    key: "Total after tax",
+                                    amount: 700,
+                                    styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                                        colour: Color.Named.teal.colour,
+                                        dashStyle: nil,
+                                        viewHeight: 200,
+                                        sliceWidth: 20.0
+                                    )
+                                ),
+                                .init(
+                                    key: "Income Tax paid",
+                                    amount: 150,
+                                    styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                                        colour: Color.Named.blue.colour,
+                                        dashStyle: nil,
+                                        viewHeight: 200,
+                                        sliceWidth: 30.0
+                                    )
+                                ),
+                            ]
+                        )
+                    )
+                    Text("Variable slice width")
+                }
+                
+                VStack {
+                    Components.Organisms.DonutChartView(
+                        donutData: .init(
+                            total: 1000,
+                            sliceData: [
+                                .init(
+                                    key: "National Insurance",
+                                    amount: 150,
+                                    styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                                        colour: Color.Named.pink.colour,
+                                        dashStyle: [3, 3],
+                                        viewHeight: 150,
+                                        sliceWidth: 30.0
+                                    )
+                                ),
+                                .init(
+                                    key: "Total after tax",
+                                    amount: 700,
+                                    styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                                        colour: Color.Named.teal.colour,
+                                        dashStyle: nil,
+                                        viewHeight: 200,
+                                        sliceWidth: 30.0
+                                    )
+                                ),
+                                .init(
+                                    key: "Income Tax paid",
+                                    amount: 150,
+                                    styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                                        colour: Color.Named.blue.colour,
+                                        dashStyle: nil,
+                                        viewHeight: 500,
+                                        sliceWidth: 30.0
+                                    )
+                                ),
+                            ]
+                        )
+                    )
+                    Text("Variable height slices")
+                }
+            }
+        )
+    }
+}
