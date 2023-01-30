@@ -31,98 +31,44 @@ extension Components.Organisms {
         @State private var stateEndAngle: Double = 0.0
                 
         var body: some View {
-            //TODO: All this needs redoing
-            if index == 0 || isLast {
-                if dash == nil {
+            let firstOrLast: Bool = index == 0 || isLast
+            let dashRequired: Bool = dash != nil
+            
+            ZStack {
+                if dashRequired {
                     Circle()
-                        .trim(from: 0.0, to: stateEndAngle)
+                        .trim(from: firstOrLast ? 0.0 : startAngle, to: stateEndAngle)
                         .rotation(Angle(degrees: -90.0))
-                        .stroke(colour, style: StrokeStyle(lineWidth: sliceWidth))
+                        .stroke(Color.Named.white.colour, style: StrokeStyle(lineWidth: sliceWidth))
                         .frame(height: viewHeight)
                         .padding()
-                        .animation(.linear(duration: globalStyleProperties.animationDuration))
+                        .animation(.linear(duration: globalStyleProperties.animationDuration).delay(Double(firstOrLast ? 0 : index)))
+                        .if(!firstOrLast, transform: { circle in
+                            circle.rotation3DEffect(.degrees(180.0), axis: (x: 0, y: 1, z: 0))
+                        })
                         .onAppear {
                             withAnimation {
-                                stateEndAngle = 1.0
+                                stateEndAngle = firstOrLast ? 1.0 : endAngle
                             }
                         }
-                } else {
-                    ZStack {
-                        Circle()
-                            .trim(from: 0.0, to: stateEndAngle)
-                            .rotation(Angle(degrees: -90.0))
-                            .stroke(Color.Named.white.colour, style: StrokeStyle(lineWidth: sliceWidth))
-                            .frame(height: viewHeight)
-                            .padding()
-                            .animation(.linear(duration: globalStyleProperties.animationDuration))
-                            .onAppear {
-                                withAnimation {
-                                    stateEndAngle = 1.0
-                                }
-                            }
-                        Circle()
-                            .trim(from: 0.0, to: stateEndAngle)
-                            .rotation(Angle(degrees: -90.0))
-                            .stroke(colour, style: StrokeStyle(lineWidth: sliceWidth, dash: dash ?? []))
-                            .frame(height: viewHeight)
-                            .padding()
-                            .animation(.linear(duration: globalStyleProperties.animationDuration))
-                            .onAppear {
-                                withAnimation {
-                                    stateEndAngle = 1.0
-                                }
-                            }
-                    }
                 }
-            } else {
-                if (dash == nil) {
-                    Circle()
-                        .trim(from: startAngle, to: stateEndAngle)
-                        .rotation(Angle(degrees: -90.0))
-                        .stroke(colour, style: StrokeStyle(lineWidth: sliceWidth))
-                        .frame(height: viewHeight)
-                        .padding()
-                        .animation(.linear(duration: globalStyleProperties.animationDuration).delay(Double(index)))
-                        //Flip the circle so segments that aren't first animate anti-clockwise
-                        .rotation3DEffect(.degrees(180.0), axis: (x: 0, y: 1, z: 0))
-                        .onAppear {
-                            withAnimation {
-                                stateEndAngle = endAngle
-                            }
+                
+                
+                Circle()
+                    .trim(from: firstOrLast ? 0.0 : startAngle, to: stateEndAngle)
+                    .rotation(Angle(degrees: -90.0))
+                    .stroke(colour, style: StrokeStyle(lineWidth: sliceWidth, dash: dash ?? []))
+                    .frame(height: viewHeight)
+                    .padding()
+                    .animation(.linear(duration: globalStyleProperties.animationDuration).delay(Double(firstOrLast ? 0 : index)))
+                    .if(!firstOrLast, transform: { circle in
+                        circle.rotation3DEffect(.degrees(180.0), axis: (x: 0, y: 1, z: 0))
+                    })
+                    .onAppear {
+                        withAnimation {
+                            stateEndAngle = firstOrLast ? 1.0 : endAngle
                         }
-                } else {
-                    ZStack {
-                        Circle()
-                            .trim(from: startAngle, to: stateEndAngle)
-                            .rotation(Angle(degrees: -90.0))
-                            .stroke(Color.Named.white.colour, style: StrokeStyle(lineWidth: sliceWidth))
-                            .frame(height: viewHeight)
-                            .padding()
-                            .animation(.linear(duration: globalStyleProperties.animationDuration).delay(Double(index)))
-                            //Flip the circle so segments that aren't first animate anti-clockwise
-                            .rotation3DEffect(.degrees(180.0), axis: (x: 0, y: 1, z: 0))
-                            .onAppear {
-                                withAnimation {
-                                    stateEndAngle = endAngle
-                                }
-                            }
-                        
-                        Circle()
-                            .trim(from: startAngle, to: stateEndAngle)
-                            .rotation(Angle(degrees: -90.0))
-                            .stroke(colour, style: StrokeStyle(lineWidth: sliceWidth, dash: dash ?? []))
-                            .frame(height: viewHeight)
-                            .padding()
-                            .animation(.linear(duration: globalStyleProperties.animationDuration).delay(Double(index)))
-                            //Flip the circle so segments that aren't first animate anti-clockwise
-                            .rotation3DEffect(.degrees(180.0), axis: (x: 0, y: 1, z: 0))
-                            .onAppear {
-                                withAnimation {
-                                    stateEndAngle = endAngle
-                                }
-                            }
                     }
-                }
             }
         }
     }
@@ -136,31 +82,42 @@ extension Components.Organisms {
             self.globalStyleProperties = globalStyleProperties
         }
         
-        public var body: some View {
+        private func createSliceDetails(_ sliceData: [SliceData]) -> [SliceDetails] {
             let total: Double = sliceData.map({$0.amount}).reduce(0, +)
             
             var sum = 0.0
             var slices: [SliceDetails] = sliceData.enumerated().map { (idx, slice) in
                 return SliceDetails.init(
                     amount: slice.amount,
-                    
                     endAngle: idx + 1 == sliceData.count ? (slice.amount * 360.0) / total : (sum += slice.amount * 360.0 / total, sum).1,
                     styleProperties: slice.styleProperties
                 )
             }
             
-            let first: SliceDetails = slices.removeFirst()
-            let last: SliceDetails = slices.removeLast()
+            var sliceDetails: [SliceDetails] = []
             
-            var slicesDetails: [SliceDetails] = slices.sorted {
-                $0.endAngle > $1.endAngle
+            if slices.count > 1 {
+                let first: SliceDetails = slices.removeFirst()
+                let last: SliceDetails = slices.removeLast()
+                
+                sliceDetails = slices.sorted {
+                    $0.endAngle > $1.endAngle
+                }
+                
+                var _: () = sliceDetails.insert(contentsOf: [first], at: 0)
+                var _: () = sliceDetails.append(contentsOf: [last])
+            } else {
+                sliceDetails = slices
             }
             
-            var _: () = slicesDetails.insert(contentsOf: [first], at: 0)
-            var _: () = slicesDetails.append(contentsOf: [last])
-            
+            return sliceDetails
+        }
+        
+        public var body: some View {
+            let sliceDetails: [SliceDetails] = createSliceDetails(sliceData)
+        
             ZStack {
-                ForEach(Array(slicesDetails.enumerated()), id: \.offset) { (idx, slice) in
+                ForEach(Array(sliceDetails.enumerated()), id: \.offset) { (idx, slice) in
                     Components.Organisms.DonutSliceView(
                         index: idx,
                         startAngle: 0.0,
@@ -169,7 +126,7 @@ extension Components.Organisms {
                         viewHeight: globalStyleProperties.viewHeight,
                         sliceWidth: globalStyleProperties.sliceWidth,
                         dash: slice.styleProperties.dashStyle,
-                        isLast: idx == slicesDetails.count,
+                        isLast: idx == sliceDetails.count,
                         globalStyleProperties: globalStyleProperties
                     )
                 }
@@ -251,18 +208,57 @@ struct DonutChartView_Previews: PreviewProvider {
                         colour: Color.Named.teal.colour
                     )
                 ),
+            ],
+            globalStyleProperties: Components.Organisms.DonutChartView.GlobalStylingProperties(
+                animationDuration: 0.5,
+                viewHeight: viewHeight,
+                sliceWidth: sliceWidth
+            )
+        )
+        
+        Components.Organisms.DonutChartView(
+            sliceData: [
+                .init(
+                    amount: 500,
+                    styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                        colour: Color.Named.teal.colour
+                    )
+                ),
                 .init(
                     amount: 500,
                     styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
                         colour: Color.Named.blue.colour,
-                        dashed: true
+                        dashed: false
+                    )
+                ),
+            ],
+            globalStyleProperties: Components.Organisms.DonutChartView.GlobalStylingProperties(
+                animationDuration: 0.5,
+                viewHeight: viewHeight,
+                sliceWidth: sliceWidth
+            )
+        )
+        
+        Components.Organisms.DonutChartView(
+            sliceData: [
+                .init(
+                    amount: 500,
+                    styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                        colour: Color.Named.teal.colour
+                    )
+                ),
+                .init(
+                    amount: 500,
+                    styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                        colour: Color.Named.blue.colour,
+                        dashed: false
                     )
                 ),
                 .init(
                     amount: 500,
                     styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
                         colour: Color.Named.pink.colour,
-                        dashed: true
+                        dashed: false
                     )
                 ),
             ],

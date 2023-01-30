@@ -34,4 +34,18 @@ extension View {
     /// Removes all of the Modified Content types from a view, whilst keeping their effects.
     /// https://ericasadun.com/2019/06/23/swiftui-modified-content-type-erasure-and-type-debugging/
     public var typeErased: AnyView { AnyView(self) }
+    
+    /// Applies the given transform if the given condition evaluates to `true`.
+    /// - Parameters:
+    ///   - condition: The condition to evaluate.
+    ///   - transform: The transform to apply to the source `View`.
+    /// - Returns: Either the original `View` or the modified `View` if the condition is `true`.
+    /// https://www.avanderlee.com/swiftui/conditional-view-modifier/
+    @ViewBuilder func `if`<Content: View>(_ condition: @autoclosure () -> Bool, transform: (Self) -> Content) -> some View {
+        if condition() {
+            transform(self)
+        } else {
+            self
+        }
+    }
 }
