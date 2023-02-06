@@ -75,6 +75,11 @@ extension Components.Organisms {
                             }
                         }
                         .padding(.horizontal, .spacer8)
+                    if index < (model.views.count - 1) {
+                        Components.Atoms.Divider()
+                            .accessibility(hidden: true)
+                            .padding(.horizontal, .spacer16)
+                    }
                 }
                 .accessibilityElement(children: .combine)
                 .if(isEditing) { view in
