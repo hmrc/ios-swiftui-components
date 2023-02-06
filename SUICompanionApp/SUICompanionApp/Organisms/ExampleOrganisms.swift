@@ -843,3 +843,70 @@ extension Components.Organisms.DonutChartView: Examplable {
         )
     }
 }
+
+extension Components.Organisms.EditableListView: Examplable {
+    static var title: String { "EditableListView" }
+
+    static var exampleBackgroundColor: Color { Color.Semantic.pageBackground }
+
+    static func withPlaceholders() -> AnyView {
+        AnyView(
+            Components.Organisms.EditableListView(model: .init(
+                title: "Editable List View",
+                rowButtonTitle: "Edit",
+                startEditingButtonTitle: "Start Editing",
+                startEditingButtonImage: Example.Images.edit.image,
+                stopEditingButtonTitle: "Stop Editing",
+                stopEditingButtonImage: Example.Images.tick.image,
+                views: [
+                    Components.Molecules.MultiColumnRowView(labels: ["Row 1:", "Value 1"], style: .body),
+                    Components.Molecules.MultiColumnRowView(labels: ["Row 2:", "Value 2"], style: .body),
+                    Components.Molecules.MultiColumnRowView(labels: ["Row 3:", "Value 3"], style: .body),
+                ],
+                didTapRow: { index in
+                    print("Edit row at index \(index)")
+                }
+            ))
+        )
+    }
+
+    static func examples() -> AnyView {
+        AnyView (
+            VStack{
+                Components.Organisms.EditableListView(model: .init(
+                    title: "Your Company Benefits",
+                    rowButtonTitle: "Edit",
+                    startEditingButtonTitle: "Update or remove benefit",
+                    startEditingButtonImage: Example.Images.edit.image,
+                    stopEditingButtonTitle: "Finish updating benefits",
+                    stopEditingButtonImage: Example.Images.tick.image,
+                    views: [
+                        Components.Molecules.MultiColumnRowView(labels: ["Medical:", "£1000"], style: .body),
+                        Components.Molecules.MultiColumnRowView(labels: ["Car Benefit:", "£600"], style: .body),
+                        Components.Molecules.MultiColumnRowView(labels: ["Insurance:", "£300000"], style: .body),
+                        Components.Molecules.MultiColumnRowView(labels: ["Tax Benefits:", "£55500"], style: .body)
+                    ],
+                    didTapRow: { index in
+                        print("Edit row at index \(index)")
+                    }
+                ))
+                Components.Organisms.EditableListView(model: .init(
+                    title: "Your Company Benefits",
+                    rowButtonTitle: "Edit",
+                    startEditingButtonTitle: "Update or remove benefit",
+                    startEditingButtonImage: Example.Images.edit.image,
+                    stopEditingButtonTitle: "Finish updating benefits",
+                    stopEditingButtonImage: Example.Images.tick.image,
+                    views: [
+                        Components.Molecules.MultiColumnRowView(labels: [Example.Text.longIpsum, Example.Text.longerIpsum], style: .body),
+                        Components.Molecules.MultiColumnRowView(labels: [Example.Text.longerIpsum, Example.Text.longestIpsum], style: .body),
+                        Components.Molecules.MultiColumnRowView(labels: [Example.Text.longestIpsum, Example.Text.longIpsum], style: .body)
+                    ],
+                    didTapRow: { index in
+                        print("Edit row at index \(index)")
+                    }
+                ))
+            }
+        )
+    }
+}

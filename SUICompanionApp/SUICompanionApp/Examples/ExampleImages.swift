@@ -29,6 +29,8 @@ extension Example {
         case molecule
         case organism
         case colours
+        case edit
+        case tick
 
         var image: Image {
             return Image(self.rawValue)
