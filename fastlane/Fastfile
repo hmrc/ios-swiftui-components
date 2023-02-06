@@ -21,6 +21,8 @@ platform :ios do
       readonly: !force_for_new_devices,
       force_for_new_devices: force_for_new_devices
     )
+    # use `generate_apple_certs: false` if you get 
+    # Could not create another Distribution certificate, reached the maximum number of available Distribution certificates.
   end
 
   desc "Build adhoc app for testing"
