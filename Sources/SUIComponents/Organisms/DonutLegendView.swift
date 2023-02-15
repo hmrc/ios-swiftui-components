@@ -31,10 +31,18 @@ extension Components.Organisms {
                 ForEach(donutLegendItems, id: \.value) { legendItem in
                     HStack {
                         if legendItem.dashed {
-                            Rectangle()
-                                .stripes(angle: 180, stripeColour: legendItem.colour)
-                                .aspectRatio(1.0, contentMode: .fit)
-                                .frame(width: 20)
+                            Stripes(
+                                config: StripesConfig(
+                                    background: Color.Named.white.colour,
+                                    foreground: legendItem.colour,
+                                    degrees: 180.0,
+                                    barWidth: 3,
+                                    barSpacing: 2
+                                )
+                            ).frame(
+                                width: 20,
+                                height: 20
+                            )
                         } else {
                             Rectangle()
                                 .fill(legendItem.colour)
