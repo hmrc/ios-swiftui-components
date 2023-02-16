@@ -72,6 +72,7 @@ struct PrimaryButtonStyle: ButtonStyle {
         var body: some View {
             configuration.label
                 .font(Font.Body.font())
+                .multilineTextAlignment(.center)
                 .frame(maxWidth: .infinity)
                 .padding(.spacer12)
                 .background(backgroundColour(for: configuration, isEnabled: isEnabled))
