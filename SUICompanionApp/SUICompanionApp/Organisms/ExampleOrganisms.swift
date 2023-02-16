@@ -986,6 +986,30 @@ extension Components.Organisms.DonutLegendView: Examplable {
                     ],
                     vStackSpacing: 8
                 )
+                
+                Components.Organisms.DonutLegendView(
+                    donutLegendItems: [
+                        Components.Organisms.DonutLegendView.DonutLegendItem(
+                            colour: Color.Named.teal.colour,
+                            title: "Total after Tax",
+                            value: "£1041.00",
+                            dashed: true
+                        ),
+                        Components.Organisms.DonutLegendView.DonutLegendItem(
+                            colour: Color.Named.blue.colour,
+                            title: "Income Tax paid",
+                            value: "£315.00",
+                            dashed: true
+                        ),
+                        Components.Organisms.DonutLegendView.DonutLegendItem(
+                            colour: Color.Named.pink.colour,
+                            title: "National Insurance Paid",
+                            value: "£189.00",
+                            dashed: true
+                        )
+                    ],
+                    vStackSpacing: 8
+                )
             }
         )
     }
