@@ -40,8 +40,8 @@ extension Components.Organisms {
                         .trim(from: startAngle, to: stateEndAngle)
                         .rotation(Angle(degrees: -90.0))
                         .stroke(Color.Named.white.colour, style: StrokeStyle(lineWidth: sliceWidth))
-                        .frame(height: viewHeight)
                         .padding()
+                        .position(x: 100, y: 100)
                         .animation(.linear(duration: globalStyleProperties.animationDuration).delay(Double(firstOrLast ? 0 : index)))
                         .if(!firstOrLast, transform: { circle in
                             circle.rotation3DEffect(.degrees(180.0), axis: (x: 0, y: 1, z: 0))
@@ -58,8 +58,8 @@ extension Components.Organisms {
                     .trim(from: startAngle, to: stateEndAngle)
                     .rotation(Angle(degrees: -90.0))
                     .stroke(colour, style: StrokeStyle(lineWidth: sliceWidth, dash: dash ?? []))
-                    .frame(height: viewHeight)
                     .padding()
+                    .position(x: 100, y: 100)
                     .animation(.linear(duration: globalStyleProperties.animationDuration).delay(Double(firstOrLast ? 0 : index)))
                     .if(!firstOrLast, transform: { circle in
                         circle.rotation3DEffect(.degrees(180.0), axis: (x: 0, y: 1, z: 0))
@@ -70,6 +70,7 @@ extension Components.Organisms {
                         }
                     }
             }
+            .border(Color.red)
         }
     }
     
@@ -128,8 +129,13 @@ extension Components.Organisms {
                         isLast: idx == sliceDetails.count,
                         globalStyleProperties: globalStyleProperties
                     )
+                    .drawingGroup()
                 }
             }
+            .frame(
+                width: globalStyleProperties.viewHeight,
+                height: globalStyleProperties.viewHeight
+            )
         }
         
         struct SliceDetails {
