@@ -41,7 +41,7 @@ extension Components.Organisms {
                         .rotation(Angle(degrees: -90.0))
                         .stroke(Color.Named.white.colour, style: StrokeStyle(lineWidth: sliceWidth))
                         .padding()
-                        .position(x: 100, y: 100)
+                        .position(x: viewHeight / 2, y: viewHeight / 2)
                         .animation(.linear(duration: globalStyleProperties.animationDuration).delay(Double(firstOrLast ? 0 : index)))
                         .if(!firstOrLast, transform: { circle in
                             circle.rotation3DEffect(.degrees(180.0), axis: (x: 0, y: 1, z: 0))
@@ -59,7 +59,7 @@ extension Components.Organisms {
                     .rotation(Angle(degrees: -90.0))
                     .stroke(colour, style: StrokeStyle(lineWidth: sliceWidth, dash: dash ?? []))
                     .padding()
-                    .position(x: 100, y: 100)
+                    .position(x: viewHeight / 2, y: viewHeight / 2)
                     .animation(.linear(duration: globalStyleProperties.animationDuration).delay(Double(firstOrLast ? 0 : index)))
                     .if(!firstOrLast, transform: { circle in
                         circle.rotation3DEffect(.degrees(180.0), axis: (x: 0, y: 1, z: 0))
@@ -70,7 +70,6 @@ extension Components.Organisms {
                         }
                     }
             }
-            .border(Color.red)
         }
     }
     
