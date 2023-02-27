@@ -173,7 +173,7 @@ extension Components.Organisms {
 }
 
 extension Array where Element == Components.Organisms.DonutChartView.SliceData {
-    func convertToSliceDetails() -> [Components.Organisms.DonutChartView.SliceDetails] {
+    public func convertToSliceDetails() -> [Components.Organisms.DonutChartView.SliceDetails] {
         var sum = 0.0
         
         let total = self.map({$0.amount}).reduce(0, +)
