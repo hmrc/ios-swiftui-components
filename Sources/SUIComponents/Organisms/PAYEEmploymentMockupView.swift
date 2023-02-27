@@ -40,7 +40,8 @@ struct PAYEEmploymentMockupView: View {
                     smallColour: Color.Named.pink.colour,
                     dashed: true
                 )
-            )]
+            )
+        ]
                 
         let sliceDetails = sliceData.convertToSliceDetails()
         

@@ -104,10 +104,10 @@ extension Components.Organisms {
         }
         
         public struct SliceDetails {
-            var key: String
-            var endAngle: Double
-            var colour: Color
-            var dashStyle: [CGFloat]?
+            public var key: String
+            public var endAngle: Double
+            public var colour: Color
+            public var dashStyle: [CGFloat]?
         }
         
         public struct SliceStyleProperties {
