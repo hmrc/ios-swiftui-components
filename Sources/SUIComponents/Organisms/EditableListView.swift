@@ -25,6 +25,7 @@ extension Components.Organisms {
             public let title: String
 
             public let rowButtonTitle: String
+            public let rowAccessibilityHint: String
             public let startEditingButtonTitle: String
             public let startEditingButtonImage: Image
             public let stopEditingButtonTitle: String
@@ -33,9 +34,10 @@ extension Components.Organisms {
             public let views: [any View]
             public let didTapRow: (Int) -> Void
 
-            public init(title: String, rowButtonTitle: String, startEditingButtonTitle: String, startEditingButtonImage: Image, stopEditingButtonTitle: String, stopEditingButtonImage: Image, views: [any View], didTapRow: @escaping (Int) -> Void) {
+            public init(title: String, rowButtonTitle: String, rowAccessibilityHint: String, startEditingButtonTitle: String, startEditingButtonImage: Image, stopEditingButtonTitle: String, stopEditingButtonImage: Image, views: [any View], didTapRow: @escaping (Int) -> Void) {
                 self.title = title
                 self.rowButtonTitle = rowButtonTitle
+                self.rowAccessibilityHint = rowAccessibilityHint
                 self.startEditingButtonTitle = startEditingButtonTitle
                 self.startEditingButtonImage = startEditingButtonImage
                 self.stopEditingButtonTitle = stopEditingButtonTitle
@@ -72,6 +74,7 @@ extension Components.Organisms {
                                     padding: .spacer8,
                                     fullWidth: EditableListView.isVertical
                                 ))
+                                .accessibility(removeTraits: .isButton)
                             }
                         }
                         .padding(.horizontal, .spacer8)
@@ -83,7 +86,8 @@ extension Components.Organisms {
                 }
                 .accessibilityElement(children: .combine)
                 .if(isEditing) { view in
-                    view.accessibility(hint: Text("Tap to edit"))
+                    view.accessibility(addTraits: .isButton)
+                        .accessibility(hint: Text(model.rowAccessibilityHint))
                 }
                 Components.Molecules.IconButtonView(model: .init(
                     icon: isEditing ? model.stopEditingButtonImage : model.startEditingButtonImage,
@@ -91,7 +95,9 @@ extension Components.Organisms {
                     handler: {
                         UIAccessibility.post(
                             notification: .layoutChanged,
-                            argument: isEditing ? "Edit buttons now hidden" : "Edit buttons now visible"
+                            argument: isEditing ?
+                                "\(model.rowButtonTitle) buttons now hidden" :
+                                "\(model.rowButtonTitle) buttons now visible"
                         )
                         withAnimation {
                             isEditing = !isEditing
