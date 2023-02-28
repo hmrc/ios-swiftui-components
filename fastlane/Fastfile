@@ -244,7 +244,7 @@ platform :ios do
     sh("cd .. && sh release.sh '#{project_version}'")
 
     local_url = Pathname(Dir.pwd).dirname.to_s
-    companion_path = "#{local_url}/CompanionApp/CompanionApp.xcodeproj/project.pbxproj"
+    companion_path = "#{local_url}/SUICompanionApp/SUICompanionApp.xcodeproj/project.pbxproj"
     local_url = "file://" + local_url
 
     # Updates Swift Package Manifest
