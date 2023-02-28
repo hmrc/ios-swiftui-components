@@ -854,6 +854,7 @@ extension Components.Organisms.EditableListView: Examplable {
             Components.Organisms.EditableListView(model: .init(
                 title: "Editable List View",
                 rowButtonTitle: "Edit",
+                rowAccessibilityHint: "Row accessibility hint",
                 startEditingButtonTitle: "Start Editing",
                 startEditingButtonImage: Example.Images.edit.image,
                 stopEditingButtonTitle: "Stop Editing",
@@ -875,7 +876,8 @@ extension Components.Organisms.EditableListView: Examplable {
             VStack{
                 Components.Organisms.EditableListView(model: .init(
                     title: "Your Company Benefits",
-                    rowButtonTitle: "Edit",
+                    rowButtonTitle: "Change",
+                    rowAccessibilityHint: "opens in a browser",
                     startEditingButtonTitle: "Update or remove benefit",
                     startEditingButtonImage: Example.Images.edit.image,
                     stopEditingButtonTitle: "Finish updating benefits",
@@ -892,7 +894,8 @@ extension Components.Organisms.EditableListView: Examplable {
                 ))
                 Components.Organisms.EditableListView(model: .init(
                     title: "Your Company Benefits",
-                    rowButtonTitle: "Edit",
+                    rowButtonTitle: "Change",
+                    rowAccessibilityHint: "opens in a browser",
                     startEditingButtonTitle: "Update or remove benefit",
                     startEditingButtonImage: Example.Images.edit.image,
                     stopEditingButtonTitle: "Finish updating benefits",
