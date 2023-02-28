@@ -666,30 +666,40 @@ extension Components.Organisms.DonutChartView: Examplable {
     static var exampleBackgroundColor: Color { Color.Semantic.pageBackground }
     
     static func withPlaceholders() -> AnyView {
-        AnyView(
-            Components.Organisms.DonutChartView(
-                sliceData: [
-                    .init(
-                        amount: 3781,
-                        styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
-                            colour: Color.Named.teal.colour,
-                            dashStyle: nil
-                        )
-                    ),
-                    .init(
-                        amount: 855,
-                        styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
-                            colour: Color.Named.blue.colour,
-                            dashStyle: nil
-                        )
-                    ),
-                ],
-                globalStyleProperties: Components.Organisms.DonutChartView.GlobalStylingProperties(
-                    animationDuration: 1.0,
-                    viewHeight: 200,
-                    sliceWidth: 30.0
+        let sliceData: [Components.Organisms.DonutChartView.SliceData] = [
+            .init(
+                key: "Test1",
+                amount: 3781,
+                styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                    colour: Color.Named.teal.colour,
+                    smallColour: Color.Named.teal.colour,
+                    dashStyle: nil
                 )
-            )
+            ),
+            .init(
+                key: "Test2",
+                amount: 855,
+                styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                    colour: Color.Named.blue.colour,
+                    smallColour: Color.Named.teal.colour,
+                    dashStyle: nil
+                )
+            ),
+        ]
+        
+        return AnyView(
+            HStack {
+                Spacer()
+                Components.Organisms.DonutChartView(
+                    sliceDetails: sliceData.convertToSliceDetails(),
+                    globalStyleProperties: Components.Organisms.DonutChartView.GlobalStylingProperties(
+                        animationDuration: 1.0,
+                        viewHeight: 200,
+                        sliceWidth: 30.0
+                    )
+                )
+                Spacer()
+            }
         )
     }
     
@@ -697,146 +707,194 @@ extension Components.Organisms.DonutChartView: Examplable {
         AnyView(
             VStack {
                 VStack {
-                    Components.Organisms.DonutChartView(
-                        sliceData: [
-                            .init(
-                                amount: 150,
-                                styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
-                                    colour: Color.Named.pink.colour,
-                                    dashStyle: [3, 3]
-                                )
-                            ),
-                            .init(
-                                amount: 700,
-                                styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
-                                    colour: Color.Named.teal.colour,
-                                    dashStyle: nil
-                                )
-                            ),
-                            .init(
-                                amount: 150,
-                                styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
-                                    colour: Color.Named.blue.colour,
-                                    dashStyle: nil
-                                )
-                            ),
-                        ],
-                        globalStyleProperties: Components.Organisms.DonutChartView.GlobalStylingProperties(
-                            animationDuration: 1.0,
-                            viewHeight: 200,
-                            sliceWidth: 30.0
+                    let example1: [Components.Organisms.DonutChartView.SliceData] = [
+                        .init(
+                            key: "Test1",
+                            amount: 150,
+                            styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                                colour: Color.Named.pink.colour,
+                                smallColour: Color.Named.pink.colour,
+                                dashStyle: [3, 3]
+                            )
+                        ),
+                        .init(
+                            key: "Test2",
+                            amount: 700,
+                            styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                                colour: Color.Named.teal.colour,
+                                smallColour: Color.Named.teal.colour,
+                                dashStyle: nil
+                            )
+                        ),
+                        .init(
+                            key: "Test3",
+                            amount: 150,
+                            styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                                colour: Color.Named.blue.colour,
+                                smallColour: Color.Named.blue.colour,
+                                dashStyle: nil
+                            )
+                        ),
+                    ]
+                    
+                    HStack {
+                        Spacer()
+                        Components.Organisms.DonutChartView(
+                            sliceDetails: example1.convertToSliceDetails(),
+                            globalStyleProperties: Components.Organisms.DonutChartView.GlobalStylingProperties(
+                                animationDuration: 1.0,
+                                viewHeight: 200,
+                                sliceWidth: 30.0
+                            )
                         )
-                    )
+                        Spacer()
+                    }
                     Text("3 Slice example with striped slice")
                 }
 
                 VStack {
-                    Components.Organisms.DonutChartView(
-                        sliceData: [
-                            .init(
-                                amount: 3000,
-                                styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
-                                    colour: Color.Named.green1.colour,
-                                    dashStyle: nil
-                                )
-                            ),
-                            .init(
-                                amount: 1000,
-                                styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
-                                    colour: Color.Named.yellow.colour,
-                                    dashStyle: nil
-                                )
-                            ),
-                            .init(
-                                amount: 1000,
-                                styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
-                                    colour: Color.Named.red.colour,
-                                    dashStyle: nil
-                                )
-                            ),
-                            .init(
-                                amount: 1000,
-                                styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
-                                    colour: Color.Named.green2.colour,
-                                    dashStyle: nil
-                                )
-                            ),
-                            .init(
-                                amount: 3000,
-                                styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
-                                    colour: Color.Named.pink.colour,
-                                    dashStyle: nil
-                                )
-                            ),
-                            .init(
-                                amount: 1000,
-                                styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
-                                    colour: Color.Named.blue.colour,
-                                    dashStyle: nil
-                                )
-                            ),
-                        ],
-                        globalStyleProperties: Components.Organisms.DonutChartView.GlobalStylingProperties(
-                            animationDuration: 1.0,
-                            viewHeight: 200,
-                            sliceWidth: 30.0
+                    let example2: [Components.Organisms.DonutChartView.SliceData] = [
+                        .init(
+                            key: "Test1",
+                            amount: 3000,
+                            styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                                colour: Color.Named.green1.colour,
+                                smallColour: Color.Named.green1.colour,
+                                dashStyle: nil
+                            )
+                        ),
+                        .init(
+                            key: "Test2",
+                            amount: 1000,
+                            styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                                colour: Color.Named.yellow.colour,
+                                smallColour: Color.Named.yellow.colour,
+                                dashStyle: nil
+                            )
+                        ),
+                        .init(
+                            key: "Test3",
+                            amount: 1000,
+                            styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                                colour: Color.Named.red.colour,
+                                smallColour: Color.Named.red.colour,
+                                dashStyle: nil
+                            )
+                        ),
+                        .init(
+                            key: "Test4",
+                            amount: 1000,
+                            styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                                colour: Color.Named.green2.colour,
+                                smallColour: Color.Named.green2.colour,
+                                dashStyle: nil
+                            )
+                        ),
+                        .init(
+                            key: "Test5",
+                            amount: 3000,
+                            styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                                colour: Color.Named.pink.colour,
+                                smallColour: Color.Named.pink.colour,
+                                dashStyle: nil
+                            )
+                        ),
+                        .init(
+                            key: "Test6",
+                            amount: 1000,
+                            styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                                colour: Color.Named.blue.colour,
+                                smallColour: Color.Named.blue.colour,
+                                dashStyle: nil
+                            )
+                        ),
+                    ]
+                    
+                    HStack {
+                        Spacer()
+                        Components.Organisms.DonutChartView(
+                            sliceDetails: example2.convertToSliceDetails(),
+                            globalStyleProperties: Components.Organisms.DonutChartView.GlobalStylingProperties(
+                                animationDuration: 1.0,
+                                viewHeight: 200,
+                                sliceWidth: 30.0
+                            )
                         )
-                    )
+                        Spacer()
+                    }
                     Text("6 Slice example")
                 }
                 
                 VStack {
-                    Components.Organisms.DonutChartView(
-                        sliceData: [
-                            .init(
-                                amount: 3000,
-                                styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
-                                    colour: Color.Named.green1.colour,
-                                    dashStyle: nil
-                                )
-                            ),
-                            .init(
-                                amount: 1000,
-                                styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
-                                    colour: Color.Named.yellow.colour,
-                                    dashStyle: [3, 3]
-                                )
-                            ),
-                            .init(
-                                amount: 1000,
-                                styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
-                                    colour: Color.Named.red.colour,
-                                    dashStyle: [3, 3]
-                                )
-                            ),
-                            .init(
-                                amount: 1000,
-                                styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
-                                    colour: Color.Named.green2.colour,
-                                    dashStyle: nil
-                                )
-                            ),
-                            .init(
-                                amount: 3000,
-                                styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
-                                    colour: Color.Named.pink.colour,
-                                    dashStyle: [3, 3]
-                                )
-                            ),
-                            .init(
-                                amount: 1000,
-                                styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
-                                    colour: Color.Named.blue.colour,
-                                    dashStyle: nil
-                                )
-                            ),
-                        ],
-                        globalStyleProperties: Components.Organisms.DonutChartView.GlobalStylingProperties(
-                            animationDuration: 1.0,
-                            viewHeight: 200,
-                            sliceWidth: 30.0
+                    let example3: [Components.Organisms.DonutChartView.SliceData] = [
+                        .init(
+                            key: "Test1",
+                            amount: 3000,
+                            styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                                colour: Color.Named.green1.colour,
+                                smallColour: Color.Named.green1.colour,
+                                dashStyle: nil
+                            )
+                        ),
+                        .init(
+                            key: "Test2",
+                            amount: 1000,
+                            styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                                colour: Color.Named.yellow.colour,
+                                smallColour: Color.Named.yellow.colour,
+                                dashStyle: [3, 3]
+                            )
+                        ),
+                        .init(
+                            key: "Test3",
+                            amount: 1000,
+                            styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                                colour: Color.Named.red.colour,
+                                smallColour: Color.Named.red.colour,
+                                dashStyle: [3, 3]
+                            )
+                        ),
+                        .init(
+                            key: "Test4",
+                            amount: 1000,
+                            styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                                colour: Color.Named.green2.colour,
+                                smallColour: Color.Named.green2.colour,
+                                dashStyle: nil
+                            )
+                        ),
+                        .init(
+                            key: "Test5",
+                            amount: 3000,
+                            styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                                colour: Color.Named.pink.colour,
+                                smallColour: Color.Named.pink.colour,
+                                dashStyle: [3, 3]
+                            )
+                        ),
+                        .init(
+                            key: "Test6",
+                            amount: 1000,
+                            styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                                colour: Color.Named.blue.colour,
+                                smallColour: Color.Named.blue.colour,
+                                dashStyle: nil
+                            )
+                        ),
+                    ]
+                    
+                    HStack {
+                        Spacer()
+                        Components.Organisms.DonutChartView(
+                            sliceDetails: example3.convertToSliceDetails(),
+                            globalStyleProperties: Components.Organisms.DonutChartView.GlobalStylingProperties(
+                                animationDuration: 1.0,
+                                viewHeight: 200,
+                                sliceWidth: 30.0
+                            )
                         )
-                    )
+                        Spacer()
+                    }
                     Text("6 Slice example with multiple striped slices")
                 }
             }

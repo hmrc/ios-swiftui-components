@@ -19,7 +19,6 @@ import SwiftUI
 extension Components.Organisms {
     private struct DonutSliceView: View {
         var index: Int
-        var startAngle: Double
         var endAngle: Double
         var colour: Color
         var viewHeight: Double
@@ -37,11 +36,11 @@ extension Components.Organisms {
             ZStack {
                 if dashRequired {
                     Circle()
-                        .trim(from: startAngle, to: stateEndAngle)
+                        .trim(from: 0.0, to: stateEndAngle)
                         .rotation(Angle(degrees: -90.0))
                         .stroke(Color.Named.white.colour, style: StrokeStyle(lineWidth: sliceWidth))
-                        .frame(height: viewHeight)
                         .padding()
+                        .position(x: viewHeight / 2, y: viewHeight / 2)
                         .animation(.linear(duration: globalStyleProperties.animationDuration).delay(Double(firstOrLast ? 0 : index)))
                         .if(!firstOrLast, transform: { circle in
                             circle.rotation3DEffect(.degrees(180.0), axis: (x: 0, y: 1, z: 0))
@@ -55,11 +54,11 @@ extension Components.Organisms {
                 
                 
                 Circle()
-                    .trim(from: startAngle, to: stateEndAngle)
+                    .trim(from: 0.0, to: stateEndAngle)
                     .rotation(Angle(degrees: -90.0))
                     .stroke(colour, style: StrokeStyle(lineWidth: sliceWidth, dash: dash ?? []))
-                    .frame(height: viewHeight)
                     .padding()
+                    .position(x: viewHeight / 2, y: viewHeight / 2)
                     .animation(.linear(duration: globalStyleProperties.animationDuration).delay(Double(firstOrLast ? 0 : index)))
                     .if(!firstOrLast, transform: { circle in
                         circle.rotation3DEffect(.degrees(180.0), axis: (x: 0, y: 1, z: 0))
@@ -74,86 +73,63 @@ extension Components.Organisms {
     }
     
     public struct DonutChartView: View {
-        public let sliceData: [SliceData]
+        public let sliceDetails: [SliceDetails]
         public let globalStyleProperties: GlobalStylingProperties
-        public let total: Double
         
-        public init(sliceData: [SliceData], globalStyleProperties: GlobalStylingProperties) {
-            self.sliceData = sliceData
+        public init(sliceDetails: [SliceDetails], globalStyleProperties: GlobalStylingProperties) {
+            self.sliceDetails = sliceDetails
             self.globalStyleProperties = globalStyleProperties
-            self.total = sliceData.map({$0.amount}).reduce(0, +)
-        }
-        
-        private func createSliceDetails(_ sliceData: [SliceData], _ total: Double) -> [SliceDetails] {
-            var sum = 0.0
-            let slices: [SliceDetails] = sliceData.enumerated().map { (idx, slice) in
-                return SliceDetails.init(
-                    amount: slice.amount,
-                    endAngle: (slice.amount * 1.0) / total,
-                    
-                    styleProperties: slice.styleProperties
-                )
-            }
-            
-            let reversedSegments = slices.sorted(by: {$0.amount < $1.amount})
-            
-            let summedSegments = reversedSegments.enumerated().map { (idx, slice) in
-                if (idx == 0) {
-                    sum = slice.endAngle
-                }
-                
-                return SliceDetails(
-                    amount: slice.amount,
-                    endAngle: idx == 0 ? slice.endAngle : (sum += slice.endAngle, sum).1,
-                    styleProperties: slice.styleProperties
-                )
-            }
-
-            return summedSegments.reversed()
         }
         
         public var body: some View {
-            let sliceDetails: [SliceDetails] = createSliceDetails(sliceData, total)
-        
             ZStack {
                 ForEach(Array(sliceDetails.enumerated()), id: \.offset) { (idx, slice) in
                     Components.Organisms.DonutSliceView(
                         index: idx,
-                        startAngle: 0.0,
                         endAngle: slice.endAngle,
-                        colour: slice.styleProperties.colour,
+                        colour: slice.colour,
                         viewHeight: globalStyleProperties.viewHeight,
                         sliceWidth: globalStyleProperties.sliceWidth,
-                        dash: slice.styleProperties.dashStyle,
+                        dash: slice.dashStyle,
                         isLast: idx == sliceDetails.count,
                         globalStyleProperties: globalStyleProperties
                     )
+                    .drawingGroup()
                 }
             }
+            .frame(
+                width: globalStyleProperties.viewHeight,
+                height: globalStyleProperties.viewHeight
+            )
         }
         
-        struct SliceDetails {
-            var amount: Double
-            var endAngle: Double
-            var styleProperties: SliceStyleProperties
+        public struct SliceDetails {
+            public var key: String
+            public var endAngle: Double
+            public var colour: Color
+            public var dashStyle: [CGFloat]?
         }
         
         public struct SliceStyleProperties {
             public let colour: Color
+            public let smallColour: Color
             public let dashStyle: [CGFloat]?
             
             public init(colour: Color) {
                 self.colour = colour
+                self.smallColour = colour
                 self.dashStyle = nil
             }
             
-            public init(colour: Color, dashed: Bool) {
+            public init(colour: Color, smallColour: Color, dashed: Bool) {
                 self.colour = colour
+                self.smallColour = smallColour
                 self.dashStyle = dashed ? [3, 3] : nil
             }
             
-            public init(colour: Color, dashStyle: [CGFloat]?) {
+            public init(colour: Color, smallColour: Color, dashStyle: [CGFloat]?) {
                 self.colour = colour
+                self.smallColour = smallColour
                 self.dashStyle = dashStyle
             }
         }
@@ -183,10 +159,12 @@ extension Components.Organisms {
         }
         
         public struct SliceData {
+            public let key: String
             public let amount: Double
             public let styleProperties: SliceStyleProperties
             
-            public init(amount: Double, styleProperties: SliceStyleProperties) {
+            public init(key: String, amount: Double, styleProperties: SliceStyleProperties) {
+                self.key = key
                 self.amount = amount
                 self.styleProperties = styleProperties
             }
@@ -194,90 +172,84 @@ extension Components.Organisms {
     }
 }
 
+extension Array where Element == Components.Organisms.DonutChartView.SliceData {
+    public func convertToSliceDetails() -> [Components.Organisms.DonutChartView.SliceDetails] {
+        var sum = 0.0
+        
+        let total = self.map({$0.amount}).reduce(0, +)
+        
+        let slices: [Components.Organisms.DonutChartView.SliceDetails] = self.enumerated().map { (idx, slice) in
+            let endAngle = (slice.amount * 1.0) / total
+            let isTooSmall = endAngle < 0.035
+            
+            return Components.Organisms.DonutChartView.SliceDetails.init(
+                key: slice.key,
+                endAngle: (slice.amount * 1.0) / total,
+                colour: isTooSmall ? slice.styleProperties.smallColour : slice.styleProperties.colour,
+                dashStyle: isTooSmall ? [] : slice.styleProperties.dashStyle
+            )
+        }
+        
+        let reversedSegments = slices.sorted(by: {$0.endAngle < $1.endAngle})
+        
+        let summedSegments = reversedSegments.enumerated().map { (idx, slice) in
+            if (idx == 0) {
+                sum = slice.endAngle
+            }
+            
+            return Components.Organisms.DonutChartView.SliceDetails(
+                key: slice.key,
+                endAngle: idx == 0 ? slice.endAngle : (sum += slice.endAngle, sum).1,
+                colour: slice.colour,
+                dashStyle: slice.dashStyle
+            )
+        }
+
+        return summedSegments.reversed()
+    }
+}
+
+
 struct DonutChartView_Previews: PreviewProvider {
     static var previews: some View {
         let sliceWidth: Double = 20
         let viewHeight: Double = 200
         
+        let sliceData: [Components.Organisms.DonutChartView.SliceData] = [
+            .init(
+                key: "Take home",
+                amount: 2046.00,
+                styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                    colour: Color.Named.teal.colour,
+                    smallColour: Color.Named.teal.colour,
+                    dashed: false
+                )
+            ),
+            .init(
+                key: "Income tax",
+                amount: 545.00,
+                styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                    colour: Color.Named.blue.colour,
+                    smallColour: Color.Named.blue.colour,
+                    dashed: false
+                )
+            ),
+            .init(
+                key: "national insurance",
+                amount: 125.00,
+                styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
+                    colour: Color.Named.blue.colour,
+                    smallColour: Color.Named.pink.colour,
+                    dashed: true
+                )
+            )]
+                
         Components.Organisms.DonutChartView(
-            sliceData: [
-                .init(
-                    amount: 1041.00,
-                    styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
-                        colour: Color.Named.teal.colour
-                    )
-                ),
-                .init(
-                    amount: 315.00,
-                    styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
-                        colour: Color.Named.blue.colour,
-                        dashed: false
-                    )
-                ),
-                .init(
-                    amount: 189.00,
-                    styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
-                        colour: Color.Named.pink.colour,
-                        dashed: false
-                    )
-                ),
-            ],
+            sliceDetails: sliceData.convertToSliceDetails(),
             globalStyleProperties: Components.Organisms.DonutChartView.GlobalStylingProperties(
                 animationDuration: 0.5,
                 viewHeight: viewHeight,
                 sliceWidth: sliceWidth
-            )
-        )
-        
-        Components.Organisms.DonutChartView(
-            sliceData: [
-                .init(
-                    amount: 3000,
-                    styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
-                        colour: Color.Named.green1.colour,
-                        dashStyle: nil
-                    )
-                ),
-                .init(
-                    amount: 1000,
-                    styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
-                        colour: Color.Named.yellow.colour,
-                        dashStyle: [3, 3]
-                    )
-                ),
-                .init(
-                    amount: 1000,
-                    styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
-                        colour: Color.Named.red.colour,
-                        dashStyle: [3, 3]
-                    )
-                ),
-                .init(
-                    amount: 1000,
-                    styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
-                        colour: Color.Named.green2.colour,
-                        dashStyle: nil
-                    )
-                ),
-                .init(
-                    amount: 3000,
-                    styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
-                        colour: Color.Named.pink.colour,
-                        dashStyle: [3, 3]
-                    )
-                ),
-                .init(
-                    amount: 1000,
-                    styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
-                        colour: Color.Named.blue.colour,
-                        dashStyle: nil
-                    )
-                ),
-            ],
-            globalStyleProperties: Components.Organisms.DonutChartView.GlobalStylingProperties(
-                animationDuration: 1.0,
-                viewHeight: 200,
-                sliceWidth: 30.0
             )
         )
     }
