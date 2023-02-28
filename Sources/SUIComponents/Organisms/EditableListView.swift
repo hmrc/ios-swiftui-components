@@ -60,6 +60,7 @@ extension Components.Organisms {
             VStack(alignment: .leading, spacing: 0) {
                 Text(model.title, style: .H5)
                     .padding(.spacer16)
+                    .fixedSize(horizontal: false, vertical: true)
                 ForEach(model.views.indices, id: \.self) { index in
                     Components.Atoms.Stack(
                         axis: EditableListView.isVertical ? .vertical(alignment: .leading) : .horizontal(alignment: .center),
