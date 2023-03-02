@@ -34,7 +34,6 @@ struct PAYEEmploymentMockupView: View {
             .init(
                 key: "national insurance",
                 amount: 25.00,
-                
                 styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
                     colour: Color.Named.blue.colour,
                     smallColour: Color.Named.pink.colour,

@@ -33,6 +33,10 @@ extension Components.Organisms {
             let firstOrLast: Bool = index == 0 || isLast
             let dashRequired: Bool = dash != nil
             
+            let circleAnimation = Animation
+                .linear(duration: globalStyleProperties.animationDuration)
+                .delay(Double(firstOrLast ? 0 : index))
+            
             ZStack {
                 if dashRequired {
                     Circle()
@@ -41,12 +45,11 @@ extension Components.Organisms {
                         .stroke(Color.Named.white.colour, style: StrokeStyle(lineWidth: sliceWidth))
                         .padding()
                         .position(x: viewHeight / 2, y: viewHeight / 2)
-                        .animation(.linear(duration: globalStyleProperties.animationDuration).delay(Double(firstOrLast ? 0 : index)))
                         .if(!firstOrLast, transform: { circle in
                             circle.rotation3DEffect(.degrees(180.0), axis: (x: 0, y: 1, z: 0))
                         })
                         .onAppear {
-                            withAnimation {
+                            withAnimation(circleAnimation) {
                                 stateEndAngle = endAngle
                             }
                         }
@@ -59,12 +62,11 @@ extension Components.Organisms {
                     .stroke(colour, style: StrokeStyle(lineWidth: sliceWidth, dash: dash ?? []))
                     .padding()
                     .position(x: viewHeight / 2, y: viewHeight / 2)
-                    .animation(.linear(duration: globalStyleProperties.animationDuration).delay(Double(firstOrLast ? 0 : index)))
                     .if(!firstOrLast, transform: { circle in
                         circle.rotation3DEffect(.degrees(180.0), axis: (x: 0, y: 1, z: 0))
                     })
                     .onAppear {
-                        withAnimation {
+                        withAnimation(circleAnimation) {
                             stateEndAngle = endAngle
                         }
                     }
