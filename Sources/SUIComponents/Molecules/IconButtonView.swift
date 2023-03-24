@@ -32,13 +32,13 @@ extension Components.Molecules {
                 model.icon
                     .foregroundColor(model.iconTintColor)
                     .accessibility(hidden: true)
+                    .frame(height: FontMetrics.scaledValue(for: .spacer24))
             } rightContent: {
                 Text(model.title)
                     .style(.link)
                     .accessibility(hidden: true)
             }
             .padding(model.insets)
-            .frame(maxWidth: .infinity, alignment: .leading)
             .frame(
                 maxWidth: .infinity,
                 alignment: .leading

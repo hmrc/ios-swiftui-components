@@ -37,6 +37,16 @@ public enum TextStyle {
             case .debug: return Font.Debug.font()
         }
     }
+    public var uiFont: UIFont {
+        switch self {
+        case .H3: return Font.H3.uiFont()
+        case .H4: return Font.H4.uiFont()
+        case .H5: return Font.H5.uiFont()
+        case .bold: return Font.Bold.uiFont()
+        case .body, .info, .link, .error: return Font.Body.uiFont()
+        case .debug: return Font.Debug.uiFont()
+        }
+    }
     public var textColor: Color {
         switch self {
         case .info, .debug:
