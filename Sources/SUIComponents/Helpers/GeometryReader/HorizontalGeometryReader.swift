@@ -16,14 +16,6 @@
 
 import SwiftUI
 
-struct WidthReaderView : View {
-    var body: some View {
-        GeometryReader { geometry in
-            Color.clear.preference(key: SizeReader.self, value: geometry.size.width)
-        }
-    }
-}
-
 public struct HorizontalGeometryReader<Content: View> : View {
 
     var content: (CGFloat)->Content
@@ -36,9 +28,8 @@ public struct HorizontalGeometryReader<Content: View> : View {
     public var body: some View {
         content(width)
             .frame(minWidth: 0, maxWidth: .infinity)
-            .background(WidthReaderView())
-            .onPreferenceChange(SizeReader.self) { width in
-                self.width = width
-            }
+            .readSize(changed: { size in
+                self.width = size.width
+            })
     }
 }

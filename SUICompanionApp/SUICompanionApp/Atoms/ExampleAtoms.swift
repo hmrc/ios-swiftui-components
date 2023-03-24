@@ -79,6 +79,9 @@ extension Components.Atoms {
                     Button("Secondary Button") {
                         print("Lorem")
                     }.styled(.secondary())
+                    Button("Secondary Button Left Aligned") {
+                        print("Lorem")
+                    }.styled(.secondary(alignment: .leading))
                 }
             )
         }
@@ -317,6 +320,35 @@ extension Components.Atoms.Divider: Examplable {
             Text(Example.Text.longIpsum)
             Components.Atoms.Divider()
             Text(Example.Text.longIpsum)
+        }.cardView())
+    }
+}
+
+extension Components.Atoms.AttributedText: Examplable {
+    static var title: String { "AttributedText" }
+
+    static var exampleBackgroundColor: Color { Color.Semantic.pageBackground }
+
+    static func withPlaceholders() -> AnyView {
+        AnyView(
+            Components.Atoms.AttributedText(NSAttributedString(string: "Attributed Text"))
+        )
+    }
+
+    static func examples() -> AnyView {
+        AnyView(VStack(spacing: .spacer16) {
+            Components.Atoms.AttributedText(NSAttributedString(string: "Attributed Text"))
+            Components.Atoms.Text(
+                "CS 70 01 00 A",
+                accessibilityAttributedLabel: NSAttributedString(
+                    string: "CS700100A",
+                    attributes: [.accessibilitySpeechSpellOut: true]
+                )
+            )
+            Components.Atoms.AttributedText(NSAttributedString(
+                string: "CS 70 01 00 A",
+                attributes: [.accessibilitySpeechSpellOut: true]
+            ))
         }.cardView())
     }
 }

@@ -18,7 +18,7 @@ import SwiftUI
 
 public enum HMRCButtonStyle {
     case primary(enabled: Bool = true)
-    case secondary(padding: CGFloat = .spacer16, fullWidth: Bool = true)
+    case secondary(padding: CGFloat = .spacer16, fullWidth: Bool = true, alignment: Alignment = .center)
 }
 
 extension Button {
@@ -27,8 +27,8 @@ extension Button {
         switch style {
         case .primary(let enabled):
             self.buttonStyle(PrimaryButtonStyle(enabled))
-        case .secondary(let padding, let fullWidth):
-            self.buttonStyle(SecondaryButtonStyle(padding, fullWidth))
+        case .secondary(let padding, let fullWidth, let alignment):
+            self.buttonStyle(SecondaryButtonStyle(padding, fullWidth, alignment))
         }
     }
 }
@@ -91,20 +91,23 @@ struct PrimaryButtonStyle: ButtonStyle {
 struct SecondaryButtonStyle: ButtonStyle {
     let padding: CGFloat
     let fullWidth: Bool
+    let alignment: Alignment
     
-    init(_ padding: CGFloat = .spacer16, _ fullWidth: Bool = true) {
+    init(_ padding: CGFloat = .spacer16, _ fullWidth: Bool = true, _ alignment: Alignment = .center) {
         self.padding = padding
         self.fullWidth = fullWidth
+        self.alignment = alignment
     }
     
     func makeBody(configuration: Configuration) -> some View {
-        WrappedButton(configuration: configuration, padding: padding, fullWidth: fullWidth)
+        WrappedButton(configuration: configuration, padding: padding, fullWidth: fullWidth, alignment: alignment)
     }
     
     struct WrappedButton: View {
         let configuration: Configuration
         let padding: CGFloat
         let fullWidth: Bool
+        let alignment: Alignment
         @Environment(\.isEnabled) private var isEnabled: Bool
         
         private func backgroundColour(for configuration: Configuration, isEnabled: Bool)-> Color {
@@ -116,7 +119,7 @@ struct SecondaryButtonStyle: ButtonStyle {
                 .font(Font.Body.font())
                 .padding(padding)
                 .if(fullWidth, transform: { view in
-                    view.frame(maxWidth: .infinity, alignment: .center)
+                    view.frame(maxWidth: .infinity, alignment: alignment)
                 })
                 .background(backgroundColour(for: configuration, isEnabled: isEnabled))
                 .foregroundColor(Color.Semantic.secondaryButtonText)

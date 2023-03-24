@@ -17,7 +17,7 @@
 import SwiftUI
 
 extension Components.Organisms {
-    public struct EditableListView: View {
+    public struct EditableListView: View, Resizable {
 
         fileprivate static var isVertical: Bool { FontMetrics.scaler > 1.36 }
 
@@ -50,6 +50,7 @@ extension Components.Organisms {
         @State var isEditing: Bool
 
         let model: Model
+        public var updateSize: (() -> Void)?
 
         public init(model: Model, isEditing: Bool = false) {
             self.model = model
@@ -73,8 +74,12 @@ extension Components.Organisms {
                                     model.didTapRow(index)
                                 }.styled(.secondary(
                                     padding: .spacer8,
-                                    fullWidth: EditableListView.isVertical
+                                    fullWidth: EditableListView.isVertical,
+                                    alignment: EditableListView.isVertical ? .leading : .center
                                 ))
+                                .if(!EditableListView.isVertical) { view in
+                                    view.padding(.horizontal, .spacer8)
+                                }
                                 .accessibility(removeTraits: .isButton)
                             }
                         }
@@ -100,12 +105,15 @@ extension Components.Organisms {
                                 "\(model.rowButtonTitle) buttons now hidden" :
                                 "\(model.rowButtonTitle) buttons now visible"
                         )
+                        updateSize?()
                         withAnimation {
                             isEditing = !isEditing
+
                         }
                     })
                 )
-            }.cardView(insets: .none)
+            }
+            .cardView(insets: .none)
         }
     }
 }
