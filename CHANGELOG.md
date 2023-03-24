@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [1.3.0] - 2023-03-24Z
 - Added `Text` Atom to handle attributed accessibility labels/hints in SwiftUI versions < iOS 15
 - Added `AttributedText` Atom to handle `NSAttributedString` in SwiftUI versions < iOS 15
 - Added `alignment: Alignment` parmeter to `SecondaryButtonStyle`
