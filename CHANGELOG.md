@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [1.3.1] - 2023-03-28Z
 - Fixed issue with `SecondaryButtonStyle` tap area being too small
 
 ## [1.3.0] - 2023-03-24Z
