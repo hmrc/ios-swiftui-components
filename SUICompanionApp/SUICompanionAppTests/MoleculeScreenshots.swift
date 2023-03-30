@@ -24,6 +24,30 @@ class MoleculeScreenshots: XCTestCase {
         super.setUp()
     }
 
+    func test_screenshot_StatusView() {
+        ExampleView<Components.Molecules.StatusView>().snapshotAndSave("statusView")
+    }
+
+    func test_screenshot_TitleBodyView() {
+        ExampleView<Components.Molecules.TitleBodyView>().snapshotAndSave("titleBodyView")
+    }
+
+    func test_screenshot_InsetView() {
+        ExampleView<Components.Molecules.InsetView<Text>>().snapshotAndSave("insetView")
+    }
+
+    func test_screenshot_MultiColumnRowView() {
+        ExampleView<Components.Molecules.MultiColumnRowView>().snapshotAndSave("multiColumnRowView")
+    }
+
+    func test_screenshot_SwitchRowView() {
+        ExampleView<Components.Molecules.SwitchRowView>().snapshotAndSave("switchRowView")
+    }
+
+    func test_screenshot_SelectRowView() {
+        ExampleView<Components.Molecules.SelectRowView>().snapshotAndSave("selectRowView")
+    }
+
     func test_screenshot_TextInputView() {
         ExampleView<Components.Molecules.TextInputView>().snapshotAndSave("textInputView")
     }
@@ -32,23 +56,11 @@ class MoleculeScreenshots: XCTestCase {
         ExampleView<Components.Molecules.CurrencyInputView>().snapshotAndSave("currencyInputView")
     }
 
-    func test_screenshot_TitleBodyView() {
-        ExampleView<Components.Molecules.TitleBodyView>().snapshotAndSave("titleBodyView")
-    }
-
-    func test_screenshot_SwitchRowView() {
-        ExampleView<Components.Molecules.SwitchRowView>().snapshotAndSave("switchRowView")
-    }
-
-    func test_screenshot_StatusView() {
-        ExampleView<Components.Molecules.StatusView>().snapshotAndSave("statusView")
-    }
-    
     func test_screenshot_IconButtonView() {
         ExampleView<Components.Molecules.IconButtonView>().snapshotAndSave("iconButtonView")
     }
-    func test_screenshot_insetView() {
-        ExampleView<Components.Molecules.InsetView<Text>>().snapshotAndSave("insetView")
-    }
 
+    func test_screenshot_WarningView() {
+        ExampleView<Components.Molecules.WarningView>().snapshotAndSave("warningView")
+    }
 }

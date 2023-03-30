@@ -44,4 +44,4 @@ fastlane/screenshot_diff/package-lock.json
 fastlane/screenshot_diff/node_modules
 fastlane/screenshot_diff/mismatches
 
-CompanionApp/Artifacts/*
+SUICompanionApp/Artifacts/*

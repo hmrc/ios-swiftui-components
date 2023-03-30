@@ -18,11 +18,11 @@
 		5805644B271876DF00BD9EA6 /* AtomsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5805644A271876DE00BD9EA6 /* AtomsView.swift */; };
 		5805644D27187AD700BD9EA6 /* ExampleAtoms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5805644C27187AD700BD9EA6 /* ExampleAtoms.swift */; };
 		58056450271883FE00BD9EA6 /* ColoursView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5805644F271883FE00BD9EA6 /* ColoursView.swift */; };
-		587A134426C422370005A55D /* SUICompanionAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587A134326C422370005A55D /* SUICompanionAppApp.swift */; };
 		587A134826C4223B0005A55D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 587A134726C4223B0005A55D /* Assets.xcassets */; };
 		587A134B26C4223B0005A55D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 587A134A26C4223B0005A55D /* Preview Assets.xcassets */; };
 		587A135326C423AB0005A55D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587A135226C423AB0005A55D /* MainView.swift */; };
-		58B33E42270F49DC00897F24 /* SUIComponents in Frameworks */ = {isa = PBXBuildFile; productRef = 58B33E41270F49DC00897F24 /* SUIComponents */; };
+		CA32714029D5E71100F493DC /* SUIComponents in Frameworks */ = {isa = PBXBuildFile; productRef = CA32713F29D5E71100F493DC /* SUIComponents */; };
+		CAE72B5A29D5832C00A69D4C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE72B5929D5832C00A69D4C /* AppDelegate.swift */; };
 		E9DEFFDD273E5ABB005ABDDF /* ScreenshotableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DEFFDC273E5ABB005ABDDF /* ScreenshotableView.swift */; };
 		E9DEFFE2273E7072005ABDDF /* MeasurableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DEFFE1273E7072005ABDDF /* MeasurableScrollView.swift */; };
 		E9DEFFE4273E7210005ABDDF /* Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DEFFE3273E7210005ABDDF /* Files.swift */; };
@@ -55,12 +55,11 @@
 		5805644C27187AD700BD9EA6 /* ExampleAtoms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleAtoms.swift; sourceTree = "<group>"; };
 		5805644F271883FE00BD9EA6 /* ColoursView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoursView.swift; sourceTree = "<group>"; };
 		587A134026C422370005A55D /* SUICompanionApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SUICompanionApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		587A134326C422370005A55D /* SUICompanionAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SUICompanionAppApp.swift; sourceTree = "<group>"; };
 		587A134726C4223B0005A55D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		587A134A26C4223B0005A55D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		587A134C26C4223B0005A55D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		587A135226C423AB0005A55D /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		58B33E3F270F49BD00897F24 /* ios-swiftui-components */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "ios-swiftui-components"; path = ..; sourceTree = "<group>"; };
+		CAE72B5929D5832C00A69D4C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E9D1892D273D597900723C16 /* SUICompanionAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SUICompanionAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9D18931273D597900723C16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9DEFFDC273E5ABB005ABDDF /* ScreenshotableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotableView.swift; sourceTree = "<group>"; };
@@ -78,7 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				58B33E42270F49DC00897F24 /* SUIComponents in Frameworks */,
+				CA32714029D5E71100F493DC /* SUIComponents in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,7 +140,6 @@
 		587A133726C422370005A55D = {
 			isa = PBXGroup;
 			children = (
-				58B33E3F270F49BD00897F24 /* ios-swiftui-components */,
 				587A134226C422370005A55D /* SUICompanionApp */,
 				E9D1892E273D597900723C16 /* SUICompanionAppTests */,
 				587A134126C422370005A55D /* Products */,
@@ -168,11 +166,11 @@
 				5805643727146CCA00BD9EA6 /* Examples */,
 				5805643227146B1800BD9EA6 /* Molecules */,
 				5805642F2714666300BD9EA6 /* Organisms */,
-				587A134326C422370005A55D /* SUICompanionAppApp.swift */,
 				587A134726C4223B0005A55D /* Assets.xcassets */,
 				587A134C26C4223B0005A55D /* Info.plist */,
 				587A134926C4223B0005A55D /* Preview Content */,
 				587A135226C423AB0005A55D /* MainView.swift */,
+				CAE72B5929D5832C00A69D4C /* AppDelegate.swift */,
 			);
 			path = SUICompanionApp;
 			sourceTree = "<group>";
@@ -247,7 +245,7 @@
 			);
 			name = SUICompanionApp;
 			packageProductDependencies = (
-				58B33E41270F49DC00897F24 /* SUIComponents */,
+				CA32713F29D5E71100F493DC /* SUIComponents */,
 			);
 			productName = SUICompanionApp;
 			productReference = 587A134026C422370005A55D /* SUICompanionApp.app */;
@@ -267,6 +265,8 @@
 				E9D18933273D597900723C16 /* PBXTargetDependency */,
 			);
 			name = SUICompanionAppTests;
+			packageProductDependencies = (
+			);
 			productName = SUICompanionAppTests;
 			productReference = E9D1892D273D597900723C16 /* SUICompanionAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -277,7 +277,7 @@
 		587A133826C422370005A55D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1250;
+				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
 					587A133F26C422370005A55D = {
@@ -299,6 +299,7 @@
 			);
 			mainGroup = 587A133726C422370005A55D;
 			packageReferences = (
+				CA32713E29D5E71100F493DC /* XCRemoteSwiftPackageReference "ios-swiftui-components" */,
 			);
 			productRefGroup = 587A134126C422370005A55D /* Products */;
 			projectDirPath = "";
@@ -347,8 +348,8 @@
 				5805643427146B2300BD9EA6 /* MoleculesView.swift in Sources */,
 				5805643927146CE100BD9EA6 /* ExampleOrganisms.swift in Sources */,
 				5805644727174A7E00BD9EA6 /* ExampleText.swift in Sources */,
-				587A134426C422370005A55D /* SUICompanionAppApp.swift in Sources */,
 				5805644B271876DF00BD9EA6 /* AtomsView.swift in Sources */,
+				CAE72B5A29D5832C00A69D4C /* AppDelegate.swift in Sources */,
 				58056450271883FE00BD9EA6 /* ColoursView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -563,7 +564,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SUICompanionApp.app/SUICompanionApp";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SUICompanionApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SUICompanionApp";
 			};
 			name = Debug;
 		};
@@ -583,7 +584,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SUICompanionApp.app/SUICompanionApp";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SUICompanionApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SUICompanionApp";
 			};
 			name = Release;
 		};
@@ -603,7 +604,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SUICompanionApp.app/SUICompanionApp";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SUICompanionApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SUICompanionApp";
 			};
 			name = Adhoc;
 		};
@@ -725,9 +726,21 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		CA32713E29D5E71100F493DC /* XCRemoteSwiftPackageReference "ios-swiftui-components" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hmrc/ios-swiftui-components";
+			requirement = {
+				kind = exactVersion;
+				version = 1.3.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
-		58B33E41270F49DC00897F24 /* SUIComponents */ = {
+		CA32713F29D5E71100F493DC /* SUIComponents */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = CA32713E29D5E71100F493DC /* XCRemoteSwiftPackageReference "ios-swiftui-components" */;
 			productName = SUIComponents;
 		};
 /* End XCSwiftPackageProductDependency section */

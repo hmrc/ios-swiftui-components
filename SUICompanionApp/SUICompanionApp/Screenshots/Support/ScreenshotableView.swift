@@ -35,7 +35,7 @@ public protocol ScreenshotableView: View {
     var snapshotViewModel: SnapshotViewModel { get set }
 }
 public extension ScreenshotableView {
-    func snapshot() -> UIImage {
+    func snapshot(delayBeforeCapture: TimeInterval = 0.1) -> UIImage {
         let screenBounds = UIScreen.main.bounds
         let window = UIWindow(frame: screenBounds)
         let controller = UIHostingController(rootView: self)
@@ -45,7 +45,7 @@ public extension ScreenshotableView {
         window.makeKeyAndVisible()
         view.setNeedsLayout()
         view.layoutIfNeeded()
-        RunLoop.main.run(until: Date(timeIntervalSinceNow: 0.1))
+        RunLoop.main.run(until: Date(timeIntervalSinceNow: delayBeforeCapture))
         var size = snapshotViewModel.size
         size.height += 150
         size.height = size.height < screenBounds.height ? screenBounds.height : size.height
@@ -61,11 +61,11 @@ public extension ScreenshotableView {
         }
     }
     
-    func snapshotAndSave(_ filename: String) {
+    func snapshotAndSave(_ filename: String, delayBeforeCapture: TimeInterval = 0.1) {
         let filename = filename.lowercased().contains(".png") ? filename : filename + ".png"
         let filepath = filePathFor(filename).path
 
-        let image = snapshot()
+        let image = snapshot(delayBeforeCapture: delayBeforeCapture)
         guard
             let srcroot = ProcessInfo.processInfo.environment["SRCROOT"],
             let srcrootFolder = try? Folder(path: "\(srcroot)"),

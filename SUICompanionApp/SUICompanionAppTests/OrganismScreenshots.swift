@@ -24,15 +24,39 @@ class OrganismScreenshots: XCTestCase {
         super.setUp()
     }
 
-    func test_screenshot_PrimaryCardView() {
-        ExampleView<Components.Organisms.PrimaryCardView<Text>>().snapshotAndSave("primaryCardView")
-    }
-    
     func test_screenshot_HeadlineCardView() {
         ExampleView<Components.Organisms.HeadlineCardView<Text>>().snapshotAndSave("headlineCardView")
     }
 
-    func test_screenshot_StatusCardView() {
+    func test_screenshot_PrimaryCardView() {
+        ExampleView<Components.Organisms.PrimaryCardView<Text>>().snapshotAndSave("primaryCardView")
+    }
+
+    func test_StatusCardView() {
         ExampleView<Components.Organisms.StatusCardView<Text>>().snapshotAndSave("statusCardView")
+    }
+
+    func test_InfomationMessageCardView() {
+        ExampleView<Components.Organisms.InformationMessageCard>().snapshotAndSave("informationMessageCard")
+    }
+
+    func test_SummaryRowView() {
+        ExampleView<Components.Organisms.SummaryRowView<Text>>().snapshotAndSave("summaryRowView")
+    }
+
+    func test_IconButtonCardView() {
+        ExampleView<Components.Organisms.IconButtonCardView>().snapshotAndSave("iconButtonCardView")
+    }
+
+    func test_EditableListView() {
+        ExampleView<Components.Organisms.EditableListView>().snapshotAndSave("editableListView")
+    }
+
+    func test_DonutChartView() throws {
+        ExampleView<Components.Organisms.DonutChartView>().snapshotAndSave("donutChartView", delayBeforeCapture: 5)
+    }
+
+    func test_DonutLegendView() {
+        ExampleView<Components.Organisms.DonutLegendView>().snapshotAndSave("donutLegendView")
     }
 }
