@@ -30,5 +30,25 @@ class AtomScreenshots: XCTestCase {
 
     func test_screenshot_buttons() {
         ExampleView<Components.Atoms.ExampleButton>().snapshotAndSave("buttons")
-    }    
+    }
+
+    func test_screenshot_switch() {
+        ExampleView<Components.Atoms.Switch>().snapshotAndSave("switch")
+    }
+
+    func test_screenshot_textView() {
+        ExampleView<Components.Atoms.TextView>().snapshotAndSave("textView")
+    }
+
+    func test_screenshot_imageAligningHStack() {
+        ExampleView<Components.Atoms.ImageAligningHStack<Image, Text>>().snapshotAndSave("imageAligningHStack")
+    }
+
+    func test_screenshot_divider() {
+        ExampleView<Components.Atoms.Divider>().snapshotAndSave("divider")
+    }
+
+    func test_screenshot_attributedText() {
+        ExampleView<Components.Atoms.AttributedText>().snapshotAndSave("attributedText")
+    }
 }

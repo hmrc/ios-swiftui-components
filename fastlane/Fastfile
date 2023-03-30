@@ -21,7 +21,7 @@ platform :ios do
       readonly: !force_for_new_devices,
       force_for_new_devices: force_for_new_devices
     )
-    # use `generate_apple_certs: false` if you get 
+    # use `generate_apple_certs: false` if you get
     # Could not create another Distribution certificate, reached the maximum number of available Distribution certificates.
   end
 
@@ -30,6 +30,7 @@ platform :ios do
     syncAdhocCerts()
     gym(
       project: options[:project_path],
+      scheme: "SUICompanionApp",
       configuration: "Debug",
       export_method: "ad-hoc",
       output_directory: options[:output]
@@ -160,7 +161,7 @@ platform :ios do
       UI.test_failure!("Screenshots did not match")
     else
       sh "mkdir -p ../SUICompanionApp/Artifacts/mismatches"
-      sh 'echo "No mismatches - need this file to stop Bitrise zip/deploy step failing when folder is empty!" > ../SUICompanionApp/Artifacts/mismatches/no_mismatches.txt' 
+      sh 'echo "No mismatches - need this file to stop Bitrise zip/deploy step failing when folder is empty!" > ../SUICompanionApp/Artifacts/mismatches/no_mismatches.txt'
       sh 'echo "All Screenshots matched" > ../SUICompanionApp/Artifacts/diff_report' + "_#{mode}" + '.txt'
     end
   end
