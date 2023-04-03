@@ -126,8 +126,9 @@ extension Components.Molecules {
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .accessibility(hidden: true)
                     }
-                    if let max = model.maxLength, max > 0 && model.showCharCount {
-                        Text("\(text.count)/\(max)")
+                    
+                    if model.maxLength > 0 && model.showCharCount {
+                        Text("\(text.count)/\(model.maxLength)")
                             .style(validationError != nil ? .error : .body)
                             .accessibility(hidden: true)
                     }
