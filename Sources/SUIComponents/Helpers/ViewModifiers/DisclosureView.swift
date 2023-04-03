@@ -58,7 +58,7 @@ public struct DisclosureView: ViewModifier {
             ZStack {
                 HStack(spacing: 0) {
                     content.accessibility(sortPriority: 2)
-                    Image("chevron_right", bundle: .module)
+                    Image("chevron_right", bundle: .main)
                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: model.inset))
                         .accessibility(hidden: true)
                 }

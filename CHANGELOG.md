@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+- Fixed Xcode 14.3 compiler issues
 
 ## [1.3.1] - 2023-03-28Z
 - Fixed issue with `SecondaryButtonStyle` tap area being too small
