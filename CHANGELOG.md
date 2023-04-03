@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [1.3.2] - 2023-04-03Z
 - Fixed Xcode 14.3 compiler issues
 
 ## [1.3.1] - 2023-03-28Z
