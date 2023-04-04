@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [1.3.3] - 2023-04-04Z
 - Fixed issue with `EditableListView` not announcing the edit buttons becoming visible
 - Added development certs/profiles & fastlane lanes to allow building to local device
 
