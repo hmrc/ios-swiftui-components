@@ -99,19 +99,21 @@ extension Components.Organisms {
                     icon: isEditing ? model.stopEditingButtonImage : model.startEditingButtonImage,
                     title: isEditing ? model.stopEditingButtonTitle : model.startEditingButtonTitle,
                     handler: {
-                        UIAccessibility.post(
-                            notification: .layoutChanged,
-                            argument: isEditing ?
-                                "\(model.rowButtonTitle) buttons now hidden" :
-                                "\(model.rowButtonTitle) buttons now visible"
-                        )
                         updateSize?()
                         withAnimation {
                             isEditing = !isEditing
-
+                        }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
+                            UIAccessibility.post(
+                                notification: .announcement,
+                                argument: isEditing ?
+                                    "\(model.rowButtonTitle) buttons now visible" :
+                                    "\(model.rowButtonTitle) buttons now hidden"
+                            )
                         }
                     })
                 )
+                .accessibility(addTraits: .startsMediaSession)
             }
             .cardView(insets: .none)
         }
