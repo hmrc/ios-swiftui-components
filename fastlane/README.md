@@ -15,6 +15,14 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 ## iOS
 
+### ios dev_certs
+
+```sh
+[bundle exec] fastlane ios dev_certs
+```
+
+This will sync development certificates to allow the companion app to build to local development devices
+
 ### ios sync_certificates
 
 ```sh

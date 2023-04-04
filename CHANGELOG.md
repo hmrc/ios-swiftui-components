@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+- Fixed issue with `EditableListView` not announcing the edit buttons becoming visible
+- Added development certs/profiles & fastlane lanes to allow building to local device
 
 ## [1.3.2] - 2023-04-03Z
 - Fixed Xcode 14.3 compiler issues

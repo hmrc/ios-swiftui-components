@@ -9,9 +9,25 @@ platform :ios do
 
   # GENERAL DEVELOPMENT LANES
   ####################################################################################
+
+  desc "This will sync development certificates to allow the companion app to build to local development devices"
+  lane :dev_certs do
+    syncDebugCerts()
+  end
+
   desc "This will sync adhoc certificates to allow the companion app to build on CI"
-  lane:sync_certificates do
+  lane :sync_certificates do
+    syncDebugCerts()
     syncAdhocCerts()
+  end
+
+  def syncDebugCerts(force_for_new_devices=false)
+    match(
+      app_identifier: ["uk.gov.hmrc.components.SUICompanionApp"],
+      type: "development",
+      readonly: !force_for_new_devices,
+      force_for_new_devices: force_for_new_devices
+    )
   end
 
   def syncAdhocCerts(force_for_new_devices=false)
@@ -44,8 +60,10 @@ platform :ios do
     device_hash = {}
     device_hash[device_name] = device_udid
     register_devices(devices: device_hash)
+    syncDebugCerts(true)
     syncAdhocCerts(true)
   end
+
   desc "Generate component screenshots using companion app"
   desc "Using xcodebuild over scan because it does not allow us to specify the exact simulator to use as it overrides the `-destination` flag we need to set"
   desc "Example:"
