@@ -25,6 +25,7 @@ extension Components.Organisms {
         public let headline: Headline
         public let itemSpacing: CGFloat
         public let insets: EdgeInsets
+        public var handler: VoidHandler
 
         public init(
             id: String,
@@ -32,7 +33,8 @@ extension Components.Organisms {
             icon: Image,
             headline: Headline,
             itemSpacing: CGFloat = .spacer16,
-            insets: EdgeInsets = .init(padding: .spacer16)
+            insets: EdgeInsets = .init(padding: .spacer16),
+            handler: @escaping VoidHandler
         ) {
             self.id = id
             self.theme = theme
@@ -40,6 +42,7 @@ extension Components.Organisms {
             self.headline = headline
             self.itemSpacing = itemSpacing
             self.insets = insets
+            self.handler = handler
         }
 
         public var body: some View {
@@ -90,9 +93,7 @@ extension Components.Organisms {
 
         @ViewBuilder func primary(cta: CTA) -> AnyView {
             AnyView(
-                Button(cta.message) {
-                    print("primary button tapped")
-                }
+                Button(cta.message, action: handler)
                     .infoMessageStyled(.action(enabled: true), theme: theme)
                     .multilineTextAlignment(.center)
             )
@@ -100,9 +101,7 @@ extension Components.Organisms {
 
         @ViewBuilder func secondary(cta: CTA) -> AnyView {
             AnyView(
-                Button(cta.message) {
-                    print("Secondary button tapped")
-                }
+                Button(cta.message, action: handler)
                     .infoMessageStyled(.outline(padding: .spacer8), theme: theme)
                     .multilineTextAlignment(.center)
 

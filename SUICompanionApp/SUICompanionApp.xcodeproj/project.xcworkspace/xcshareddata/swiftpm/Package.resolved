@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/hmrc/ios-swiftui-components",
       "state" : {
-        "revision" : "570954b4cc6a2df21de135834630dec28ad0f419",
-        "version" : "1.3.2"
+        "revision" : "3e34e6289b53954063b99020e2e4a2a27996ee4f",
+        "version" : "1.3.3"
       }
     }
   ],
