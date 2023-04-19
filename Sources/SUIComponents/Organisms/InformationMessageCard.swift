@@ -25,7 +25,7 @@ extension Components.Organisms {
         public let headline: Headline
         public let itemSpacing: CGFloat
         public let insets: EdgeInsets
-        public var handler: VoidHandler
+        public var handler: CTAHandler
 
         public init(
             id: String,
@@ -34,7 +34,7 @@ extension Components.Organisms {
             headline: Headline,
             itemSpacing: CGFloat = .spacer16,
             insets: EdgeInsets = .init(padding: .spacer16),
-            handler: @escaping VoidHandler
+            handler: @escaping CTAHandler
         ) {
             self.id = id
             self.theme = theme
@@ -66,7 +66,7 @@ extension Components.Organisms {
                             .foregroundColor(theme.bodyLabelColor())
                             .style(.body)
                     }
-
+                    
                     if let ctas = headline.ctas {
                         VStack {
                             ForEach(0..<ctas.count, id: \.self) { index in
@@ -93,7 +93,7 @@ extension Components.Organisms {
 
         @ViewBuilder func primary(cta: CTA) -> AnyView {
             AnyView(
-                Button(cta.message, action: handler)
+                Button(cta.message, action: { handler(cta) })
                     .infoMessageStyled(.action(enabled: true), theme: theme)
                     .multilineTextAlignment(.center)
             )
@@ -101,7 +101,7 @@ extension Components.Organisms {
 
         @ViewBuilder func secondary(cta: CTA) -> AnyView {
             AnyView(
-                Button(cta.message, action: handler)
+                Button(cta.message, action: { handler(cta) })
                     .infoMessageStyled(.outline(padding: .spacer8), theme: theme)
                     .multilineTextAlignment(.center)
 
