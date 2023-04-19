@@ -5,7 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
-- Added A voidHandler to the `InformationMessageCard` to allow ctas to have actions
+- Added A new CTAHandler to the `InformationMessageCard` to allow ctas data to past back to the app handlers
 
 ## [1.3.3] - 2023-04-04Z
 - Fixed issue with `EditableListView` not announcing the edit buttons becoming visible

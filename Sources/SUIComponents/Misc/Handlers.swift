@@ -18,6 +18,7 @@ import UIKit
 
 public typealias Handler<T> = (() -> T)
 public typealias VoidHandler = Handler<Void>
+public typealias CTAHandler = ((Components.Organisms.InformationMessageCard.CTA) -> Void)
 
 public typealias TextViewShouldChangeHandler = ( _ text: String,
                                                  _ shouldChangeTextInRange: NSRange,
