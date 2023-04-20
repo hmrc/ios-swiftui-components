@@ -76,6 +76,7 @@ extension Components.Organisms {
                     }
                 }
             )
+            .accessibility(label: Text(theme.accessibilityLabelPrefix() + headline.title))
             .cardView(
                 insets: insets,
                 backgroundColor: theme.backgroundColor()
