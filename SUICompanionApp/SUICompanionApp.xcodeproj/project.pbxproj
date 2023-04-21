@@ -732,7 +732,7 @@
 			repositoryURL = "https://github.com/hmrc/ios-swiftui-components";
 			requirement = {
 				kind = exactVersion;
-				version = 1.3.3;
+				version = 1.3.4;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

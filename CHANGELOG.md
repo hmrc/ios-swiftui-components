@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+- Added accessibilityLabels to `InformationMessageCard`
 
 ## [1.3.4] - 2023-04-19Z
 - Added A new CTAHandler to the `InformationMessageCard` to allow ctas data to past back to the app handlers
