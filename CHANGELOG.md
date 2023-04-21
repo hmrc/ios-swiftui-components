@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [1.3.5] - 2023-04-21Z
 - Added accessibilityLabels to `InformationMessageCard`
 
 ## [1.3.4] - 2023-04-19Z
