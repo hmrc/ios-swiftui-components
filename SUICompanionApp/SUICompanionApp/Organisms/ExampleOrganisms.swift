@@ -599,7 +599,11 @@ extension Components.Organisms.InformationMessageCard: Examplable {
                             displayType: .outline
                         )
                     ]
-                ))
+                ),
+                handler: { _ in
+
+                }
+            )
         )
     }
 
@@ -627,7 +631,10 @@ extension Components.Organisms.InformationMessageCard: Examplable {
                                 displayType: .outline
                             )
                         ]
-                    )
+                    ),
+                    handler: { _ in
+
+                    }
                 )
 
                 Components.Organisms.InformationMessageCard(
@@ -644,7 +651,10 @@ extension Components.Organisms.InformationMessageCard: Examplable {
                                 displayType: .action
                             )
                         ]
-                    )
+                    ),
+                    handler: { _ in
+
+                    }
                 )
 
                 Components.Organisms.InformationMessageCard(
@@ -653,7 +663,10 @@ extension Components.Organisms.InformationMessageCard: Examplable {
                     icon: Image("warning"),
                     headline: .init(
                         title: "Notice Message"
-                    )
+                    ),
+                    handler: { _ in
+
+                    }
                 )
             }
         )
@@ -1070,6 +1083,48 @@ extension Components.Organisms.DonutLegendView: Examplable {
                         )
                     ],
                     vStackSpacing: 8
+                )
+            }
+        )
+    }
+}
+
+extension Components.Organisms.MiniAdvertCardView: Examplable {
+    static var title: String { "MiniAdvertCardView" }
+
+    static var exampleBackgroundColor: Color { Color.Semantic.pageBackground }
+
+    static func withPlaceholders() -> AnyView {
+        AnyView(
+            Components.Organisms.MiniAdvertCardView(
+                model: .init(
+                    icon: Example.Images.chevronRight.image,
+                    title: "Give feedback to help us improve"
+                ), {
+                    print("Tapped Advert")
+                }
+            )
+        )
+    }
+
+    static func examples() -> AnyView {
+        AnyView(
+            VStack {
+                Components.Organisms.MiniAdvertCardView(
+                    model: .init(
+                        icon: Example.Images.chevronRight.image,
+                        title: "Give feedback to help us improve"
+                    ), {
+                        print("Tapped Advert")
+                    }
+                )
+                Components.Organisms.MiniAdvertCardView(
+                    model: .init(
+                        icon: Example.Images.chevronRight.image,
+                        title: "Get a bonus of up to 50p for every £1 you save with a Help to Save account"
+                    ), {
+                        print("Tapped Advert")
+                    }
                 )
             }
         )

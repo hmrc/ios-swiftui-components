@@ -59,4 +59,8 @@ class OrganismScreenshots: XCTestCase {
     func test_DonutLegendView() {
         ExampleView<Components.Organisms.DonutLegendView>().snapshotAndSave("donutLegendView")
     }
+
+    func test_MiniAdvertCardView() {
+        ExampleView<Components.Organisms.MiniAdvertCardView>().snapshotAndSave("miniAdvertCardView")
+    }
 }
