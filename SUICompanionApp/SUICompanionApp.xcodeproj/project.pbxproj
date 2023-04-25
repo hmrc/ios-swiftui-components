@@ -731,8 +731,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hmrc/ios-swiftui-components";
 			requirement = {
-				kind = exactVersion;
-				version = 1.3.5;
+				kind = revision;
+				revision = a1bae8bf787e75f8df72a4305de8eff2def7fbc0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
