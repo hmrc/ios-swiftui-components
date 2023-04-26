@@ -22,8 +22,8 @@ extension Components.Organisms {
         @State private var selected: Bool = false
         @State private var currentGeometry: GeometryProxy?
 
-        let model: Model
-        let didTapAdvert: VoidHandler?
+        public let model: Model
+        public let didTapAdvert: VoidHandler?
         private let spacing = CGFloat(12)
 
         public init(model: Model, _ didTapAdvert: VoidHandler?) {
