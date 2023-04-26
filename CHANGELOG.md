@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+- Exposed variables on `MiniAdvertCardView` so they can be accessed from UnitTests
 
 ## [1.4.0] - 2023-04-26Z
 - Added `MiniAdvertCardView`
