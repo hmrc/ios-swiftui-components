@@ -31,6 +31,7 @@ extension Example {
         case colours
         case edit
         case tick
+        case chevronRight = "chevron_right"
 
         var image: Image {
             return Image(self.rawValue)

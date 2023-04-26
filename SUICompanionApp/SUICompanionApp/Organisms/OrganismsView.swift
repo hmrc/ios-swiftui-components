@@ -30,6 +30,7 @@ struct OrganismsView: View {
                 Example.navigationLink(type: Components.Organisms.EditableListView.self)
                 Example.navigationLink(type: Components.Organisms.DonutChartView.self)
                 Example.navigationLink(type: Components.Organisms.DonutLegendView.self)
+                Example.navigationLink(type: Components.Organisms.MiniAdvertCardView.self)
             }
             .navigationTitle("Organisms")
         }
