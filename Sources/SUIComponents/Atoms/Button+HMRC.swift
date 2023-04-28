@@ -50,7 +50,11 @@ struct PrimaryButtonStyle: ButtonStyle {
     struct WrappedButton: View {
         let configuration: Configuration
         @Environment(\.isEnabled) private var isEnabled: Bool
-        
+        @Environment(\.sizeCategory) var sizeCategory
+        /*
+         Note: Switch from sizeCategory to dynamicTypeSize when updating to iOS15 > support
+         @Environment(\.dynamicTypeSize) var dynamicTypeSize
+         */
         private func backgroundColour(for configuration: Configuration, isEnabled: Bool)-> Color {
             if !isEnabled {
                 return Color.Semantic.primaryButtonDisabledBackground
@@ -109,7 +113,11 @@ struct SecondaryButtonStyle: ButtonStyle {
         let fullWidth: Bool
         let alignment: Alignment
         @Environment(\.isEnabled) private var isEnabled: Bool
-        
+        @Environment(\.sizeCategory) var sizeCategory
+        /*
+         Note: Switch from sizeCategory to dynamicTypeSize when updating to iOS15 > support
+        @Environment(\.dynamicTypeSize) var dynamicTypeSize
+         */
         private func backgroundColour(for configuration: Configuration, isEnabled: Bool)-> Color {
             return configuration.isPressed ? Color.Semantic.secondaryButtonHighlightedBackground : Color.Semantic.secondaryButtonBackground
         }

@@ -40,7 +40,11 @@ extension Components.Organisms.InformationMessageCard {
         struct WrappedButton: View {
             let configuration: Configuration
             @Environment(\.isEnabled) private var isEnabled: Bool
-
+            @Environment(\.sizeCategory) var sizeCategory
+            /*
+             Note: Switch from sizeCategory to dynamicTypeSize when updating to iOS15 > support
+             @Environment(\.dynamicTypeSize) var dynamicTypeSize
+             */
             private func backgroundColour(for configuration: Configuration, isEnabled: Bool)-> Color {
                 if !isEnabled {
                     return Color.Semantic.primaryButtonDisabledBackground
@@ -80,7 +84,11 @@ extension Components.Organisms.InformationMessageCard {
             let padding: CGFloat
             let theme: Components.Organisms.InformationMessageCard.Theme
             @Environment(\.isEnabled) private var isEnabled: Bool
-
+            @Environment(\.sizeCategory) var sizeCategory
+            /*
+             Note: Switch from sizeCategory to dynamicTypeSize when updating to iOS15 > support
+             @Environment(\.dynamicTypeSize) var dynamicTypeSize
+             */
             init(
                 configuration: OutlineButtonStyle.Configuration,
                 padding: CGFloat,
