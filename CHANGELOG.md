@@ -5,6 +5,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+- Fixed issue with Dynamic Font not updating on the current screen when changed in settings
+
+## [1.4.1] - 2023-04-26Z
 - Exposed variables on `MiniAdvertCardView` so they can be accessed from UnitTests
 
 ## [1.4.0] - 2023-04-26Z

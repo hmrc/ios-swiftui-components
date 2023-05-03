@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		570FB6DC29FC1C5F00D1C955 /* SUIComponents in Frameworks */ = {isa = PBXBuildFile; productRef = 570FB6DB29FC1C5F00D1C955 /* SUIComponents */; };
 		580564312714669900BD9EA6 /* OrganismsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580564302714669900BD9EA6 /* OrganismsView.swift */; };
 		5805643427146B2300BD9EA6 /* MoleculesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5805643327146B2300BD9EA6 /* MoleculesView.swift */; };
 		5805643627146B7C00BD9EA6 /* ExampleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5805643527146B7C00BD9EA6 /* ExampleProtocol.swift */; };
@@ -21,7 +22,6 @@
 		587A134826C4223B0005A55D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 587A134726C4223B0005A55D /* Assets.xcassets */; };
 		587A134B26C4223B0005A55D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 587A134A26C4223B0005A55D /* Preview Assets.xcassets */; };
 		587A135326C423AB0005A55D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587A135226C423AB0005A55D /* MainView.swift */; };
-		CA32714029D5E71100F493DC /* SUIComponents in Frameworks */ = {isa = PBXBuildFile; productRef = CA32713F29D5E71100F493DC /* SUIComponents */; };
 		CAE72B5A29D5832C00A69D4C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE72B5929D5832C00A69D4C /* AppDelegate.swift */; };
 		E9DEFFDD273E5ABB005ABDDF /* ScreenshotableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DEFFDC273E5ABB005ABDDF /* ScreenshotableView.swift */; };
 		E9DEFFE2273E7072005ABDDF /* MeasurableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DEFFE1273E7072005ABDDF /* MeasurableScrollView.swift */; };
@@ -43,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		570FB6DA29FC1C5200D1C955 /* ios-swiftui-components */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "ios-swiftui-components"; path = ..; sourceTree = "<group>"; };
 		580564302714669900BD9EA6 /* OrganismsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganismsView.swift; sourceTree = "<group>"; };
 		5805643327146B2300BD9EA6 /* MoleculesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoleculesView.swift; sourceTree = "<group>"; };
 		5805643527146B7C00BD9EA6 /* ExampleProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleProtocol.swift; sourceTree = "<group>"; };
@@ -77,7 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA32714029D5E71100F493DC /* SUIComponents in Frameworks */,
+				570FB6DC29FC1C5F00D1C955 /* SUIComponents in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,6 +141,7 @@
 		587A133726C422370005A55D = {
 			isa = PBXGroup;
 			children = (
+				570FB6DA29FC1C5200D1C955 /* ios-swiftui-components */,
 				587A134226C422370005A55D /* SUICompanionApp */,
 				E9D1892E273D597900723C16 /* SUICompanionAppTests */,
 				587A134126C422370005A55D /* Products */,
@@ -245,7 +247,7 @@
 			);
 			name = SUICompanionApp;
 			packageProductDependencies = (
-				CA32713F29D5E71100F493DC /* SUIComponents */,
+				570FB6DB29FC1C5F00D1C955 /* SUIComponents */,
 			);
 			productName = SUICompanionApp;
 			productReference = 587A134026C422370005A55D /* SUICompanionApp.app */;
@@ -299,7 +301,6 @@
 			);
 			mainGroup = 587A133726C422370005A55D;
 			packageReferences = (
-				CA32713E29D5E71100F493DC /* XCRemoteSwiftPackageReference "ios-swiftui-components" */,
 			);
 			productRefGroup = 587A134126C422370005A55D /* Products */;
 			projectDirPath = "";
@@ -726,21 +727,9 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		CA32713E29D5E71100F493DC /* XCRemoteSwiftPackageReference "ios-swiftui-components" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/hmrc/ios-swiftui-components";
-			requirement = {
-				kind = exactVersion;
-				version = 1.4.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
 /* Begin XCSwiftPackageProductDependency section */
-		CA32713F29D5E71100F493DC /* SUIComponents */ = {
+		570FB6DB29FC1C5F00D1C955 /* SUIComponents */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CA32713E29D5E71100F493DC /* XCRemoteSwiftPackageReference "ios-swiftui-components" */;
 			productName = SUIComponents;
 		};
 /* End XCSwiftPackageProductDependency section */

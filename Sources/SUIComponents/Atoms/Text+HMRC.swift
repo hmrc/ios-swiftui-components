@@ -67,6 +67,11 @@ public extension Text {
     }
     struct Title: ViewModifier {
         let model: TextStyle
+        @Environment(\.sizeCategory) var sizeCategory
+        /*
+         Note: Switch from sizeCategory to dynamicTypeSize when updating to iOS15 > support
+         @Environment(\.dynamicTypeSize) var dynamicTypeSize
+         */
         public func body(content: Content) -> some View {
             content
                 .font(model.font)
