@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+- Added `IconButtonWithDisclosureView` molecule
 
 ## [1.4.2] - 2023-05-05Z
 - Fixed issue with Dynamic Font not updating on the current screen when changed in settings
