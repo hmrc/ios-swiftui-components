@@ -18,6 +18,62 @@ import SwiftUI
 import SUIComponents
 
 
+extension Components.Molecules.IconButtonWithDisclosureView: Examplable {
+    static var title: String { "IconButtonWithDisclosureView" }
+
+    static var exampleBackgroundColor: Color { Color.Semantic.pageBackground }
+
+    static func withPlaceholders() -> AnyView {
+        AnyView(
+            VStack {
+                Components.Molecules.IconButtonWithDisclosureView(
+                    model: .init(
+                        icon: Example.Images.info.image,
+                        title: "Title",
+                        normalBackgroundColour: .clear,
+                        handler: {}
+                    )
+                )
+                Components.Atoms.SeparatorView()
+                Components.Molecules.IconButtonWithDisclosureView(
+                    model: .init(
+                        title: "Title without icon",
+                        normalBackgroundColour: .clear,
+                        handler: {}
+                    )
+                )
+            }
+        )
+    }
+
+    static func examples() -> AnyView {
+        AnyView(VStack(spacing: .spacer16) {
+            Components.Molecules.IconButtonWithDisclosureView(
+                model: .init(
+                    icon: Example.Images.info.image,
+                    title: "About your bonuses",
+                    handler: {}
+                )
+            )
+            VStack(spacing: 0) {
+                Components.Molecules.IconButtonWithDisclosureView(
+                    model: .init(
+                        title: "General enquiries",
+                        handler: {}
+                    )
+                )
+                Components.Atoms.SeparatorView()
+                Components.Molecules.IconButtonWithDisclosureView(
+                    model: .init(
+                        title: "Help and information",
+                        handler: {}
+                    )
+                )
+            }
+        })
+    }
+}
+
 extension Components.Molecules.WarningView: Examplable {
     static var title: String { "WarningView" }
 
