@@ -47,7 +47,7 @@ platform :ios do
     gym(
       project: options[:project_path],
       scheme: "SUICompanionApp",
-      configuration: "Debug",
+      configuration: "Release",
       export_method: "ad-hoc",
       output_directory: options[:output]
     )
