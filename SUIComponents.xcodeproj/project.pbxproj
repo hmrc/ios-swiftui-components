@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5797A32E2A2A4BA900823C02 /* MenuPanelRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5797A32D2A2A4BA900823C02 /* MenuPanelRowView.swift */; };
+		5797A3322A2DFB4300823C02 /* NotificationBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5797A3312A2DFB4300823C02 /* NotificationBubbleView.swift */; };
 		OBJ_100 /* Button+HMRC.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Button+HMRC.swift */; };
 		OBJ_101 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* CustomButton.swift */; };
 		OBJ_102 /* Divider.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* Divider.swift */; };
@@ -72,6 +74,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5797A32D2A2A4BA900823C02 /* MenuPanelRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPanelRowView.swift; sourceTree = "<group>"; };
+		5797A3312A2DFB4300823C02 /* NotificationBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationBubbleView.swift; sourceTree = "<group>"; };
 		OBJ_10 /* AttributedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedText.swift; sourceTree = "<group>"; };
 		OBJ_11 /* Button+HMRC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Button+HMRC.swift"; sourceTree = "<group>"; };
 		OBJ_12 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -230,7 +234,7 @@
 			path = ViewModifiers;
 			sourceTree = "<group>";
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -248,7 +252,6 @@
 				OBJ_92 /* Gemfile.lock */,
 				OBJ_93 /* swiftlint_local.sh */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_52 /* Injection */ = {
@@ -282,6 +285,7 @@
 				OBJ_66 /* TextInputView.swift */,
 				OBJ_67 /* TitleBodyView.swift */,
 				OBJ_68 /* WarningView.swift */,
+				5797A3312A2DFB4300823C02 /* NotificationBubbleView.swift */,
 			);
 			path = Molecules;
 			sourceTree = "<group>";
@@ -300,6 +304,7 @@
 				OBJ_78 /* PrimaryCardView.swift */,
 				OBJ_79 /* StatusCardView.swift */,
 				OBJ_80 /* SummaryRowView.swift */,
+				5797A32D2A2A4BA900823C02 /* MenuPanelRowView.swift */,
 			);
 			path = Organisms;
 			sourceTree = "<group>";
@@ -408,7 +413,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_82 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -437,6 +442,7 @@
 				OBJ_101 /* CustomButton.swift in Sources */,
 				OBJ_102 /* Divider.swift in Sources */,
 				OBJ_103 /* ImageAligningHStack.swift in Sources */,
+				5797A32E2A2A4BA900823C02 /* MenuPanelRowView.swift in Sources */,
 				OBJ_104 /* NSAttributedString+HMRC.swift in Sources */,
 				OBJ_105 /* SeparatorView.swift in Sources */,
 				OBJ_106 /* Stack.swift in Sources */,
@@ -471,6 +477,7 @@
 				OBJ_135 /* Injection.swift in Sources */,
 				OBJ_136 /* ServiceDependencyInjection.swift in Sources */,
 				OBJ_137 /* Handlers.swift in Sources */,
+				5797A3322A2DFB4300823C02 /* NotificationBubbleView.swift in Sources */,
 				OBJ_138 /* Namespaces.swift in Sources */,
 				OBJ_139 /* CurrencyInputView.swift in Sources */,
 				OBJ_140 /* IconButtonView.swift in Sources */,

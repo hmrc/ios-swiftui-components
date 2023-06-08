@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+- Added `MenuPanelRowView` Organism
+- Added `NotificationBubbleView` Molecule
 
 ## [1.5.0] - 2023-05-18Z
 - Added `IconButtonWithDisclosureView` molecule

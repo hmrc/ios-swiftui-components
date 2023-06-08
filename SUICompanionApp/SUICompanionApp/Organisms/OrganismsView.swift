@@ -21,16 +21,21 @@ struct OrganismsView: View {
     var body: some View {
         NavigationView {
             List {
-                Example.navigationLink(type: Components.Organisms.HeadlineCardView<Text>.self)
-                Example.navigationLink(type: Components.Organisms.PrimaryCardView<Text>.self)
-                Example.navigationLink(type: Components.Organisms.StatusCardView<Text>.self)
-                Example.navigationLink(type: Components.Organisms.InformationMessageCard.self)
-                Example.navigationLink(type: Components.Organisms.SummaryRowView<Text>.self)
-                Example.navigationLink(type: Components.Organisms.IconButtonCardView.self)
-                Example.navigationLink(type: Components.Organisms.EditableListView.self)
-                Example.navigationLink(type: Components.Organisms.DonutChartView.self)
-                Example.navigationLink(type: Components.Organisms.DonutLegendView.self)
-                Example.navigationLink(type: Components.Organisms.MiniAdvertCardView.self)
+                Group {
+                    Example.navigationLink(type: Components.Organisms.HeadlineCardView<Text>.self)
+                    Example.navigationLink(type: Components.Organisms.PrimaryCardView<Text>.self)
+                    Example.navigationLink(type: Components.Organisms.StatusCardView<Text>.self)
+                    Example.navigationLink(type: Components.Organisms.InformationMessageCard.self)
+                    Example.navigationLink(type: Components.Organisms.SummaryRowView<Text>.self)
+                    Example.navigationLink(type: Components.Organisms.IconButtonCardView.self)
+                    Example.navigationLink(type: Components.Organisms.EditableListView.self)
+                    Example.navigationLink(type: Components.Organisms.DonutChartView.self)
+                    Example.navigationLink(type: Components.Organisms.DonutLegendView.self)
+                    Example.navigationLink(type: Components.Organisms.MiniAdvertCardView.self)
+                }
+                Group {
+                    Example.navigationLink(type: Components.Organisms.MenuPanelRowView.self)
+                }
             }
             .navigationTitle("Organisms")
         }
