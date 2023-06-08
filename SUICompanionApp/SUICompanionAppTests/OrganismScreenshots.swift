@@ -63,4 +63,8 @@ class OrganismScreenshots: XCTestCase {
     func test_MiniAdvertCardView() {
         ExampleView<Components.Organisms.MiniAdvertCardView>().snapshotAndSave("miniAdvertCardView")
     }
+    
+    func test_MenuPanelRowView() {
+        ExampleView<Components.Organisms.MenuPanelRowView>().snapshotAndSave("menuPanelRowView")
+    }
 }
