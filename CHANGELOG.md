@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.6.1] - 2023-06-12Z
+
 - Fixed issue with `donutLegendItem` repeating legend item keys if values are not unique
 
 ## [1.6.0] - 2023-06-08Z
