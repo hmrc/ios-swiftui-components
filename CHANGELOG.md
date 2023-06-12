@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [1.6.2] - 2023-06-12Z
 - Modified `MenuPanelRowView` Organism into Hashable/Equatable type 
 
 ## [1.6.1] - 2023-06-12Z
