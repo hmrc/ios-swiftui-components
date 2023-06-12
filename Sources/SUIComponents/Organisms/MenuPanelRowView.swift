@@ -18,9 +18,17 @@ import SwiftUI
 
 extension Components.Organisms {
 
-    public struct MenuPanelRowView: View {
+    public struct MenuPanelRowView: View, Hashable {
         public let insets: EdgeInsets = EdgeInsets(padding: .spacer16)
         let model: Model
+        
+        public static func == (lhs: MenuPanelRowView, rhs: MenuPanelRowView) -> Bool {
+            lhs.model.id == rhs.model.id
+        }
+        
+        public func hash(into hasher: inout Hasher) {
+            hasher.combine(model.id)
+        }
         
         public init(model: Model) {
             self.model = model
