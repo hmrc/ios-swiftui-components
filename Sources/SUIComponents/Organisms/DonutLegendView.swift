@@ -28,7 +28,7 @@ extension Components.Organisms {
             
         public var body: some View {
             VStack(alignment: .leading, spacing: vStackSpacing) {
-                ForEach(donutLegendItems, id: \.value) { legendItem in
+                ForEach(donutLegendItems, id: \.id) { legendItem in
                     HStack {
                         if legendItem.dashed {
                             Stripes(
@@ -63,7 +63,8 @@ extension Components.Organisms {
             .padding()
         }
         
-        public struct DonutLegendItem {
+        public struct DonutLegendItem: Identifiable {
+            public let id = UUID()
             public let colour: Color
             public let title: String
             public let value: String

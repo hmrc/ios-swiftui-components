@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+- Fixed issue with `donutLegendItem` repeating legend item keys if values are not unique
+
 ## [1.6.0] - 2023-06-08Z
 - Added `MenuPanelRowView` Organism
 - Added `NotificationBubbleView` Molecule
