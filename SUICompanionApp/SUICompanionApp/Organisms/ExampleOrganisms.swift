@@ -1136,7 +1136,7 @@ extension Components.Organisms.MenuPanelRowView: Examplable {
     typealias Model = Components.Organisms.MenuPanelRowView.Model
     
     static var title: String { "MenuPanelRowView" }
-    static var exampleBackgroundColor: Color { Color.Semantic.menuPageBackground }
+    static var exampleBackgroundColor: Color { Color.Semantic.cardBackground }
     
     static func withPlaceholders() -> AnyView {
         AnyView(

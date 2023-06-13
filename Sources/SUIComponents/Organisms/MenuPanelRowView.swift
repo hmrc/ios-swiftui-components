@@ -37,15 +37,18 @@ extension Components.Organisms {
         public var body: some View {
             VStack(alignment: .leading, spacing: .spacer24) {
                 HStack(spacing: .spacer8) {
-                    Text(model.title, style: .H5)
-                        .allowsTightening(false)
-                        .multilineTextAlignment(.leading)
+                    Text(model.title)
                         .foregroundColor(
                             TextStyle.link.textColor
                         )
+                        .style(.H5)
+                        .allowsTightening(false)
+                        .multilineTextAlignment(.leading)
                     Components.Molecules.NotificationBubbleView(model: .init(notificationMode: model.notificationMode))
                 }
                 Text(model.body, style: .body)
+                    .multilineTextAlignment(.leading)
+                    .fixedSize(horizontal: false, vertical: true)
             }.cardView(
                 insets: insets,
                 backgroundColor: Color.Semantic.menuCardBackground,
@@ -92,19 +95,29 @@ struct MenuPanelRowView_Previews: PreviewProvider {
     static var previews: some View {
         VStack(alignment: .leading,spacing: .spacer16)
         {
+        
+        let disclosureModel: DisclosureView.Model = .init({
+            print("disclosure tapped")
+        })
+        
         Components.Organisms.MenuPanelRowView(
             model: .init(
                 title: "Messages",
                 body: "Messages and tax letters from HMRC.",
                 notificationMode: .number(count: 1, hideWhenZero: false),
+                disclosureModel: disclosureModel,
                 handler: {
                     print("Panel Row tapped")
                 }))
-        
-        }.frame(
-            maxWidth: .infinity,
-            maxHeight: .infinity,
+        .padding(0)
+        .frame(
+            idealWidth: .infinity,
+            maxHeight: 100,
             alignment: .leading
-        ).background(Color.gray)
+        )
+        Spacer()
+        }
+        .padding(.horizontal,.spacer16)
+        .background(Color.Semantic.cardBackground)
     }
 }
