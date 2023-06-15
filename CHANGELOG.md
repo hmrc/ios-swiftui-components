@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+- Modified `MenuPanelRowView` to correct theme and prevent text compression
+- Added `ChevronRight` Assets to match resources in the main app.  
 
 ## [1.6.2] - 2023-06-12Z
 - Modified `MenuPanelRowView` Organism into Hashable/Equatable type 
