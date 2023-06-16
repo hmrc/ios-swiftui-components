@@ -20,7 +20,7 @@ extension Components.Organisms {
 
     public struct MenuPanelRowView: View, Hashable {
         public let insets: EdgeInsets = EdgeInsets(padding: .spacer16)
-        let model: Model
+        public let model: Model
         
         public static func == (lhs: MenuPanelRowView, rhs: MenuPanelRowView) -> Bool {
             lhs.model.id == rhs.model.id
@@ -46,16 +46,20 @@ extension Components.Organisms {
                         .multilineTextAlignment(.leading)
                     Components.Molecules.NotificationBubbleView(model: .init(notificationMode: model.notificationMode))
                 }
+                .accessibility(hidden: true)
+                
                 Text(model.body, style: .body)
                     .multilineTextAlignment(.leading)
                     .fixedSize(horizontal: false, vertical: true)
-            }.cardView(
+                    .accessibility(hidden: true)
+            }
+            .cardView(
                 insets: insets,
                 backgroundColor: Color.Semantic.menuCardBackground,
                 disclosureModel: model.disclosureModel
-            ).accessibility(hint:
-                Text( model.accessibilityIdentifier ?? "")
             )
+            .accessibility(sortPriority: 1)
+            .accessibilityElement(children: .combine)
         }
     }
 }
