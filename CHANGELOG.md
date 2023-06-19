@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.6.4] - 2023-06-19Z
+
 - Modified `NotificationBubbleView` and `MenuPanelRowView` to group accessibility label
 
 ## [1.6.3] - 2023-06-15Z
