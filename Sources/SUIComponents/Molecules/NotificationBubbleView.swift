@@ -47,18 +47,11 @@ extension Components.Molecules {
                             }
                         }
                         .opacity(hideWhenZero && count == 0 ? 0 : 1)
-                        .accessibility(label:
-                                        Text(
-                                            verbatim: "^[\(count) New item](inflect: true)"
-                                        )
-                        )
                 case .hidden:
                     EmptyView()
+                        .accessibility(hidden: true)
                 case .text(let text):
                     Text(verbatim: "\(text)")
-                        .accessibility(label:
-                                        Text(text)
-                        )
                 }
         }
         
@@ -91,8 +84,7 @@ extension Components.Molecules {
                 cornerRadius = FontMetrics.scaledValue(for: Consts.defaultSize.height / 2)
                 visible = !(viewModel.notificationMode == .hidden)
             }
-            .accessibilityElement(children: .combine)
-            .accessibility(hidden: visible)
+            .accessibility(hidden: !visible)
             .opacity(visible ? 1 : 0)
             .frame(minWidth: visible ? frameWidth : 0,
                    minHeight: visible ? frameHeight : 0,
