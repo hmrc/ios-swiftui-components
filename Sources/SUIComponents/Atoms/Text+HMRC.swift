@@ -73,10 +73,20 @@ public extension Text {
          @Environment(\.dynamicTypeSize) var dynamicTypeSize
          */
         public func body(content: Content) -> some View {
-            content
-                .font(model.font)
-                .foregroundColor(model.textColor)
-                .fixedSize(horizontal: false, vertical: true)
+            if model == .H3 || model == .H4 || model == .H5 {
+                return AnyView(content
+                    .font(model.font)
+                    .foregroundColor(model.textColor)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .accessibility(addTraits: .isHeader)
+                )
+            } else {
+                return AnyView(content
+                    .font(model.font)
+                    .foregroundColor(model.textColor)
+                    .fixedSize(horizontal: false, vertical: true)
+                )
+            }
         }
     }
 }

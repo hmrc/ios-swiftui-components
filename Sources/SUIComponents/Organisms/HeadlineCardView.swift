@@ -49,7 +49,6 @@ extension Components.Organisms {
                     VStack(spacing: itemSpacing) {
                         Text(title)
                             .style(.H5)
-                            .accessibility(label: Text("\(title), heading"))
                             .frame(maxWidth: .infinity, alignment: .leading)
                         headline
                             .frame(maxWidth: .infinity, alignment: .leading)
