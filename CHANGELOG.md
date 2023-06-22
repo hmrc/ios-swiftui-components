@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [1.6.5] - 2023-06-22Z
 - Fixed `heading` accessibility trait for H3, H4 & H5
 
 ## [1.6.4] - 2023-06-19Z
