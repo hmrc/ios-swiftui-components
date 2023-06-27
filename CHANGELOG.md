@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+- Make `IconButtonWithDisclosureView` model public to allow unit tests to trigger tap handler
 
 ## [1.6.5] - 2023-06-22Z
 - Fixed `heading` accessibility trait for H3, H4 & H5
@@ -18,7 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Added `ChevronRight` Assets to match resources in the main app.  
 
 ## [1.6.2] - 2023-06-12Z
-- Modified `MenuPanelRowView` Organism into Hashable/Equatable type 
+- Modified `MenuPanelRowView` Organism into Hashable/Equatable type
 
 ## [1.6.1] - 2023-06-12Z
 
