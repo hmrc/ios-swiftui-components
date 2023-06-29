@@ -18,17 +18,20 @@ import SwiftUI
 
 extension Components.Organisms {
     public struct PrimaryCardView<Content: View>: View {
+        let id: String
         let title: String
         let insets: EdgeInsets
         let itemSpacing: CGFloat
         let content: Content
 
         public init(
+            id: String = "",
             title: String,
             insets: EdgeInsets = EdgeInsets(padding: .spacer16),
             itemSpacing: CGFloat = .spacer16,
             @ViewBuilder content: () -> Content
         ) {
+            self.id = id
             self.title = title
             self.insets = insets
             self.itemSpacing = itemSpacing
@@ -44,7 +47,9 @@ extension Components.Organisms {
                         .style(.H5)
                     content
                 }
-            ).cardView(insets: insets)
+            )
+            .cardView(insets: insets)
+            .id(id)
         }
     }
 }
