@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+- Added `.spacer0` and added view Id to disclosue view button
 
 ## [1.6.6] - 2023-06-27Z
 - Make `IconButtonWithDisclosureView` model public to allow unit tests to trigger tap handler

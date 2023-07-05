@@ -19,15 +19,20 @@ import SwiftUI
 public struct DisclosureView: ViewModifier {
 
     public struct Model {
+        let id: String
         let inset: CGFloat
         let action: VoidHandler
         let accessibilityLabel: String
         let accessibilityHint: String
 
-        public init(inset: CGFloat = .spacer16,
-                    accessibilityLabel: String = "",
-                    accessibilityHint: String = "",
-                    _ action: @escaping VoidHandler) {
+        public init(
+            id: String = "",
+            inset: CGFloat = .spacer16,
+            accessibilityLabel: String = "",
+            accessibilityHint: String = "",
+            _ action: @escaping VoidHandler
+        ) {
+            self.id = id
             self.inset = inset
             self.action = action
             self.accessibilityLabel = accessibilityLabel
@@ -70,7 +75,7 @@ public struct DisclosureView: ViewModifier {
                 Button("") {
                     performAction()
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .id(model.id)
                 .accessibility(sortPriority: 1)
                 .accessibility(label: Text(model.accessibilityLabel))
                 .accessibility(hint: Text(model.accessibilityHint))
