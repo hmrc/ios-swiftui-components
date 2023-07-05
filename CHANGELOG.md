@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [1.7.0] - 2023-07-05Z
 - Added `.spacer0` and added view Id to disclosue view button
 
 ## [1.6.6] - 2023-06-27Z
