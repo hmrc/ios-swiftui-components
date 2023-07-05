@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [1.6.6] - 2023-06-27Z
 - Make `IconButtonWithDisclosureView` model public to allow unit tests to trigger tap handler
 
 ## [1.6.5] - 2023-06-22Z
