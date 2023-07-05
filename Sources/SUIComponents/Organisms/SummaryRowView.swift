@@ -44,7 +44,8 @@ extension Components.Organisms {
                         model.rowViews
                     }
                 )
-            }.cardView(
+            }
+            .cardView(
                 backgroundColor: .clear,
                 disclosureModel: model.disclosureModel
             )
@@ -84,23 +85,60 @@ extension Components.Organisms.SummaryRowView {
 
 struct SummaryRowView_Previews: PreviewProvider {
     static var previews: some View {
-        VStack(
-            alignment: .leading,
-            spacing: .spacer16,
-            content: {
-                Components.Organisms.SummaryRowView(
-                    model: .init(
-                        title: "Title",
-                        rowViews: {
-
+        VStack {
+            Components.Organisms.SummaryRowView(
+                model: .init(
+                    title: "Title",
+                    rowViews: {
+                        Components.Molecules.MultiColumnRowView(
+                            labels: ["28 July 2023"],
+                            style: .info
+                        )
+                    },
+                    disclosureModel: .init(
+                        id: "article1",
+                        {
+                            print("")
                         }
                     )
                 )
-            }
-        ).frame(
-            maxWidth: .infinity,
-            maxHeight: .infinity,
-            alignment: .leading
-        ).background(Color.gray)
+            )
+            Divider()
+            Components.Organisms.SummaryRowView(
+                model: .init(
+                    title: "Title Title Title Title Title Title Title Title Title Title Title Title",
+                    rowViews: {
+                        Components.Molecules.MultiColumnRowView(
+                            labels: ["28 July 2023"],
+                            style: .info
+                        )
+                    },
+                    disclosureModel: .init(
+                        id: "article2",
+                        {
+                            print("")
+                        }
+                    )
+                )
+            )
+            Divider()
+            Components.Organisms.SummaryRowView(
+                model: .init(
+                    title: "Title",
+                    rowViews: {
+                        Components.Molecules.MultiColumnRowView(
+                            labels: ["28 July 2023"],
+                            style: .info
+                        )
+                    },
+                    disclosureModel: .init(
+                        id: "article3",
+                        {
+                            print("")
+                        }
+                    )
+                )
+            )
+        }
     }
 }

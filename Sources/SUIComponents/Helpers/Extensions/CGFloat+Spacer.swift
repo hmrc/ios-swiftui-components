@@ -17,6 +17,7 @@
 import SwiftUI
 
 public extension CGFloat {
+    static let spacer0: CGFloat = 0.0
     static let spacer4: CGFloat = 4.0
     static let spacer8: CGFloat = 8.0
     static let spacer12: CGFloat = 12.0
