@@ -28,7 +28,13 @@ extension Components.Organisms {
         var globalStyleProperties: Components.Organisms.DonutChartView.GlobalStylingProperties
         
         @State private var stateEndAngle: Double = 0.0
-                
+        @State private var animationCompletionPercentage: Double = 0.0
+        @Binding var animationCompletedTick: Int
+        var animatableData: Double {
+            get { (animationCompletionPercentage/stateEndAngle).rounded(.up) }
+            set { animationCompletionPercentage = newValue }
+        }
+        
         var body: some View {
             let firstOrLast: Bool = index == 0 || isLast
             let dashRequired: Bool = dash != nil
@@ -51,6 +57,7 @@ extension Components.Organisms {
                         .onAppear {
                             withAnimation(circleAnimation) {
                                 stateEndAngle = endAngle
+                                animationCompletedTick += 1
                             }
                         }
                 }
@@ -68,16 +75,22 @@ extension Components.Organisms {
                     .onAppear {
                         withAnimation(circleAnimation) {
                             stateEndAngle = endAngle
+                            animationCompletedTick += 1
                         }
                     }
             }
         }
     }
     
-    public struct DonutChartView: View {
+    public struct DonutChartView: Animatable, View {
+        public func effectValue(size: CGSize) -> ProjectionTransform {
+            return ProjectionTransform()
+        }
+        
         public let sliceDetails: [SliceDetails]
         public let globalStyleProperties: GlobalStylingProperties
-        
+        @State private var sliceAnimationCompletionCount: Int = 0
+        @EnvironmentObject var animationComplete: ObservableBooleanStateObject
         public init(sliceDetails: [SliceDetails], globalStyleProperties: GlobalStylingProperties) {
             self.sliceDetails = sliceDetails
             self.globalStyleProperties = globalStyleProperties
@@ -94,7 +107,8 @@ extension Components.Organisms {
                         sliceWidth: globalStyleProperties.sliceWidth,
                         dash: slice.dashStyle,
                         isLast: idx == sliceDetails.count,
-                        globalStyleProperties: globalStyleProperties
+                        globalStyleProperties: globalStyleProperties,
+                        animationCompletedTick: $sliceAnimationCompletionCount
                     )
                     .drawingGroup()
                 }
@@ -103,6 +117,12 @@ extension Components.Organisms {
                 width: globalStyleProperties.viewHeight,
                 height: globalStyleProperties.viewHeight
             )
+            .onChange(of: sliceAnimationCompletionCount ) { value in
+                if value/sliceDetails.count == 1 {
+                    animationComplete.booleanState = true
+                    
+                }
+            }
         }
         
         public struct SliceDetails {
