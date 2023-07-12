@@ -20,21 +20,33 @@ extension Components.Molecules {
     public struct InsetView<Content: View>: View {
         public struct Model {
             let content: Content
-
+            
             public init(@ViewBuilder content: () -> Content) {
                 self.content = content()
             }
         }
 
         let model: Model
-
+        let edgeInsets: EdgeInsets
+        
         public init(model: Model) {
             self.model = model
+            self.edgeInsets = EdgeInsets(
+                top: .spacer16,
+                leading: .spacer16 + .spacer4,
+                bottom: .spacer16,
+                trailing: .spacer16
+            )
+        }
+        
+        public init(model: Model, edgeInsets: EdgeInsets) {
+            self.model = model
+            self.edgeInsets = edgeInsets
         }
 
         public var body: some View {
             model.content
-                .padding(.init(top: .spacer16, leading: .spacer16 + .spacer4, bottom: .spacer16, trailing: .spacer16))
+                .padding(edgeInsets)
                 .overlay(
                     Rectangle()
                         .foregroundColor(Color.Semantic.insetBar)
