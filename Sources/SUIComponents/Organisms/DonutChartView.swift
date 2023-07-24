@@ -37,10 +37,12 @@ extension Components.Organisms {
                 .linear(duration: globalStyleProperties.animationDuration)
                 .delay(Double(firstOrLast ? 0 : index))
             
+            let animationEnabled: Bool = globalStyleProperties.animationEnabled
+            
             ZStack {
                 if dashRequired {
                     Circle()
-                        .trim(from: 0.0, to: stateEndAngle)
+                        .trim(from: 0.0, to: animationEnabled ? stateEndAngle : endAngle)
                         .rotation(Angle(degrees: -90.0))
                         .stroke(Color.Named.white.colour, style: StrokeStyle(lineWidth: sliceWidth))
                         .padding()
@@ -48,16 +50,18 @@ extension Components.Organisms {
                         .if(!firstOrLast, transform: { circle in
                             circle.rotation3DEffect(.degrees(180.0), axis: (x: 0, y: 1, z: 0))
                         })
-                        .onAppear {
-                            withAnimation(circleAnimation) {
-                                stateEndAngle = endAngle
+                        .if(animationEnabled, transform: { circle in
+                            circle.onAppear {
+                                withAnimation(circleAnimation) {
+                                    stateEndAngle = endAngle
+                                }
                             }
-                        }
+                        })
                 }
                 
                 
                 Circle()
-                    .trim(from: 0.0, to: stateEndAngle)
+                    .trim(from: 0.0, to: animationEnabled ? stateEndAngle : endAngle)
                     .rotation(Angle(degrees: -90.0))
                     .stroke(colour, style: StrokeStyle(lineWidth: sliceWidth, dash: dash ?? []))
                     .padding()
@@ -65,11 +69,13 @@ extension Components.Organisms {
                     .if(!firstOrLast, transform: { circle in
                         circle.rotation3DEffect(.degrees(180.0), axis: (x: 0, y: 1, z: 0))
                     })
-                    .onAppear {
-                        withAnimation(circleAnimation) {
-                            stateEndAngle = endAngle
+                    .if(animationEnabled, transform: { circle in
+                        circle.onAppear {
+                            withAnimation(circleAnimation) {
+                                stateEndAngle = endAngle
+                            }
                         }
-                    }
+                    })
             }
         }
     }
@@ -137,23 +143,27 @@ extension Components.Organisms {
         }
         
         public struct GlobalStylingProperties {
+            public let animationEnabled: Bool
             public let animationDuration: Double
             public let viewHeight: Double
             public let sliceWidth: Double
             
             public init() {
+                self.animationEnabled = true
                 self.animationDuration = 1.0
                 self.viewHeight = 200
                 self.sliceWidth = 20
             }
             
             public init(animationDuration: Double) {
+                self.animationEnabled = true
                 self.animationDuration = animationDuration
                 self.viewHeight = 200
                 self.sliceWidth = 20
             }
             
-            public init(animationDuration: Double, viewHeight: Double, sliceWidth: Double) {
+            public init(animationEnabled: Bool, animationDuration: Double, viewHeight: Double, sliceWidth: Double) {
+                self.animationEnabled = animationEnabled
                 self.animationDuration = animationDuration
                 self.viewHeight = viewHeight
                 self.sliceWidth = sliceWidth
@@ -249,6 +259,7 @@ struct DonutChartView_Previews: PreviewProvider {
         Components.Organisms.DonutChartView(
             sliceDetails: sliceData.convertToSliceDetails(),
             globalStyleProperties: Components.Organisms.DonutChartView.GlobalStylingProperties(
+                animationEnabled: true,
                 animationDuration: 0.5,
                 viewHeight: viewHeight,
                 sliceWidth: sliceWidth
