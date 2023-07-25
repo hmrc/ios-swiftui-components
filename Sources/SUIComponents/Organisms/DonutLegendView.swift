@@ -47,7 +47,7 @@ extension Components.Organisms {
                             Rectangle()
                                 .fill(legendItem.colour)
                                 .aspectRatio(1.0, contentMode: .fit)
-                                .frame(width: 20)
+                                .frame(width: 20, height: 20)
                         }
                         
                         Text(legendItem.title)

@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+- Made animation on `DonutChartView` toggleable and added height to `DonutLegendView` colour boxes 
 
 ## [1.7.0] - 2023-07-05Z
 - Added `.spacer0` and added view Id to disclosue view button
