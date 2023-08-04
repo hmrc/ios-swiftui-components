@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+- Added accessibilityLabel to `MultiColumnRowView`
 
 ## [1.8.0] - 2023-07-25Z
 - Made animation on `DonutChartView` toggleable and added height to `DonutLegendView` colour boxes 

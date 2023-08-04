@@ -128,13 +128,15 @@ extension Components.Molecules.MultiColumnRowView {
         let canCopy: Bool
         let weight: CGFloat?
         let textAlignment: TextAlignment
+        let accessibilityLabel: String?
 
-        public init(label: String, style: TextStyle = .body, canCopy: Bool = false, weight: CGFloat? = nil, textAlignment: TextAlignment = .center) {
+        public init(label: String, style: TextStyle = .body, canCopy: Bool = false, weight: CGFloat? = nil, textAlignment: TextAlignment = .center, accessibilityLabel: String? = nil) {
             self.label = label
             self.style = style
             self.canCopy = canCopy
             self.weight = weight
             self.textAlignment = textAlignment
+            self.accessibilityLabel = accessibilityLabel
         }
     }
 
@@ -149,6 +151,7 @@ extension Components.Molecules.MultiColumnRowView {
         let views: [AnyView] = models.enumerated().map { index, model in
             return Text(model.label)
                 .style(model.style)
+                .accessibility(label: Text(model.accessibilityLabel ?? model.label))
                 .multilineTextAlignment(Components.Molecules.MultiColumnRowView.isVertical ? .leading : model.textAlignment)
                 .typeErased
         }
