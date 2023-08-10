@@ -26,37 +26,38 @@ public enum TextStyle {
     case debug
     case link
     case error
+    case errorBold
 
     public var font: Font {
         switch self {
             case .H3: return Font.H3.font()
             case .H4: return Font.H4.font()
             case .H5: return Font.H5.font()
-            case .bold: return Font.Bold.font()
+            case .bold, .errorBold: return Font.Bold.font()
             case .body, .info, .link, .error: return Font.Body.font()
             case .debug: return Font.Debug.font()
         }
     }
     public var uiFont: UIFont {
         switch self {
-        case .H3: return Font.H3.uiFont()
-        case .H4: return Font.H4.uiFont()
-        case .H5: return Font.H5.uiFont()
-        case .bold: return Font.Bold.uiFont()
-        case .body, .info, .link, .error: return Font.Body.uiFont()
-        case .debug: return Font.Debug.uiFont()
+            case .H3: return Font.H3.uiFont()
+            case .H4: return Font.H4.uiFont()
+            case .H5: return Font.H5.uiFont()
+            case .bold, .errorBold: return Font.Bold.uiFont()
+            case .body, .info, .link, .error: return Font.Body.uiFont()
+            case .debug: return Font.Debug.uiFont()
         }
     }
     public var textColor: Color {
         switch self {
-        case .info, .debug:
-            return Color.Semantic.infoText
-        case .link:
-            return Color.Semantic.linkText
-        case .error:
-            return Color.Semantic.errorText
-        default:
-            return Color.Semantic.darkText
+            case .info, .debug:
+                return Color.Semantic.infoText
+            case .link:
+                return Color.Semantic.linkText
+            case .error, .errorBold:
+                return Color.Semantic.errorText
+            default:
+                return Color.Semantic.darkText
         }
     }
 }
