@@ -706,6 +706,7 @@ extension Components.Organisms.DonutChartView: Examplable {
                 Components.Organisms.DonutChartView(
                     sliceDetails: sliceData.convertToSliceDetails(),
                     globalStyleProperties: Components.Organisms.DonutChartView.GlobalStylingProperties(
+                        animationEnabled: true,
                         animationDuration: 1.0,
                         viewHeight: 200,
                         sliceWidth: 30.0
@@ -755,6 +756,7 @@ extension Components.Organisms.DonutChartView: Examplable {
                         Components.Organisms.DonutChartView(
                             sliceDetails: example1.convertToSliceDetails(),
                             globalStyleProperties: Components.Organisms.DonutChartView.GlobalStylingProperties(
+                                animationEnabled: true,
                                 animationDuration: 1.0,
                                 viewHeight: 200,
                                 sliceWidth: 30.0
@@ -828,6 +830,7 @@ extension Components.Organisms.DonutChartView: Examplable {
                         Components.Organisms.DonutChartView(
                             sliceDetails: example2.convertToSliceDetails(),
                             globalStyleProperties: Components.Organisms.DonutChartView.GlobalStylingProperties(
+                                animationEnabled: true,
                                 animationDuration: 1.0,
                                 viewHeight: 200,
                                 sliceWidth: 30.0
@@ -901,6 +904,7 @@ extension Components.Organisms.DonutChartView: Examplable {
                         Components.Organisms.DonutChartView(
                             sliceDetails: example3.convertToSliceDetails(),
                             globalStyleProperties: Components.Organisms.DonutChartView.GlobalStylingProperties(
+                                animationEnabled: true,
                                 animationDuration: 1.0,
                                 viewHeight: 200,
                                 sliceWidth: 30.0
