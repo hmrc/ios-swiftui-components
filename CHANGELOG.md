@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [1.9.0] - 2023-08-10Z
 - Added bold error text
 
 ## [1.8.0] - 2023-07-25Z
