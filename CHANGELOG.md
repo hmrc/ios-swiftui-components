@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [1.10.0] - 2023-08-15Z
 - Added accessibilityLabel to `MultiColumnRowView`
 
 ## [1.9.0] - 2023-08-10Z
