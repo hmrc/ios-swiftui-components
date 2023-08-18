@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+- Added `isButton` trait to `CustomButton`
 
 ## [1.10.0] - 2023-08-15Z
 - Added accessibilityLabel to `MultiColumnRowView`
