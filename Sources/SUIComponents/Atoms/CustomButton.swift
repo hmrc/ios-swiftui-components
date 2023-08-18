@@ -52,6 +52,7 @@ public extension Components.Atoms {
                         selected = true
                     }
                 }
+                .accessibilityAddTraits(.isButton)
         }
     }
 }
