@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+- Added bold link text to text styles
 
 ## [1.10.1] - 2023-08-18Z
 - Added `isButton` trait to `CustomButton`

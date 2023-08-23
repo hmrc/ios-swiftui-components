@@ -25,6 +25,7 @@ public enum TextStyle {
     case info
     case debug
     case link
+    case linkBold
     case error
     case errorBold
 
@@ -33,7 +34,7 @@ public enum TextStyle {
             case .H3: return Font.H3.font()
             case .H4: return Font.H4.font()
             case .H5: return Font.H5.font()
-            case .bold, .errorBold: return Font.Bold.font()
+            case .bold, .linkBold, .errorBold: return Font.Bold.font()
             case .body, .info, .link, .error: return Font.Body.font()
             case .debug: return Font.Debug.font()
         }
@@ -43,7 +44,7 @@ public enum TextStyle {
             case .H3: return Font.H3.uiFont()
             case .H4: return Font.H4.uiFont()
             case .H5: return Font.H5.uiFont()
-            case .bold, .errorBold: return Font.Bold.uiFont()
+            case .bold, .linkBold, .errorBold: return Font.Bold.uiFont()
             case .body, .info, .link, .error: return Font.Body.uiFont()
             case .debug: return Font.Debug.uiFont()
         }
@@ -52,7 +53,7 @@ public enum TextStyle {
         switch self {
             case .info, .debug:
                 return Color.Semantic.infoText
-            case .link:
+            case .link, .linkBold:
                 return Color.Semantic.linkText
             case .error, .errorBold:
                 return Color.Semantic.errorText
