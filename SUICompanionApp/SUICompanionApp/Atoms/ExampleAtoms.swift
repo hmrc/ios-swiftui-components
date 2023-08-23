@@ -38,6 +38,7 @@ extension Text: Examplable {
                 Text("H5 Text").style(.H5)
                 Text("Bold Text").style(.bold)
                 Text("Bold Error Text").style(.errorBold)
+                Text("Bold Link Text").style(.linkBold)
                 Text("Body Text").style(.body)
                 Text("Info Text").style(.info)
                 Text("Link Text").style(.link)
