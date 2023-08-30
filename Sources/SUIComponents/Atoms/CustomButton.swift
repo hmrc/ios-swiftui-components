@@ -27,8 +27,8 @@ public extension Components.Atoms {
             didSet {
                 
                 if selected {
+                    tapped()
                     delayedCall(0.1) {
-                        tapped()
                         withAnimation {
                             selected = false
                         }
