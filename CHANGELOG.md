@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [1.11.1] - 2023-08-31Z
 - Fixed VoiceOver selection on `SelectRowView`
 - Added bold link text to text styles
 
