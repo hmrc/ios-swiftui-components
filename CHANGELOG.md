@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+- Fixed VoiceOver selection on `SelectRowView`
 - Added bold link text to text styles
 
 ## [1.10.1] - 2023-08-18Z
@@ -17,7 +18,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Added bold error text
 
 ## [1.8.0] - 2023-07-25Z
-- Made animation on `DonutChartView` toggleable and added height to `DonutLegendView` colour boxes 
+- Made animation on `DonutChartView` toggleable and added height to `DonutLegendView` colour boxes
 
 ## [1.7.0] - 2023-07-05Z
 - Added `.spacer0` and added view Id to disclosue view button

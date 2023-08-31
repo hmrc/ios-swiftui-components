@@ -115,8 +115,7 @@ extension Components.Molecules {
                                 normalBackgroundColour: .clear,
                                 highlightedBackgroundColour: .Semantic.secondaryButtonHighlightedBackground,
                                 tapped: {
-                                    model.rows.forEach { $0.selected = false }
-                                    row.selected = true
+                                    model.rows.forEach { $0.selected = (row == $0) }
                                     selectedRow = row
                                     rowTappedHandler?(rowIndex)
                                 }) {
