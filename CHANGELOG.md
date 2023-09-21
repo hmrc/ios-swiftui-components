@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [1.11.2] - 2023-09-21Z
 - Make `IconButtonView` model public to allow unit tests to trigger tap handler
 
 ## [1.11.1] - 2023-08-31Z
