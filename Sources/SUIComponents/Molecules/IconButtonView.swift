@@ -18,7 +18,7 @@ import SwiftUI
 
 extension Components.Molecules {
     public struct IconButtonView: View {
-        let model: Model
+        public let model: Model
 
         @State private var selected: Bool = false
         @State private var currentGeometry: GeometryProxy?
