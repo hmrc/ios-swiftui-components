@@ -36,6 +36,9 @@ struct MoleculesView: View {
                 Group {
                     Example.navigationLink(type: Components.Molecules.IconButtonWithDisclosureView.self)
                 }
+                Group {
+                    NavigationLink(destination: Components.Molecules.DatePickerView(), label: {Text("SPIKE - DatePickerView")})
+                }
             }
             .navigationTitle("Molecules")
         }

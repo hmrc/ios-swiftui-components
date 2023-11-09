@@ -677,3 +677,42 @@ extension Components.Molecules.SelectRowView: Examplable {
         )
     }
 }
+
+extension Components.Molecules.DatePickerView: Examplable {
+    static var title: String {
+        "SPIKE - DatePickerView"
+    }
+    
+    static var exampleBackgroundColor: Color {
+        Color.Semantic.pageBackground
+    }
+    
+    static func withPlaceholders() -> AnyView {
+        AnyView(
+            VStack {
+                DatePicker("Select a date",
+                           selection: .constant(Date()),
+                           in: Date()...,
+                           displayedComponents: .date)
+                .labelsHidden()
+                .datePickerStyle(.compact)
+                DatePicker("Select a date",
+                           selection: .constant(Date()),
+                           in: Date()...,
+                           displayedComponents: .date)
+                .labelsHidden()
+                .datePickerStyle(.graphical)
+            }.background(exampleBackgroundColor)
+        )
+    }
+    
+    static func examples() -> AnyView {
+        AnyView(
+            ScrollView(.vertical,showsIndicators: false) {
+                Components.Molecules.DatePickerView()
+            }
+        )
+    }
+    
+    
+}

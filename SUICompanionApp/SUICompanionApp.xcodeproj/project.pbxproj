@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		570FB6DC29FC1C5F00D1C955 /* SUIComponents in Frameworks */ = {isa = PBXBuildFile; productRef = 570FB6DB29FC1C5F00D1C955 /* SUIComponents */; };
+		576650742AFC55EE0041C2F2 /* SUIComponents in Frameworks */ = {isa = PBXBuildFile; productRef = 576650732AFC55EE0041C2F2 /* SUIComponents */; };
 		580564312714669900BD9EA6 /* OrganismsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580564302714669900BD9EA6 /* OrganismsView.swift */; };
 		5805643427146B2300BD9EA6 /* MoleculesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5805643327146B2300BD9EA6 /* MoleculesView.swift */; };
 		5805643627146B7C00BD9EA6 /* ExampleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5805643527146B7C00BD9EA6 /* ExampleProtocol.swift */; };
@@ -78,7 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				570FB6DC29FC1C5F00D1C955 /* SUIComponents in Frameworks */,
+				576650742AFC55EE0041C2F2 /* SUIComponents in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,7 +247,7 @@
 			);
 			name = SUICompanionApp;
 			packageProductDependencies = (
-				570FB6DB29FC1C5F00D1C955 /* SUIComponents */,
+				576650732AFC55EE0041C2F2 /* SUIComponents */,
 			);
 			productName = SUICompanionApp;
 			productReference = 587A134026C422370005A55D /* SUICompanionApp.app */;
@@ -500,11 +500,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = SUICompanionApp/SUICompanionApp.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development: NGCMobile Cert (Y5Y97FT8YY)";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"SUICompanionApp/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 4LL5YKZZU7;
+				DEVELOPMENT_TEAM = 4LL5YKZZU7;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = SUICompanionApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -515,7 +513,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = uk.gov.hmrc.components.SUICompanionApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match Development uk.gov.hmrc.components.SUICompanionApp";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -728,7 +725,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		570FB6DB29FC1C5F00D1C955 /* SUIComponents */ = {
+		576650732AFC55EE0041C2F2 /* SUIComponents */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SUIComponents;
 		};
