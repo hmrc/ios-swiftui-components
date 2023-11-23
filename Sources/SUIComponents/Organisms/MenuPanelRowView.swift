@@ -59,7 +59,9 @@ extension Components.Organisms {
                 disclosureModel: model.disclosureModel
             )
             .accessibility(sortPriority: 1)
-            .accessibilityElement(children: .combine)
+            .accessibilityElement(children: .combine) 
+            .accessibilityAddTraits(.isButton)
+            .optionalAccessibilityIdentifier(model.accessibilityIdentifier)
         }
     }
 }

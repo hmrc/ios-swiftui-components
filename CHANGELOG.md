@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+- Fixed accessibilityIdentifier on `MenuPanelRowView`
 
 ## [1.11.2] - 2023-09-21Z
 - Make `IconButtonView` model public to allow unit tests to trigger tap handler
