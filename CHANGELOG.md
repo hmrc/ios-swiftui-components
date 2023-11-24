@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [1.11.3] - 2023-11-24Z
 - Fixed accessibilityIdentifier on `MenuPanelRowView`
 
 ## [1.11.2] - 2023-09-21Z
