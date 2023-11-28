@@ -22,8 +22,8 @@ extension Components.Molecules {
     public struct NotificationBubbleView: View {
         @State private var cornerRadius: CGFloat = 0.0
         @State private var visible: Bool = true
-        @State private var frameWidth: CGFloat = FontMetrics.scaledValue(for: Consts.defaultSize.width)
-        @State private var frameHeight: CGFloat = FontMetrics.scaledValue(for: Consts.defaultSize.height)
+        @State private var frameWidth: CGFloat = 0
+        @State private var frameHeight: CGFloat = 0
         
         private var viewModel: NotificationBubbleView.Model
         
@@ -80,15 +80,18 @@ extension Components.Molecules {
                        height: frameHeight,
                        alignment: .center)
             )
+            .opacity(visible ? 1 : 0)
+            .frame(minWidth: frameWidth,
+                   minHeight: frameHeight,
+                   alignment: .center)
             .onAppear{
                 cornerRadius = FontMetrics.scaledValue(for: Consts.defaultSize.height / 2)
                 visible = !(viewModel.notificationMode == .hidden)
+                frameWidth = visible ?
+                FontMetrics.scaledValue(for: Consts.defaultSize.width) : 0
+                frameHeight = visible ?
+                FontMetrics.scaledValue(for: Consts.defaultSize.height) : 0
             }
-            .accessibility(hidden: !visible)
-            .opacity(visible ? 1 : 0)
-            .frame(minWidth: visible ? frameWidth : 0,
-                   minHeight: visible ? frameHeight : 0,
-                   alignment: .center)
         }
         
         private struct Consts {
