@@ -5,7 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
-
+- changed the render order for the background of `NotificationBubbleView` so to not be visible during UIXCTest 
 ## [1.11.3] - 2023-11-24Z
 - Fixed accessibilityIdentifier on `MenuPanelRowView`
 
