@@ -123,7 +123,7 @@ extension Components.Molecules {
                 .overlay(
                     RoundedRectangle(cornerRadius: 4.0)
                         .stroke(
-                            Color.Semantic.textInputBorder,
+                            Color.Named.black.colour,
                             lineWidth: 1.0
                         )
                 )
