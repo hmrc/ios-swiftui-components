@@ -20,22 +20,25 @@ extension Components.Molecules {
     public struct CurrencyInputView: View {
         public struct Model {
             let title: String?
+            let hint: String?
             let maxLength: Int
             public init(
                 title: String? = nil,
+                hint: String? = nil,
                 maxLength: Int = 0
             ) {
                 self.title = title
+                self.hint = hint
                 self.maxLength = maxLength
             }
             fileprivate var textInputViewModel: TextInputView.Model {
                 .init(
                     title: title,
+                    hint: hint,
                     leftViewText: "£",
                     maxLength: maxLength,
                     multiLine: false,
                     keyboardType: .decimalPad,
-                    showCharCount: false,
                     shouldChangeText: { textViewText, range, replacementText in
                         let newText = (textViewText as NSString).replacingCharacters(in: range, with: replacementText)
                         return newText.isEmpty || newText.isCurrencyValue()
@@ -71,7 +74,7 @@ struct CurrencyInputView_Previews: PreviewProvider {
         }
         Components.Molecules.CurrencyInputView(
             text: textBinding,
-            model: .init(title: "Title", maxLength: 20)
+            model: .init(title: "Title", hint: "Hint", maxLength: 20)
         )
     }
 }

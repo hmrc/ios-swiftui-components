@@ -20,34 +20,34 @@ extension Components.Molecules {
     public struct TextInputView: View {
         public struct Model {
             public let title: String
+            public let hint: String?
             public let placeholder: String
             public let leftViewText: String?
             public let maxLength: Int
             public let enforceMaxLength: Bool
             public let multiLine: Bool
             public let keyboardType: UIKeyboardType
-            public let showCharCount: Bool
             public let shouldChangeText: TextViewShouldChangeHandler?
 
             public init(
                 title: String? = nil,
+                hint: String? = nil,
                 placeholder: String? = nil,
                 leftViewText: String? = nil,
                 maxLength: Int = 0,
                 enforceMaxLength: Bool = true,
                 multiLine: Bool = false,
                 keyboardType: UIKeyboardType = .default,
-                showCharCount: Bool = true,
                 shouldChangeText: TextViewShouldChangeHandler? = nil
             ) {
                 self.title = title ?? ""
+                self.hint = hint
                 self.placeholder = placeholder ?? ""
                 self.leftViewText = leftViewText
                 self.maxLength = maxLength
                 self.enforceMaxLength = enforceMaxLength
                 self.multiLine = multiLine
                 self.keyboardType = keyboardType
-                self.showCharCount = showCharCount
                 self.shouldChangeText = shouldChangeText
             }
         }
@@ -64,17 +64,26 @@ extension Components.Molecules {
             self.validationError = validationError
         }
         private var accessibilityLabel: Text {
+            var text = ""
             if let validationError = validationError {
-                return Text("Error: \(validationError) - \(model.title)")
-            } else {
-                return Text(model.title)
+                text.append(" \(validationError) ")
             }
+            if let hint = model.hint {
+                text.append(" \(hint) ")
+            }
+            text.append(model.title)
+            return Text(text)
         }
         public var body: some View {
             VStack(alignment: .leading, spacing: 5) {
                 Text(model.title)
-                    .style(validationError != nil ? .error : .body)
+                    .style(.bold)
                     .accessibility(hidden: true)
+                if let hint = model.hint {
+                    Text(hint)
+                        .style(.body)
+                        .accessibility(hidden: true)
+                }
                 HStack {
                     if let leftText = model.leftViewText {
                         Text(leftText)
@@ -106,7 +115,7 @@ extension Components.Molecules {
                             Image(
                                 "clear_icon",
                                 bundle: Bundle.resource
-                            ).foregroundColor(Color.Named.grey2.colour)
+                            ).foregroundColor(Color.Named.black.colour)
                         }
                     }
                 }
@@ -114,7 +123,7 @@ extension Components.Molecules {
                 .overlay(
                     RoundedRectangle(cornerRadius: 4.0)
                         .stroke(
-                            validationError != nil ? Color.Semantic.errorText : Color.Semantic.textInputBorder,
+                            Color.Semantic.textInputBorder,
                             lineWidth: 1.0
                         )
                 )
@@ -124,11 +133,6 @@ extension Components.Molecules {
                         Text(error)
                             .style(.error)
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            .accessibility(hidden: true)
-                    }
-                    if model.maxLength > 0 && model.showCharCount {
-                        Text("\(text.count)/\(model.maxLength)")
-                            .style(validationError != nil ? .error : .body)
                             .accessibility(hidden: true)
                     }
                 }.frame(maxWidth: .infinity, alignment: .trailing)
@@ -150,6 +154,7 @@ struct TextInputView_Previews: PreviewProvider {
             text: textBinding,
             model: .init(
                 title: "Title",
+                hint: "Hint",
                 leftViewText: "@LeftView",
                 maxLength: 10,
                 multiLine: false,
