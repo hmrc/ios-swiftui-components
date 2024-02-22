@@ -391,6 +391,7 @@ extension Components.Molecules.TextInputView: Examplable {
             ViewWrapper(
                 model: .init(
                     title: "Title",
+                    hint: "Hint",
                     placeholder: "Placeholder",
                     leftViewText: "@leftText",
                     maxLength: 20
@@ -407,9 +408,10 @@ extension Components.Molecules.TextInputView: Examplable {
                     initialText: "Enter text",
                     model: .init(
                         title: "Enter text",
+                        hint: "A hint message below the text. this is a descriptive hint message",
                         placeholder: "Enter text here please",
                         maxLength: 0
-                    )
+                    ), error: "error"
                 ).cardView()
                 ViewWrapper(
                     initialText: "Some text",
@@ -500,6 +502,15 @@ extension Components.Molecules.CurrencyInputView: Examplable {
                     initialText: "49.99",
                     model: .init(
                         title: "Pay amount",
+                        maxLength: 0
+                    ),
+                    error: nil
+                ).cardView()
+                ViewWrapper(
+                    initialText: "49.99",
+                    model: .init(
+                        title: "Pay amount",
+                        hint: "Hint text",
                         maxLength: 0
                     ),
                     error: nil
