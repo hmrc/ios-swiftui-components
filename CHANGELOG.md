@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [1.13.0] - 2024-02-22Z
 - Updated `TextInputView` and `CurrencyInputView` by adding a hint label, updated fonts and colours
 ## [1.12.0] - 2023-11-29Z
 - changed the render order for the background of `NotificationBubbleView` so to not be visible during UIXCTest 
