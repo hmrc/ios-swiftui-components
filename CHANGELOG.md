@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [1.14.0] - 2024-03-06Z
 - Added `icon: Image` as a parameter to disclosue view button
 
 ## [1.13.0] - 2024-02-22Z
