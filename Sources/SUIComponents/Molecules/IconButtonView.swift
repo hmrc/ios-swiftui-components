@@ -41,7 +41,7 @@ extension Components.Molecules {
             .padding(model.insets)
             .frame(
                 maxWidth: .infinity,
-                alignment: .leading
+                alignment: model.alignment
             )
             .background(
                 (selected ? model.highlightedBackgroundColour : model.normalBackgroundColour)
@@ -79,6 +79,7 @@ extension Components.Molecules.IconButtonView {
         public let accessibilityHint: String?
         public let accessibilityIdentifier: String?
         public let insets: EdgeInsets
+        public let alignment: Alignment
         public let normalBackgroundColour: Color
         public let highlightedBackgroundColour: Color
         public var handler: VoidHandler
@@ -89,6 +90,7 @@ extension Components.Molecules.IconButtonView {
                     accessibilityHint: String? = nil,
                     accessibilityIdentifier: String? = nil,
                     insets: EdgeInsets = .init(padding: .spacer16),
+                    alignment: Alignment = .leading,
                     normalBackgroundColour: Color = .Semantic.cardBackground,
                     highlightedBackgroundColour: Color = .Semantic.secondaryButtonHighlightedBackground,
                     handler: @escaping VoidHandler
@@ -99,6 +101,7 @@ extension Components.Molecules.IconButtonView {
             self.accessibilityIdentifier = accessibilityIdentifier
             self.iconTintColor = iconTintColor
             self.insets = insets
+            self.alignment = alignment
             self.normalBackgroundColour = normalBackgroundColour
             self.highlightedBackgroundColour = highlightedBackgroundColour
             self.handler = handler

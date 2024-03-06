@@ -31,10 +31,16 @@ extension Example {
         case colours
         case edit
         case tick
-        case chevronRight = "chevron_right"
+        case chevronRight = "ChevronRight"
+        case calendar
+        case keyboard
 
         var image: Image {
             return Image(self.rawValue)
+        }
+        
+        func callAsFunction() -> String {
+            return self.rawValue
         }
     }
 }

@@ -21,6 +21,7 @@ public struct DisclosureView: ViewModifier {
     public struct Model {
         let id: String
         let inset: CGFloat
+        let icon: Image
         let action: VoidHandler
         let accessibilityLabel: String
         let accessibilityHint: String
@@ -28,6 +29,7 @@ public struct DisclosureView: ViewModifier {
         public init(
             id: String = "",
             inset: CGFloat = .spacer16,
+            icon: Image = Image("ChevronRight", bundle: .main),
             accessibilityLabel: String = "",
             accessibilityHint: String = "",
             _ action: @escaping VoidHandler
@@ -35,6 +37,7 @@ public struct DisclosureView: ViewModifier {
             self.id = id
             self.inset = inset
             self.action = action
+            self.icon = icon
             self.accessibilityLabel = accessibilityLabel
             self.accessibilityHint = accessibilityHint
         }
@@ -63,7 +66,7 @@ public struct DisclosureView: ViewModifier {
             ZStack {
                 HStack(spacing: 0) {
                     content.accessibility(sortPriority: 2)
-                    Image("ChevronRight", bundle: .main)
+                    model.icon
                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: model.inset))
                         .accessibility(hidden: true)
                 }

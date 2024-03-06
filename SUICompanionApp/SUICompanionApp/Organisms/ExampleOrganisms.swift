@@ -1165,6 +1165,11 @@ extension Components.Organisms.MenuPanelRowView: Examplable {
             print("disclosure tapped")
         })
         
+        let calendarDisclosureModel : DisclosureView.Model = .init(
+            icon: Image(Example.Images.calendar()), {
+                print("calendar tapped")
+            })
+        
         let paye = Model(
             title: "Pay As You Earn (PAYE)",
             body: "Check your tax codes and Income Tax from PAYE sources",
@@ -1222,8 +1227,15 @@ extension Components.Organisms.MenuPanelRowView: Examplable {
             disclosureModel: disclosureModel,
             handler: voidAction
         )
+        let calendar = Model(
+            title: "An example with custom icon",
+            body: "An example with custom icon, Add to calendar example",
+            notificationMode: .hidden,
+            disclosureModel: calendarDisclosureModel,
+            handler: voidAction
+        )
         
-        let models = [paye, annualTaxSummary, messages, manyMessages, noMessages, noMessagesHidden, selfAssessmentNew, hts]
+        let models = [paye, annualTaxSummary, messages, manyMessages, noMessages, noMessagesHidden, selfAssessmentNew, hts, calendar]
         
         return AnyView (
             ForEach( models, id: \.id ) { model in
