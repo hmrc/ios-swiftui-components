@@ -31,6 +31,22 @@ This will sync development certificates to allow the companion app to build to l
 
 This will sync adhoc certificates to allow the companion app to build on CI
 
+### ios regenerateDebugCerts
+
+```sh
+[bundle exec] fastlane ios regenerateDebugCerts
+```
+
+
+
+### ios regenerateAdhocCerts
+
+```sh
+[bundle exec] fastlane ios regenerateAdhocCerts
+```
+
+
+
 ### ios build_adhoc_app
 
 ```sh
