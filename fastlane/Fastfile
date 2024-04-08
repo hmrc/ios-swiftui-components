@@ -21,6 +21,14 @@ platform :ios do
     syncAdhocCerts()
   end
 
+  lane :regenerateDebugCerts do
+    syncDebugCerts(true)
+  end
+
+  lane :regenerateAdhocCerts do
+    syncAdhocCerts(true)
+  end
+
   def syncDebugCerts(force_for_new_devices=false)
     match(
       app_identifier: ["uk.gov.hmrc.components.SUICompanionApp"],
