@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5797A32E2A2A4BA900823C02 /* MenuPanelRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5797A32D2A2A4BA900823C02 /* MenuPanelRowView.swift */; };
 		5797A3322A2DFB4300823C02 /* NotificationBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5797A3312A2DFB4300823C02 /* NotificationBubbleView.swift */; };
+		DAFD193A2BD68EE30012DB64 /* OptionalAccessibilityIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFD19392BD68EE30012DB64 /* OptionalAccessibilityIdentifier.swift */; };
 		OBJ_100 /* Button+HMRC.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Button+HMRC.swift */; };
 		OBJ_101 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* CustomButton.swift */; };
 		OBJ_102 /* Divider.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* Divider.swift */; };
@@ -65,7 +66,6 @@
 		OBJ_153 /* IconButtonCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_74 /* IconButtonCardView.swift */; };
 		OBJ_154 /* InformationMessageCard+ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_75 /* InformationMessageCard+ButtonStyles.swift */; };
 		OBJ_155 /* InformationMessageCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_76 /* InformationMessageCard.swift */; };
-		OBJ_156 /* PAYEEmploymentMockupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_77 /* PAYEEmploymentMockupView.swift */; };
 		OBJ_157 /* PrimaryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_78 /* PrimaryCardView.swift */; };
 		OBJ_158 /* StatusCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_79 /* StatusCardView.swift */; };
 		OBJ_159 /* SummaryRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_80 /* SummaryRowView.swift */; };
@@ -76,6 +76,7 @@
 /* Begin PBXFileReference section */
 		5797A32D2A2A4BA900823C02 /* MenuPanelRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPanelRowView.swift; sourceTree = "<group>"; };
 		5797A3312A2DFB4300823C02 /* NotificationBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationBubbleView.swift; sourceTree = "<group>"; };
+		DAFD19392BD68EE30012DB64 /* OptionalAccessibilityIdentifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionalAccessibilityIdentifier.swift; sourceTree = "<group>"; };
 		OBJ_10 /* AttributedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedText.swift; sourceTree = "<group>"; };
 		OBJ_11 /* Button+HMRC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Button+HMRC.swift"; sourceTree = "<group>"; };
 		OBJ_12 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -134,7 +135,6 @@
 		OBJ_74 /* IconButtonCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButtonCardView.swift; sourceTree = "<group>"; };
 		OBJ_75 /* InformationMessageCard+ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InformationMessageCard+ButtonStyles.swift"; sourceTree = "<group>"; };
 		OBJ_76 /* InformationMessageCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationMessageCard.swift; sourceTree = "<group>"; };
-		OBJ_77 /* PAYEEmploymentMockupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PAYEEmploymentMockupView.swift; sourceTree = "<group>"; };
 		OBJ_78 /* PrimaryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryCardView.swift; sourceTree = "<group>"; };
 		OBJ_79 /* StatusCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusCardView.swift; sourceTree = "<group>"; };
 		OBJ_80 /* SummaryRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryRowView.swift; sourceTree = "<group>"; };
@@ -230,6 +230,7 @@
 			children = (
 				OBJ_50 /* CardView.swift */,
 				OBJ_51 /* DisclosureView.swift */,
+				DAFD19392BD68EE30012DB64 /* OptionalAccessibilityIdentifier.swift */,
 			);
 			path = ViewModifiers;
 			sourceTree = "<group>";
@@ -300,7 +301,6 @@
 				OBJ_74 /* IconButtonCardView.swift */,
 				OBJ_75 /* InformationMessageCard+ButtonStyles.swift */,
 				OBJ_76 /* InformationMessageCard.swift */,
-				OBJ_77 /* PAYEEmploymentMockupView.swift */,
 				OBJ_78 /* PrimaryCardView.swift */,
 				OBJ_79 /* StatusCardView.swift */,
 				OBJ_80 /* SummaryRowView.swift */,
@@ -476,6 +476,7 @@
 				OBJ_134 /* DisclosureView.swift in Sources */,
 				OBJ_135 /* Injection.swift in Sources */,
 				OBJ_136 /* ServiceDependencyInjection.swift in Sources */,
+				DAFD193A2BD68EE30012DB64 /* OptionalAccessibilityIdentifier.swift in Sources */,
 				OBJ_137 /* Handlers.swift in Sources */,
 				5797A3322A2DFB4300823C02 /* NotificationBubbleView.swift in Sources */,
 				OBJ_138 /* Namespaces.swift in Sources */,
@@ -496,7 +497,6 @@
 				OBJ_153 /* IconButtonCardView.swift in Sources */,
 				OBJ_154 /* InformationMessageCard+ButtonStyles.swift in Sources */,
 				OBJ_155 /* InformationMessageCard.swift in Sources */,
-				OBJ_156 /* PAYEEmploymentMockupView.swift in Sources */,
 				OBJ_157 /* PrimaryCardView.swift in Sources */,
 				OBJ_158 /* StatusCardView.swift in Sources */,
 				OBJ_159 /* SummaryRowView.swift in Sources */,
@@ -589,7 +589,7 @@
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = SUIComponents.xcodeproj/SUIComponents_Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_CFLAGS = "$(inherited)";
@@ -619,7 +619,7 @@
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = SUIComponents.xcodeproj/SUIComponents_Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_CFLAGS = "$(inherited)";

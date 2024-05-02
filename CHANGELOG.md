@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.14.1] - 2024-04-02Z
+- Fixed conflicting gesture on Summary Row View
+
 ## [1.14.0] - 2024-03-06Z
 - Added `icon: Image` as a parameter to disclosue view button
 
