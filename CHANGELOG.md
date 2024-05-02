@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [1.14.1] - 2024-05-02Z
 - Fixed conflicting gesture on Summary Row View
 
 ## [1.14.0] - 2024-03-06Z
