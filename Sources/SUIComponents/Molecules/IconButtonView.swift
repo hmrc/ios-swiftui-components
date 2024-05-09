@@ -55,18 +55,11 @@ extension Components.Molecules {
                     currentGeometry = geometry
                 }
             })
-            .gesture(
-                DragGesture(minimumDistance: 0.0, coordinateSpace: .global)
-                    .onChanged { _ in
-                        selected = true
-                    }
-                    .onEnded({ value in
-                        selected = false
-                        if let geometry = currentGeometry, geometry.frame(in: .global).contains(value.location) {
-                            model.handler() // Only trigger handler for equivalent of touchUpInside
-                        }
-                    })
-            )
+            ._onButtonGesture { pressing in
+                selected = pressing
+            } perform: {
+                model.handler()
+            }
         }
     }
 }
