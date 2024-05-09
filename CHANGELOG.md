@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [1.14.2] - 2024-05-09Z
 - Fix conflicting gestures on MiniAdvertCardView and IconButtonView
 
  ## [1.14.1] - 2024-05-02Z
