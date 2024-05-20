@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+- Updated package for AccessibilitySizing from sizeCategory to dynamicTypeSize, 
+- added EdgeInsets to StatusView initializer and multilineTextAlignment(.center) when Large Text Accessibility is enabled
 
 ## [1.14.2] - 2024-05-09Z
 - Fix conflicting gestures on MiniAdvertCardView and IconButtonView
