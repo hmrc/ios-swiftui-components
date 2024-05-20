@@ -73,10 +73,15 @@ extension Components.Molecules {
                             Text(buttonModel.title)
                         }
                         .styled(buttonModel.style)
+                        .padding(
+                            buttonModel.inset ?? EdgeInsets(padding: .zero)
+                        )
                         .padding(.bottom, .spacer12)
                     }
                 }
-            ).frame(maxWidth: .infinity, alignment: .center)
+            )
+            .frame(maxWidth: .infinity, alignment: .center)
+            .multilineTextAlignment(.center)
         }
 
         private struct Constants {
@@ -111,16 +116,19 @@ extension Components.Molecules.StatusView {
             public let title: String
             public let style: HMRCButtonStyle
             public let accessibilityIdentifier: String?
+            public let inset: EdgeInsets?
             public var handler: VoidHandler
             
             public init(title: String,
                         style: HMRCButtonStyle,
                         accessibilityIdentifier: String? = nil,
+                        inset: EdgeInsets? = nil,
                         handler: @escaping VoidHandler
             ) {
                 self.title = title
                 self.style = style
                 self.accessibilityIdentifier = accessibilityIdentifier
+                self.inset = inset
                 self.handler = handler
             }
         }
@@ -133,57 +141,60 @@ struct StatusView_Previews: PreviewProvider {
             alignment: .top,
             spacing: .spacer16,
             content: {
-                VStack(
-                    alignment: .leading,
-                    spacing: .spacer16,
-                    content: {
-                        Components.Molecules.StatusView(
-                            model: .init(
-                                icon: Image(systemName: "moon.stars.fill"),
-                                title: "A title"
-                            )
-                        )
-                        
-                        Components.Molecules.StatusView(
-                            model: .init(
-                                icon: Image(systemName: "square.and.pencil"),
-                                title: "A title",
-                                body: "A body"
-                            )
-                        ).background(Color.Semantic.whiteBackground)
-                        
-                        Components.Molecules.StatusView(
-                            model: .init(
-                                icon: Image(systemName: "folder.circle"),
-                                title: "A very very very very very very very very very loooooooong title",
-                                body: "A very very very very very very very very very very very very very very very very very very very loooooooong body",
-                                iconTintColor: Color.Named.green1.colour
-                            )
-                        ).background(Color.Semantic.whiteBackground)
-
-                        Components.Molecules.StatusView(
-                            model: .init(
-                                icon: Image(systemName: "square.and.pencil"),
-                                title: "A title",
-                                body: "A body",
-                                buttonModel: .init(
-                                    title: "A button title",
-                                    style: .primary(),
-                                    accessibilityIdentifier: "identifier",
-                                    handler: {
-                                        print("Status view tapped")
-                                    }
+                ScrollView {
+                    VStack(
+                        alignment: .leading,
+                        spacing: .spacer16,
+                        content: {
+                            Components.Molecules.StatusView(
+                                model: .init(
+                                    icon: Image(systemName: "moon.stars.fill"),
+                                    title: "A title"
                                 )
                             )
-                        ).background(Color.Semantic.whiteBackground)
-                    }
-                ).frame(
-                    maxWidth: .infinity,
-                    maxHeight: .infinity,
-                    alignment: .leading
-                ).background(
-                    Color.Semantic.pageBackground
-                ).padding()
+                            
+                            Components.Molecules.StatusView(
+                                model: .init(
+                                    icon: Image(systemName: "square.and.pencil"),
+                                    title: "A title",
+                                    body: "A body"
+                                )
+                            ).background(Color.Semantic.whiteBackground)
+                            
+                            Components.Molecules.StatusView(
+                                model: .init(
+                                    icon: Image(systemName: "folder.circle"),
+                                    title: "A very very very very very very very very very loooooooong title",
+                                    body: "A very very very very very very very very very very very very very very very very very very very loooooooong body",
+                                    iconTintColor: Color.Named.green1.colour
+                                )
+                            ).background(Color.Semantic.whiteBackground)
+                            
+                            Components.Molecules.StatusView(
+                                model: .init(
+                                    icon: Image(systemName: "square.and.pencil"),
+                                    title: "A title",
+                                    body: "A body",
+                                    buttonModel: .init(
+                                        title: "A button title",
+                                        style: .secondary(padding: .spacer12, fullWidth: false, alignment: .center),
+                                        accessibilityIdentifier: "identifier",
+                                        inset: EdgeInsets(top: 0, leading: .zero, bottom: .spacer12, trailing: 0),
+                                        handler: {
+                                            print("Status view tapped")
+                                        }
+                                    )
+                                )
+                            ).background(Color.Semantic.whiteBackground)
+                        }
+                    ).frame(
+                        maxWidth: .infinity,
+                        maxHeight: .infinity,
+                        alignment: .leading
+                    ).background(
+                        Color.Semantic.pageBackground
+                    ).padding()
+                }
             }
         ).background(Color.Semantic.pageBackground)
     }
