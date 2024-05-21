@@ -81,7 +81,7 @@ extension Components.Molecules {
                 }
             )
             .frame(maxWidth: .infinity, alignment: .center)
-            .multilineTextAlignment(.center)
+            .multilineTextAlignment(model.defaultTextAligment ?? .center)
         }
 
         private struct Constants {
@@ -97,19 +97,22 @@ extension Components.Molecules.StatusView {
         public let body: String?
         public let buttonModel: ButtonModel?
         public let iconTintColor: Color?
+        public let defaultTextAligment: TextAlignment?
         
 
         public init(icon: Image,
                     title: String,
                     body: String? = nil,
                     buttonModel: ButtonModel? = nil,
-                    iconTintColor: Color? = nil
+                    iconTintColor: Color? = nil,
+                    textAlignment: TextAlignment? = nil
         ) {
             self.icon = icon
             self.title = title
             self.body = body
             self.buttonModel = buttonModel
             self.iconTintColor = iconTintColor
+            self.defaultTextAligment = textAlignment
         }
         
         public struct ButtonModel {
