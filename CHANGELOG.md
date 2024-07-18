@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+- added accessibilitTrait to modal definded in a MultiColumnRowView
 
 ## [1.15.1] - 2024-05-23Z
 - added textAlignment property to statusView to affect multilineTextAlignment, design require any text over 2 lines to be left aligned.
