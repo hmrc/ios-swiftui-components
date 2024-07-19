@@ -21,12 +21,19 @@ extension Components.Molecules {
         let views: [AnyView]
         let spacing: CGFloat
         let weights: [CGFloat]
+        let traits: [Int:AccessibilityTraits]
 
-        public init(views: [AnyView], weights: [CGFloat] = [], spacing: CGFloat = .spacer8) {
+        public init(
+            views: [AnyView],
+            weights: [CGFloat] = [],
+            spacing: CGFloat = .spacer8,
+            traits: [Int:AccessibilityTraits] = [:]
+        ) {
             self.views = views
             let sumWeight: CGFloat = (weights.reduce(0) { $0 + $1 })
             self.weights = weights.map { $0 / sumWeight }
             self.spacing = spacing
+            self.traits = traits
         }
 
         public var body: some View {
@@ -99,17 +106,21 @@ extension Components.Molecules {
                 }
             }
         }
-
+        
         func labels(_ widths: [CGFloat]? = nil) -> AnyView {
             AnyView(
-                ForEach(0..<views.count, id: \.self) { index in
+                ForEach(0..<views.count, id: \.self) {
+                    index in
+                    var traitToApply: AccessibilityTraits = traits.keys.contains(index) ? traits[index]! : AccessibilityTraits()
                     if let widths = widths {
                         views[index]
                             .fixedSize(horizontal: false, vertical: false)
                             .frame(width: widths[index], alignment: index == 0 || MultiColumnRowView.isVertical ? .leading : .trailing)
+                            .accessibilityAddTraits(traitToApply)
                     } else {
                         views[index]
                             .fixedSize(horizontal: false, vertical: false)
+                            .accessibilityAddTraits(traitToApply)
                         if (index != views.count - 1) {
                             Spacer()
                         }
@@ -129,14 +140,27 @@ extension Components.Molecules.MultiColumnRowView {
         let weight: CGFloat?
         let textAlignment: TextAlignment
         let accessibilityLabel: String?
+        let accessibilityTrait: AccessibilityTraits?
+        let accessibilityHidden: Bool
 
-        public init(label: String, style: TextStyle = .body, canCopy: Bool = false, weight: CGFloat? = nil, textAlignment: TextAlignment = .center, accessibilityLabel: String? = nil) {
+        public init(
+            label: String,
+            style: TextStyle = .body,
+            canCopy: Bool = false,
+            weight: CGFloat? = nil,
+            textAlignment: TextAlignment = .center,
+            accessibilityLabel: String? = nil,
+            accessibilityTrait: AccessibilityTraits? = nil,
+            accessibilityHidden: Bool = false
+        ) {
             self.label = label
             self.style = style
             self.canCopy = canCopy
             self.weight = weight
             self.textAlignment = textAlignment
             self.accessibilityLabel = accessibilityLabel
+            self.accessibilityTrait = accessibilityTrait
+            self.accessibilityHidden = accessibilityHidden
         }
     }
 
@@ -148,17 +172,25 @@ extension Components.Molecules.MultiColumnRowView {
     }
 
     public init(models: [Model]) {
+        var viewsWithTraits = [Int: AccessibilityTraits]()
         let views: [AnyView] = models.enumerated().map { index, model in
-            return Text(model.label)
+            var text = Text(model.label)
                 .style(model.style)
-                .accessibility(label: Text(model.accessibilityLabel ?? model.label))
+                .accessibilityLabel(Text(model.accessibilityLabel ?? model.label))
+                .accessibilityHidden(model.accessibilityHidden)
                 .multilineTextAlignment(Components.Molecules.MultiColumnRowView.isVertical ? .leading : model.textAlignment)
                 .typeErased
+            if model.accessibilityTrait != nil {
+                viewsWithTraits[index] = model.accessibilityTrait
+            }
+            return text
         }
+       
         let weights = models.compactMap { $0.weight }
         self.init(
             views: views,
-            weights: weights
+            weights: weights,
+            traits: viewsWithTraits
         )
     }
 }
