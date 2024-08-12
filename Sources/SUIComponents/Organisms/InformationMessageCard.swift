@@ -97,6 +97,9 @@ extension Components.Organisms {
                 Button(cta.message, action: { handler(cta) })
                     .infoMessageStyled(.action(enabled: true), theme: theme)
                     .multilineTextAlignment(.center)
+                    .ifOptional(cta.accessibilityHint) { (view, value) in
+                        view.accessibilityHint(value)
+                    }
             )
         }
 
@@ -105,7 +108,9 @@ extension Components.Organisms {
                 Button(cta.message, action: { handler(cta) })
                     .infoMessageStyled(.outline(padding: .spacer8), theme: theme)
                     .multilineTextAlignment(.center)
-
+                    .ifOptional(cta.accessibilityHint) { (view, value) in
+                        view.accessibilityHint(value)
+                    }
             )
         }
 

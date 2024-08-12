@@ -48,4 +48,12 @@ extension View {
             self
         }
     }
+    
+    @ViewBuilder public func ifOptional<Content: View, T>(_ optional: T?, transform: (Self, T) -> Content) -> some View {
+        if let unwrappedValue = optional {
+            transform(self, unwrappedValue)
+        } else {
+            self
+        }
+    }
 }
