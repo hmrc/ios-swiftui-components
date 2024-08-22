@@ -184,6 +184,7 @@ extension Components.Atoms.TextView: Examplable {
         @State var text: String
         @State var height: CGFloat = 0
         @State var editing: Bool = false
+        @State var isSecureField: Bool = false
 
         private let isScrollEnabled: Bool
         private let multiLine: Bool

@@ -1,0 +1,211 @@
+/*
+ * Copyright 2021 HM Revenue & Customs
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import SwiftUI
+
+extension Components.Molecules {
+    public struct SecureInputView: View {
+        public struct Model {
+            let title: String?
+            let hint: String?
+            let placeholder: String
+            let maxLength: Int
+            let keyboardType: UIKeyboardType
+            let secureFieldLabel: String?
+            let submit: VoidHandler?
+            let useClear: Bool = false
+            let showText: String
+            let hideText: String
+            let showTextAccessibility: String?
+            let hideTextAccessibility: String?
+            
+            public init(
+                title: String? = nil,
+                hint: String? = nil,
+                placeholder: String = "",
+                maxLength: Int = 0,
+                keyboardType: UIKeyboardType = .numberPad,
+                secureFieldLabel: String = "",
+                action submit: VoidHandler? = nil,
+                showText: String,
+                hideText: String,
+                showTextAccessibility: String? = nil,
+                hideTextAccessibility: String? = nil
+            ) {
+                self.title = title
+                self.hint = hint
+                self.maxLength = maxLength
+                self.placeholder = placeholder
+                self.keyboardType = keyboardType
+                self.secureFieldLabel = secureFieldLabel
+                self.submit = submit
+                self.showText = showText
+                self.hideText = hideText
+                self.showTextAccessibility = showTextAccessibility ?? showText
+                self.hideTextAccessibility = hideTextAccessibility ?? hideText
+            }
+        }
+        
+        let model: Model
+        @Binding var text: String
+        @Binding var internalText: String
+        @Binding var isSecureField: Bool
+        @State private var calculatedTextViewWidth: CGFloat = .spacer36
+        @State private var textViewHeight: CGFloat = 0
+        @State private var editing: Bool = false
+        var didEndEditing: VoidHandler?
+        var validationError: String?
+        let hide: Double = 0.0
+        let show: Double = 1.0
+        
+        fileprivate var secureInputView: some View {
+            ZStack(alignment: .trailing) {
+                Components.Atoms.SecureInputTextView(
+                    text: $text,
+                    height: $textViewHeight,
+                    editing: $editing,
+                    isSecureField: $isSecureField,
+                    internalText: $internalText,
+                    maxLength: model.maxLength,
+                    shouldChangeText: { textViewText, range, replacementText in
+                        var newText = internalText
+                        if let internalTextRange = Range(range, in: internalText) {
+                            newText = internalText.replacingCharacters(in: internalTextRange, with: replacementText)
+                        }
+                        return newText.isEmpty || newText.isNumericValue()
+                    },
+                    didEndEditing
+                )
+            }
+        }
+        
+        private var accessibilityLabel: Text {
+            var text = ""
+            if let validationError = validationError {
+                text.append(" \(validationError) ")
+            }
+            if let hint = model.hint {
+                text.append(" \(hint) ")
+            }
+            text.append(model.title ?? "")
+            text.append(" \(isSecureField ? model.showTextAccessibility! : model.hideTextAccessibility!) ")
+            return Text(text)
+        }
+        
+        public init(
+            model: Model,
+            text: Binding<String>,
+            internalText: Binding<String>,
+            secureField: Binding<Bool>,
+            validationError: String? = nil
+        ) {
+            self.model = model
+            self._text = text
+            self._internalText = internalText
+            self.validationError = validationError
+            self._isSecureField = secureField
+        }
+        
+        @Namespace var nspace
+        public var body: some View {
+            VStack(alignment: .leading, spacing: 5) {
+                Text(model.title ?? "")
+                    .style(.bold)
+                    .accessibility(hidden: true)
+                if let hint = model.hint {
+                    Text(hint)
+                        .style(.body)
+                        .accessibility(hidden: true)
+                }
+                HStack {
+                    // MARK: SecureField content
+                    HStack(alignment: .center) {
+                        secureInputView
+                    }
+                    .frame(height: textViewHeight)
+                    .padding(.vertical, .spacer4)
+                    .accessibilityLabel(accessibilityLabel)
+                    // MARK: overlay show/hide button
+                    Button(
+                        isSecureField ? model.showText : model.hideText
+                    ){
+                        withAnimation(.easeIn(duration: 0.3)) {
+                            self.isSecureField.toggle()
+                        }
+                    }
+                    .accentColor( Color.Semantic.primaryButtonBackground)
+                    .frame(height: textViewHeight, alignment: .leading)
+                    .accessibilityAddTraits(.isButton)
+                    .padding(.standardCardHorizontal)
+                }
+                .padding(.horizontal, .spacer0)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 4.0)
+                        .stroke(
+                            Color.Named.black.colour,
+                            lineWidth: 1.0
+                        )
+                )
+                    
+                HStack {
+                    if let error = validationError {
+                        Text(error)
+                            .style(.error)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .accessibility(hidden: true)
+                    }
+                }.frame(maxWidth: .infinity, alignment: .trailing)
+            }
+        }
+    }
+    
+    #Preview {
+        var text = ""
+        let textBinding = Binding<String> {
+            text
+        } set: { newText in
+            text = newText
+            print("SecureInputView Value did change: \(text)")
+        }
+        var internalText = ""
+        let passwordBinding = Binding<String> {
+            internalText
+        } set: { newText in
+            internalText = newText
+            print("SecureInputView Value did change: \(internalText)")
+        }
+        var secure = true
+        let secureBinding = Binding<Bool> {
+            secure
+        } set: { newValue in
+            secure = newValue
+            print("SecureInputView toogle did change: \(secure)")
+        }
+        
+        return SecureInputView(
+            model: .init(
+                title: "Title",
+                hint: "Hint",
+                placeholder: "Create a 6-digit PIN",
+                maxLength: 6,
+                showText: "Show",
+                hideText: "Hide"
+            ),
+            text: textBinding,
+            internalText: passwordBinding,
+            secureField: secureBinding)
+    }
+}

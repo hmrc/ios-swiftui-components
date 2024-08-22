@@ -111,7 +111,7 @@ extension Components.Molecules {
             AnyView(
                 ForEach(0..<views.count, id: \.self) {
                     index in
-                    var traitToApply: AccessibilityTraits = traits.keys.contains(index) ? traits[index]! : AccessibilityTraits()
+                    let traitToApply: AccessibilityTraits = traits.keys.contains(index) ? traits[index]! : AccessibilityTraits()
                     if let widths = widths {
                         views[index]
                             .fixedSize(horizontal: false, vertical: false)
@@ -174,7 +174,7 @@ extension Components.Molecules.MultiColumnRowView {
     public init(models: [Model]) {
         var viewsWithTraits = [Int: AccessibilityTraits]()
         let views: [AnyView] = models.enumerated().map { index, model in
-            var text = Text(model.label)
+            let text = Text(model.label)
                 .style(model.style)
                 .accessibilityLabel(Text(model.accessibilityLabel ?? model.label))
                 .accessibilityHidden(model.accessibilityHidden)
