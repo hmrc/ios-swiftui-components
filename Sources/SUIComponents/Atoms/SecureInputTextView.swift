@@ -33,7 +33,7 @@ public extension Components.Atoms {
         private var borderWidth: CGFloat
         private var cornerRadius: CGFloat
         private var keyboardType: UIKeyboardType
-        
+        private var stringKern: CGFloat
         public init(
             text: Binding<String>,
             height: Binding<CGFloat>,
@@ -48,6 +48,9 @@ public extension Components.Atoms {
             cornerRadius: CGFloat? = nil,
             keyboardType: UIKeyboardType = .numberPad,
             shouldChangeText: TextViewShouldChangeHandler? = nil,
+            stringKerningWidth: CGFloat = 5,
+            speechOut: Bool = true,
+            attributedText: Bool = false,
             _ didEndInput: VoidHandler? = nil) {
                 self._text = text
                 self._height = height
@@ -63,6 +66,7 @@ public extension Components.Atoms {
                 self.keyboardType = keyboardType
                 self.didEndInput = didEndInput
                 self.shouldChangeText = shouldChangeText
+                self.stringKern = stringKerningWidth
             }
         
         public func makeCoordinator() -> Coordinator {
@@ -87,10 +91,19 @@ public extension Components.Atoms {
         }
         
         public func updateUIView(_ uiView: UITextViewWithHeight, context: Context) {
-            uiView.text = secureText(uiView.text, context.coordinator)
+            let text = secureText()
+            let attributedString = NSMutableAttributedString(
+                string: text,
+                attributes: [
+                    .font: Font.Body.uiFont(),
+                    .kern: stringKern
+                ]
+            )
+            
+            uiView.text = text
+            uiView.attributedText = attributedString
             uiView.font = Font.Body.uiFont()
             uiView.tintColor = accentColor.uiColor()
-            
             uiView.layer.borderWidth = borderWidth
             uiView.layer.cornerRadius = cornerRadius
             uiView.layer.borderColor = borderColor.cgColor
@@ -105,18 +118,12 @@ public extension Components.Atoms {
             
         }
         
-        private func secureText(_ textViewText: String, _ coordinator: Coordinator) -> String {
+        private func secureText() -> String {
             if isSecureField {
-                let secureText = String(repeating: "●", count: text.count)
-                if textViewText != secureText {
-                    return secureText
-                }
+                return String(repeating: "●", count: text.count)
             } else {
-                if textViewText != internalText {
-                    return internalText
-                }
+                return internalText
             }
-            return text
         }
         
         public class Coordinator: NSObject, UITextViewDelegate {
@@ -145,7 +152,7 @@ public extension Components.Atoms {
             }
             
             public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-                guard let textViewText = textView.text else { return false }
+                guard textView.text != nil else { return false }
                 
                 if text == "\n" {
                     textView.resignFirstResponder()
@@ -189,6 +196,5 @@ public extension Components.Atoms {
                 }
             }
         }
-        
     }
 }

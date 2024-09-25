@@ -725,7 +725,10 @@ extension Components.Molecules.SecureInputView: Examplable {
                     keyboardType: .decimalPad,
                     secureFieldLabel: "Enter a 6 digit Pin",
                     showText: "Show",
-                    hideText: "Hide"
+                    hideText: "Hide",
+                    accessibilityLabel: "Enter Pin %@, text field, tap to edit",
+                    speakOutText: true,
+                    attributedTextInAccessibility: true
                 )
             )
         )

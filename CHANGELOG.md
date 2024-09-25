@@ -5,7 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
-- added new component secureInputView
+- added new component secureInputView with accessibility options for kerning, speakout characters and attributed strings
 
 ## [1.16.0] - 2024-07-19Z
 - added accessibilitTrait to modal definded in a MultiColumnRowView

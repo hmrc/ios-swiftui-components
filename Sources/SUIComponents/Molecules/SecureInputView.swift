@@ -31,6 +31,9 @@ extension Components.Molecules {
             let hideText: String
             let showTextAccessibility: String?
             let hideTextAccessibility: String?
+            let accessibilityLabel: String?
+            let speakOutText: Bool?
+            let attributedText: Bool?
             
             public init(
                 title: String? = nil,
@@ -43,7 +46,10 @@ extension Components.Molecules {
                 showText: String,
                 hideText: String,
                 showTextAccessibility: String? = nil,
-                hideTextAccessibility: String? = nil
+                hideTextAccessibility: String? = nil,
+                accessibilityLabel: String? = nil,
+                speakOutText: Bool? = false,
+                attributedTextInAccessibility: Bool? = false
             ) {
                 self.title = title
                 self.hint = hint
@@ -56,6 +62,9 @@ extension Components.Molecules {
                 self.hideText = hideText
                 self.showTextAccessibility = showTextAccessibility ?? showText
                 self.hideTextAccessibility = hideTextAccessibility ?? hideText
+                self.accessibilityLabel = accessibilityLabel ?? title
+                self.speakOutText = speakOutText
+                self.attributedText = attributedTextInAccessibility
             }
         }
         
@@ -70,6 +79,8 @@ extension Components.Molecules {
         var validationError: String?
         let hide: Double = 0.0
         let show: Double = 1.0
+        var speakOutText: Bool = false
+        var attributedString: Bool = false
         
         fileprivate var secureInputView: some View {
             ZStack(alignment: .trailing) {
@@ -89,7 +100,43 @@ extension Components.Molecules {
                     },
                     didEndEditing
                 )
+                .accessibilityElement(children: .ignore)
+                .accessibilityAddTraits(.allowsDirectInteraction)
+                .accessibilityLabel(accessibilityTextOut)
+                .onAppear {
+                    accessibilityTextOut = updateAccessibilityTextOutput()
+                }
+                .onChange(of: text, perform: { _ in
+                    accessibilityTextOut = updateAccessibilityTextOutput()
+                })
+                .onChange(of: isSecureField, perform: { _ in
+                    accessibilityTextOut = updateAccessibilityTextOutput()
+                })
             }
+        }
+        
+        @State private var accessibilityTextOut: Text = Text("")
+        
+        private func updateAccessibilityTextOutput() -> Text {
+            guard let output = model.accessibilityLabel?.fillParameters([""])
+            else {
+                return Text("")
+            }
+            
+            if !isSecureField && attributedString {
+                let accessibilityText = speakOutText ? text.splitUp(separator: ",") : text
+                return Text(
+                    (model.accessibilityLabel != nil ? model.accessibilityLabel?.fillParameters([accessibilityText]) : accessibilityText)!
+                )
+            }
+            
+            return Text(output)
+        }
+        
+        private var accessibilityButtonLabel: Text {
+            isSecureField ?
+            Text(model.showTextAccessibility ?? "") :
+            Text(model.hideTextAccessibility ?? "")
         }
         
         private var accessibilityLabel: Text {
@@ -100,8 +147,10 @@ extension Components.Molecules {
             if let hint = model.hint {
                 text.append(" \(hint) ")
             }
-            text.append(model.title ?? "")
-            text.append(" \(isSecureField ? model.showTextAccessibility! : model.hideTextAccessibility!) ")
+            if let accessibilityLabel =  model.accessibilityLabel {
+                text.append(" \(accessibilityLabel) ")
+            }
+            
             return Text(text)
         }
         
@@ -117,6 +166,8 @@ extension Components.Molecules {
             self._internalText = internalText
             self.validationError = validationError
             self._isSecureField = secureField
+            self.speakOutText =  model.speakOutText ?? false
+            self.attributedString = model.attributedText ?? false
         }
         
         @Namespace var nspace
@@ -137,7 +188,6 @@ extension Components.Molecules {
                     }
                     .frame(height: textViewHeight)
                     .padding(.vertical, .spacer4)
-                    .accessibilityLabel(accessibilityLabel)
                     // MARK: overlay show/hide button
                     Button(
                         isSecureField ? model.showText : model.hideText
@@ -149,6 +199,7 @@ extension Components.Molecules {
                     .accentColor( Color.Semantic.primaryButtonBackground)
                     .frame(height: textViewHeight, alignment: .leading)
                     .accessibilityAddTraits(.isButton)
+                    .accessibilityLabel(accessibilityButtonLabel)
                     .padding(.standardCardHorizontal)
                 }
                 .padding(.horizontal, .spacer0)
@@ -207,5 +258,14 @@ extension Components.Molecules {
             text: textBinding,
             internalText: passwordBinding,
             secureField: secureBinding)
+    }
+}
+
+fileprivate extension String {
+    func splitUp(separator: String = " ") -> String {
+        (self.map { String($0) }).joined(separator: separator)
+    }
+    func fillParameters(_ params: [String]) -> String {
+        return String(format: self, arguments: params)
     }
 }
