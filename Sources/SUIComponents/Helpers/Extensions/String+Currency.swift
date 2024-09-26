@@ -24,6 +24,14 @@ extension String {
         formatter.locale = Locale.current
         return formatter
     }()
+    
+    static let numericFormatter: Foundation.NumberFormatter = {
+        let formatter = Foundation.NumberFormatter()
+        formatter.allowsFloats = false
+        formatter.locale = Locale(identifier: "en_US")
+        formatter.numberStyle = .none
+        return formatter
+    }()
 
     func isCurrencyValue() -> Bool {
         guard String.decimalFormatter.number(from: self) != nil else { return false }
@@ -32,5 +40,10 @@ extension String {
         let currencyTest = NSPredicate(format: "SELF MATCHES %@", currencyRegex)
 
         return currencyTest.evaluate(with: self)
+    }
+    
+    func isNumericValue() -> Bool {
+        guard String.numericFormatter.number(from: self) != nil else { return false }
+        return true
     }
 }

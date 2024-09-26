@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		570FB6DC29FC1C5F00D1C955 /* SUIComponents in Frameworks */ = {isa = PBXBuildFile; productRef = 570FB6DB29FC1C5F00D1C955 /* SUIComponents */; };
+		57F684BB2CA2C1E700A7501F /* SUIComponents in Frameworks */ = {isa = PBXBuildFile; productRef = 57F684BA2CA2C1E700A7501F /* SUIComponents */; };
 		580564312714669900BD9EA6 /* OrganismsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580564302714669900BD9EA6 /* OrganismsView.swift */; };
 		5805643427146B2300BD9EA6 /* MoleculesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5805643327146B2300BD9EA6 /* MoleculesView.swift */; };
 		5805643627146B7C00BD9EA6 /* ExampleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5805643527146B7C00BD9EA6 /* ExampleProtocol.swift */; };
@@ -43,7 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		570FB6DA29FC1C5200D1C955 /* ios-swiftui-components */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "ios-swiftui-components"; path = ..; sourceTree = "<group>"; };
+		57F684B92CA2C1E000A7501F /* ios-swiftui-components */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "ios-swiftui-components"; path = ..; sourceTree = "<group>"; };
 		580564302714669900BD9EA6 /* OrganismsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganismsView.swift; sourceTree = "<group>"; };
 		5805643327146B2300BD9EA6 /* MoleculesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoleculesView.swift; sourceTree = "<group>"; };
 		5805643527146B7C00BD9EA6 /* ExampleProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleProtocol.swift; sourceTree = "<group>"; };
@@ -78,7 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				570FB6DC29FC1C5F00D1C955 /* SUIComponents in Frameworks */,
+				57F684BB2CA2C1E700A7501F /* SUIComponents in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,7 +141,7 @@
 		587A133726C422370005A55D = {
 			isa = PBXGroup;
 			children = (
-				570FB6DA29FC1C5200D1C955 /* ios-swiftui-components */,
+				57F684B92CA2C1E000A7501F /* ios-swiftui-components */,
 				587A134226C422370005A55D /* SUICompanionApp */,
 				E9D1892E273D597900723C16 /* SUICompanionAppTests */,
 				587A134126C422370005A55D /* Products */,
@@ -247,7 +247,7 @@
 			);
 			name = SUICompanionApp;
 			packageProductDependencies = (
-				570FB6DB29FC1C5F00D1C955 /* SUIComponents */,
+				57F684BA2CA2C1E700A7501F /* SUIComponents */,
 			);
 			productName = SUICompanionApp;
 			productReference = 587A134026C422370005A55D /* SUICompanionApp.app */;
@@ -728,7 +728,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		570FB6DB29FC1C5F00D1C955 /* SUIComponents */ = {
+		57F684BA2CA2C1E700A7501F /* SUIComponents */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SUIComponents;
 		};
