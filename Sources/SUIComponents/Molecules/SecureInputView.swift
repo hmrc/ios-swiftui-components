@@ -175,11 +175,9 @@ extension Components.Molecules {
             VStack(alignment: .leading, spacing: 5) {
                 Text(model.title ?? "")
                     .style(.bold)
-                    .accessibility(hidden: true)
                 if let hint = model.hint {
                     Text(hint)
                         .style(.body)
-                        .accessibility(hidden: true)
                 }
                 HStack {
                     // MARK: SecureField content
