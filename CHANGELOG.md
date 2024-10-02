@@ -5,7 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [1.17.1] - 2024-10-02Z
 - patch, to SecureInputTextView, accessibility not hidden on title and hint Text
+  
+## [1.17.0] - 2024-09-26Z
 - added new component secureInputView with accessibility options for kerning, speakout characters and attributed strings
 
 ## [1.16.0] - 2024-07-19Z
