@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+- added better accessibility labels on information card view
 
 ## [1.17.1] - 2024-10-02Z
 - patch, to SecureInputTextView, accessibility not hidden on title and hint Text
