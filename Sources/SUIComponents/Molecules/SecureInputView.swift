@@ -213,8 +213,8 @@ extension Components.Molecules {
                     if let error = validationError {
                         Text(error)
                             .style(.error)
+                            .accessibilityCustomContent("Error", error, importance: .high)
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            .accessibility(hidden: true)
                     }
                 }.frame(maxWidth: .infinity, alignment: .trailing)
             }
