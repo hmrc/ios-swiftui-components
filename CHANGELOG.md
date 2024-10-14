@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+- error accessibility text on secureInputView "hidden" removed.
+
 ## [1.17.2] - 2024-10-08Z
 - added better accessibility labels on information card view
 
