@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.17.3] - 2024-10-14Z
+
 - error accessibility text on secureInputView "hidden" removed.
 
 ## [1.17.2] - 2024-10-08Z
