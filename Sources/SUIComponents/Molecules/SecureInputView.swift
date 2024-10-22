@@ -76,7 +76,7 @@ extension Components.Molecules {
         @State private var textViewHeight: CGFloat = 0
         @State private var editing: Bool = false
         var didEndEditing: VoidHandler?
-        var validationError: String?
+        @Binding var validationError: String?
         let hide: Double = 0.0
         let show: Double = 1.0
         var speakOutText: Bool = false
@@ -104,32 +104,35 @@ extension Components.Molecules {
                 .accessibilityAddTraits(.allowsDirectInteraction)
                 .accessibilityLabel(accessibilityTextOut)
                 .onAppear {
-                    accessibilityTextOut = updateAccessibilityTextOutput()
+                    accessibilityTextOut = updateAccessibilityTextOutput(validationError)
                 }
                 .onChange(of: text, perform: { _ in
-                    accessibilityTextOut = updateAccessibilityTextOutput()
+                    accessibilityTextOut = updateAccessibilityTextOutput(validationError)
                 })
                 .onChange(of: isSecureField, perform: { _ in
-                    accessibilityTextOut = updateAccessibilityTextOutput()
+                    accessibilityTextOut = updateAccessibilityTextOutput(validationError)
                 })
             }
         }
         
         @State private var accessibilityTextOut: Text = Text("")
         
-        private func updateAccessibilityTextOutput() -> Text {
-            guard let output = model.accessibilityLabel?.fillParameters([""])
+        private func updateAccessibilityTextOutput(_ withError: String?) -> Text {
+            guard var output = model.accessibilityLabel?.fillParameters([""])
             else {
                 return Text("")
             }
             
             if !isSecureField && attributedString {
                 let accessibilityText = speakOutText ? text.splitUp(separator: ",") : text
-                return Text(
+                output =
                     (model.accessibilityLabel != nil ? model.accessibilityLabel?.fillParameters([accessibilityText]) : accessibilityText)!
-                )
             }
             
+            //attach error if needed
+            if let error = withError {
+                return Text(output.appending(", Error, \(error)"))
+            }
             return Text(output)
         }
         
@@ -139,32 +142,17 @@ extension Components.Molecules {
             Text(model.hideTextAccessibility ?? "")
         }
         
-        private var accessibilityLabel: Text {
-            var text = ""
-            if let validationError = validationError {
-                text.append(" \(validationError) ")
-            }
-            if let hint = model.hint {
-                text.append(" \(hint) ")
-            }
-            if let accessibilityLabel =  model.accessibilityLabel {
-                text.append(" \(accessibilityLabel) ")
-            }
-            
-            return Text(text)
-        }
-        
         public init(
             model: Model,
             text: Binding<String>,
             internalText: Binding<String>,
             secureField: Binding<Bool>,
-            validationError: String? = nil
+            validationError: Binding<String?>
         ) {
             self.model = model
             self._text = text
             self._internalText = internalText
-            self.validationError = validationError
+            self._validationError = validationError
             self._isSecureField = secureField
             self.speakOutText =  model.speakOutText ?? false
             self.attributedString = model.attributedText ?? false
@@ -213,8 +201,11 @@ extension Components.Molecules {
                     if let error = validationError {
                         Text(error)
                             .style(.error)
-                            .accessibilityCustomContent("Error", error, importance: .high)
+                            .accessibilityHidden(true)
                             .frame(maxWidth: .infinity, alignment: .leading)
+                            .onAppear {
+                                accessibilityTextOut = updateAccessibilityTextOutput(validationError)
+                            }
                     }
                 }.frame(maxWidth: .infinity, alignment: .trailing)
             }
@@ -244,6 +235,14 @@ extension Components.Molecules {
             print("SecureInputView toogle did change: \(secure)")
         }
         
+        var error = "error"
+        let errorBinding = Binding<String?> {
+            error
+        } set: { newValue in
+            error = newValue ?? ""
+            print("SecureInputView toogle did change: \(error)")
+        }
+        
         return SecureInputView(
             model: .init(
                 title: "Title",
@@ -255,7 +254,8 @@ extension Components.Molecules {
             ),
             text: textBinding,
             internalText: passwordBinding,
-            secureField: secureBinding)
+            secureField: secureBinding,
+            validationError: errorBinding)
     }
 }
 

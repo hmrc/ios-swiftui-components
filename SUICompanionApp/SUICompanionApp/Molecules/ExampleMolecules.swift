@@ -742,8 +742,8 @@ extension Components.Molecules.SecureInputView: Examplable {
         @State var text: String
         @State var secureText: String
         @State var secure: Bool
+        @State var error: String?
         let model: Components.Molecules.SecureInputView.Model
-        let error: String?
 
         init(
             initialText: String = "",
@@ -765,7 +765,7 @@ extension Components.Molecules.SecureInputView: Examplable {
                 text: $text, 
                 internalText: $secureText,
                 secureField: $secure,
-                validationError: error
+                validationError: $error
             )
         }
     }
