@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [1.17.4] - 2024-10-23Z
 - error accessibility text now dynamically added to pinEntryField, updates when error text (text in red) updates.
 - red text hidden to accessibility voice over.
 
