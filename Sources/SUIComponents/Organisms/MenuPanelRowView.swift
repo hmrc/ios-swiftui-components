@@ -48,10 +48,12 @@ extension Components.Organisms {
                 }
                 .accessibility(hidden: true)
                 
-                Text(model.body, style: .body)
-                    .multilineTextAlignment(.leading)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .accessibility(hidden: true)
+                if !model.body.isEmpty {
+                    Text(model.body, style: .body)
+                        .multilineTextAlignment(.leading)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .accessibility(hidden: true)
+                }
             }
             .cardView(
                 insets: insets,

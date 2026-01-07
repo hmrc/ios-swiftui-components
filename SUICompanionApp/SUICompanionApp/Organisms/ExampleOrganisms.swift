@@ -1177,6 +1177,15 @@ extension Components.Organisms.MenuPanelRowView: Examplable {
             disclosureModel: disclosureModel,
             handler: voidAction
         )
+
+        let noBodyHelp = Model(
+            title: "Help and Information",
+            body: "",
+            notificationMode: .hidden,
+            disclosureModel: disclosureModel,
+            handler: voidAction
+        )
+
         let annualTaxSummary = Model(
             title: "Annual Tax Summary",
             body: "View your tax and National Insurance contributions and find out how the government spends your taxes.",
@@ -1235,8 +1244,8 @@ extension Components.Organisms.MenuPanelRowView: Examplable {
             handler: voidAction
         )
         
-        let models = [paye, annualTaxSummary, messages, manyMessages, noMessages, noMessagesHidden, selfAssessmentNew, hts, calendar]
-        
+        let models = [paye, noBodyHelp, annualTaxSummary, messages, manyMessages, noMessages, noMessagesHidden, selfAssessmentNew, hts, calendar]
+
         return AnyView (
             ForEach( models, id: \.id ) { model in
                 AnyView(
