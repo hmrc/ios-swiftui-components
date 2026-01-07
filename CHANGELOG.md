@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [1.18.0] - 2026-01-06Z
 
 - update iconButtonView.swift file for horizontal padding between icon and text to 8pts.
+- added empty body text check.
+- update companionapp with example.
 
 ## [1.17.3] - 2024-10-14Z
 
