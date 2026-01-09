@@ -26,7 +26,7 @@ extension Components.Molecules {
         public init(model: Model) {
             self.model = model
         }
-        private let spacing = CGFloat(8)
+        private let spacing = CGFloat(12)
         public var body: some View {
             Components.Atoms.ImageAligningHStack(spacing: spacing) {
                 model.icon
