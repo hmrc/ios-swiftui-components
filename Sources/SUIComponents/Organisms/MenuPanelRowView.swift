@@ -48,8 +48,8 @@ extension Components.Organisms {
                 }
                 .accessibility(hidden: true)
                 
-                if !model.body.isEmpty {
-                    Text(model.body, style: .body)
+                if let body = model.body, !body.isEmpty {
+                    Text(body, style: .body)
                         .multilineTextAlignment(.leading)
                         .fixedSize(horizontal: false, vertical: true)
                         .accessibility(hidden: true)
@@ -72,7 +72,7 @@ extension Components.Organisms.MenuPanelRowView {
     public struct Model: Identifiable {
         public var id = UUID()
         public let title: String
-        public let body: String
+        public let body: String?
         public let notificationMode: Components.Molecules
             .NotificationBubbleView.NotificationMode
         public var action: VoidHandler
@@ -81,7 +81,7 @@ extension Components.Organisms.MenuPanelRowView {
         public let disclosureModel: DisclosureView.Model?
         
         public init(title: String,
-                    body: String,
+                    body: String? = nil,
                     notificationMode: Components.Molecules.NotificationBubbleView.NotificationMode,
                     accessibilityIdentifier: String? = nil,
                     accessibilityHint: String? = nil,
@@ -129,3 +129,4 @@ struct MenuPanelRowView_Previews: PreviewProvider {
         .background(Color.Semantic.cardBackground)
     }
 }
+

@@ -8,11 +8,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - error accessibility text now dynamically added to pinEntryField, updates when error text (text in red) updates.
 - red text hidden to accessibility voice over.
 
-## [1.18.0] - 2026-01-06Z
-
-- added empty body text check.
-- update companionapp with example.
-
 ## [1.17.3] - 2024-10-14Z
 
 - error accessibility text on secureInputView "hidden" removed.

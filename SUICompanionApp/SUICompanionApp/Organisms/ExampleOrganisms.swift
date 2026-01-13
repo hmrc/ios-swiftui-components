@@ -1180,7 +1180,7 @@ extension Components.Organisms.MenuPanelRowView: Examplable {
 
         let noBodyHelp = Model(
             title: "Help and Information",
-            body: "",
+            body: nil,
             notificationMode: .hidden,
             disclosureModel: disclosureModel,
             handler: voidAction
