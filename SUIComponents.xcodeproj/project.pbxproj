@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		5797A32E2A2A4BA900823C02 /* MenuPanelRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5797A32D2A2A4BA900823C02 /* MenuPanelRowView.swift */; };
 		5797A3322A2DFB4300823C02 /* NotificationBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5797A3312A2DFB4300823C02 /* NotificationBubbleView.swift */; };
-		57B6C20E2C8A7C11007BFFAF /* SecureInputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B6C20D2C8A7C11007BFFAF /* SecureInputTextView.swift */; };
 		DAFD193A2BD68EE30012DB64 /* OptionalAccessibilityIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFD19392BD68EE30012DB64 /* OptionalAccessibilityIdentifier.swift */; };
 		OBJ_100 /* Button+HMRC.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* Button+HMRC.swift */; };
 		OBJ_101 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* CustomButton.swift */; };
@@ -77,7 +76,6 @@
 /* Begin PBXFileReference section */
 		5797A32D2A2A4BA900823C02 /* MenuPanelRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPanelRowView.swift; sourceTree = "<group>"; };
 		5797A3312A2DFB4300823C02 /* NotificationBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationBubbleView.swift; sourceTree = "<group>"; };
-		57B6C20D2C8A7C11007BFFAF /* SecureInputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureInputTextView.swift; sourceTree = "<group>"; };
 		DAFD19392BD68EE30012DB64 /* OptionalAccessibilityIdentifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionalAccessibilityIdentifier.swift; sourceTree = "<group>"; };
 		OBJ_10 /* AttributedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedText.swift; sourceTree = "<group>"; };
 		OBJ_11 /* Button+HMRC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Button+HMRC.swift"; sourceTree = "<group>"; };
@@ -362,7 +360,6 @@
 				OBJ_18 /* Switch.swift */,
 				OBJ_19 /* Text+HMRC.swift */,
 				OBJ_20 /* TextView.swift */,
-				57B6C20D2C8A7C11007BFFAF /* SecureInputTextView.swift */,
 			);
 			path = Atoms;
 			sourceTree = "<group>";
@@ -456,7 +453,6 @@
 				OBJ_111 /* Color+Hex.swift in Sources */,
 				OBJ_112 /* Color+Named.swift in Sources */,
 				OBJ_113 /* Color+Semantic.swift in Sources */,
-				57B6C20E2C8A7C11007BFFAF /* SecureInputTextView.swift in Sources */,
 				OBJ_114 /* Color+UIColor.swift in Sources */,
 				OBJ_115 /* Color.Components+Debug.swift in Sources */,
 				OBJ_116 /* ColorService.swift in Sources */,
