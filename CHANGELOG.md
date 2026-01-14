@@ -4,23 +4,6 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
-- error accessibility text now dynamically added to pinEntryField, updates when error text (text in red) updates.
-- red text hidden to accessibility voice over.
-
-## [1.17.3] - 2024-10-14Z
-
-- error accessibility text on secureInputView "hidden" removed.
-
-## [1.17.2] - 2024-10-08Z
-- added better accessibility labels on information card view
-
-## [1.17.1] - 2024-10-02Z
-- patch, to SecureInputTextView, accessibility not hidden on title and hint Text
-  
-## [1.17.0] - 2024-09-26Z
-- added new component secureInputView with accessibility options for kerning, speakout characters and attributed strings
-
 ## [1.16.0] - 2024-07-19Z
 - added accessibilitTrait to modal definded in a MultiColumnRowView
 

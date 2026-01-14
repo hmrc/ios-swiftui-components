@@ -35,7 +35,6 @@ struct MoleculesView: View {
                 }
                 Group {
                     Example.navigationLink(type: Components.Molecules.IconButtonWithDisclosureView.self)
-                    Example.navigationLink(type: Components.Molecules.SecureInputView.self)
                 }
             }
             .navigationTitle("Molecules")

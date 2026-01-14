@@ -61,24 +61,25 @@ extension Components.Organisms {
                                 .foregroundColor(theme.iconTintColor())
                                 .style(.bold)
                         }
-                        .accessibility(label: Text(theme.accessibilityLabelPrefix() + headline.title))
+
                     if let body = headline.body {
                         Text(body)
                             .foregroundColor(theme.bodyLabelColor())
                             .style(.body)
-                            .accessibility(label: Text(body))
+
                     }
                     
                     if let ctas = headline.ctas {
                         VStack {
                             ForEach(0..<ctas.count, id: \.self) { index in
                                 button(from: ctas[index])
-                                    .accessibility(label: Text(ctas[index].message))
+
                             }
                         }
                     }
                 }
             )
+            .accessibility(label: Text(theme.accessibilityLabelPrefix() + headline.title))
             .cardView(
                 insets: insets,
                 backgroundColor: theme.backgroundColor()
