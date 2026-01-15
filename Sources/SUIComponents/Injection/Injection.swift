@@ -52,7 +52,7 @@ extension Components.Injection {
             return String(format: "%p", addr)
         }
 
-        public func addressOf<AO: AnyObject>(_ obj: AO) -> String {
+        public func addressOf<T: AnyObject>(_ obj: T) -> String {
             let addr = unsafeBitCast(obj, to: Int.self)
             return String(format: "%p", addr)
         }
