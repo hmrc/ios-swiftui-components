@@ -29,7 +29,7 @@ public struct DisclosureView: ViewModifier {
         public init(
             id: String = "",
             inset: CGFloat = .spacer16,
-            icon: Image = Image("ChevronRight", bundle: .main),
+            icon: Image = Image(systemName: "chevron.right"),
             accessibilityLabel: String = "",
             accessibilityHint: String = "",
             _ action: @escaping VoidHandler
@@ -67,6 +67,7 @@ public struct DisclosureView: ViewModifier {
                 HStack(spacing: 0) {
                     content.accessibility(sortPriority: 2)
                     model.icon
+                        .font(Font.body.bold())
                         .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: model.inset))
                         .accessibility(hidden: true)
                 }
