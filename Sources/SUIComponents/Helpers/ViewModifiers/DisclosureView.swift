@@ -29,7 +29,7 @@ public struct DisclosureView: ViewModifier {
         public init(
             id: String = "",
             inset: CGFloat = .spacer16,
-            icon: Image = Image(systemName: "chevron.right"),
+            icon: Image = Image("ChevronRight", bundle: .main),
             accessibilityLabel: String = "",
             accessibilityHint: String = "",
             _ action: @escaping VoidHandler
