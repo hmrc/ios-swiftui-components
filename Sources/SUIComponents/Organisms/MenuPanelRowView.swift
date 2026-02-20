@@ -36,7 +36,7 @@ extension Components.Organisms {
         
         private var disclosureModel: DisclosureView.Model? {
             guard let baseModel = model.disclosureModel else { return nil }
-            if model.isExternalLink {
+            if model.isExternalLink == true {
                 return DisclosureView.Model(
                     id: baseModel.id,
                     icon: Image(systemName: "arrow.up.right.square"),
@@ -95,7 +95,7 @@ extension Components.Organisms.MenuPanelRowView {
         public let accessibilityIdentifier: String?
         public let accessibilityHint: String?
         public let disclosureModel: DisclosureView.Model?
-        public let isExternalLink: Bool
+        public let isExternalLink: Bool?
 
         public init(title: String,
                     body: String? = nil,
@@ -103,7 +103,7 @@ extension Components.Organisms.MenuPanelRowView {
                     accessibilityIdentifier: String? = nil,
                     accessibilityHint: String? = nil,
                     disclosureModel: DisclosureView.Model? = nil,
-                    isExternalLink: Bool = false,
+                    isExternalLink: Bool? = nil,
                     handler: @escaping VoidHandler
         ) {
             self.title = title
