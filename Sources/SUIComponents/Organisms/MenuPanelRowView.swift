@@ -67,8 +67,6 @@ extension Components.Organisms {
                         .multilineTextAlignment(.leading)
                         .fixedSize(horizontal: false, vertical: true)
                         .accessibility(hidden: true)
-
-
                 }
             }
             .cardView(
