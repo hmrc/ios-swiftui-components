@@ -83,6 +83,7 @@ extension Components.Organisms {
         }
     }
 }
+
 extension Components.Organisms.MenuPanelRowView {
     // MARK: - Model
     public struct Model: Identifiable {
