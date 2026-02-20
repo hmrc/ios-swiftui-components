@@ -33,7 +33,21 @@ extension Components.Organisms {
         public init(model: Model) {
             self.model = model
         }
-        
+
+        private var disclosureModel: DisclosureView.Model? {
+                    guard let baseModel = model.disclosureModel else { return nil }
+                    if model.isExternalLink == true {
+                        return DisclosureView.Model(
+                            id: baseModel.id,
+                            icon: Image(systemName: "arrow.up.right.square"),
+                            accessibilityLabel: baseModel.accessibilityLabel,
+                            accessibilityHint: baseModel.accessibilityHint,
+                            baseModel.action
+                        )
+                    }
+                    return baseModel
+                }
+
         public var body: some View {
             VStack(alignment: .leading, spacing: .spacer24) {
                 HStack(spacing: .spacer8) {
@@ -60,7 +74,7 @@ extension Components.Organisms {
             .cardView(
                 insets: insets,
                 backgroundColor: Color.Semantic.menuCardBackground,
-                disclosureModel: model.disclosureModel
+                disclosureModel: disclosureModel
             )
             .accessibility(sortPriority: 1)
             .accessibilityElement(children: .combine) 
@@ -81,13 +95,15 @@ extension Components.Organisms.MenuPanelRowView {
         public let accessibilityIdentifier: String?
         public let accessibilityHint: String?
         public let disclosureModel: DisclosureView.Model?
-        
+        public let isExternalLink: Bool?
+
         public init(title: String,
                     body: String? = nil,
                     notificationMode: Components.Molecules.NotificationBubbleView.NotificationMode,
                     accessibilityIdentifier: String? = nil,
                     accessibilityHint: String? = nil,
                     disclosureModel: DisclosureView.Model? = nil,
+                    isExternalLink: Bool? = nil,
                     handler: @escaping VoidHandler
         ) {
             self.title = title
@@ -96,6 +112,7 @@ extension Components.Organisms.MenuPanelRowView {
             self.accessibilityIdentifier = accessibilityIdentifier
             self.accessibilityHint = accessibilityHint
             self.disclosureModel = disclosureModel
+            self.isExternalLink = isExternalLink
             self.action = handler
         }
     }
