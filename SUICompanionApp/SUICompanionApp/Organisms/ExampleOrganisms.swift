@@ -1243,8 +1243,26 @@ extension Components.Organisms.MenuPanelRowView: Examplable {
             disclosureModel: calendarDisclosureModel,
             handler: voidAction
         )
-        
-        let models = [paye, noBodyHelp, annualTaxSummary, messages, manyMessages, noMessages, noMessagesHidden, selfAssessmentNew, hts, calendar]
+        let externalLink = Model(
+            title: "Annual Tax Summary",
+            body: "View your tax and National Insurance contributions and find out how the government spends your taxes.",
+            notificationMode: .hidden,
+            accessibilityHint: "Opens in a web browser.",
+            disclosureModel: disclosureModel,
+            isExternalLink: true,
+            handler: voidAction
+        )
+        let externalLinkNoBody = Model(
+            title: "Annual Tax Summary",
+            body: nil,
+            notificationMode: .hidden,
+            accessibilityHint: "Opens in a web browser.",
+            disclosureModel: disclosureModel,
+            isExternalLink: true,
+            handler: voidAction
+        )
+
+        let models = [paye, noBodyHelp, annualTaxSummary, messages, manyMessages, noMessages, noMessagesHidden, selfAssessmentNew, hts, calendar, externalLink, externalLinkNoBody]
 
         return AnyView (
             ForEach( models, id: \.id ) { model in
