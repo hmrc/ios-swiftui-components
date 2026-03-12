@@ -46,6 +46,7 @@ public protocol SemanticColors {
     var secondaryButtonBackground: Color { get set }
     var secondaryButtonHighlightedBackground: Color { get set }
     var whiteBackground: Color { get set }
+    var navBarColor: Color { get set }
 }
 
 extension Color {
@@ -87,5 +88,6 @@ extension Color {
         open var secondaryButtonBackground = Color(UIColor(darkColour: Color.Named.white.uiColour, lightColour: Color.Named.white.uiColour))
         open var secondaryButtonHighlightedBackground = Color(UIColor(darkColour: Color.Named.grey1.uiColour.darken(0.4), lightColour: Color.Named.blue.uiColour.lighten(0.84)))
         open var whiteBackground = Color(UIColor(darkColour: Color.Named.grey3.uiColour, lightColour: Color.Named.white.uiColour))
+        open var navBarColor = Color((UIColor(darkColour: Color.Named.white.uiColour, lightColour: Color.Named.blue.uiColour))
     }
 }
