@@ -57,7 +57,7 @@ extension Components.Molecules {
                         alignment: .leading
                     )
                 }
-                Image("ChevronRight", bundle: .module)
+                Image(systemName: "chevron.right")
                     .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: model.insets.trailing))
                     .accessibility(hidden: true)
             }
