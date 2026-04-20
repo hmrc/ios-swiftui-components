@@ -74,7 +74,7 @@ extension Components.Organisms {
             .cardView(
                 insets: insets,
                 backgroundColor: Color.Semantic.menuCardBackground,
-                disclosureModel: model.disclosureModel
+                disclosureModel: disclosureModel
             )
             .accessibility(sortPriority: 1)
             .accessibilityElement(children: .combine) 
