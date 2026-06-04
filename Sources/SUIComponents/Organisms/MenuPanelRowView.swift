@@ -73,13 +73,14 @@ extension Components.Organisms {
             }
             .cardView(
                 insets: insets,
-                backgroundColor: Color.Semantic.menuCardBackground,
+                backgroundColor: Color.Semantic.menuCardNewBackground,
                 disclosureModel: disclosureModel
             )
             .accessibility(sortPriority: 1)
             .accessibilityElement(children: .combine) 
             .accessibilityAddTraits(.isButton)
             .optionalAccessibilityIdentifier(model.accessibilityIdentifier)
+            .cornerRadius(8)
         }
     }
 }
@@ -146,5 +147,6 @@ struct MenuPanelRowView_Previews: PreviewProvider {
         }
         .padding(.horizontal,.spacer16)
         .background(Color.Semantic.cardBackground)
+        .cornerRadius(8.0)
     }
 }
