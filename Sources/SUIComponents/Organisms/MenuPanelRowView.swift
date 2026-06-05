@@ -80,7 +80,7 @@ extension Components.Organisms {
             .accessibilityElement(children: .combine) 
             .accessibilityAddTraits(.isButton)
             .optionalAccessibilityIdentifier(model.accessibilityIdentifier)
-            .cornerRadius(8)
+            .cornerRadius(8.0)
         }
     }
 }
