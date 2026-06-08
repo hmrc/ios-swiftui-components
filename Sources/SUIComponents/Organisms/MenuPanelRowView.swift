@@ -73,7 +73,7 @@ extension Components.Organisms {
             }
             .cardView(
                 insets: insets,
-                backgroundColor: Color.Semantic.menuCardNewBackground,
+                backgroundColor: Color.Semantic.menuCardWhiteBackground,
                 disclosureModel: disclosureModel
             )
             .accessibility(sortPriority: 1)

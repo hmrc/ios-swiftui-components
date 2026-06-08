@@ -66,6 +66,6 @@ extension Color {
         public static var secondaryButtonHighlightedBackground = semanticColors.secondaryButtonHighlightedBackground
         public static var whiteBackground = semanticColors.whiteBackground
         public static var navigationBarBackgroundColor = semanticColors.navBarColor
-        public static var menuCardNewBackground = semanticColors.menuCardNewBackground
+        public static var menuCardWhiteBackground = semanticColors.menuCardWhiteBackground
     }
 }
