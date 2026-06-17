@@ -29,6 +29,7 @@ public extension Color {
              grey1,
              grey2,
              grey3,
+             grey4,
              pink,
              yellow
 
@@ -62,6 +63,8 @@ public extension Color {
                 return colorContainer.grey2
             case .grey3:
                 return colorContainer.grey3
+            case .grey4:
+                return colorContainer.grey4
             case .pink:
                 return colorContainer.pink
             case .yellow:
