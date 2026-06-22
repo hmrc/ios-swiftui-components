@@ -47,6 +47,8 @@ public protocol SemanticColors {
     var secondaryButtonHighlightedBackground: Color { get set }
     var whiteBackground: Color { get set }
     var navBarColor: Color { get set }
+    var navBarDarkModeColor: Color { get set }
+    var menuCardWhiteBackground: Color { get set }
 }
 
 extension Color {
@@ -63,7 +65,7 @@ extension Color {
         open var cardShadow = Color(UIColor(darkColour: UIColor.clear, lightColour: Color.Named.grey3.uiColour.darken(0.08)))
         open var pageBackground = Color(UIColor(darkColour: Color.Named.grey3.uiColour, lightColour: Color.Named.grey3.uiColour))
         
-        
+        open var menuCardWhiteBackground = Color(UIColor(darkColour: Color.Named.white.uiColour, lightColour: Color.Named.white.uiColour))
         open var menuCardBackground = Color(UIColor(darkColour: Color.Named.grey3.uiColour, lightColour: Color.Named.grey3.uiColour))
         open var menuPageBackground = Color(UIColor(darkColour: Color.Named.white.uiColour, lightColour: Color.Named.white.uiColour))
         open var divider = Color(UIColor(darkColour: Color.Named.grey2.uiColour, lightColour: Color.Named.grey2.uiColour))
@@ -89,5 +91,6 @@ extension Color {
         open var secondaryButtonHighlightedBackground = Color(UIColor(darkColour: Color.Named.grey1.uiColour.darken(0.4), lightColour: Color.Named.blue.uiColour.lighten(0.84)))
         open var whiteBackground = Color(UIColor(darkColour: Color.Named.grey3.uiColour, lightColour: Color.Named.white.uiColour))
         open var navBarColor = Color(UIColor(darkColour: Color.Named.white.uiColour, lightColour: Color.Named.blue.uiColour))
+        open var navBarDarkModeColor = Color(UIColor(darkColour: Color.Named.grey4.uiColour, lightColour: Color.Named.grey4.uiColour))
     }
 }

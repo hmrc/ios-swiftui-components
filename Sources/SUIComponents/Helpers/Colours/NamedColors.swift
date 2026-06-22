@@ -27,6 +27,7 @@ public protocol NamedColors {
     var grey1: UIColor { get set }
     var grey2: UIColor { get set }
     var grey3: UIColor { get set }
+    var grey4: UIColor { get set }
     var pink: UIColor { get set }
     var yellow: UIColor { get set }
 }
@@ -77,5 +78,6 @@ extension UIColor {
         open var grey3 = UIColor(darkColour: .init(hexString: "#0B0C0C"), lightColour: .init(hexString: "#F3F2F1"))
         open var pink = UIColor(darkColour: .init(hexString: "#BB94FF"), lightColour: .init(hexString: "#D53880"))
         open var yellow = UIColor(darkColour: .init(hexString: "#FEFF4F"), lightColour: .init(hexString: "#FFBF47"))
+        open var grey4 = UIColor(darkColour: .init(hexString: "#1D70B8"), lightColour: .init(hexString: "#262626"))
     }
 }
