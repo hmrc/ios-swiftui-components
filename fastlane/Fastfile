@@ -281,7 +281,7 @@ platform :ios do
     sh("[[ -z $(git status -s) ]] || git commit -a -m 'Updated companion app version to #{project_version}'")
     sh('git push origin ' + branch_name)
     sh('gh pr create \
-  --title "Release PR for 1.17.6" \
+  --title "Release PR for 1.17.8" \
   --body "Swift UI Component Library PR" \
   --base main')
   end
