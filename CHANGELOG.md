@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [Unreleased]
+- updated background color for menu panel row, nav bar color for dark mode ios 17 below, changed discloser button and style
+
 ## [1.16.0] - 2024-07-19Z
 - added accessibilitTrait to modal definded in a MultiColumnRowView
 
