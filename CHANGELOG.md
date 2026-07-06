@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+- `SelectRowView`: replaced radio button `FilledCircle`/`EmptyCircle` assets with 40x40 versions, and load them from the package resource bundle (`Bundle.resource`) instead of the consuming app's main bundle
 - updated background color for menu panel row, nav bar color for dark mode ios 17 below, changed discloser button and style
 
 ## [1.16.0] - 2024-07-19Z
