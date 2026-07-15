@@ -68,5 +68,6 @@ extension Color {
         public static var navigationBarBackgroundColor = semanticColors.navBarColor
         public static var navBarDarkModeBackgroundColor = semanticColors.navBarDarkModeColor
         public static var menuCardWhiteBackground = semanticColors.menuCardWhiteBackground
+        public static var prefixBackgroundColour = semanticColors.prefixBackgroundColour
     }
 }

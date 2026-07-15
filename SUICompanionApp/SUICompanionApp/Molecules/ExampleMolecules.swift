@@ -393,7 +393,7 @@ extension Components.Molecules.TextInputView: Examplable {
                     title: "Title",
                     hint: "Hint",
                     placeholder: "Placeholder",
-                    leftViewText: "@leftText",
+                    prefix: .currency,
                     maxLength: 20
                 ),
                 error: "Validation Error"

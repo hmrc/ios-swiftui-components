@@ -31,11 +31,12 @@ extension Components.Molecules {
                 self.hint = hint
                 self.maxLength = maxLength
             }
+            
             fileprivate var textInputViewModel: TextInputView.Model {
                 .init(
                     title: title,
                     hint: hint,
-                    leftViewText: "£",
+                    prefix: .currency,
                     maxLength: maxLength,
                     multiLine: false,
                     keyboardType: .decimalPad,

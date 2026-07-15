@@ -22,7 +22,8 @@ extension Components.Molecules {
             public let title: String
             public let hint: String?
             public let placeholder: String
-            public let leftViewText: String?
+            public let prefix: PrefixOrPostfixView.InputType?
+            public let postfix: PrefixOrPostfixView.InputType?
             public let maxLength: Int
             public let enforceMaxLength: Bool
             public let multiLine: Bool
@@ -33,7 +34,8 @@ extension Components.Molecules {
                 title: String? = nil,
                 hint: String? = nil,
                 placeholder: String? = nil,
-                leftViewText: String? = nil,
+                prefix: PrefixOrPostfixView.InputType? = nil,
+                postfix: PrefixOrPostfixView.InputType? = nil,
                 maxLength: Int = 0,
                 enforceMaxLength: Bool = true,
                 multiLine: Bool = false,
@@ -43,7 +45,8 @@ extension Components.Molecules {
                 self.title = title ?? ""
                 self.hint = hint
                 self.placeholder = placeholder ?? ""
-                self.leftViewText = leftViewText
+                self.prefix = prefix
+                self.postfix = postfix
                 self.maxLength = maxLength
                 self.enforceMaxLength = enforceMaxLength
                 self.multiLine = multiLine
@@ -85,13 +88,10 @@ extension Components.Molecules {
                         .accessibility(hidden: true)
                 }
                 HStack {
-                    if let leftText = model.leftViewText {
-                        Text(leftText)
-                            .font(Font.Body.font())
-                            .foregroundColor(Color.Semantic.textInputLeftViewTint)
-                            .padding(.leading, .spacer8)
-                            .accessibility(hidden: true)
+                    if let prefix = model.prefix {
+                        PrefixOrPostfixView(inputType: prefix)
                     }
+                    
                     Components.Atoms.TextView(
                         text: $text,
                         height: $textFieldHeight,
@@ -108,6 +108,11 @@ extension Components.Molecules {
                     }
                     .frame(height: textFieldHeight)
                     .accessibility(label: accessibilityLabel)
+                    
+                    if let postfix = model.postfix {
+                        PrefixOrPostfixView(inputType: postfix)
+                    }
+                    
                     if editing && text.count > 0 {
                         Button {
                             text = ""
@@ -150,16 +155,30 @@ struct TextInputView_Previews: PreviewProvider {
             text = newText
             print("TextInputView Value did change: \(text)")
         }
-        Components.Molecules.TextInputView(
-            text: textBinding,
-            model: .init(
-                title: "Title",
-                hint: "Hint",
-                leftViewText: "@LeftView",
-                maxLength: 10,
-                multiLine: false,
-                keyboardType: .emailAddress
+        VStack {
+            Components.Molecules.TextInputView(
+                text: textBinding,
+                model: .init(
+                    title: "Title",
+                    hint: "Hint",
+                    prefix: .currency,
+                    maxLength: 10,
+                    multiLine: false,
+                    keyboardType: .emailAddress
+                )
             )
-        )
+            
+            Components.Molecules.TextInputView(
+                text: textBinding,
+                model: .init(
+                    title: "Title",
+                    hint: "Hint",
+                    postfix: .percentage,
+                    maxLength: 10,
+                    multiLine: false,
+                    keyboardType: .emailAddress
+                )
+            )
+        }
     }
 }
