@@ -21,6 +21,7 @@ public struct PrefixOrPostfixView: View {
     
     private enum ViewTraits {
         static let height: CGFloat = 52
+        static let borderWidth: CGFloat = 1
     }
     
     public enum InputType {
@@ -49,6 +50,11 @@ public struct PrefixOrPostfixView: View {
             .background(
                 Color.Semantic.prefixBackgroundColour,
                 in: Rectangle()
+            )
+            .overlay(
+                Rectangle()
+                    .stroke(Color.Named.black.colour,
+                            lineWidth: ViewTraits.borderWidth)
             )
     }
 }

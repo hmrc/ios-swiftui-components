@@ -18,6 +18,12 @@ import SwiftUI
 
 extension Components.Molecules {
     public struct TextInputView: View {
+        
+        private enum ViewTraits {
+            static let cornerRadius: CGFloat = 4
+            static let borderWidth: CGFloat = 1
+        }
+        
         public struct Model {
             public let title: String
             public let hint: String?
@@ -107,6 +113,7 @@ extension Components.Molecules {
                         print("Text committed: \(text)")
                     }
                     .frame(height: textFieldHeight)
+                    .padding(.horizontal, .spacer8)
                     .accessibility(label: accessibilityLabel)
                     
                     if let postfix = model.postfix {
@@ -124,15 +131,17 @@ extension Components.Molecules {
                         }
                     }
                 }
-                .padding(.trailing, .spacer8)
+                .clipShape(
+                    RoundedRectangle(cornerRadius: ViewTraits.cornerRadius)
+                )
                 .overlay(
-                    RoundedRectangle(cornerRadius: 4.0)
+                    RoundedRectangle(cornerRadius: ViewTraits.cornerRadius)
                         .stroke(
                             Color.Named.black.colour,
-                            lineWidth: 1.0
+                            lineWidth: ViewTraits.borderWidth
                         )
                 )
-
+                
                 HStack {
                     if let error = validationError {
                         Text(error)
@@ -180,5 +189,6 @@ struct TextInputView_Previews: PreviewProvider {
                 )
             )
         }
+        .padding(.horizontal, 10)
     }
 }
