@@ -129,6 +129,7 @@ extension Components.Molecules {
                                 bundle: Bundle.resource
                             ).foregroundColor(Color.Named.black.colour)
                         }
+                        .padding(.trailing, .spacer8)
                     }
                 }
                 .clipShape(
