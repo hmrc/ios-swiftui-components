@@ -116,10 +116,6 @@ extension Components.Molecules {
                     .padding(.horizontal, .spacer8)
                     .accessibility(label: accessibilityLabel)
                     
-                    if let postfix = model.postfix {
-                        PrefixOrPostfixView(inputType: postfix)
-                    }
-                    
                     if editing && text.count > 0 {
                         Button {
                             text = ""
@@ -130,6 +126,10 @@ extension Components.Molecules {
                             ).foregroundColor(Color.Named.black.colour)
                         }
                         .padding(.trailing, .spacer8)
+                    }
+                    
+                    if let postfix = model.postfix {
+                        PrefixOrPostfixView(inputType: postfix)
                     }
                 }
                 .clipShape(
