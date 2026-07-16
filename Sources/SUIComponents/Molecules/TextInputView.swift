@@ -35,6 +35,7 @@ extension Components.Molecules {
             public let multiLine: Bool
             public let keyboardType: UIKeyboardType
             public let shouldChangeText: TextViewShouldChangeHandler?
+            public let halfWidthOfInputField: Bool
 
             public init(
                 title: String? = nil,
@@ -46,7 +47,8 @@ extension Components.Molecules {
                 enforceMaxLength: Bool = true,
                 multiLine: Bool = false,
                 keyboardType: UIKeyboardType = .default,
-                shouldChangeText: TextViewShouldChangeHandler? = nil
+                shouldChangeText: TextViewShouldChangeHandler? = nil,
+                halfWidthOfInputField: Bool = false
             ) {
                 self.title = title ?? ""
                 self.hint = hint
@@ -58,6 +60,7 @@ extension Components.Molecules {
                 self.multiLine = multiLine
                 self.keyboardType = keyboardType
                 self.shouldChangeText = shouldChangeText
+                self.halfWidthOfInputField = halfWidthOfInputField
             }
         }
 
@@ -94,54 +97,60 @@ extension Components.Molecules {
                         .accessibility(hidden: true)
                 }
                 HStack {
-                    if let prefix = model.prefix {
-                        PrefixOrPostfixView(inputType: prefix)
-                    }
-                    
-                    Components.Atoms.TextView(
-                        text: $text,
-                        height: $textFieldHeight,
-                        editing: $editing,
-                        multiLine: model.multiLine,
-                        maxLength: model.maxLength,
-                        enforceMaxLength: model.enforceMaxLength,
-                        accentColor: Color.Named.blue.colour,
-                        borderWidth: 0.0,
-                        keyboardType: model.keyboardType,
-                        shouldChangeText: model.shouldChangeText
-                    ) {
-                        print("Text committed: \(text)")
-                    }
-                    .frame(height: textFieldHeight)
-                    .padding(.horizontal, .spacer8)
-                    .accessibility(label: accessibilityLabel)
-                    
-                    if editing && text.count > 0 {
-                        Button {
-                            text = ""
-                        } label: {
-                            Image(
-                                "clear_icon",
-                                bundle: Bundle.resource
-                            ).foregroundColor(Color.Named.black.colour)
+                    HStack {
+                        if let prefix = model.prefix {
+                            PrefixOrPostfixView(inputType: prefix)
                         }
-                        .padding(.trailing, .spacer8)
+                        
+                        Components.Atoms.TextView(
+                            text: $text,
+                            height: $textFieldHeight,
+                            editing: $editing,
+                            multiLine: model.multiLine,
+                            maxLength: model.maxLength,
+                            enforceMaxLength: model.enforceMaxLength,
+                            accentColor: Color.Named.blue.colour,
+                            borderWidth: 0.0,
+                            keyboardType: model.keyboardType,
+                            shouldChangeText: model.shouldChangeText
+                        ) {
+                            print("Text committed: \(text)")
+                        }
+                        .frame(height: textFieldHeight)
+                        .padding(.horizontal, .spacer8)
+                        .accessibility(label: accessibilityLabel)
+                        
+                        if editing && text.count > 0 {
+                            Button {
+                                text = ""
+                            } label: {
+                                Image(
+                                    "clear_icon",
+                                    bundle: Bundle.resource
+                                ).foregroundColor(Color.Named.black.colour)
+                            }
+                            .padding(.trailing, .spacer8)
+                        }
+                        
+                        if let postfix = model.postfix {
+                            PrefixOrPostfixView(inputType: postfix)
+                        }
                     }
-                    
-                    if let postfix = model.postfix {
-                        PrefixOrPostfixView(inputType: postfix)
+                    .clipShape(
+                        RoundedRectangle(cornerRadius: ViewTraits.cornerRadius)
+                    )
+                    .overlay(
+                        RoundedRectangle(cornerRadius: ViewTraits.cornerRadius)
+                            .stroke(
+                                Color.Named.black.colour,
+                                lineWidth: ViewTraits.borderWidth
+                            )
+                    )
+                    if model.halfWidthOfInputField {
+                        Spacer()
+                            .frame(maxWidth: .infinity)
                     }
                 }
-                .clipShape(
-                    RoundedRectangle(cornerRadius: ViewTraits.cornerRadius)
-                )
-                .overlay(
-                    RoundedRectangle(cornerRadius: ViewTraits.cornerRadius)
-                        .stroke(
-                            Color.Named.black.colour,
-                            lineWidth: ViewTraits.borderWidth
-                        )
-                )
                 
                 HStack {
                     if let error = validationError {
@@ -186,7 +195,8 @@ struct TextInputView_Previews: PreviewProvider {
                     postfix: .percentage,
                     maxLength: 10,
                     multiLine: false,
-                    keyboardType: .emailAddress
+                    keyboardType: .emailAddress,
+                    halfWidthOfInputField: true
                 )
             )
         }
