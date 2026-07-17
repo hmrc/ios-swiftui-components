@@ -72,7 +72,7 @@ struct PrimaryButtonStyle: ButtonStyle {
         
         var body: some View {
             configuration.label
-                .font(Font.Body.font())
+                .font(Font.Body.font(for: dynamicTypeSize))
                 .multilineTextAlignment(.center)
                 .frame(maxWidth: .infinity)
                 .padding(.spacer12)
@@ -118,7 +118,7 @@ struct SecondaryButtonStyle: ButtonStyle {
         
         var body: some View {
             configuration.label
-                .font(Font.Body.font())
+                .font(Font.Body.font(for: dynamicTypeSize))
                 .padding(padding)
                 .if(fullWidth, transform: { view in
                     view.frame(maxWidth: .infinity, alignment: alignment)
