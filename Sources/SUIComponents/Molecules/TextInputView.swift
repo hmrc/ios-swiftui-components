@@ -18,49 +18,37 @@ import SwiftUI
 
 extension Components.Molecules {
     public struct TextInputView: View {
-        
-        private enum ViewTraits {
-            static let cornerRadius: CGFloat = 4
-            static let borderWidth: CGFloat = 1
-        }
-        
         public struct Model {
             public let title: String
             public let hint: String?
             public let placeholder: String
-            public let prefix: PrefixOrPostfixView.InputType?
-            public let postfix: PrefixOrPostfixView.InputType?
+            public let leftViewText: String?
             public let maxLength: Int
             public let enforceMaxLength: Bool
             public let multiLine: Bool
             public let keyboardType: UIKeyboardType
             public let shouldChangeText: TextViewShouldChangeHandler?
-            public let halfWidthOfInputField: Bool
 
             public init(
                 title: String? = nil,
                 hint: String? = nil,
                 placeholder: String? = nil,
-                prefix: PrefixOrPostfixView.InputType? = nil,
-                postfix: PrefixOrPostfixView.InputType? = nil,
+                leftViewText: String? = nil,
                 maxLength: Int = 0,
                 enforceMaxLength: Bool = true,
                 multiLine: Bool = false,
                 keyboardType: UIKeyboardType = .default,
-                shouldChangeText: TextViewShouldChangeHandler? = nil,
-                halfWidthOfInputField: Bool = false
+                shouldChangeText: TextViewShouldChangeHandler? = nil
             ) {
                 self.title = title ?? ""
                 self.hint = hint
                 self.placeholder = placeholder ?? ""
-                self.prefix = prefix
-                self.postfix = postfix
+                self.leftViewText = leftViewText
                 self.maxLength = maxLength
                 self.enforceMaxLength = enforceMaxLength
                 self.multiLine = multiLine
                 self.keyboardType = keyboardType
                 self.shouldChangeText = shouldChangeText
-                self.halfWidthOfInputField = halfWidthOfInputField
             }
         }
 
@@ -97,61 +85,49 @@ extension Components.Molecules {
                         .accessibility(hidden: true)
                 }
                 HStack {
-                    HStack {
-                        if let prefix = model.prefix {
-                            PrefixOrPostfixView(inputType: prefix)
-                        }
-                        
-                        Components.Atoms.TextView(
-                            text: $text,
-                            height: $textFieldHeight,
-                            editing: $editing,
-                            multiLine: model.multiLine,
-                            maxLength: model.maxLength,
-                            enforceMaxLength: model.enforceMaxLength,
-                            accentColor: Color.Named.blue.colour,
-                            borderWidth: 0.0,
-                            keyboardType: model.keyboardType,
-                            shouldChangeText: model.shouldChangeText
-                        ) {
-                            print("Text committed: \(text)")
-                        }
-                        .frame(height: textFieldHeight)
-                        .padding(.horizontal, .spacer8)
-                        .accessibility(label: accessibilityLabel)
-                        
-                        if editing && text.count > 0 {
-                            Button {
-                                text = ""
-                            } label: {
-                                Image(
-                                    "clear_icon",
-                                    bundle: Bundle.resource
-                                ).foregroundColor(Color.Named.black.colour)
-                            }
-                            .padding(.trailing, .spacer8)
-                        }
-                        
-                        if let postfix = model.postfix {
-                            PrefixOrPostfixView(inputType: postfix)
-                        }
+                    if let leftText = model.leftViewText {
+                        Text(leftText)
+                            .font(Font.Body.font())
+                            .foregroundColor(Color.Semantic.textInputLeftViewTint)
+                            .padding(.leading, .spacer8)
+                            .accessibility(hidden: true)
                     }
-                    .clipShape(
-                        RoundedRectangle(cornerRadius: ViewTraits.cornerRadius)
-                    )
-                    .overlay(
-                        RoundedRectangle(cornerRadius: ViewTraits.cornerRadius)
-                            .stroke(
-                                Color.Named.black.colour,
-                                lineWidth: ViewTraits.borderWidth
-                            )
-                    )
-                    if model.halfWidthOfInputField {
-                        Spacer()
-                            .frame(maxWidth: .infinity)
+                    Components.Atoms.TextView(
+                        text: $text,
+                        height: $textFieldHeight,
+                        editing: $editing,
+                        multiLine: model.multiLine,
+                        maxLength: model.maxLength,
+                        enforceMaxLength: model.enforceMaxLength,
+                        accentColor: Color.Named.blue.colour,
+                        borderWidth: 0.0,
+                        keyboardType: model.keyboardType,
+                        shouldChangeText: model.shouldChangeText
+                    ) {
+                        print("Text committed: \(text)")
+                    }
+                    .frame(height: textFieldHeight)
+                    .accessibility(label: accessibilityLabel)
+                    if editing && text.count > 0 {
+                        Button {
+                            text = ""
+                        } label: {
+                            Image(
+                                "clear_icon",
+                                bundle: Bundle.resource
+                            ).foregroundColor(Color.Named.black.colour)
+                        }
                     }
                 }
-                
+                .padding(.trailing, .spacer8)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 4.0)
+                        .stroke(
+                            Color.Named.black.colour,
+                            lineWidth: 1.0
+                        )
+                )
+
                 HStack {
                     if let error = validationError {
                         Text(error)
@@ -174,32 +150,16 @@ struct TextInputView_Previews: PreviewProvider {
             text = newText
             print("TextInputView Value did change: \(text)")
         }
-        VStack {
-            Components.Molecules.TextInputView(
-                text: textBinding,
-                model: .init(
-                    title: "Title",
-                    hint: "Hint",
-                    prefix: .currency,
-                    maxLength: 10,
-                    multiLine: false,
-                    keyboardType: .emailAddress
-                )
+        Components.Molecules.TextInputView(
+            text: textBinding,
+            model: .init(
+                title: "Title",
+                hint: "Hint",
+                leftViewText: "@LeftView",
+                maxLength: 10,
+                multiLine: false,
+                keyboardType: .emailAddress
             )
-            
-            Components.Molecules.TextInputView(
-                text: textBinding,
-                model: .init(
-                    title: "Title",
-                    hint: "Hint",
-                    postfix: .percentage,
-                    maxLength: 10,
-                    multiLine: false,
-                    keyboardType: .emailAddress,
-                    halfWidthOfInputField: true
-                )
-            )
-        }
-        .padding(.horizontal, 10)
+        )
     }
 }

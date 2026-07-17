@@ -22,17 +22,36 @@ extension Components.Molecules {
             let title: String?
             let hint: String?
             let maxLength: Int
+            let usePrefixView: Bool
+            
             public init(
                 title: String? = nil,
                 hint: String? = nil,
-                maxLength: Int = 0
+                maxLength: Int = 0,
+                usePrefixView: Bool = false
             ) {
                 self.title = title
                 self.hint = hint
                 self.maxLength = maxLength
+                self.usePrefixView = usePrefixView
             }
             
             fileprivate var textInputViewModel: TextInputView.Model {
+                .init(
+                    title: title,
+                    hint: hint,
+                    leftViewText: "£",
+                    maxLength: maxLength,
+                    multiLine: false,
+                    keyboardType: .decimalPad,
+                    shouldChangeText: { textViewText, range, replacementText in
+                        let newText = (textViewText as NSString).replacingCharacters(in: range, with: replacementText)
+                        return newText.isEmpty || newText.isCurrencyValue()
+                    }
+                )
+            }
+            
+            fileprivate var prefixedTextInputViewModel: TextInputWithPreOrPostfixView.Model {
                 .init(
                     title: title,
                     hint: hint,
@@ -59,7 +78,15 @@ extension Components.Molecules {
         }
 
         public var body: some View {
-            TextInputView(text: _text, model: model.textInputViewModel, validationError: validationError)
+            if model.usePrefixView {
+                TextInputWithPreOrPostfixView(text: _text,
+                              model: model.prefixedTextInputViewModel,
+                              validationError: validationError)
+            } else {
+                TextInputView(text: _text,
+                              model: model.textInputViewModel,
+                              validationError: validationError)
+            }
         }
     }
 }
