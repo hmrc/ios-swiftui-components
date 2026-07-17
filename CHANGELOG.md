@@ -5,7 +5,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
-- `SelectRowView`: replaced radio button `FilledCircle`/`EmptyCircle` assets with 40x40 versions, and load them from the package resource bundle (`Bundle.resource`) instead of the consuming app's main bundle
 - Primary and secondary button styles now scale their label font from the environment `dynamicTypeSize`, so a `.dynamicTypeSize(...)` cap is honoured consistently
 
 ## [1.17.8] - 2026-06-22Z
