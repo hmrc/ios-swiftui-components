@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [1.17.9] - 2026-07-20Z
 - Primary and secondary button styles now scale their label font from the environment `dynamicTypeSize`, so a `.dynamicTypeSize(...)` cap is honoured consistently
 
 ## [1.17.8] - 2026-06-22Z
