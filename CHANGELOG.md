@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 - `SelectRowView`: replaced radio button `FilledCircle`/`EmptyCircle` assets with 40x40 versions, and load them from the package resource bundle (`Bundle.resource`) instead of the consuming app's main bundle
+- Updated `CurrencyInputView` to now support the new prefix/postfix style when usePrefixView is set to true.
+- Added new `TextInputWithPreOrPostfixView` separate to the existing `TextInputView`.
 
 ## [1.17.8] - 2026-06-22Z
 - updated background color for menu panel row, nav bar color for dark mode ios 17 below, changed discloser button and style
@@ -17,7 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - added textAlignment property to statusView to affect multilineTextAlignment, design require any text over 2 lines to be left aligned.
 
 ## [1.15.0] - 2024-05-20Z
-- Updated package for AccessibilitySizing from sizeCategory to dynamicTypeSize, 
+- Updated package for AccessibilitySizing from sizeCategory to dynamicTypeSize,
 - added EdgeInsets to StatusView initializer and multilineTextAlignment(.center) when Large Text Accessibility is enabled
 
 ## [1.14.2] - 2024-05-09Z
@@ -32,7 +34,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [1.13.0] - 2024-02-22Z
 - Updated `TextInputView` and `CurrencyInputView` by adding a hint label, updated fonts and colours
 ## [1.12.0] - 2023-11-29Z
-- changed the render order for the background of `NotificationBubbleView` so to not be visible during UIXCTest 
+- changed the render order for the background of `NotificationBubbleView` so to not be visible during UIXCTest
 ## [1.11.3] - 2023-11-24Z
 - Fixed accessibilityIdentifier on `MenuPanelRowView`
 
@@ -70,7 +72,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [1.6.3] - 2023-06-15Z
 - Modified `MenuPanelRowView` to correct theme and prevent text compression
-- Added `ChevronRight` Assets to match resources in the main app.  
+- Added `ChevronRight` Assets to match resources in the main app.
 
 ## [1.6.2] - 2023-06-12Z
 - Modified `MenuPanelRowView` Organism into Hashable/Equatable type
