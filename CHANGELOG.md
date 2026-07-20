@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - `SelectRowView`: replaced radio button `FilledCircle`/`EmptyCircle` assets with 40x40 versions, and load them from the package resource bundle (`Bundle.resource`) instead of the consuming app's main bundle
 - Updated `CurrencyInputView` to now support the new prefix/postfix style when usePrefixView is set to true.
 - Added new `TextInputWithPreOrPostfixView` separate to the existing `TextInputView`.
+
+## [1.17.9] - 2026-07-20Z
 - Primary and secondary button styles now scale their label font from the environment `dynamicTypeSize`, so a `.dynamicTypeSize(...)` cap is honoured consistently
 
 ## [1.17.8] - 2026-06-22Z
