@@ -22,6 +22,7 @@ extension Components.Molecules {
         private enum ViewTraits {
             static let cornerRadius: CGFloat = 4
             static let borderWidth: CGFloat = 1
+            static let height: CGFloat = 52
         }
         
         public struct Model {
@@ -100,6 +101,8 @@ extension Components.Molecules {
                     HStack {
                         if let prefix = model.prefix {
                             PrefixOrPostfixView(inputType: prefix)
+                                .frame(height: textFieldHeight)
+
                         }
                         
                         Components.Atoms.TextView(
@@ -134,8 +137,11 @@ extension Components.Molecules {
                         
                         if let postfix = model.postfix {
                             PrefixOrPostfixView(inputType: postfix)
+                                .frame(height: textFieldHeight)
+
                         }
                     }
+                    .frame(minHeight: ViewTraits.height)
                     .clipShape(
                         RoundedRectangle(cornerRadius: ViewTraits.cornerRadius)
                     )

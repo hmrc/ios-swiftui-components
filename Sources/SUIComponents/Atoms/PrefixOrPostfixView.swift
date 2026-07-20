@@ -46,7 +46,9 @@ public struct PrefixOrPostfixView: View {
             .foregroundColor(Color.Semantic.textInputLeftViewTint)
             .accessibility(hidden: true)
             .frame(minWidth: ViewTraits.height,
-                   minHeight: ViewTraits.height)
+                   maxWidth: ViewTraits.height,
+                   minHeight: ViewTraits.height,
+                   maxHeight: .infinity)
             .background(
                 Color.Semantic.prefixBackgroundColour,
                 in: Rectangle()
