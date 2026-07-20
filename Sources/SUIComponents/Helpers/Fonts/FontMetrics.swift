@@ -44,6 +44,16 @@ public struct FontMetrics {
         UIFontMetrics.default.scaledFont(for: font)
     }
 
+    /// Returns a version of the specified font scaled for a given trait collection
+    ///
+    /// - Parameters:
+    ///   - font: A font at its default point size.
+    ///   - traitCollection: The trait collection whose content size category drives scaling.
+    /// - Returns: The font scaled for the supplied trait collection.
+    public static func scaledFont(for font: UIFont, compatibleWith traitCollection: UITraitCollection) -> Font {
+        Font(UIFontMetrics.default.scaledFont(for: font, compatibleWith: traitCollection))
+    }
+
     /// Returns a version of the specified font that adopts the current font metrics and is
     /// constrained to the specified maximum size.
     ///

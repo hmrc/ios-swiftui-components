@@ -38,13 +38,13 @@ extension Components.Molecules {
                 if let selectedImage = selectedImage {
                     self.selectedImage = selectedImage
                 } else {
-                    self.selectedImage = Image("FilledCircle", bundle: Bundle.resource)
+                    self.selectedImage = Image("FilledCircle")
                 }
 
                 if let deselectedImage = deselectedImage {
                     self.deselectedImage = deselectedImage
                 } else {
-                    self.deselectedImage = Image("EmptyCircle", bundle: Bundle.resource)
+                    self.deselectedImage = Image("EmptyCircle")
                 }
 
                 self.imageTintColor = imageTintColor

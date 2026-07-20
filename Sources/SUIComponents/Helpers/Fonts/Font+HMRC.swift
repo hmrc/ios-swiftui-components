@@ -15,10 +15,25 @@
  */
 
 import SwiftUI
+import UIKit
 
-protocol HMRCFont {
-    static func font() -> Font
-    static func uiFont() -> UIFont
+public protocol HMRCFont {
+    static var baseFont: UIFont { get }
+}
+
+public extension HMRCFont {
+    static func font() -> Font {
+        FontMetrics.scaledFont(for: baseFont)
+    }
+    static func font(for dynamicTypeSize: DynamicTypeSize) -> Font {
+        FontMetrics.scaledFont(
+            for: baseFont,
+            compatibleWith: UITraitCollection(preferredContentSizeCategory: dynamicTypeSize.uiContentSizeCategory)
+        )
+    }
+    static func uiFont() -> UIFont {
+        FontMetrics.scaledUIFont(for: baseFont)
+    }
 }
 
 public extension Font {
@@ -33,52 +48,42 @@ public extension Font {
     }
 
     struct H3: HMRCFont {
-        public static func font() -> Font {
-            FontMetrics.scaledFont(for: BaseFonts.h3)
-        }
-        public static func uiFont() -> UIFont {
-            FontMetrics.scaledUIFont(for: BaseFonts.h3)
-        }
+        public static var baseFont: UIFont { BaseFonts.h3 }
     }
     struct H4: HMRCFont {
-        public static func font() -> Font {
-            FontMetrics.scaledFont(for: BaseFonts.h4)
-        }
-        public static func uiFont() -> UIFont {
-            FontMetrics.scaledUIFont(for: BaseFonts.h4)
-        }
+        public static var baseFont: UIFont { BaseFonts.h4 }
     }
     struct H5: HMRCFont {
-        public static func font() -> Font {
-            FontMetrics.scaledFont(for: BaseFonts.h5)
-        }
-        public static func uiFont() -> UIFont {
-            FontMetrics.scaledUIFont(for: BaseFonts.h5)
-        }
+        public static var baseFont: UIFont { BaseFonts.h5 }
     }
     struct Bold: HMRCFont {
-        public static func font() -> Font {
-            FontMetrics.scaledFont(for: BaseFonts.bold)
-        }
-        public static func uiFont() -> UIFont {
-            FontMetrics.scaledUIFont(for: BaseFonts.bold)
-        }
+        public static var baseFont: UIFont { BaseFonts.bold }
     }
     struct Body: HMRCFont {
-        public static func font() -> Font {
-            FontMetrics.scaledFont(for: BaseFonts.body)
-        }
-        public static func uiFont() -> UIFont {
-            FontMetrics.scaledUIFont(for: BaseFonts.body)
-        }
+        public static var baseFont: UIFont { BaseFonts.body }
     }
     struct Debug: HMRCFont {
-        public static func font() -> Font {
-            FontMetrics.scaledFont(for: BaseFonts.debug)
-        }
-        public static func uiFont() -> UIFont {
-            FontMetrics.scaledUIFont(for: BaseFonts.debug)
-        }
+        public static var baseFont: UIFont { BaseFonts.debug }
     }
     // swiftlint:enable identifier_name
+}
+
+extension DynamicTypeSize {
+    var uiContentSizeCategory: UIContentSizeCategory {
+        switch self {
+        case .xSmall: return .extraSmall
+        case .small: return .small
+        case .medium: return .medium
+        case .large: return .large
+        case .xLarge: return .extraLarge
+        case .xxLarge: return .extraExtraLarge
+        case .xxxLarge: return .extraExtraExtraLarge
+        case .accessibility1: return .accessibilityMedium
+        case .accessibility2: return .accessibilityLarge
+        case .accessibility3: return .accessibilityExtraLarge
+        case .accessibility4: return .accessibilityExtraExtraLarge
+        case .accessibility5: return .accessibilityExtraExtraExtraLarge
+        @unknown default: return .large
+        }
+    }
 }
