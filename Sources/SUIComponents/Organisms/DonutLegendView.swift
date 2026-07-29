@@ -57,12 +57,12 @@ extension Components.Organisms {
                         
                         Text(legendItem.value)
                             .style(.body)
-                            .accessibilityHidden(true)
-                            .overlay {
-                                WelshAccessibilityView(text: legendItem.value)
-                                    .frame(width: 1, height: 1)
-                                    .hidden()
-                            }
+                            .accessibilityLabel(Text(AttributedString(
+                                NSAttributedString(
+                                    string: legendItem.value,
+                                    attributes: [.accessibilitySpeechLanguage: "cy"]
+                                )
+                            )))
 
 
                     }
