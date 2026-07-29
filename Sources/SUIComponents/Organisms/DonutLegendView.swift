@@ -56,8 +56,8 @@ extension Components.Organisms {
                         Spacer()
                         
                         Text(legendItem.value)
+                            .accessibilityLabel(legendItem.value)
                             .style(.body)
-                            .accessibilityLanguage("cy")
                     }
                 }
             }
