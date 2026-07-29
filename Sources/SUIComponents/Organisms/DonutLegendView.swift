@@ -57,6 +57,7 @@ extension Components.Organisms {
                         
                         Text(legendItem.value)
                             .style(.body)
+                            .accessibilityLanguage("cy")
                     }
                 }
             }
