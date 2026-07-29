@@ -15,7 +15,7 @@
  */
 
 import SwiftUI
-
+import UIKit
 extension Components.Organisms {
     public struct DonutLegendView: View {
         public let donutLegendItems: [DonutLegendItem]
@@ -56,8 +56,15 @@ extension Components.Organisms {
                         Spacer()
                         
                         Text(legendItem.value)
-                            .accessibilityLabel(legendItem.value)
                             .style(.body)
+                            .accessibilityHidden(true)
+                            .overlay {
+                                WelshAccessibilityView(text: legendItem.value)
+                                    .frame(width: 1, height: 1)
+                                    .hidden()
+                            }
+
+
                     }
                 }
             }
@@ -78,6 +85,23 @@ extension Components.Organisms {
                 self.dashed = dashed
             }
         }
+    }
+}
+
+
+struct WelshAccessibilityView: UIViewRepresentable {
+    let text: String
+
+    func makeUIView(context: Context) -> UILabel {
+        let label = UILabel()
+        label.isAccessibilityElement = true
+        label.accessibilityLabel = text
+        label.accessibilityLanguage = "cy"
+        return label
+    }
+
+    func updateUIView(_ uiView: UILabel, context: Context) {
+        uiView.accessibilityLabel = text
     }
 }
 
