@@ -80,6 +80,9 @@ public struct DisclosureView: ViewModifier {
                 Button("") {
                     performAction()
                 }
+                .buttonStyle(.plain)
+                .background(Color.clear)
+                
                 .id(model.id)
                 .accessibility(sortPriority: 1)
                 .accessibility(label: Text(model.accessibilityLabel))
