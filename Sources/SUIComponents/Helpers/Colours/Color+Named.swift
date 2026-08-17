@@ -21,6 +21,7 @@ public extension Color {
     enum Named: String, CaseIterable, ColorServiceInjected {
         case black,
              white,
+             constantWhite,
              green1,
              green2,
              blue,
@@ -30,6 +31,7 @@ public extension Color {
              grey2,
              grey3,
              grey4,
+             grey5,
              pink,
              yellow
 
@@ -47,6 +49,8 @@ public extension Color {
                 return colorContainer.black
             case .white:
                 return colorContainer.white
+            case .constantWhite:
+                return colorContainer.constantWhite
             case .green1:
                 return colorContainer.green1
             case .green2:
@@ -65,6 +69,8 @@ public extension Color {
                 return colorContainer.grey3
             case .grey4:
                 return colorContainer.grey4
+            case .grey5:
+                return colorContainer.grey5
             case .pink:
                 return colorContainer.pink
             case .yellow:
