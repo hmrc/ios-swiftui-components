@@ -71,7 +71,11 @@ extension Components.Molecules {
         @State private var editing: Bool = false
         var validationError: String?
 
-        public init(text: Binding<String>, model: Model, validationError: String? = nil) {
+        public init(
+            text: Binding<String>,
+            model: Model,
+            validationError: String? = nil
+        ) {
             self.model = model
             self._text = text
             self.validationError = validationError
@@ -173,7 +177,7 @@ extension Components.Molecules {
 
 struct TextInputWithPreOrPostfixView_Previews: PreviewProvider {
     static var previews: some View {
-        var text = ""
+        var text = "99.99"
         let textBinding = Binding<String> {
             text
         } set: { newText in

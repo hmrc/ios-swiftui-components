@@ -97,6 +97,8 @@ public extension Components.Atoms {
 
         public func makeUIView(context: Context) -> UITextViewWithHeight {
             let view = UITextViewWithHeight(height: $height)
+            view.textContainer.maximumNumberOfLines = multiLine ? 0 : 1
+            view.textContainer.lineBreakMode = .byTruncatingTail
             view.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
             view.isScrollEnabled = isScrollEnabled
             view.backgroundColor = .clear
