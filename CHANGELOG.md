@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.18.0] - 2026-08-17Z
+- Updated background color and style for menu row panel button to fix sqaure box issue.
+
 ## [1.17.9] - 2026-07-20Z
 - Primary and secondary button styles now scale their label font from the environment `dynamicTypeSize`, so a `.dynamicTypeSize(...)` cap is honoured consistently
 
