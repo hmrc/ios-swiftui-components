@@ -43,7 +43,7 @@ public struct PrefixOrPostfixView: View {
         Text(inputType.text)
             .multilineTextAlignment(.center)
             .font(Font.Body.font())
-            .foregroundColor(Color.Semantic.textInputLeftViewTint)
+            .foregroundColor(Color.Semantic.darkText)
             .accessibility(hidden: true)
             .frame(minWidth: ViewTraits.height,
                    maxWidth: ViewTraits.height,

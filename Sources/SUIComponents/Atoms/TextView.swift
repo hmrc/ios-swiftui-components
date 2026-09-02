@@ -120,7 +120,7 @@ public extension Components.Atoms {
 
             let fixedWidth = uiView.frame.size.width
             let newSize = uiView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
-            print(newSize)
+
             DispatchQueue.main.async {
                 self.height = newSize.height
             }

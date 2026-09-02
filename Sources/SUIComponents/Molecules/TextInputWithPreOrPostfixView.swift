@@ -106,7 +106,6 @@ extension Components.Molecules {
                         if let prefix = model.prefix {
                             PrefixOrPostfixView(inputType: prefix)
                                 .frame(height: textFieldHeight)
-
                         }
                         
                         Components.Atoms.TextView(
