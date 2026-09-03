@@ -68,7 +68,8 @@ public extension Components.Atoms {
             cornerRadius: CGFloat? = nil,
             keyboardType: UIKeyboardType = .default,
             shouldChangeText: TextViewShouldChangeHandler? = nil,
-            _ didEndInput: VoidHandler?=nil) {
+            _ didEndInput: VoidHandler? = nil
+        ) {
             self._text = text
             self._height = height
             self._editing = editing
@@ -125,6 +126,10 @@ public extension Components.Atoms {
                 self.height = newSize.height
             }
 
+            // We need to update the length and multiline
+            context.coordinator.maxLength = maxLength
+            context.coordinator.multiLine = multiLine
+            context.coordinator.enforceMaxLength = enforceMaxLength
         }
 
         public func border(_ color: Color, width: CGFloat) -> TextView {
@@ -143,9 +148,9 @@ public extension Components.Atoms {
         public class Coordinator: NSObject, UITextViewDelegate {
             @Binding private var text: String
             @Binding private var editing: Bool
-            let multiLine: Bool
-            let maxLength: Int
-            let enforceMaxLength: Bool
+            var multiLine: Bool
+            var maxLength: Int
+            var enforceMaxLength: Bool
 
             init(text: Binding<String>, editing: Binding<Bool>, multiLine: Bool, maxLength: Int, enforceMaxLength: Bool = true) {
                 _text = text
