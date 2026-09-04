@@ -68,7 +68,8 @@ public extension Components.Atoms {
             cornerRadius: CGFloat? = nil,
             keyboardType: UIKeyboardType = .default,
             shouldChangeText: TextViewShouldChangeHandler? = nil,
-            _ didEndInput: VoidHandler?=nil) {
+            _ didEndInput: VoidHandler? = nil
+        ) {
             self._text = text
             self._height = height
             self._editing = editing
@@ -97,6 +98,8 @@ public extension Components.Atoms {
 
         public func makeUIView(context: Context) -> UITextViewWithHeight {
             let view = UITextViewWithHeight(height: $height)
+            view.textContainer.maximumNumberOfLines = multiLine ? 0 : 1
+            view.textContainer.lineBreakMode = .byTruncatingTail
             view.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
             view.isScrollEnabled = isScrollEnabled
             view.backgroundColor = .clear
@@ -118,11 +121,15 @@ public extension Components.Atoms {
 
             let fixedWidth = uiView.frame.size.width
             let newSize = uiView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
-            print(newSize)
+
             DispatchQueue.main.async {
                 self.height = newSize.height
             }
 
+            // We need to update the length and multiline
+            context.coordinator.maxLength = maxLength
+            context.coordinator.multiLine = multiLine
+            context.coordinator.enforceMaxLength = enforceMaxLength
         }
 
         public func border(_ color: Color, width: CGFloat) -> TextView {
@@ -141,9 +148,9 @@ public extension Components.Atoms {
         public class Coordinator: NSObject, UITextViewDelegate {
             @Binding private var text: String
             @Binding private var editing: Bool
-            let multiLine: Bool
-            let maxLength: Int
-            let enforceMaxLength: Bool
+            var multiLine: Bool
+            var maxLength: Int
+            var enforceMaxLength: Bool
 
             init(text: Binding<String>, editing: Binding<Bool>, multiLine: Bool, maxLength: Int, enforceMaxLength: Bool = true) {
                 _text = text

@@ -49,6 +49,7 @@ public protocol SemanticColors {
     var navBarColor: Color { get set }
     var navBarDarkModeColor: Color { get set }
     var menuCardWhiteBackground: Color { get set }
+    var prefixBackgroundColour: Color { get set }
 }
 
 extension Color {
@@ -85,12 +86,15 @@ extension Color {
         open var switchTint = Color(UIColor(darkColour: Color.Named.blue.uiColour, lightColour: Color.Named.blue.uiColour))
         open var switchTintSelected = Color(UIColor(darkColour: Color.Named.blue.uiColour.lighten(0.16), lightColour: Color.Named.blue.uiColour.lighten(0.16)))
         open var textInputBorder = Color(UIColor(darkColour: Color.Named.grey1.uiColour, lightColour: Color.Named.grey1.uiColour))
-        open var textInputLeftViewTint = Color(UIColor(darkColour: Color.Named.grey1.uiColour, lightColour: Color.Named.grey1.uiColour))
+        open var textInputLeftViewTint = Color(UIColor(darkColour: Color.Named.constantWhite.uiColour,
+                                                       lightColour: Color.Named.grey1.uiColour))
         open var secondaryButtonText = Color(UIColor(darkColour: Color.Named.blue.uiColour, lightColour: Color.Named.blue.uiColour))
         open var secondaryButtonBackground = Color(UIColor(darkColour: Color.Named.white.uiColour, lightColour: Color.Named.white.uiColour))
         open var secondaryButtonHighlightedBackground = Color(UIColor(darkColour: Color.Named.grey1.uiColour.darken(0.4), lightColour: Color.Named.blue.uiColour.lighten(0.84)))
         open var whiteBackground = Color(UIColor(darkColour: Color.Named.grey3.uiColour, lightColour: Color.Named.white.uiColour))
         open var navBarColor = Color(UIColor(darkColour: Color.Named.white.uiColour, lightColour: Color.Named.blue.uiColour))
         open var navBarDarkModeColor = Color(UIColor(darkColour: Color.Named.grey4.uiColour, lightColour: Color.Named.grey4.uiColour))
+        open var prefixBackgroundColour = Color(UIColor(darkColour: Color.Named.grey5.uiColour,
+                                                        lightColour: Color.Named.grey3.uiColour))
     }
 }

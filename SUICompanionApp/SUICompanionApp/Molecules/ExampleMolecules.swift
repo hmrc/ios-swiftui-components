@@ -460,6 +460,99 @@ extension Components.Molecules.TextInputView: Examplable {
     }
 }
 
+extension Components.Molecules.TextInputWithPreOrPostfixView: Examplable {
+    static var title: String { "TextInputWithPreOrPostfixView" }
+
+    static var exampleBackgroundColor: Color { Color.Semantic.pageBackground }
+
+    struct ViewWrapper: View {
+        @State var text: String
+        let model: Components.Molecules.TextInputWithPreOrPostfixView.Model
+        let error: String?
+
+        init(initialText: String = "", model: Components.Molecules.TextInputWithPreOrPostfixView.Model, error: String? = nil) {
+            self.text = initialText
+            self.model = model
+            self.error = error
+        }
+
+        var body: some View {
+            Components.Molecules.TextInputWithPreOrPostfixView(
+                text: $text,
+                model: model,
+                validationError: error
+            )
+        }
+    }
+
+    static func withPlaceholders() -> AnyView {
+        AnyView(
+            ViewWrapper(
+                model: .init(
+                    title: "Title",
+                    hint: "Hint",
+                    placeholder: "Placeholder",
+                    prefix: .currency,
+                    maxLength: 20
+                ),
+                error: "Validation Error"
+            )
+        )
+    }
+
+    static func examples() -> AnyView {
+        AnyView(
+            VStack(spacing: .spacer16) {
+                ViewWrapper(
+                    initialText: "Enter text",
+                    model: .init(
+                        title: "Enter text",
+                        hint: "A hint message below the text. this is a descriptive hint message",
+                        placeholder: "Enter text here please",
+                        postfix: .percentage,
+                        maxLength: 0,
+                        halfWidthOfInputField: true
+                    ), error: "error"
+                ).cardView()
+                
+                ViewWrapper(
+                    initialText: "Enter text",
+                    model: .init(
+                        title: "Enter text",
+                        hint: "A hint message below the text. this is a descriptive hint message",
+                        placeholder: "Enter text here please",
+                        postfix: .percentage,
+                        maxLength: 0,
+                    ), error: "error"
+                ).cardView()
+                
+                ViewWrapper(
+                    initialText: "Enter text",
+                    model: .init(
+                        title: "Enter text",
+                        hint: "A hint message below the text. this is a descriptive hint message",
+                        placeholder: "Enter text here please",
+                        prefix: .currency,
+                        maxLength: 0,
+                    ), error: "error"
+                ).cardView()
+                
+                ViewWrapper(
+                    initialText: "Enter text",
+                    model: .init(
+                        title: "Enter text",
+                        hint: "A hint message below the text. this is a descriptive hint message",
+                        placeholder: "Enter text here please",
+                        prefix: .currency,
+                        maxLength: 0,
+                        halfWidthOfInputField: true
+                    ), error: "error"
+                ).cardView()
+            }
+        )
+    }
+}
+
 extension Components.Molecules.CurrencyInputView: Examplable {
     static var title: String { "CurrencyInputView" }
 

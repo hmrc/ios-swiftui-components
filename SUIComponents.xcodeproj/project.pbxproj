@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		228A3B3C300679E40097B15F /* PrefixOrPostfixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228A3B3B300679E40097B15F /* PrefixOrPostfixView.swift */; };
+		228A3BAE300A20190097B15F /* TextInputWithPreOrPostfixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228A3BAD300A20190097B15F /* TextInputWithPreOrPostfixView.swift */; };
 		5797A32E2A2A4BA900823C02 /* MenuPanelRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5797A32D2A2A4BA900823C02 /* MenuPanelRowView.swift */; };
 		5797A3322A2DFB4300823C02 /* NotificationBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5797A3312A2DFB4300823C02 /* NotificationBubbleView.swift */; };
 		DAFD193A2BD68EE30012DB64 /* OptionalAccessibilityIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFD19392BD68EE30012DB64 /* OptionalAccessibilityIdentifier.swift */; };
@@ -74,6 +76,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		228A3B3B300679E40097B15F /* PrefixOrPostfixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefixOrPostfixView.swift; sourceTree = "<group>"; };
+		228A3BAD300A20190097B15F /* TextInputWithPreOrPostfixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputWithPreOrPostfixView.swift; sourceTree = "<group>"; };
 		5797A32D2A2A4BA900823C02 /* MenuPanelRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPanelRowView.swift; sourceTree = "<group>"; };
 		5797A3312A2DFB4300823C02 /* NotificationBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationBubbleView.swift; sourceTree = "<group>"; };
 		DAFD19392BD68EE30012DB64 /* OptionalAccessibilityIdentifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionalAccessibilityIdentifier.swift; sourceTree = "<group>"; };
@@ -284,6 +288,7 @@
 				OBJ_64 /* StatusView.swift */,
 				OBJ_65 /* SwitchRowView.swift */,
 				OBJ_66 /* TextInputView.swift */,
+				228A3BAD300A20190097B15F /* TextInputWithPreOrPostfixView.swift */,
 				OBJ_67 /* TitleBodyView.swift */,
 				OBJ_68 /* WarningView.swift */,
 				5797A3312A2DFB4300823C02 /* NotificationBubbleView.swift */,
@@ -360,6 +365,7 @@
 				OBJ_18 /* Switch.swift */,
 				OBJ_19 /* Text+HMRC.swift */,
 				OBJ_20 /* TextView.swift */,
+				228A3B3B300679E40097B15F /* PrefixOrPostfixView.swift */,
 			);
 			path = Atoms;
 			sourceTree = "<group>";
@@ -437,6 +443,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				228A3B3C300679E40097B15F /* PrefixOrPostfixView.swift in Sources */,
 				OBJ_99 /* AttributedText.swift in Sources */,
 				OBJ_100 /* Button+HMRC.swift in Sources */,
 				OBJ_101 /* CustomButton.swift in Sources */,
@@ -474,6 +481,7 @@
 				OBJ_132 /* VerticalGeometryReader.swift in Sources */,
 				OBJ_133 /* CardView.swift in Sources */,
 				OBJ_134 /* DisclosureView.swift in Sources */,
+				228A3BAE300A20190097B15F /* TextInputWithPreOrPostfixView.swift in Sources */,
 				OBJ_135 /* Injection.swift in Sources */,
 				OBJ_136 /* ServiceDependencyInjection.swift in Sources */,
 				DAFD193A2BD68EE30012DB64 /* OptionalAccessibilityIdentifier.swift in Sources */,
