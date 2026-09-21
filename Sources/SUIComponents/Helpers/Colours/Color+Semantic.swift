@@ -16,58 +16,35 @@
 
 import SwiftUI
 
-extension Color {
-    open class Semantic {
+public extension Color {
+
+    @dynamicMemberLookup
+    enum Semantic {
+
+        private static var colours: SUIComponents.SemanticColors {
+            SUIComponents.Components.Injection.Service.colorService.injectedObject.semanticColors
+        }
+
+        public static subscript(dynamicMember keyPath: KeyPath<SUIComponents.SemanticColors, Color>) -> Color {
+            colours[keyPath: keyPath]
+        }
+
         public static var allColors: [(String, Color)] {
-            var result: [(String, Color)] = []
-            let mirror = Mirror(reflecting: semanticColors)
-            for (property, value) in mirror.children {
-                guard let property = property, let value = value as? Color else {
-                    continue
+            Mirror(reflecting: colours).children.compactMap { child in
+                guard let label = child.label, let colour = child.value as? Color else {
+                    return nil
                 }
-                result.append(("\(property) (\(value.hexString ?? "#------"))", value))
+                return ("\(label) (\(colour.hexString ?? "#------"))", colour)
             }
-            return result
         }
-        
-        private static var semanticColors: SUIComponents.SemanticColors {
-            let colorService: ColorService = SUIComponents.Components.Injection.Service.colorService.injectedObject
-            
-            return colorService.semanticColors
-        }
-        
-        public static var darkText = semanticColors.darkText
-        public static var lightText = semanticColors.lightText
-        public static var linkText = semanticColors.linkText
-        public static var errorText = semanticColors.errorText
-        public static var infoText = semanticColors.infoText
-        public static var expandableButtonText = semanticColors.expandableButtonText
-        public static var cardBackground = semanticColors.cardBackground
-        public static var cardShadow = semanticColors.cardShadow
-        public static var pageBackground = semanticColors.pageBackground
-        public static var menuCardBackground = semanticColors.menuCardBackground
-        public static var menuPageBackground = semanticColors.menuPageBackground
-        public static var divider = semanticColors.divider
-        public static var insetBar = semanticColors.insetBar
-        public static var primaryButtonBackground = semanticColors.primaryButtonBackground
-        public static var primaryButtonDisabledBackground = semanticColors.primaryButtonDisabledBackground
-        public static var primaryButtonDisabledText = semanticColors.primaryButtonDisabledText
-        public static var primaryButtonHighlightedBackground = semanticColors.primaryButtonHighlightedBackground
-        public static var primaryButtonText = semanticColors.primaryButtonText
-        public static var primaryButtonHighlightedBaseline = semanticColors.primaryButtonHighlightedBaseline
-        public static var primaryButtonBaseline = semanticColors.primaryButtonBaseline
-        public static var statusCardIconDefaultTint = semanticColors.statusCardIconDefaultTint
-        public static var switchTint = semanticColors.switchTint
-        public static var switchTintSelected = semanticColors.switchTintSelected
-        public static var textInputBorder = semanticColors.textInputBorder
-        public static var textInputLeftViewTint = semanticColors.textInputLeftViewTint
-        public static var secondaryButtonText = semanticColors.secondaryButtonText
-        public static var secondaryButtonBackground = semanticColors.secondaryButtonBackground
-        public static var secondaryButtonHighlightedBackground = semanticColors.secondaryButtonHighlightedBackground
-        public static var whiteBackground = semanticColors.whiteBackground
-        public static var navigationBarBackgroundColor = semanticColors.navBarColor
-        public static var navBarDarkModeBackgroundColor = semanticColors.navBarDarkModeColor
-        public static var menuCardWhiteBackground = semanticColors.menuCardWhiteBackground
-        public static var prefixBackgroundColour = semanticColors.prefixBackgroundColour
+
+        @available(*, deprecated, renamed: "navBarBackground")
+        public static var navigationBarBackgroundColor: Color { colours.navBarBackground }
+
+        @available(*, deprecated, renamed: "navBarDarkModeBackground")
+        public static var navBarDarkModeBackgroundColor: Color { colours.navBarDarkModeBackground }
+
+        @available(*, deprecated, renamed: "prefixBackgroundColor")
+        public static var prefixBackgroundColour: Color { colours.prefixBackgroundColor }
     }
 }

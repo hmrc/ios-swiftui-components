@@ -17,34 +17,46 @@
 import UIKit
 
 public extension UIColor {
-    private func add(overlay: UIColor) -> UIColor {
-        var bgR: CGFloat = 0
-        var bgG: CGFloat = 0
-        var bgB: CGFloat = 0
-        var bgA: CGFloat = 0
 
-        var fgR: CGFloat = 0
-        var fgG: CGFloat = 0
-        var fgB: CGFloat = 0
-        var fgA: CGFloat = 0
-
-        self.getRed(&bgR, green: &bgG, blue: &bgB, alpha: &bgA)
-        overlay.getRed(&fgR, green: &fgG, blue: &fgB, alpha: &fgA)
-
-        let r = fgA * fgR + (1 - fgA) * bgR
-        let g = fgA * fgG + (1 - fgA) * bgG
-        let b = fgA * fgB + (1 - fgA) * bgB
-
-        return UIColor(red: r, green: g, blue: b, alpha: 1.0)
-    }
-    
     func lighten(_ alpha: CGFloat) -> UIColor {
-        let lightener = UIColor(white: 1, alpha: alpha)
-        return self.add(overlay: lightener)
+        overlaid(with: UIColor(white: 1, alpha: alpha))
     }
 
     func darken(_ alpha: CGFloat) -> UIColor {
-        let darkener = UIColor(white: 0, alpha: alpha)
-        return self.add(overlay: darkener)
+        overlaid(with: UIColor(white: 0, alpha: alpha))
+    }
+
+    private func overlaid(with overlay: UIColor) -> UIColor {
+        UIColor { traitCollection in
+            var backgroundRed: CGFloat = 0
+            var backgroundGreen: CGFloat = 0
+            var backgroundBlue: CGFloat = 0
+            var backgroundAlpha: CGFloat = 0
+
+            var foregroundRed: CGFloat = 0
+            var foregroundGreen: CGFloat = 0
+            var foregroundBlue: CGFloat = 0
+            var foregroundAlpha: CGFloat = 0
+
+            self.resolvedColor(with: traitCollection).getRed(
+                &backgroundRed,
+                green: &backgroundGreen,
+                blue: &backgroundBlue,
+                alpha: &backgroundAlpha
+            )
+            overlay.resolvedColor(with: traitCollection).getRed(
+                &foregroundRed,
+                green: &foregroundGreen,
+                blue: &foregroundBlue,
+                alpha: &foregroundAlpha
+            )
+
+            return UIColor(
+                red: foregroundAlpha * foregroundRed + (1 - foregroundAlpha) * backgroundRed,
+                green: foregroundAlpha * foregroundGreen + (1 - foregroundAlpha) * backgroundGreen,
+                blue: foregroundAlpha * foregroundBlue + (1 - foregroundAlpha) * backgroundBlue,
+                alpha: 1.0
+            )
+        }
     }
 }

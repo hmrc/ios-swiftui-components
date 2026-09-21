@@ -15,74 +15,122 @@
  */
 
 import UIKit
+import SwiftUI
 
 public protocol NamedColors {
-    var black: UIColor { get set }
-    var white: UIColor { get set }
-    var constantWhite: UIColor { get set }
-    var green1: UIColor { get set }
-    var green2: UIColor { get set }
-    var blue: UIColor { get set }
-    var teal: UIColor { get set }
-    var red: UIColor { get set }
-    var grey1: UIColor { get set }
-    var grey2: UIColor { get set }
-    var grey3: UIColor { get set }
-    var grey4: UIColor { get set }
-    var grey5: UIColor { get set }
-    var pink: UIColor { get set }
-    var yellow: UIColor { get set }
+    var palette: [Color.Named: UIColor] { get }
+}
 
-}
-extension UIColor {
-    convenience init(darkColour: UIColor, lightColour: UIColor) {
-        if #available(iOS 13.0, *) {
-            self.init { traitCollection in
-                traitCollection.userInterfaceStyle == .dark ? darkColour : lightColour
+public extension Color {
+
+    enum Palette: String, CaseIterable {
+        case black,
+             white,
+             green,
+             red,
+             blue,
+             turquoise,
+             grey,
+             darkGrey,
+             midGrey,
+             lightGrey,
+             teal,
+             yellow,
+             darkModeGreen,
+             darkModeRed,
+             darkNavy,
+             darkNavy2,
+             darkNavy3,
+             lightBlue,
+             navy,
+             whiteDark,
+             green2,
+             grey5,
+             pink,
+             pinkDark,
+             yellowLight,
+             yellowDark
+
+        public var hex: String {
+            switch self {
+            case .black: return "#0B0C0C"
+            case .white: return "#FFFFFF"
+            case .green: return "#00703C"
+            case .red: return "#D4351C"
+            case .blue: return "#1D70B8"
+            case .turquoise: return "#28A197"
+            case .grey: return "#282D30"
+            case .darkGrey: return "#505A5F"
+            case .midGrey: return "#B1B4B6"
+            case .lightGrey: return "#F3F2F1"
+            case .teal: return "#5BC0C6"
+            case .yellow: return "#FFDD00"
+            case .darkModeGreen: return "#188659"
+            case .darkModeRed: return "#F26954"
+            case .darkNavy: return "#0D1C29"
+            case .darkNavy2: return "#061625"
+            case .darkNavy3: return "#092537"
+            case .lightBlue: return "#D7E4F2"
+            case .navy: return "#0A2740"
+            case .whiteDark: return "#262626"
+            case .green2: return "#85994B"
+            case .grey5: return "#3B3838"
+            case .pink: return "#D53880"
+            case .pinkDark: return "#BB94FF"
+            case .yellowLight: return "#FFBF47"
+            case .yellowDark: return "#FEFF4F"
             }
-        } else {
-            self.init(cgColor: lightColour.cgColor)
+        }
+
+        public var uiColour: UIColor {
+            UIColor(hexString: hex)
+        }
+
+        public var colour: Color {
+            Color(hexString: hex)
         }
     }
 }
-extension UIColor {
-    convenience init(hexString: String) {
-        let hex = hexString.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
-        var int = UInt64()
-        Scanner(string: hex).scanHexInt64(&int)
-        // swiftlint:disable:next identifier_name
-        let a, r, g, b: UInt64
-        switch hex.count {
-        case 3: // RGB (12-bit)
-            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
-        case 6: // RGB (24-bit)
-            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
-        case 8: // ARGB (32-bit)
-            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
-        default:
-            (a, r, g, b) = (255, 0, 0, 0)
-        }
-        self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
+
+public extension UIColor {
+    convenience init(darkColour: UIColor, lightColour: UIColor) {
+        self.init { $0.userInterfaceStyle == .dark ? darkColour : lightColour }
     }
-    
+
+    convenience init(dark: Color.Palette, light: Color.Palette) {
+        self.init(darkColour: dark.uiColour, lightColour: light.uiColour)
+    }
+}
+
+extension UIColor {
     open class Colors: NamedColors {
-        
+
+        public static let defaultPalette: [Color.Named: UIColor] = [
+            .black: UIColor(dark: .white, light: .black),
+            .white: UIColor(dark: .whiteDark, light: .white),
+            .constantWhite: Color.Palette.white.uiColour,
+            .green: UIColor(dark: .darkModeGreen, light: .green),
+            .green2: Color.Palette.green2.uiColour,
+            .blue: UIColor(dark: .teal, light: .blue),
+            .turquoise: Color.Palette.turquoise.uiColour,
+            .red: UIColor(dark: .darkModeRed, light: .red),
+            .grey: Color.Palette.grey.uiColour,
+            .darkGrey: UIColor(dark: .midGrey, light: .darkGrey),
+            .midGrey: Color.Palette.midGrey.uiColour,
+            .lightGrey: UIColor(dark: .black, light: .lightGrey),
+            .grey5: Color.Palette.grey5.uiColour,
+            .pink: UIColor(dark: .pinkDark, light: .pink),
+            .yellow: UIColor(dark: .yellowDark, light: .yellowLight),
+            .navBarBackground: UIColor(dark: .blue, light: .whiteDark),
+            .navy: Color.Palette.navy.uiColour,
+            .darkNavy: Color.Palette.darkNavy.uiColour,
+            .darkNavy2: Color.Palette.darkNavy2.uiColour,
+            .darkNavy3: Color.Palette.darkNavy3.uiColour,
+            .lightBlue: Color.Palette.lightBlue.uiColour
+        ]
+
         public init() {}
-        
-        open var black = UIColor(darkColour: .init(hexString: "#FFFFFF"), lightColour: .init(hexString: "#0B0C0C"))
-        open var white = UIColor(darkColour: .init(hexString: "#262626"), lightColour: .init(hexString: "#FFFFFF"))
-        open var constantWhite = UIColor(hexString: "#FFFFFF")
-        open var green1 = UIColor(darkColour: .init(hexString: "#69B134"), lightColour: .init(hexString: "#00703C"))
-        open var green2 = UIColor(darkColour: .init(hexString: "#85994B"), lightColour: .init(hexString: "#85994B"))
-        open var blue = UIColor(darkColour: .init(hexString: "#5BC0C6"), lightColour: .init(hexString: "#1D70B8"))
-        open var teal = UIColor(darkColour: .init(hexString: "#28A197"), lightColour: .init(hexString: "#28A197"))
-        open var red = UIColor(darkColour: .init(hexString: "#EB66CA"), lightColour: .init(hexString: "#D4351C"))
-        open var grey1 = UIColor(darkColour: .init(hexString: "#B1B4B6"), lightColour: .init(hexString: "#505A5F"))
-        open var grey2 = UIColor(darkColour: .init(hexString: "#B1B4B6"), lightColour: .init(hexString: "#B1B4B6"))
-        open var grey3 = UIColor(darkColour: .init(hexString: "#0B0C0C"), lightColour: .init(hexString: "#F3F2F1"))
-        open var pink = UIColor(darkColour: .init(hexString: "#BB94FF"), lightColour: .init(hexString: "#D53880"))
-        open var yellow = UIColor(darkColour: .init(hexString: "#FEFF4F"), lightColour: .init(hexString: "#FFBF47"))
-        open var grey4 = UIColor(darkColour: .init(hexString: "#1D70B8"), lightColour: .init(hexString: "#262626"))
-        open var grey5 = UIColor(hexString: "#3B3838")
+
+        open var palette: [Color.Named: UIColor] = Colors.defaultPalette
     }
 }

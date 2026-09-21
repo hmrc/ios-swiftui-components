@@ -24,24 +24,27 @@ public protocol ColorService {
 
 extension Components.Colors {
     public class Service: ColorService {
-        
-        private var _colors: NamedColors?
-        private var _semanticColors: SemanticColors?
-        
+
+        private let injectedColors: NamedColors?
+        private let injectedSemanticColors: SemanticColors?
+
+        private lazy var defaultColors: NamedColors = UIColor.Colors()
+        private lazy var defaultSemanticColors: SemanticColors = Color.SemanticColors()
+
         public init(
             colors: NamedColors? = nil,
             semanticColors: SemanticColors? = nil
         ) {
-            self._colors = colors
-            self._semanticColors = semanticColors
+            self.injectedColors = colors
+            self.injectedSemanticColors = semanticColors
         }
-        
+
         public var colors: NamedColors {
-            return _colors ?? UIColor.Colors()
+            injectedColors ?? defaultColors
         }
-        
+
         public var semanticColors: SemanticColors {
-            return _semanticColors ?? Color.SemanticColors()
+            injectedSemanticColors ?? defaultSemanticColors
         }
     }
 }
