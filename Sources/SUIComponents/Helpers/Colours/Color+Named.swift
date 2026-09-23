@@ -78,4 +78,12 @@ public extension Color {
     init(dark: Named, light: Named) {
         self.init(UIColor(darkColour: dark.uiColour, lightColour: light.uiColour))
     }
+
+    init(dark: Palette.DarkMode, light: Palette.Primary) {
+        self.init(UIColor(dark: dark, light: light))
+    }
+
+    init(dark: Palette.Primary, light: Palette.Primary) {
+        self.init(UIColor(dark: dark, light: light))
+    }
 }
