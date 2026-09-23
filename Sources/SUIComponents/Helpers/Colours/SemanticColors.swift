@@ -45,6 +45,7 @@ public protocol SemanticColors {
     var tileText: Color { get }
 
     var infoMessageText: Color { get }
+    var infoMessageWarningBackground: Color { get }
 
     var menuCardBackground: Color { get }
     var menuCardWhiteBackground: Color { get }
@@ -68,6 +69,9 @@ public protocol SemanticColors {
     var statusCardIconDefaultTint: Color { get }
     var switchTint: Color { get }
     var switchTintSelected: Color { get }
+    var switchBorder: Color { get }
+
+    var chartStripeBackground: Color { get }
 
     var textInputBorder: Color { get }
     var textInputLeftViewTint: Color { get }
@@ -81,16 +85,22 @@ public protocol SemanticColors {
     var prefixBackgroundColor: Color { get }
 }
 
+public extension SemanticColors {
+    var infoMessageWarningBackground: Color { Color(dark: DarkMode.yellowDark, light: Primary.yellowLight) }
+    var switchBorder: Color { Primary.midGrey.colour }
+    var chartStripeBackground: Color { Color(dark: DarkMode.whiteDark, light: Primary.white) }
+}
+
 extension Color {
     open class SemanticColors: SUIComponents.SemanticColors {
 
         public init() {}
 
         open var darkText = Color(dark: Primary.white, light: Primary.black)
-        open var lightText = Color.Named.white.colour
+        open var lightText = Color(dark: DarkMode.whiteDark, light: Primary.white)
         open var linkText = Color(dark: Primary.teal, light: Primary.blue)
         open var errorText = Color(dark: DarkMode.primaryRed, light: Primary.red)
-        open var infoText = Color.Named.darkGrey.colour
+        open var infoText = Color(dark: Primary.midGrey, light: Primary.darkGrey)
         open var expandableButtonText = Color(dark: Primary.teal, light: Primary.blue)
 
         open var pageBackground = Color(dark: DarkMode.darkNavy2, light: Primary.lightGrey)
@@ -115,34 +125,38 @@ extension Color {
         open var tileText = Color(dark: Primary.white, light: Primary.black)
 
         open var infoMessageText = Color(dark: DarkMode.darkNavy2, light: Primary.white)
+        open var infoMessageWarningBackground = Color(dark: DarkMode.yellowDark, light: Primary.yellowLight)
 
         open var menuCardBackground = Color(dark: Primary.black, light: Primary.lightGrey)
-        open var menuCardWhiteBackground = Color.Named.white.colour
-        open var menuPageBackground = Color.Named.white.colour
+        open var menuCardWhiteBackground = Color(dark: DarkMode.whiteDark, light: Primary.white)
+        open var menuPageBackground = Color(dark: DarkMode.whiteDark, light: Primary.white)
 
         open var divider = Primary.midGrey.colour
         open var insetBar = Color(dark: Primary.midGrey, light: Primary.midGrey)
 
         open var primaryButtonBackground = Color(dark: DarkMode.primaryGreen, light: Primary.green)
-        open var primaryButtonBaseline = Color(Color.Named.green.uiColour.darken(0.4))
+        open var primaryButtonBaseline = Color(UIColor(dark: DarkMode.primaryGreen, light: Primary.green).darken(0.4))
         open var primaryButtonDisabledBackground = Color(dark: Primary.midGrey, light: Primary.darkGrey)
-        open var primaryButtonDisabledText = Color.Named.white.colour
-        open var primaryButtonHighlightedBackground = Color(Color.Named.green.uiColour.lighten(0.16))
-        open var primaryButtonHighlightedBaseline = Color(Color.Named.green.uiColour.darken(0.24))
+        open var primaryButtonDisabledText = Color(dark: DarkMode.whiteDark, light: Primary.white)
+        open var primaryButtonHighlightedBackground = Color(UIColor(dark: DarkMode.primaryGreen, light: Primary.green).lighten(0.16))
+        open var primaryButtonHighlightedBaseline = Color(UIColor(dark: DarkMode.primaryGreen, light: Primary.green).darken(0.24))
         open var primaryButtonText = Color(dark: Primary.white, light: Primary.white)
 
         open var secondaryButtonBackground = Color(dark: DarkMode.darkNavy2, light: Primary.white)
         open var secondaryButtonHighlightedBackground = Color(
             UIColor(
-                darkColour: Color.Named.darkGrey.uiColour.darken(0.4),
-                lightColour: Color.Named.blue.uiColour.lighten(0.84)
+                darkColour: UIColor(dark: Primary.midGrey, light: Primary.darkGrey).darken(0.4),
+                lightColour: UIColor(dark: Primary.teal, light: Primary.blue).lighten(0.84)
             )
         )
         open var secondaryButtonText = Color(dark: Primary.white, light: Primary.blue)
 
         open var statusCardIconDefaultTint = Color(dark: Primary.midGrey, light: Primary.darkGrey)
         open var switchTint = Color(dark: Primary.teal, light: Primary.blue)
-        open var switchTintSelected = Color(Color.Named.blue.uiColour.lighten(0.16))
+        open var switchTintSelected = Color(UIColor(dark: Primary.teal, light: Primary.blue).lighten(0.16))
+        open var switchBorder = Primary.midGrey.colour
+
+        open var chartStripeBackground = Color(dark: DarkMode.whiteDark, light: Primary.white)
 
         open var textInputBorder = Color(dark: Primary.white, light: Primary.black)
         open var textInputLeftViewTint = Color(dark: Primary.white, light: Primary.darkGrey)
@@ -152,7 +166,7 @@ extension Color {
         open var fieldFocusBorder = Color(dark: Primary.yellow, light: Primary.yellow)
 
         open var navBarBackground = Color(dark: DarkMode.darkNavy3, light: Primary.blue)
-        open var navBarDarkModeBackground = Color.Named.navBarBackground.colour
-        open var prefixBackgroundColor = Color(dark: .grey5, light: .lightGrey)
+        open var navBarDarkModeBackground = Color(dark: Primary.blue, light: DarkMode.whiteDark)
+        open var prefixBackgroundColor = Color(dark: DarkMode.grey5, light: Primary.lightGrey)
     }
 }

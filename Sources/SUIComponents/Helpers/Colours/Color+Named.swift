@@ -60,14 +60,17 @@ public extension Color {
         @available(*, deprecated, renamed: "navBarBackground")
         public static var grey4: Named { .navBarBackground }
 
+        @available(*, deprecated, message: "Use Color.Semantic.allColors")
         public static var allColors: [(String, Color)] {
             allCases.map { ("\($0.rawValue) (\($0.colour.hexString ?? "#------"))", $0.colour) }
         }
 
+        @available(*, deprecated, message: "Use a Color.Semantic token, or Color.Palette.Primary / Color.Palette.DarkMode")
         public var colour: Color {
             Color(uiColour)
         }
 
+        @available(*, deprecated, message: "Use a Color.Semantic token, or Color.Palette.Primary / Color.Palette.DarkMode")
         public var uiColour: UIColor {
             colorService.colors.palette[self]
                 ?? UIColor.Colors.defaultPalette[self]
@@ -75,6 +78,7 @@ public extension Color {
         }
     }
 
+    @available(*, deprecated, message: "Use init(dark:light:) with Color.Palette.Primary / Color.Palette.DarkMode tokens")
     init(dark: Named, light: Named) {
         self.init(UIColor(darkColour: dark.uiColour, lightColour: light.uiColour))
     }
@@ -84,6 +88,10 @@ public extension Color {
     }
 
     init(dark: Palette.Primary, light: Palette.Primary) {
+        self.init(UIColor(dark: dark, light: light))
+    }
+
+    init(dark: Palette.Primary, light: Palette.DarkMode) {
         self.init(UIColor(dark: dark, light: light))
     }
 }
