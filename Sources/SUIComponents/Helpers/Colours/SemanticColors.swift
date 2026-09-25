@@ -104,7 +104,7 @@ extension Color {
         open var expandableButtonText = Color(dark: Primary.teal, light: Primary.blue)
 
         open var pageBackground = Color(dark: DarkMode.darkNavy2, light: Primary.lightGrey)
-        open var whiteBackground = Color(dark: Primary.lightGrey, light: Primary.white)
+        open var whiteBackground = Color(dark: Primary.black, light: Primary.white)
         open var headerBackground = Color(dark: Primary.navy, light: Primary.blue)
         open var onboardingBackground = Color(dark: DarkMode.darkNavy2, light: Primary.lightGrey)
         open var onboardingPagerViewBackground = Color(dark: DarkMode.darkNavy3, light: Primary.white)
