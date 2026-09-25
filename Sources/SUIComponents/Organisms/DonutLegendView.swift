@@ -33,7 +33,7 @@ extension Components.Organisms {
                         if legendItem.dashed {
                             Stripes(
                                 config: StripesConfig(
-                                    background: Color.Named.white.colour,
+                                    background: Color.Semantic.chartStripeBackground,
                                     foreground: legendItem.colour,
                                     degrees: 180.0,
                                     barWidth: 3,
@@ -85,17 +85,17 @@ struct DonutLegendView_Previews: PreviewProvider {
         Components.Organisms.DonutLegendView(
             donutLegendItems: [
                 Components.Organisms.DonutLegendView.DonutLegendItem(
-                    colour: Color.Named.teal.colour,
+                    colour: Color.Palette.Primary.turquoise.colour,
                     title: "Total after Tax",
                     value: "£1041.00"
                 ),
                 Components.Organisms.DonutLegendView.DonutLegendItem(
-                    colour: Color.Named.blue.colour,
+                    colour: Color(dark: Color.Palette.Primary.teal, light: Color.Palette.Primary.blue),
                     title: "Income Tax paid",
                     value: "£315.00"
                 ),
                 Components.Organisms.DonutLegendView.DonutLegendItem(
-                    colour: Color.Named.pink.colour,
+                    colour: Color(dark: Color.Palette.DarkMode.pinkDark, light: Color.Palette.Primary.pink),
                     title: "National Insurance Paid",
                     value: "£189.00",
                     dashed: true
