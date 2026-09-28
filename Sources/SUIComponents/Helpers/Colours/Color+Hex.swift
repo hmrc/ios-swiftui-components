@@ -15,33 +15,58 @@
  */
 
 import Foundation
-
 import SwiftUI
+import UIKit
+
+public struct HexColour {
+    public let red: Double
+    public let green: Double
+    public let blue: Double
+    public let alpha: Double
+
+    public init(_ hexString: String) {
+        let hex = hexString.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+        var value: UInt64 = 0
+        Scanner(string: hex).scanHexInt64(&value)
+
+        let alphaValue, redValue, greenValue, blueValue: UInt64
+        switch hex.count {
+        case 3:
+            (alphaValue, redValue, greenValue, blueValue) = (
+                255,
+                (value >> 8) * 17,
+                (value >> 4 & 0xF) * 17,
+                (value & 0xF) * 17
+            )
+        case 6:
+            (alphaValue, redValue, greenValue, blueValue) = (
+                255,
+                value >> 16,
+                value >> 8 & 0xFF,
+                value & 0xFF
+            )
+        case 8:
+            (alphaValue, redValue, greenValue, blueValue) = (
+                value >> 24,
+                value >> 16 & 0xFF,
+                value >> 8 & 0xFF,
+                value & 0xFF
+            )
+        default:
+            (alphaValue, redValue, greenValue, blueValue) = (255, 0, 0, 0)
+        }
+
+        self.red = Double(redValue) / 255
+        self.green = Double(greenValue) / 255
+        self.blue = Double(blueValue) / 255
+        self.alpha = Double(alphaValue) / 255
+    }
+}
 
 public extension Color {
     init(hexString: String) {
-        let hex = hexString.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
-        var int: UInt64 = 0
-        Scanner(string: hex).scanHexInt64(&int)
-        let a, r, g, b: UInt64
-        switch hex.count {
-        case 3: // RGB (12-bit)
-            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
-        case 6: // RGB (24-bit)
-            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
-        case 8: // ARGB (32-bit)
-            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
-        default:
-            (a, r, g, b) = (1, 1, 1, 0)
-        }
-
-        self.init(
-            .sRGB,
-            red: Double(r) / 255,
-            green: Double(g) / 255,
-            blue:  Double(b) / 255,
-            opacity: Double(a) / 255
-        )
+        let hex = HexColour(hexString)
+        self.init(.sRGB, red: hex.red, green: hex.green, blue: hex.blue, opacity: hex.alpha)
     }
 
     var hexString: String? {
@@ -62,5 +87,17 @@ public extension Color {
             return nil
         }
         return String(hexString.trimmingCharacters(in: .newlines).dropLast(2))
+    }
+}
+
+public extension UIColor {
+    convenience init(hexString: String) {
+        let hex = HexColour(hexString)
+        self.init(
+            red: CGFloat(hex.red),
+            green: CGFloat(hex.green),
+            blue: CGFloat(hex.blue),
+            alpha: CGFloat(hex.alpha)
+        )
     }
 }

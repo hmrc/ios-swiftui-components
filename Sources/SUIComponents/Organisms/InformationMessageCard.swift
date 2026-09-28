@@ -139,7 +139,7 @@ extension Components.Organisms {
                 case .info:
                     return .Semantic.linkText
                 case .warning:
-                    return .Named.yellow.colour
+                    return .Semantic.infoMessageWarningBackground
                 case .urgent:
                     return .Semantic.errorText
                 case .notice:

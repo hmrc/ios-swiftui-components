@@ -100,7 +100,7 @@ extension Components.Organisms.InformationMessageCard {
                 case .info:
                     return .Semantic.linkText
                 case .warning:
-                    return .Named.yellow.colour
+                    return .Semantic.infoMessageWarningBackground
                 case .notice:
                     return .Semantic.darkText
                 case let .custom(backgroundColor, _, _):
@@ -115,7 +115,7 @@ extension Components.Organisms.InformationMessageCard {
                 case .info:
                     return .white.opacity(0.1)
                 case .warning:
-                    return .Named.yellow.colour.opacity(amount)
+                    return .Semantic.infoMessageWarningBackground.opacity(amount)
                 case .notice:
                     return .Semantic.darkText.opacity(amount)
                 case let .custom(backgroundColor, _, _):

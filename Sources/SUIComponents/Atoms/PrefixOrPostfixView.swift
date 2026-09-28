@@ -50,12 +50,12 @@ public struct PrefixOrPostfixView: View {
                    minHeight: ViewTraits.height,
                    maxHeight: .infinity)
             .background(
-                Color.Semantic.prefixBackgroundColour,
+                Color.Semantic.prefixBackgroundColor,
                 in: Rectangle()
             )
             .overlay(
                 Rectangle()
-                    .stroke(Color.Named.black.colour,
+                    .stroke(Color.Semantic.textInputBorder,
                             lineWidth: ViewTraits.borderWidth)
             )
     }

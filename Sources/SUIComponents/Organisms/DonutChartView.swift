@@ -44,7 +44,7 @@ extension Components.Organisms {
                     Circle()
                         .trim(from: 0.0, to: animationEnabled ? stateEndAngle : endAngle)
                         .rotation(Angle(degrees: -90.0))
-                        .stroke(Color.Named.white.colour, style: StrokeStyle(lineWidth: sliceWidth))
+                        .stroke(Color.Semantic.chartStripeBackground, style: StrokeStyle(lineWidth: sliceWidth))
                         .padding()
                         .position(x: viewHeight / 2, y: viewHeight / 2)
                         .if(!firstOrLast, transform: { circle in
@@ -232,8 +232,8 @@ struct DonutChartView_Previews: PreviewProvider {
                 key: "Take home",
                 amount: 2046.00,
                 styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
-                    colour: Color.Named.teal.colour,
-                    smallColour: Color.Named.teal.colour,
+                    colour: Color.Palette.Primary.turquoise.colour,
+                    smallColour: Color.Palette.Primary.turquoise.colour,
                     dashed: false
                 )
             ),
@@ -241,8 +241,8 @@ struct DonutChartView_Previews: PreviewProvider {
                 key: "Income tax",
                 amount: 545.00,
                 styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
-                    colour: Color.Named.blue.colour,
-                    smallColour: Color.Named.blue.colour,
+                    colour: Color(dark: Color.Palette.Primary.teal, light: Color.Palette.Primary.blue),
+                    smallColour: Color(dark: Color.Palette.Primary.teal, light: Color.Palette.Primary.blue),
                     dashed: false
                 )
             ),
@@ -250,8 +250,8 @@ struct DonutChartView_Previews: PreviewProvider {
                 key: "national insurance",
                 amount: 125.00,
                 styleProperties: Components.Organisms.DonutChartView.SliceStyleProperties(
-                    colour: Color.Named.blue.colour,
-                    smallColour: Color.Named.pink.colour,
+                    colour: Color(dark: Color.Palette.Primary.teal, light: Color.Palette.Primary.blue),
+                    smallColour: Color(dark: Color.Palette.DarkMode.pinkDark, light: Color.Palette.Primary.pink),
                     dashed: true
                 )
             )]
