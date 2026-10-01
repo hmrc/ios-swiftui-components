@@ -52,9 +52,7 @@ extension Components.Organisms {
             VStack(alignment: .leading, spacing: .spacer24) {
                 HStack(spacing: .spacer8) {
                     Text(model.title)
-                        .foregroundColor(
-                            TextStyle.link.textColor
-                        )
+                        .foregroundColor(TextStyle.H5.textColor)
                         .style(.H5)
                         .allowsTightening(false)
                         .multilineTextAlignment(.leading)
@@ -64,6 +62,7 @@ extension Components.Organisms {
 
                 if let body = model.body, !body.isEmpty {
                     Text(body, style: .body)
+                        .foregroundColor(TextStyle.body.textColor)
                         .multilineTextAlignment(.leading)
                         .fixedSize(horizontal: false, vertical: true)
                         .accessibility(hidden: true)
