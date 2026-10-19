@@ -42,6 +42,7 @@ extension Components.Organisms {
                 content: {
                     Text(title)
                         .style(.H5)
+                    .foregroundColor(.Semantic.cardTitleText)
                     content
                 }
             ).cardView(insets: insets)
