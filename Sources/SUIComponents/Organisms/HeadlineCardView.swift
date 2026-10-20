@@ -48,9 +48,11 @@ extension Components.Organisms {
                 content: {
                     VStack(spacing: itemSpacing) {
                         Text(title)
-                            .style(.H5)
-                        .foregroundColor(.Semantic.cardTitleText)
+                            .font(.H5.font())
+                            .foregroundColor(.Semantic.cardTitleText)
+                            .fixedSize(horizontal: false, vertical: true)
                             .frame(maxWidth: .infinity, alignment: .leading)
+                            .accessibility(addTraits: .isHeader)
                         headline
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .fixedSize(horizontal: false, vertical: true)
