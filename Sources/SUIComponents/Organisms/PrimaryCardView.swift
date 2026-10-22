@@ -41,7 +41,10 @@ extension Components.Organisms {
                 spacing: itemSpacing,
                 content: {
                     Text(title)
-                        .style(.H5)
+                        .font(.H5.font())
+                        .foregroundColor(.Semantic.cardTitleText)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .accessibility(addTraits: .isHeader)
                     content
                 }
             ).cardView(insets: insets)

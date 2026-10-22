@@ -70,6 +70,7 @@ public protocol SemanticColors {
     var switchTint: Color { get }
     var switchTintSelected: Color { get }
     var switchBorder: Color { get }
+    var cardTitleText: Color { get }
 
     var chartStripeBackground: Color { get }
 
@@ -88,6 +89,7 @@ public protocol SemanticColors {
 public extension SemanticColors {
     var infoMessageWarningBackground: Color { Color(dark: DarkMode.yellowDark, light: Primary.yellowLight) }
     var switchBorder: Color { Primary.midGrey.colour }
+    var cardTitleText: Color { Color(dark: Primary.white, light: Primary.blue) }
     var chartStripeBackground: Color { Color(dark: DarkMode.whiteDark, light: Primary.white) }
 }
 
@@ -155,6 +157,7 @@ extension Color {
         open var switchTint = Color(dark: Primary.teal, light: Primary.blue)
         open var switchTintSelected = Color(UIColor(dark: Primary.teal, light: Primary.blue).lighten(0.16))
         open var switchBorder = Primary.midGrey.colour
+        open var cardTitleText = Color(dark: Primary.white, light: Primary.blue)
 
         open var chartStripeBackground = Color(dark: DarkMode.whiteDark, light: Primary.white)
 
