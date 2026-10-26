@@ -151,7 +151,7 @@ extension Color {
                 lightColour: UIColor(dark: Primary.teal, light: Primary.blue).lighten(0.84)
             )
         )
-        open var secondaryButtonText = Color(dark: Primary.white, light: Primary.blue)
+        open var secondaryButtonText = Color(dark: Primary.teal, light: Primary.blue)
 
         open var statusCardIconDefaultTint = Color(dark: Primary.midGrey, light: Primary.darkGrey)
         open var switchTint = Color(dark: Primary.teal, light: Primary.blue)
