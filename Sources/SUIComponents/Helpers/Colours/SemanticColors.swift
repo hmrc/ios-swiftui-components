@@ -170,6 +170,6 @@ extension Color {
 
         open var navBarBackground = Color(dark: DarkMode.darkNavy3, light: Primary.blue)
         open var navBarDarkModeBackground = Color(dark: Primary.blue, light: DarkMode.whiteDark)
-        open var prefixBackgroundColor = Color(dark: DarkMode.grey5, light: Primary.lightGrey)
+        open var prefixBackgroundColor = Color(dark: DarkMode.darkNavy4, light: Primary.lightGrey)
     }
 }
