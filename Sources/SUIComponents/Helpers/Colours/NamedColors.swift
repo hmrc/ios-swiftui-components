@@ -191,6 +191,7 @@ public extension Color.Palette {
              darkNavy,
              darkNavy2,
              darkNavy3,
+             darkNavy4,
              whiteDark,
              grey5,
              pinkDark,
@@ -203,6 +204,7 @@ public extension Color.Palette {
             case .darkNavy: return "#0D1C29"
             case .darkNavy2: return "#061625"
             case .darkNavy3: return "#092537"
+            case .darkNavy4: return "#1A435D"
             case .whiteDark: return "#262626"
             case .grey5: return "#3B3838"
             case .pinkDark: return "#BB94FF"
