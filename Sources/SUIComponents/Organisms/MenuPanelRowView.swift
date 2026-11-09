@@ -52,10 +52,12 @@ extension Components.Organisms {
             VStack(alignment: .leading, spacing: .spacer24) {
                 HStack(spacing: .spacer8) {
                     Text(model.title)
-                        .foregroundColor(TextStyle.H5.textColor)
-                        .style(.H5)
-                        .allowsTightening(false)
-                        .multilineTextAlignment(.leading)
+                        .font(.H5.font())
+                        .foregroundColor(.Semantic.cardTitleText)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .accessibility(addTraits: .isHeader)
+
                     Components.Molecules.NotificationBubbleView(model: .init(notificationMode: model.notificationMode))
                 }
                 .accessibility(hidden: true)
