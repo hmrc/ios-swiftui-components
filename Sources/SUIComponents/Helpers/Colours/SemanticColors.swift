@@ -29,6 +29,7 @@ public protocol SemanticColors {
     var expandableButtonText: Color { get }
 
     var pageBackground: Color { get }
+    var pageBackgroundAlternative: Color { get }
     var whiteBackground: Color { get }
     var headerBackground: Color { get }
     var onboardingBackground: Color { get }
@@ -106,6 +107,7 @@ extension Color {
         open var expandableButtonText = Color(dark: Primary.teal, light: Primary.blue)
 
         open var pageBackground = Color(dark: DarkMode.darkNavy2, light: Primary.lightGrey)
+        open var pageBackgroundAlternative = Color(dark: DarkMode.darkNavy3, light: Primary.white)
         open var whiteBackground = Color(dark: Primary.black, light: Primary.white)
         open var headerBackground = Color(dark: Primary.navy, light: Primary.blue)
         open var onboardingBackground = Color(dark: DarkMode.darkNavy2, light: Primary.lightGrey)
