@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [1.18.2] - 2026-09-24Z
 - `SelectRowView`: replaced radio button `FilledCircle`/`EmptyCircle` assets with 40x40 versions, and load them from the package resource bundle (`Bundle.resource`) instead of the consuming app's main bundle
 - Updated `CurrencyInputView` to now support the new prefix/postfix style when usePrefixView is set to true.
 - Added new `TextInputWithPreOrPostfixView` separate to the existing `TextInputView`.
