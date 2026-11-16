@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+- Add new semantic tokens for dark mode, deprecate old ones, and apply new semantic tokens
 
 ## [1.18.2] - 2026-09-24Z
 - `SelectRowView`: replaced radio button `FilledCircle`/`EmptyCircle` assets with 40x40 versions, and load them from the package resource bundle (`Bundle.resource`) instead of the consuming app's main bundle
