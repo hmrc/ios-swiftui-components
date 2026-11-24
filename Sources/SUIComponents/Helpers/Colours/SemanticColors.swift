@@ -149,8 +149,8 @@ extension Color {
         open var secondaryButtonBackground = Color.clear
         open var secondaryButtonHighlightedBackground = Color(
             UIColor(
-                darkColour: UIColor(dark: Primary.midGrey, light: Primary.darkGrey).darken(0.4),
-                lightColour: UIColor(dark: Primary.teal, light: Primary.blue).lighten(0.84)
+                darkColour: DarkMode.darkNavy5.uiColour,
+                lightColour: Primary.lightBlue.uiColour
             )
         )
         open var secondaryButtonText = Color(dark: Primary.teal, light: Primary.blue)
